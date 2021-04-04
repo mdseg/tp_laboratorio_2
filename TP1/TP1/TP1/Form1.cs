@@ -16,6 +16,5 @@ namespace TP1
         {
             InitializeComponent();
         }
-
     }
 }
