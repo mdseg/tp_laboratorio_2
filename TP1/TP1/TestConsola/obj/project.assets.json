@@ -11,14 +11,13 @@
           "bin/placeholder/Entidades.dll": {}
         }
       },
-      "Utileria/1.0.0": {
+      "Util/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
         "compile": {
-          "bin/placeholder/Utileria.dll": {}
+          "bin/placeholder/Util.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Utileria.dll": {}
+          "bin/placeholder/Util.dll": {}
         }
       }
     }
@@ -29,16 +28,16 @@
       "path": "../Entidades/Entidades.csproj",
       "msbuildProject": "../Entidades/Entidades.csproj"
     },
-    "Utileria/1.0.0": {
+    "Util/1.0.0": {
       "type": "project",
-      "path": "../Utileria/Utileria.csproj",
-      "msbuildProject": "../Utileria/Utileria.csproj"
+      "path": "../Util/Util.csproj",
+      "msbuildProject": "../Util/Util.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Entidades >= 1.0.0",
-      "Utileria >= 1.0.0"
+      "Util >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -76,8 +75,8 @@
             "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Entidades\\Entidades.csproj": {
               "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Entidades\\Entidades.csproj"
             },
-            "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Utileria\\Utileria.csproj": {
-              "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Utileria\\Utileria.csproj"
+            "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj": {
+              "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj"
             }
           }
         }

@@ -8,8 +8,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsola", "TestConsola\TestConsola.csproj", "{5D085026-76F4-4ACE-B335-1D85A73B5B85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiCalculadora", "MiCalculadora\MiCalculadora.csproj", "{1F16F65E-5F52-4658-9787-496E59DB9EF6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{846F0520-FBEA-45FD-B2EF-94045A680763} = {846F0520-FBEA-45FD-B2EF-94045A680763}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utileria", "Utileria\Utileria.csproj", "{E8D2F6F1-C64C-4C52-8965-EA3650A609ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "Util\Util.csproj", "{015F6EDC-566B-40CF-ABAB-7509A097D993}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +32,10 @@ Global
 		{1F16F65E-5F52-4658-9787-496E59DB9EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F16F65E-5F52-4658-9787-496E59DB9EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F16F65E-5F52-4658-9787-496E59DB9EF6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8D2F6F1-C64C-4C52-8965-EA3650A609ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8D2F6F1-C64C-4C52-8965-EA3650A609ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8D2F6F1-C64C-4C52-8965-EA3650A609ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8D2F6F1-C64C-4C52-8965-EA3650A609ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{015F6EDC-566B-40CF-ABAB-7509A097D993}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015F6EDC-566B-40CF-ABAB-7509A097D993}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015F6EDC-566B-40CF-ABAB-7509A097D993}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015F6EDC-566B-40CF-ABAB-7509A097D993}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

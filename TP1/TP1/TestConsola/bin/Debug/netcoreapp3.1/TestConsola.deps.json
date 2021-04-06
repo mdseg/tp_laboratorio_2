@@ -9,7 +9,7 @@
       "TestConsola/1.0.0": {
         "dependencies": {
           "Entidades": "1.0.0",
-          "Utileria": "1.0.0"
+          "Util": "1.0.0"
         },
         "runtime": {
           "TestConsola.dll": {}
@@ -20,9 +20,9 @@
           "Entidades.dll": {}
         }
       },
-      "Utileria/1.0.0": {
+      "Util/1.0.0": {
         "runtime": {
-          "Utileria.dll": {}
+          "Util.dll": {}
         }
       }
     }
@@ -38,7 +38,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Utileria/1.0.0": {
+    "Util/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,6 +1,6 @@
 ﻿using System;
 using Entidades;
-using Utileria;
+using Util;
 
 namespace TestConsola
 {

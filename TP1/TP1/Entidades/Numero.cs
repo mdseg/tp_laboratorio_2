@@ -10,21 +10,33 @@ namespace Entidades
     {
         private double numero;
 
+        /// <summary>
+        /// Constructor por defecto, inicializa el atributo numero en 0
+        /// </summary>
         public Numero()
         {
             this.numero = 0;
         }
-
+        /// <summary>
+        /// Constructor que recibe un parámetro del tipo double para inicializar su atributo número
+        /// </summary>
+        /// <param name="numero"></param>
         public Numero(double numero)
         {
             this.numero = numero;
         }
-
+        /// <summary>
+        ///Constructor que recibe un parámetro del tipo string para inicializar su atributo número
+        /// </summary>
+        /// <param name="numero"></param>
         public Numero(string numero)
         {
             setNumero(numero);
         }
-
+        /// <summary>
+        /// Método que valida un número para asignarlo al campo número
+        /// </summary>
+        /// <param name="numero"></param>
         public void setNumero(string numero)
         {
             double doubleNumero = ValidarNumero(numero);
@@ -33,7 +45,12 @@ namespace Entidades
                 this.numero = doubleNumero;
             }
         }
-
+        /// <summary>
+        /// Recibe un tipo de dato del tipo string y valida que pueda convertirse
+        /// en double para despues retornar el valor como float.
+        /// </summary>
+        /// <param name="strNumero"></param>
+        /// <returns>Valor del tipo float con número validado</returns>
         private double ValidarNumero(string strNumero)
         {
             double output = 0;
@@ -45,7 +62,11 @@ namespace Entidades
             
             return output;  
         }
-
+        /// <summary>
+        /// Recibe una cadena del tipo string y valida que se corresponda a un número binario
+        /// </summary>
+        /// <param name="binario"></param>
+        /// <returns> retorna true si es binario y false si no es binario</returns>
         private static bool EsBinario(string binario)
         {
             bool output = true;
@@ -70,7 +91,12 @@ namespace Entidades
             return output;
 
         }
-
+        /// <summary>
+        /// Recibe un string, valida que sea binario y lo convierte
+        /// a un string que representa a ese valor en sistema decimal.
+        /// </summary>
+        /// <param name="binario">string binario a ser convertido en string decimal</param>
+        /// <returns>string decimal con el binario convertido</returns>
         public static string BinarioDecimal(string binario)
         {
             string output = "";
@@ -97,7 +123,13 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Recibe un string e intenta convertirlo en double para despues
+        /// convertirlo en Binario llamando al método DecimalBinario(), en caso de que no
+        /// se pueda convertir a double se emite un mensaje de error.
+        /// </summary>
+        /// <param name="numero">string con el valor a convertir</param>
+        /// <returns>string con el número binario convertido o un string con el error</returns>
         public static string DecimalBinario(string numero)
         {
             string output = "";
@@ -111,7 +143,11 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Recibe un valor del tipo double y lo convierte en un string binario.
+        /// </summary>
+        /// <param name="numero">numero a convertir en binario</param>
+        /// <returns>retorno con el string convertido en binario</returns>
         public static string DecimalBinario(double numero)
         {
             string output = "";
@@ -134,28 +170,48 @@ namespace Entidades
             while (continueOrder == true);
             return output;
         }
-
+        /// <summary>
+        /// Sobrecarga del operador +
+        /// </summary>
+        /// <param name="numeroUno"></param>
+        /// <param name="numeroDos"></param>
+        /// <returns></returns>
         public static double operator +(Numero numeroUno, Numero numeroDos)
         {
             double output;
             output = numeroUno.numero + numeroDos.numero;
             return output;
         }
-
+        /// <summary>
+        /// Sobrecarga del operador -
+        /// </summary>
+        /// <param name="numeroUno"></param>
+        /// <param name="numeroDos"></param>
+        /// <returns></returns>
         public static double operator -(Numero numeroUno, Numero numeroDos)
         {
             double output;
             output = numeroUno.numero - numeroDos.numero;
             return output;
         }
-
+        /// <summary>
+        /// Sobrecarga del operador *
+        /// </summary>
+        /// <param name="numeroUno"></param>
+        /// <param name="numeroDos"></param>
+        /// <returns></returns>
         public static double operator *(Numero numeroUno, Numero numeroDos)
         {
             double output;
             output = numeroUno.numero * numeroDos.numero;
             return output;
         }
-
+        /// <summary>
+        /// Sobrecarga del operador /, en el caso de error se retorna double.MinValue
+        /// </summary>
+        /// <param name="numeroUno"></param>
+        /// <param name="numeroDos"></param>
+        /// <returns></returns>
         public static double operator /(Numero numeroUno, Numero numeroDos)
         {
             if (numeroDos.numero != 0)

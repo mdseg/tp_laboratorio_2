@@ -10,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
+using Util;
+
 
 
 namespace MiCalculadora
@@ -19,115 +21,123 @@ namespace MiCalculadora
         Numero numeroUno;
         Numero numeroDos;
         string operador;
-        double resultado;
-
+        double resultado = 0;
+        /// <summary>
+        /// Constructor por defecto que inicializa el formulario
+        /// </summary>
         public FormCalculadora()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// 
+        /// metodo que carga el formulario asignandole valores a los label y los textbox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FormCalculadora_Load(object sender, EventArgs e)
         {
-
-            cmbOperador.SelectedIndex = 0;
+            lblResultado.Text = "0";
             txtNumero1.Text = "0";
             txtNumero2.Text = "0";
 
         }
-
+        /// <summary>
+        /// Consulta si se quiere cerrar la aplicación
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormCalculadora_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Esta seguro que quiere cerrar el programa? ", "cerrando", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (MessageBox.Show("¿Esta seguro que quiere cerrar el programa? ", "Cierre de aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 e.Cancel = true;
 
         }
-
-
-
-        private void txtNumero1_TextChanged(object sender, EventArgs e)
-        {
-            
-            
-
-            
-        }
-
+        /// <summary>
+        /// Llama a los métodos que validan los input para luego realizar las operaciones.
+        /// En caso de éxito se mostrará el valor por el lblResultado. De no pasar la validación
+        /// o en el caso de la división por cero se emitira el mensjae de error por un MessageBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOperar_Click(object sender, EventArgs e)
         {
+            string inputTxtUno = txtNumero1.Text;
+            string inputTxtDos = txtNumero2.Text;
 
-            if(!(System.Text.RegularExpressions.Regex.IsMatch(txtNumero1.Text, @"[-]?[0-9]*\.?,?[0-9]+")))
+            if (Validaciones.isValidDouble(inputTxtUno) && Validaciones.isValidDouble(inputTxtDos))
             {
-                MessageBox.Show("Error");
-            }
+                numeroUno = new Numero(txtNumero1.Text);
+                numeroDos = new Numero(txtNumero2.Text);
+                operador = cmbOperador.Text;
+                resultado = Calculadora.Operar(numeroUno, numeroDos, operador);
+                if (operador.Equals("/") && resultado.Equals(Double.MinValue))
+                {
+                    MessageBox.Show("No se puede dividir por cero.");
 
-            /*
-            if (!(System.Text.RegularExpressions.Regex.IsMatch(txtNumero1.Text, @"/(^[\+]?\d+[,]?\d+$)|(^[-]?\d+[,]?\d+$)|(^\d+[,]?\d+$)|(^[0-9\ ]+$)/gm")) || !(System.Text.RegularExpressions.Regex.IsMatch(txtNumero2.Text, @"/(^[\+]?\d+[,]?\d+$)|(^[-]?\d+[,]?\d+$)|(^\d+[,]?\d+$)|(^[0-9\ ]+$)/gm")))
-            {
-                MessageBox.Show("Por favor, ingrese sólo números (puede usar el punto '.' si desea ingresar decimales");
-            }
-            */
-            /*
-            bool prueba = System.Text.RegularExpressions.Regex.IsMatch("0", @"/(^[\+]?\d+[,]?\d+$)|(^[-]?\d+[,]?\d+$)|(^\d+[,]?\d+$)|(^[0-9\ ]+$)/gm");
-
-            if (!(System.Text.RegularExpressions.Regex.IsMatch(txtNumero1.Text, @"/(^[\+]?\d+[,]?\d+$)|(^[-]?\d+[,]?\d+$)|(^\d+[,]?\d+$)|(^[0-9\ ]+$)/gm")))
-            {
-                MessageBox.Show("Por favor, ingrese sólo números (puede usar el punto '.' si desea ingresar decimales");
-                // mandar a hacer operacion
-                // mostrar en el label
-            }*/
-            //Tomar los datos
-            numeroUno = new Numero(txtNumero1.Text);
-            numeroDos = new Numero(txtNumero2.Text);
-            /*
-            string numeroStringUno = txtNumero1.Text;
-            string numeroStringDos = txtNumero2.Text;
-            numeroUno.setNumero(numeroStringUno);
-            numeroDos.setNumero(numeroStringDos);
-            */
-
-
-
-
-            operador = cmbOperador.Text;
-            resultado = Calculadora.Operar(numeroUno, numeroDos, operador);
-            if (operador.Equals("/") && resultado.Equals(Double.MinValue))
-            {
-                MessageBox.Show("No se puede dividir por cero.");
-
+                }
+                else
+                {
+                    lblResultado.Text = Math.Round(resultado, 2).ToString();
+                }
             }
             else
             {
-                lblResultado.Text = Math.Round(resultado,2).ToString();
+                MessageBox.Show("Verifique los valores ingresados. Si quiere expresar numeros decimales use la coma (,)");
             }
 
-
         }
-
+        /// <summary>
+        /// Limpia los campos de input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtNumero1.Text = string.Empty;
             txtNumero2.Text = string.Empty;
+            lblResultado.Text = "";
+            cmbOperador.Items.Clear();
+            cmbOperador.Items.Add("+");
+            cmbOperador.Items.Add("-");
+            cmbOperador.Items.Add("*");
+            cmbOperador.Items.Add("/");
         }
 
-        private int VerificarCampos()
+
+        /// <summary>
+        /// Convierte el valor mostrado en lblResultado y lo convierte en un
+        /// string binario para luego mostrarlos por el mismo label
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
-            int output = 0;
-            if (!(System.Text.RegularExpressions.Regex.IsMatch(txtNumero1.Text, @"/(^[\+]?\d+[,]?\d+$)|(^[-]?\d+[,]?\d+$)|(^\d+[,]?\d+$)|(^[0-9\ ]+$)/gm")) || !(System.Text.RegularExpressions.Regex.IsMatch(txtNumero2.Text, @"/(^[\+]?\d+[,]?\d+$)|(^[-]?\d+[,]?\d+$)|(^\d+[,]?\d+$)|(^[0-9\ ]+$)/gm")))
-            {
-                output = -1;
-            }
-            else if(cmbOperador.SelectedIndex == 3 && txtNumero2.Text == "0")
-            {
-                output = -2;
-            }
-            return output;
-
+            string resultado = Numero.DecimalBinario(lblResultado.Text);
+            lblResultado.Text = resultado;
+        }
+        /// <summary>
+        /// Convierte el valor mostrado en lblResultado y lo convierte en un
+        /// string decimal tomando los datos del label como binario para luego mostrarlos por el mismo label
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnConvertirADecimal_Click(object sender, EventArgs e)
+        {
+            string resultado = Numero.BinarioDecimal(lblResultado.Text);
+            lblResultado.Text = resultado;
         }
 
+        /// <summary>
+        /// Consulta si se quiere cerrar la aplicación
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();  
+
+        }
+        
     }
 }
