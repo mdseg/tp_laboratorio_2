@@ -1,0 +1,9 @@
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\bin\Debug\netcoreapp3.1\Utileria.deps.json
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\bin\Debug\netcoreapp3.1\Utileria.dll
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\bin\Debug\netcoreapp3.1\Utileria.pdb
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\obj\Debug\netcoreapp3.1\Utileria.csprojAssemblyReference.cache
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\obj\Debug\netcoreapp3.1\Utileria.AssemblyInfoInputs.cache
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\obj\Debug\netcoreapp3.1\Utileria.AssemblyInfo.cs
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\obj\Debug\netcoreapp3.1\Utileria.csproj.CoreCompileInputs.cache
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\obj\Debug\netcoreapp3.1\Utileria.dll
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Utileria\obj\Debug\netcoreapp3.1\Utileria.pdb

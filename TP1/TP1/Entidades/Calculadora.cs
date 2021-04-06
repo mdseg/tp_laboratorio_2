@@ -8,7 +8,7 @@ namespace Entidades
 {
     public static class Calculadora
     {
-        static double Operar(Numero numeroUno, Numero numeroDos, string operador)
+        public static double Operar(Numero numeroUno, Numero numeroDos, string operador)
         {
             double output = 0;
             string operadorInput = ValidarOperador(operador[0]);
@@ -30,7 +30,7 @@ namespace Entidades
             return output;
         }
 
-        static string ValidarOperador(char operador)
+        public static string ValidarOperador(char operador)
         {
             string output = "+";
             switch (operador)

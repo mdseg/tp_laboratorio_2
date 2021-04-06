@@ -12,7 +12,7 @@ namespace Entidades
 
         public Numero()
         {
-
+            this.numero = 0;
         }
 
         public Numero(double numero)
@@ -46,7 +46,7 @@ namespace Entidades
             return output;  
         }
 
-        private bool EsBinario(string binario)
+        private static bool EsBinario(string binario)
         {
             bool output = true;
             char[] charBinario;
@@ -71,7 +71,7 @@ namespace Entidades
 
         }
 
-        public string BinarioDecimal(string binario)
+        public static string BinarioDecimal(string binario)
         {
             string output = "";
             string inputInvertido = "";
@@ -98,7 +98,7 @@ namespace Entidades
             return output;
         }
 
-        public string DecimalBinario(string numero)
+        public static string DecimalBinario(string numero)
         {
             string output = "";
             if(Double.TryParse(numero, out double doubleNumero))
@@ -112,7 +112,7 @@ namespace Entidades
             return output;
         }
 
-        public string DecimalBinario(double numero)
+        public static string DecimalBinario(double numero)
         {
             string output = "";
             int bufferNumber = Math.Abs(Convert.ToInt32(numero));
@@ -158,9 +158,14 @@ namespace Entidades
 
         public static double operator /(Numero numeroUno, Numero numeroDos)
         {
-            double output;
-            output = numeroUno.numero / numeroDos.numero;
-            return output;
+            if (numeroDos.numero != 0)
+            {
+                return numeroUno.numero / numeroDos.numero;
+            }
+            else
+            {
+                return double.MinValue;
+            }
         }
     }
 }
