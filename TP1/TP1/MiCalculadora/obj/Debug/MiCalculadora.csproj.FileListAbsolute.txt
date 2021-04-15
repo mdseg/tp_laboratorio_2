@@ -11,5 +11,3 @@ C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\MiCalculadora\obj\Debu
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\MiCalculadora\bin\Debug\Entidades.dll
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\MiCalculadora\bin\Debug\Entidades.pdb
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\MiCalculadora\obj\Debug\MiCalculadora.csproj.CopyComplete
-C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\MiCalculadora\bin\Debug\Util.dll
-C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\MiCalculadora\bin\Debug\Util.pdb

@@ -44,9 +44,6 @@
             "projectReferences": {
               "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Entidades\\Entidades.csproj": {
                 "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Entidades\\Entidades.csproj"
-              },
-              "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj": {
-                "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj"
               }
             }
           }
@@ -77,16 +74,6 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
         }
-      }
-    },
-    "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj",
-        "projectName": "Util",
-        "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj"
-      },
-      "frameworks": {
-        "net461": {}
       }
     }
   }

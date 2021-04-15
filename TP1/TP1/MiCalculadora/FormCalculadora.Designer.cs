@@ -101,6 +101,7 @@ namespace MiCalculadora
             // 
             // btnConvertirABinario
             // 
+            this.btnConvertirABinario.Enabled = false;
             this.btnConvertirABinario.Location = new System.Drawing.Point(29, 186);
             this.btnConvertirABinario.Name = "btnConvertirABinario";
             this.btnConvertirABinario.Size = new System.Drawing.Size(157, 32);
@@ -111,6 +112,7 @@ namespace MiCalculadora
             // 
             // btnConvertirADecimal
             // 
+            this.btnConvertirADecimal.Enabled = false;
             this.btnConvertirADecimal.Location = new System.Drawing.Point(202, 186);
             this.btnConvertirADecimal.Name = "btnConvertirADecimal";
             this.btnConvertirADecimal.Size = new System.Drawing.Size(157, 32);
@@ -122,11 +124,12 @@ namespace MiCalculadora
             // lblResultado
             // 
             this.lblResultado.AutoSize = true;
-            this.lblResultado.Location = new System.Drawing.Point(304, 44);
+            this.lblResultado.Location = new System.Drawing.Point(188, 38);
             this.lblResultado.Name = "lblResultado";
             this.lblResultado.Size = new System.Drawing.Size(55, 13);
             this.lblResultado.TabIndex = 8;
             this.lblResultado.Text = "Resultado";
+            this.lblResultado.Visible = false;
             // 
             // FormCalculadora
             // 

@@ -10,15 +10,6 @@
         "runtime": {
           "bin/placeholder/Entidades.dll": {}
         }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
-        }
       }
     }
   },
@@ -27,17 +18,11 @@
       "type": "project",
       "path": "../Entidades/Entidades.csproj",
       "msbuildProject": "../Entidades/Entidades.csproj"
-    },
-    "Util/1.0.0": {
-      "type": "project",
-      "path": "../Util/Util.csproj",
-      "msbuildProject": "../Util/Util.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Entidades >= 1.0.0",
-      "Util >= 1.0.0"
+      "Entidades >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -74,9 +59,6 @@
           "projectReferences": {
             "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Entidades\\Entidades.csproj": {
               "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Entidades\\Entidades.csproj"
-            },
-            "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj": {
-              "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP1\\TP1\\Util\\Util.csproj"
             }
           }
         }

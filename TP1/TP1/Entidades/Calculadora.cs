@@ -40,9 +40,8 @@ namespace Entidades
                     output = numeroUno / numeroDos;
                     break;
             }
-            return output;
+            return Math.Round(output,2);
         }
-
         /// <summary>
         /// Valida el char ingresado y retorna el string correspondiente a la
         /// operación indicada. Por defecto se indicará la suma (+)

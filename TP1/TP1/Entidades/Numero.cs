@@ -86,10 +86,8 @@ namespace Entidades
             else
             {
                 output = false;
-            }
-            
+            }          
             return output;
-
         }
         /// <summary>
         /// Recibe un string, valida que sea binario y lo convierte
@@ -151,7 +149,13 @@ namespace Entidades
         public static string DecimalBinario(double numero)
         {
             string output = "";
+
+            if(numero > int.MaxValue)
+            {
+                numero = int.MaxValue;
+            }
             int bufferNumber = Math.Abs(Convert.ToInt32(numero));
+            
             bool continueOrder = true;
             int resto;
             do
