@@ -124,12 +124,13 @@ namespace MiCalculadora
             // lblResultado
             // 
             this.lblResultado.AutoSize = true;
-            this.lblResultado.Location = new System.Drawing.Point(188, 38);
+            this.lblResultado.Location = new System.Drawing.Point(143, 37);
             this.lblResultado.Name = "lblResultado";
             this.lblResultado.Size = new System.Drawing.Size(55, 13);
             this.lblResultado.TabIndex = 8;
             this.lblResultado.Text = "Resultado";
             this.lblResultado.Visible = false;
+            this.lblResultado.Click += new System.EventHandler(this.lblResultado_Click);
             // 
             // FormCalculadora
             // 

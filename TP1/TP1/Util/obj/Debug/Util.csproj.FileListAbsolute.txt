@@ -1,6 +1,0 @@
-C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Util\bin\Debug\Util.dll
-C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Util\bin\Debug\Util.pdb
-C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Util\obj\Debug\Util.csprojAssemblyReference.cache
-C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Util\obj\Debug\Util.csproj.CoreCompileInputs.cache
-C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Util\obj\Debug\Util.dll
-C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP1\TP1\Util\obj\Debug\Util.pdb
