@@ -18,10 +18,6 @@ namespace MiCalculadora
 {
     public partial class FormCalculadora : Form
     {
-        Numero numeroUno;
-        Numero numeroDos;
-        string operador;
-        double resultado = 0;
         /// <summary>
         /// Constructor por defecto que inicializa el formulario
         /// </summary>
@@ -61,15 +57,14 @@ namespace MiCalculadora
         {
             string inputTxtUno = txtNumero1.Text;
             string inputTxtDos = txtNumero2.Text;                
-            numeroUno = new Numero(txtNumero1.Text);
-            numeroDos = new Numero(txtNumero2.Text);
-            operador = cmbOperador.Text;
-            resultado = Calculadora.Operar(numeroUno, numeroDos, operador);
+            Numero numeroUno = new Numero(txtNumero1.Text);
+            Numero numeroDos = new Numero(txtNumero2.Text);
+            string operador = cmbOperador.Text;
+            double resultado = Calculadora.Operar(numeroUno, numeroDos, operador);
                 
             /* Como el resultado de la división por cero retorna minValue lo cual genera
-            un valor que puede dar lugar a confusión, decidí enviar una ventana que le indica
+            un valor que puede dar lugar a confusión, decidí enviar un MessageBox que le indica
             al usuario que no se puede dividir por cero.
-
             */
             if (operador.Equals("/") && resultado.Equals(Double.MinValue))
             {
@@ -84,7 +79,6 @@ namespace MiCalculadora
                 {
                     lblResultado.Visible = true;
                 }
-
             }           
         }
         /// <summary>
@@ -113,7 +107,8 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
-            string resultado = Numero.DecimalBinario(lblResultado.Text);
+            Numero numero = new Numero();
+            string resultado = numero.DecimalBinario(lblResultado.Text);
             lblResultado.Text = resultado;
             btnConvertirABinario.Enabled = false;
             btnConvertirADecimal.Enabled = true;
@@ -126,7 +121,8 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
         {
-            string resultado = Numero.BinarioDecimal(lblResultado.Text);
+            Numero numero = new Numero();
+            string resultado = numero.BinarioDecimal(lblResultado.Text);
             lblResultado.Text = resultado;
             btnConvertirABinario.Enabled = true;
             btnConvertirADecimal.Enabled = false;

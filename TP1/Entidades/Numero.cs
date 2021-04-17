@@ -31,21 +31,19 @@ namespace Entidades
         /// <param name="numero"></param>
         public Numero(string numero)
         {
-            setNumero(numero);
+            this.setNumero = numero;
         }
-        
         /// <summary>
         /// Método que valida un número para asignarlo al campo número
         /// </summary>
         /// <param name="numero"></param>
-        public void setNumero(string numero)
+        public string setNumero
         {
-            double doubleNumero = ValidarNumero(numero);
-            if(doubleNumero != 0)
+            set
             {
-                this.numero = doubleNumero;
+                this.numero = this.ValidarNumero(value);
             }
-        }               
+        }
         /// <summary>
         /// Recibe un tipo de dato del tipo string y valida que pueda convertirse
         /// en double para despues retornar el valor como float.
@@ -68,7 +66,7 @@ namespace Entidades
         /// </summary>
         /// <param name="binario"></param>
         /// <returns> retorna true si es binario y false si no es binario</returns>
-        private static bool EsBinario(string binario)
+        private bool EsBinario(string binario)
         {
             bool output = true;
             char[] charBinario;
@@ -96,7 +94,7 @@ namespace Entidades
         /// </summary>
         /// <param name="binario">string binario a ser convertido en string decimal</param>
         /// <returns>string decimal con el binario convertido</returns>
-        public static string BinarioDecimal(string binario)
+        public string BinarioDecimal(string binario)
         {
             string output = "";
             string inputInvertido = "";
@@ -129,7 +127,7 @@ namespace Entidades
         /// </summary>
         /// <param name="numero">string con el valor a convertir</param>
         /// <returns>string con el número binario convertido o un string con el error</returns>
-        public static string DecimalBinario(string numero)
+        public string DecimalBinario(string numero)
         {
             string output = "";
             if(Double.TryParse(numero, out double doubleNumero))
@@ -147,7 +145,7 @@ namespace Entidades
         /// </summary>
         /// <param name="numero">numero a convertir en binario</param>
         /// <returns>retorno con el string convertido en binario</returns>
-        public static string DecimalBinario(double numero)
+        public string DecimalBinario(double numero)
         {
             string output = "";
 
