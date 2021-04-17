@@ -48,7 +48,7 @@ namespace Entidades
         /// </summary>
         /// <param name="operador">char correspondiente al operador ingresado</param>
         /// <returns> Operador validado </returns>
-        public static string ValidarOperador(char operador)
+        private static string ValidarOperador(char operador)
         {
             string output = "+";
             switch (operador)

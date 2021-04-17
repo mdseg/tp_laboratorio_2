@@ -102,7 +102,7 @@ namespace MiCalculadora
             cmbOperador.Items.Add("-");
             cmbOperador.Items.Add("*");
             cmbOperador.Items.Add("/");
-            btnConvertirABinario.Enabled = true;
+            btnConvertirABinario.Enabled = false;
             btnConvertirADecimal.Enabled = false;
         }
         /// <summary>

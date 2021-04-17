@@ -33,6 +33,7 @@ namespace Entidades
         {
             setNumero(numero);
         }
+        
         /// <summary>
         /// Método que valida un número para asignarlo al campo número
         /// </summary>
@@ -44,7 +45,7 @@ namespace Entidades
             {
                 this.numero = doubleNumero;
             }
-        }
+        }               
         /// <summary>
         /// Recibe un tipo de dato del tipo string y valida que pueda convertirse
         /// en double para despues retornar el valor como float.
