@@ -55,10 +55,10 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnOperar_Click(object sender, EventArgs e)
         {
-            string inputTxtUno = txtNumero1.Text;
-            string inputTxtDos = txtNumero2.Text;                
-            Numero numeroUno = new Numero(txtNumero1.Text);
-            Numero numeroDos = new Numero(txtNumero2.Text);
+            string inputTxtUno = txtNumero1.Text.Replace('.',',');
+            string inputTxtDos = txtNumero2.Text.Replace('.', ',');                
+            Numero numeroUno = new Numero(inputTxtUno);
+            Numero numeroDos = new Numero(inputTxtDos);
             string operador = cmbOperador.Text;
             double resultado = Calculadora.Operar(numeroUno, numeroDos, operador);
                 
