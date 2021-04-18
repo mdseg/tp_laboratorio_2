@@ -21,7 +21,7 @@ namespace Entidades
         /// Constructor que recibe un parámetro del tipo double para inicializar su atributo número
         /// </summary>
         /// <param name="numero"></param>
-        public Numero(double numero)
+        public Numero(double numero):this()
         {
             this.numero = numero;
         }
@@ -29,7 +29,7 @@ namespace Entidades
         ///Constructor que recibe un parámetro del tipo string para inicializar su atributo número
         /// </summary>
         /// <param name="numero"></param>
-        public Numero(string numero)
+        public Numero(string numero):this()
         {
             this.setNumero = numero;
         }

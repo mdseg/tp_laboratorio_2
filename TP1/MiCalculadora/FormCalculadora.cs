@@ -56,7 +56,7 @@ namespace MiCalculadora
         private void btnOperar_Click(object sender, EventArgs e)
         {
             string bufferNumeroUno = txtNumero1.Text.Replace('.',',');
-            string bufferNumerodos = txtNumero2.Text.Replace('.', ',');                
+            string bufferNumerodos = txtNumero2.Text.Replace('.', ',');            
             string operador = cmbOperador.Text;
             double resultado = Operar(bufferNumeroUno, bufferNumerodos, operador);
                 
