@@ -55,12 +55,10 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnOperar_Click(object sender, EventArgs e)
         {
-            string inputTxtUno = txtNumero1.Text.Replace('.',',');
-            string inputTxtDos = txtNumero2.Text.Replace('.', ',');                
-            Numero numeroUno = new Numero(inputTxtUno);
-            Numero numeroDos = new Numero(inputTxtDos);
+            string bufferNumeroUno = txtNumero1.Text.Replace('.',',');
+            string bufferNumerodos = txtNumero2.Text.Replace('.', ',');                
             string operador = cmbOperador.Text;
-            double resultado = Calculadora.Operar(numeroUno, numeroDos, operador);
+            double resultado = Operar(bufferNumeroUno, bufferNumerodos, operador);
                 
             /* Como el resultado de la división por cero retorna minValue lo cual genera
             un valor que puede dar lugar a confusión, decidí enviar un MessageBox que le indica
@@ -82,11 +80,35 @@ namespace MiCalculadora
             }           
         }
         /// <summary>
-        /// Limpia los campos de input
+        /// Recibe dos numeros en formato string y realiza las operaciones
+        /// relacionadas al operador para devolver un resultado producto de la operación
+        /// </summary>
+        /// <param name="numero1"></param>
+        /// <param name="numero2"></param>
+        /// <param name="operador"></param>
+        /// <returns></returns>
+        private static double Operar(string numero1, string numero2, string operador)
+        {
+            Numero numeroUno = new Numero(numero1);
+            Numero numeroDos = new Numero(numero2);
+            double resultado = Calculadora.Operar(numeroUno, numeroDos, operador);
+            return resultado;
+        }
+        /// <summary>
+        /// Recibe un evento de al hacer click en btnLimpiar y llama al método que se
+        /// encarga de limpiar el formulario
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+        /// <summary>
+        /// Método encargado de limpiar el formulario para poder volver a utilizarse
+        /// como al comienzo de la ejecución de la calculadora.
+        /// </summary>
+        private void Limpiar()
         {
             txtNumero1.Text = string.Empty;
             txtNumero2.Text = string.Empty;
@@ -137,9 +159,6 @@ namespace MiCalculadora
             this.Close();  
         }
 
-        private void lblResultado_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

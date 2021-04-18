@@ -130,7 +130,6 @@ namespace MiCalculadora
             this.lblResultado.TabIndex = 8;
             this.lblResultado.Text = "Resultado";
             this.lblResultado.Visible = false;
-            this.lblResultado.Click += new System.EventHandler(this.lblResultado_Click);
             // 
             // FormCalculadora
             // 
