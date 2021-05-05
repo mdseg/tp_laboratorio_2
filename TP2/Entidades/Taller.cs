@@ -18,10 +18,17 @@ namespace Entidades
 
 
         #region "Constructores"
+        /// <summary>
+        /// Constructor privado que inicializa el atributo vehiculos
+        /// </summary>
         private Taller()
         {
             this.vehiculos = new List<Vehiculo>();
         }
+        /// <summary>
+        /// Constructor público que llama al privado y además inicializa espacioDisponible
+        /// </summary>
+        /// <param name="espacioDisponible"></param>
         public Taller(int espacioDisponible)
         :this()
         {
@@ -36,9 +43,7 @@ namespace Entidades
         /// <returns></returns>
         public override string ToString() 
         {
-             Taller bufferTaller = this;
-             return Listar(bufferTaller, ETipo.Todos);
-            //return "Todo bien";
+             return Listar(this, ETipo.Todos);
         }
         #endregion
 
@@ -59,16 +64,26 @@ namespace Entidades
             sb.AppendLine("");
             foreach (Vehiculo v in taller.vehiculos)
             {
+
                 switch (tipo)
                 {
                     case ETipo.SUV:
-                        sb.AppendLine(v.Mostrar());
+                        if(v is Suv)
+                        {
+                            sb.AppendLine(v.Mostrar());
+                        }
                         break;
                     case ETipo.CicloMotor:
-                        sb.AppendLine(v.Mostrar());
+                        if (v is Ciclomotor)
+                        {
+                            sb.AppendLine(v.Mostrar());
+                        }
                         break;
                     case ETipo.Sedan:
-                        sb.AppendLine(v.Mostrar());
+                        if (v is Sedan)
+                        {
+                            sb.AppendLine(v.Mostrar());
+                        }
                         break;
                     default:
                         sb.AppendLine(v.Mostrar());
@@ -89,14 +104,18 @@ namespace Entidades
         /// <returns></returns>
         public static Taller operator +(Taller taller, Vehiculo vehiculo)
         {
-            foreach (Vehiculo v in taller.vehiculos)
+            if(taller.espacioDisponible > 0)
             {
-                if (v == vehiculo)
-                    return taller;
+                foreach (Vehiculo v in taller.vehiculos)
+                {
+                    if (v == vehiculo)
+                        return taller;
+                }
+                taller.vehiculos.Add(vehiculo);
+                taller.espacioDisponible--;
             }
 
-            taller.vehiculos.Add(vehiculo);
-            Console.Write("prueba");
+            
             return taller;
         }
         /// <summary>
@@ -111,10 +130,12 @@ namespace Entidades
             {
                 if (v == vehiculo)
                 {
-                    break;
+                    taller.vehiculos.Remove(vehiculo);
+                    taller.espacioDisponible++;
+                    return taller;
                 }
             }
-            taller.vehiculos.Remove(vehiculo);
+
             return taller;
         }
         #endregion

@@ -19,8 +19,8 @@ namespace Entidades
         protected override ETamanio Tamanio
         {
             get
-            {
-                return this.Tamanio;
+            {                  
+                return ETamanio.Mediano;
             }
         }
 
@@ -36,7 +36,7 @@ namespace Entidades
             tipo = ETipo.CuatroPuertas;
         }
         /// <summary>
-        /// 
+        /// Constructor que permite asignar un valor distinto a tipo introducido como parámetro
         /// </summary>
         /// <param name="marca"></param>
         /// <param name="chasis"></param>
@@ -50,17 +50,16 @@ namespace Entidades
 
 
         /// <summary>
-        /// 
+        /// Especializacion del método Mostrar() de la clase base para mostrar Datos de un tipo Sedan
         /// </summary>
         /// <returns></returns>
         public override sealed string Mostrar()
         {
-            StringBuilder sb = new StringBuilder();
 
+            StringBuilder sb = new StringBuilder();
             sb.AppendLine("SEDAN");
             sb.AppendLine(base.Mostrar());
-            sb.AppendFormat($"TAMAÑO : {0}\n", this.Tamanio);
-            sb.AppendLine("TIPO : " + this.tipo);
+            sb.AppendFormat("TAMAÑO : {0} TIPO : {1}", this.Tamanio,this.tipo);
             sb.AppendLine("");
             sb.AppendLine("---------------------");
 

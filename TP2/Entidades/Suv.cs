@@ -8,6 +8,12 @@ namespace Entidades
 {
     public class Suv : Vehiculo
     {
+        /// <summary>
+        /// Constructor que llama a la clase base
+        /// </summary>
+        /// <param name="marca"></param>
+        /// <param name="chasis"></param>
+        /// <param name="color"></param>
         public Suv(EMarca marca, string chasis, ConsoleColor color)
         :base(chasis, marca, color)
         {
@@ -22,12 +28,16 @@ namespace Entidades
                 return ETamanio.Grande;
             }
         }
-
+        /// <summary>
+        /// Especializacion del método Mostrar() de la clase base para mostrar Datos de un tipo Suv
+        /// </summary>
+        /// <returns></returns>
         public override sealed string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
             
             sb.AppendLine("SUV");
+            
             sb.AppendLine(base.Mostrar());
             sb.AppendFormat("TAMAÑO : {0}", this.Tamanio);
             sb.AppendLine("");

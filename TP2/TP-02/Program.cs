@@ -9,6 +9,10 @@ namespace TP_02_2018
 {
     class Program
     {
+        /// <summary>
+        /// Método main donde se realiza una carga de datos del tipo Vehiculo para probar el correcto funcionamiento de la biblioteca Entidades
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             // Configuración de la pantalla
@@ -29,22 +33,29 @@ namespace TP_02_2018
             Suv a3 = new Suv(Vehiculo.EMarca.BMW, "IOP852", ConsoleColor.Green);
             Suv a4 = new Suv(Vehiculo.EMarca.Honda, "ASD913", ConsoleColor.Green);
 
+
             // Agrego 8 ítems (los últimos 2 no deberían poder agregarse ni el m1 repetido) y muestro
+            
             taller += c1;
+            
             taller += c2;
             taller += m1;
+            
             taller += m1;
             taller += m2;
+            
             taller += a1;
+            
             taller += a2;
             taller += a3;
             taller += a4;
-
+            
+            
             Console.WriteLine(taller.ToString());
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
             Console.ReadKey();
             Console.Clear();
-
+            
             // Quito 2 items y muestro
             taller -= c1;
             taller -= new Ciclomotor(Vehiculo.EMarca.Honda, "ASD913", ConsoleColor.Red);
@@ -56,7 +67,7 @@ namespace TP_02_2018
 
             // Vuelvo a agregar c2
             taller += c2;
-
+            
             // Muestro solo Moto
             Console.WriteLine(Taller.Listar(taller, Taller.ETipo.CicloMotor));
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
@@ -73,6 +84,7 @@ namespace TP_02_2018
             Console.WriteLine(Taller.Listar(taller, Taller.ETipo.SUV));
             Console.WriteLine("<-------------PRESIONE UNA TECLA PARA SALIR------------->");
             Console.ReadKey();
+            
         }
     }
 }
