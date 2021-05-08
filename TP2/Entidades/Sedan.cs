@@ -23,7 +23,6 @@ namespace Entidades
                 return ETamanio.Mediano;
             }
         }
-
         /// <summary>
         /// Por defecto, TIPO será CuatroPuertas
         /// </summary>
@@ -47,25 +46,23 @@ namespace Entidades
         {
             this.tipo = tipo;
         }
-
-
         /// <summary>
         /// Especializacion del método Mostrar() de la clase base para mostrar Datos de un tipo Sedan
         /// </summary>
         /// <returns></returns>
         public override sealed string Mostrar()
         {
-
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("SEDAN");
             sb.AppendLine(base.Mostrar());
             sb.AppendFormat("TAMAÑO : {0} TIPO : {1}", this.Tamanio,this.tipo);
             sb.AppendLine("");
             sb.AppendLine("---------------------");
-
             return sb.ToString();
         }
-
+        /// <summary>
+        /// Enum con los valores posibles para el tipo de Sedan
+        /// </summary>
         public enum ETipo { CuatroPuertas, CincoPuertas }
     }
 }

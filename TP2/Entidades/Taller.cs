@@ -9,7 +9,7 @@ namespace Entidades
     /// <summary>
     /// No podrá tener clases heredadas.
     /// </summary>
-    public class Taller
+    public sealed class Taller
     {
         private List<Vehiculo> vehiculos;
         private int espacioDisponible;
@@ -59,7 +59,6 @@ namespace Entidades
         public static string Listar(Taller taller, ETipo tipo)
         {
             StringBuilder sb = new StringBuilder();
-
             sb.AppendFormat("Tenemos {0} lugares ocupados de un total de {1} disponibles", taller.vehiculos.Count, taller.espacioDisponible);
             sb.AppendLine("");
             foreach (Vehiculo v in taller.vehiculos)
@@ -90,7 +89,6 @@ namespace Entidades
                         break;
                 }
             }
-
             return sb.ToString();
         }
         #endregion
@@ -113,9 +111,7 @@ namespace Entidades
                 }
                 taller.vehiculos.Add(vehiculo);
                 taller.espacioDisponible--;
-            }
-
-            
+            }          
             return taller;
         }
         /// <summary>
@@ -135,11 +131,12 @@ namespace Entidades
                     return taller;
                 }
             }
-
             return taller;
         }
         #endregion
-
+        /// <summary>
+        /// Enum con valores posibles para el tipo de Vehiculo
+        /// </summary>
         public enum ETipo
         {
             CicloMotor, Sedan, SUV, Todos

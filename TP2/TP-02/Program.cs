@@ -37,7 +37,6 @@ namespace TP_02_2018
             // Agrego 8 ítems (los últimos 2 no deberían poder agregarse ni el m1 repetido) y muestro
             
             taller += c1;
-            
             taller += c2;
             taller += m1;
             
