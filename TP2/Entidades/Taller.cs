@@ -14,9 +14,6 @@ namespace Entidades
         private List<Vehiculo> vehiculos;
         private int espacioDisponible;
 
-
-
-
         #region "Constructores"
         /// <summary>
         /// Constructor privado que inicializa el atributo vehiculos
@@ -60,7 +57,7 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("Tenemos {0} lugares ocupados de un total de {1} disponibles", taller.vehiculos.Count, taller.espacioDisponible);
-            sb.AppendLine("");
+            sb.AppendLine("\n");
             foreach (Vehiculo v in taller.vehiculos)
             {
 
