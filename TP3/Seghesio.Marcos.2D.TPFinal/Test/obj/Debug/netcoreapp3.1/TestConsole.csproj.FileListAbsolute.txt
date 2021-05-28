@@ -1,0 +1,16 @@
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\bin\Debug\netcoreapp3.1\TestConsole.exe
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\bin\Debug\netcoreapp3.1\TestConsole.deps.json
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\bin\Debug\netcoreapp3.1\TestConsole.runtimeconfig.json
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\bin\Debug\netcoreapp3.1\TestConsole.runtimeconfig.dev.json
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\bin\Debug\netcoreapp3.1\TestConsole.dll
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\bin\Debug\netcoreapp3.1\TestConsole.pdb
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\bin\Debug\netcoreapp3.1\Entidades.dll
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\bin\Debug\netcoreapp3.1\Entidades.pdb
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\obj\Debug\netcoreapp3.1\TestConsole.csprojAssemblyReference.cache
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\obj\Debug\netcoreapp3.1\TestConsole.AssemblyInfoInputs.cache
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\obj\Debug\netcoreapp3.1\TestConsole.AssemblyInfo.cs
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\obj\Debug\netcoreapp3.1\TestConsole.csproj.CoreCompileInputs.cache
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\obj\Debug\netcoreapp3.1\TestConsole.csproj.CopyComplete
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\obj\Debug\netcoreapp3.1\TestConsole.dll
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\obj\Debug\netcoreapp3.1\TestConsole.pdb
+C:\Users\Usuario-PC\source\repos\Seghesio.Marcos.2D.TPFinal\Test\obj\Debug\netcoreapp3.1\TestConsole.genruntimeconfig.cache
