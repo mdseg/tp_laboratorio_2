@@ -119,7 +119,7 @@ namespace Entidades
         public bool BarnizarProducto()
         {
             bool output = false;
-            if(this is Estante && this.EstadoProducto == EEstado.MaterialesPreparados)
+            if(this is Estante && this.EstadoProducto == EEstado.MaderasLijadas)
             {
                 this.estadoProducto = EEstado.Barnizado;
                 output = true;
@@ -149,6 +149,8 @@ namespace Entidades
             }
             return output;
         }
+
+
 
     }
 }

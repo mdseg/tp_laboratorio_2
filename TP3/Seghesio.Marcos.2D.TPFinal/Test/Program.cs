@@ -45,9 +45,16 @@ namespace Test
             //2- Usuario da de alta un producto para agregar a la linea de producción
 
             Producto productoValido = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
+            List<Insumo> faltantes = new List<Insumo>();
 
-            fabrica.AgregarProductoLineaProduccion(productoValido);
+            fabrica.AgregarProductoLineaProduccion(productoValido, out faltantes);
 
+            foreach (Insumo i in insumosCargados)
+            {
+                Console.WriteLine(i.Mostrar());
+            }
+
+            // Caso de error
         }
     }
 }

@@ -78,6 +78,13 @@ namespace Entidades
                     output = true;
                 }
             }
+            else if (i1 is InsumoAccesorio && i2 is InsumoAccesorio)
+            {
+                if ((InsumoAccesorio)i1 == (InsumoAccesorio)i2)
+                {
+                    output = true;
+                }
+            }
             else if(i1 is Yute && i2 is Yute)
             {
                 output = true;

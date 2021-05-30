@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excepciones\EliminarInsumoException.cs" />
     <Compile Include="InsumoAccesorio.cs" />
     <Compile Include="Deposito.cs" />
     <Compile Include="Estante.cs" />

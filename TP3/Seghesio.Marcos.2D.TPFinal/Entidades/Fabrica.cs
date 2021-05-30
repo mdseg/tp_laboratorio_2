@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,15 +67,24 @@ namespace Entidades
                 materialesProducto.Add(new InsumoAccesorio(ETipoAccesorio.Pegamento, CANTIDAD_PEGAMENTO_ESTANTE));
                 materialesProducto.Add(new InsumoAccesorio(ETipoAccesorio.Barniz, CANTIDAD_BARNIZ_ESTANTE));
             }
-
+            int contador = 0;
             foreach (Insumo insumoProducto in materialesProducto)
             {
                 bool insumoEncontrado = false;
+                contador++;
                 foreach(Insumo insumo in stockInsumos)
                 {
                     if(insumo == insumoProducto)
                     {
-                        insumoEncontrado = true;
+                        if(insumoProducto.Cantidad <= insumo.Cantidad)
+                        {
+                            insumoEncontrado = true;
+                        }
+                        else
+                        {
+                            insumoProducto.Cantidad = insumoProducto.Cantidad - insumo.Cantidad;
+
+                        }
                         break;
                     }
                 }
@@ -99,29 +109,28 @@ namespace Entidades
         /// </summary>
         /// <param name="insumosASeparar"></param>
         /// <returns></returns>
-        private bool SepararInsumos(List<Insumo> insumosASeparar)
+        private void SepararInsumos(List<Insumo> insumosASeparar)
         {
-            bool output = false;
             foreach(Insumo i in insumosASeparar)
             {
-               bool resultado = this.stockInsumos - i;
-               if(resultado == false)
-                {
-                    throw new Exception();
-                }
+               bool resultado = this.stockInsumos - i;               
             }
-            return output;
         }
         
-        public bool AgregarProductoLineaProduccion(Producto prospectoProducto)
+        public bool AgregarProductoLineaProduccion(Producto prospectoProducto, out List<Insumo> insumosFaltantes)
         {
             bool output = false;
-            List<Insumo> insumosFaltantes = new List<Insumo>();
             List<Insumo> insumosCompletos = new List<Insumo>();
             if (VerificarStockInsumo(prospectoProducto,out insumosFaltantes, out insumosCompletos))
             {
                 SepararInsumos(insumosCompletos);
                 this.lineaProduccion.Add(prospectoProducto);
+                output = true;
+            }
+            else
+            {
+                output = false;
+
             }
             return output;
         }
@@ -149,34 +158,68 @@ namespace Entidades
             }
             return output;
         }
-        public bool EjecutarProcesoLineaProduccion(EProceso proceso)
+        public int EjecutarProcesoLineaProduccion(EProceso proceso)
         {
-            bool output = false;
+            int output = 0;
             foreach(Producto producto in lineaProduccion)
             {
+                bool procesoRealizado = false;
                 switch (proceso)
                 {
                     case EProceso.Lijar:
-                        producto.LijarMaderaProducto();
+                        procesoRealizado = producto.LijarMaderaProducto();
                         break;
                     case EProceso.Barnizar:
-                        producto.BarnizarProducto();
+                        procesoRealizado = producto.BarnizarProducto();
                         break;
                     case EProceso.Alfombrar:
-                        producto.AlfombrarProducto();
+                        procesoRealizado = producto.AlfombrarProducto();
                         break;
                     case EProceso.Ensamblar:
-                        producto.EnsamblarProducto();
+                        procesoRealizado = producto.EnsamblarProducto();
                         break;
+                }
+                if(procesoRealizado)
+                {
+                    output++;
                 }
             }
             return output;
 
         }
 
-        
+        public void ResetearFabrica()
+        {
+            this.lineaProduccion.Clear();
+            this.stockInsumos.Clear();
+            this.stockProductosTerminados.Clear();
+        }
 
-        
+        public int MudarProductosAStockTerminado()
+        {
+            int output = 0;
+            List<Producto> productosAEliminar = new List<Producto>();
+            foreach (Producto producto in this.lineaProduccion)
+            {
+                if (producto.EstadoProducto == Producto.EEstado.Completo)
+                {
+                    this.stockProductosTerminados.Add(producto);
+                    productosAEliminar.Add(producto);
+                    output++;
+                }
+            }
+
+            foreach (Producto producto in productosAEliminar)
+            {
+                this.lineaProduccion.Remove(producto);
+            }
+
+            return output;
+        }
+
+
+
+
     }
     public enum EProceso
     {
