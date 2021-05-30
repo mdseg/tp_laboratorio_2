@@ -55,7 +55,7 @@ namespace Entidades
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("{0}, Tipo de Madera: {1}, Forma: {2}\n", base.Mostrar(), this.TipoMadera, this.Forma);
+            sb.AppendFormat("Madera: {0}, Tipo de Madera: {1}, Forma: {2}\n", base.Mostrar(), this.TipoMadera, this.Forma);
             return sb.ToString();
         }
 

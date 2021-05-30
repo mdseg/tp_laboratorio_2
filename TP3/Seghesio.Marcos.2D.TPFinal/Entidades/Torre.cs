@@ -80,18 +80,20 @@ namespace Entidades
             return sb.ToString();
         }
 
-        public override void LijarMaderaProducto(Producto producto)
+        public override bool LijarMaderaProducto()
         {
-            if (producto.EstadoProducto == Producto.EEstado.Planificado)
+            bool output = false;
+            if (this.EstadoProducto == Producto.EEstado.Planificado)
             {
-                producto.MaderaPrincipal.LijarMadera();
-                if (producto is Torre)
+                this.MaderaPrincipal.LijarMadera();
+                if (this is Torre)
                 {
-                    ((Torre)producto).MaderaColumna.LijarMadera();
+                    ((Torre)this).MaderaColumna.LijarMadera();
                 }
-                producto.EstadoProducto = EEstado.MaderasLijadas;
+                ((Torre)this).estadoProducto = EEstado.MaderasLijadas;
+                output = true;
             }
-
+            return output;
         }
 
         public enum ModeloTorre

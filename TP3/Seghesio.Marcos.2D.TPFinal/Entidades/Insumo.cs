@@ -94,26 +94,20 @@ namespace Entidades
             return output;
         }
 
-        public static bool operator >(Insumo i1, Insumo i2)
+        public static bool operator -(List<Insumo> listaInsumos, Insumo insumo)
         {
             bool output = false;
-            if((i1 ==  i2) && i1.Cantidad > i2.Cantidad)
+            foreach(Insumo i in listaInsumos)
             {
-                output = true;
+                if((insumo == i) && (insumo.Cantidad <= i.Cantidad))
+                {
+                    i.Cantidad -= insumo.Cantidad;
+                    output = true;
+                    break;
+                }
             }
             return output;
         }
-
-        public static bool operator <(Insumo i1, Insumo i2)
-        {
-            bool output = false;
-            if ((i1 == i2) && i1.Cantidad < i2.Cantidad)
-            {
-                output = true;
-            }
-            return output;
-        }
-
 
 
     }

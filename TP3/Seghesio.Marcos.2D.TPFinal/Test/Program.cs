@@ -8,35 +8,46 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Insumo madera = new Madera(ETipoMadera.Mdf, EForma.Tablon, 5);
-            Insumo tela = new Tela(EColor.Bordo, ETela.PolarSoft, 10);
-            Insumo tela2 = new Tela(EColor.Azul, ETela.Corderito, 5);
-            GenericInventario<Insumo> stockInsumos = new GenericInventario<Insumo>();
-            stockInsumos.listadoObjetos.Add(madera);
-            stockInsumos.listadoObjetos.Add(tela);
-            /*
-            foreach(Insumo i in stockInsumos.listadoObjetos)
-            {
-                Console.WriteLine(i.Mostrar());
-            }
-            */
-            Producto producto = new Torre((Madera)madera, (Tela)tela2, Torre.ModeloTorre.King,new Madera(ETipoMadera.Pino,EForma.Tubo,2));
-            Console.WriteLine(producto.Mostrar());
-
-            List<Insumo> desarmado = (List<Insumo>)producto;
-            /*
-            foreach (Insumo i in desarmado)
-            {
-                Console.WriteLine(i.Mostrar());
-            }
-            */
+            // Instanciar la fábrica para poder probar todos los eventos
             Fabrica fabrica = Fabrica.Instance;
-            fabrica.VerificarStockProducto(stockInsumos.listadoObjetos, producto);
-            
-            /*
-            Insumo madera2 = new Madera(ETipoMadera.Mdf, EForma.Tubo, 3);
-            bool prueba = (madera == madera2);
-            */
+
+            //1- Usuario Ingresa insumos
+
+            Insumo maderaUno = new Madera(ETipoMadera.Mdf, EForma.Tablon, 10);
+            Insumo maderaSecundaria = new Madera(ETipoMadera.Mdf, EForma.Tubo, 5);
+            Insumo telaUno = new Tela(EColor.Bordo, ETipoTela.Alfombra, 15);
+
+            Insumo adicionalUno = new InsumoAccesorio(ETipoAccesorio.Barniz, 10);
+            Insumo adicionalDos = new InsumoAccesorio(ETipoAccesorio.Tornillo, 24);
+            Insumo adicionalTres = new InsumoAccesorio(ETipoAccesorio.Pegamento, 10);
+
+            List<Insumo> insumosAgregar = new List<Insumo>();
+            insumosAgregar.Add(adicionalUno);
+            insumosAgregar.Add(adicionalDos);
+            insumosAgregar.Add(adicionalTres);
+            insumosAgregar.Add(maderaUno);
+            insumosAgregar.Add(maderaSecundaria);
+            insumosAgregar.Add(telaUno);
+
+            // Agregar a fabrica
+
+            fabrica.AgregarInsumosAStock(insumosAgregar);
+
+            // Obtener y mostrar
+
+            List<Insumo> insumosCargados = fabrica.StockInsumos;
+
+            foreach(Insumo i in insumosCargados)
+            {
+                Console.WriteLine(i.Mostrar());
+            }
+
+            //2- Usuario da de alta un producto para agregar a la linea de producción
+
+            Producto productoValido = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
+
+            fabrica.AgregarProductoLineaProduccion(productoValido);
+
         }
     }
 }

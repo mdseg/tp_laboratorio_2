@@ -9,7 +9,7 @@ namespace Entidades
     public class Tela : Insumo
     {
         private EColor color;
-        private ETela tipoTela;
+        private ETipoTela tipoTela;
 
         public EColor Color
         {
@@ -18,7 +18,7 @@ namespace Entidades
                 return this.color;
             }
         }
-        public ETela TipoTela
+        public ETipoTela TipoTela
         {
             get
             {
@@ -27,14 +27,14 @@ namespace Entidades
         }
 
         
-        public Tela(EColor color, ETela tipoTela, int cantidad, DateTime fechaIngreso)
+        public Tela(EColor color, ETipoTela tipoTela, int cantidad, DateTime fechaIngreso)
         :base(cantidad,fechaIngreso)
         {
             this.color = color;
             this.tipoTela = tipoTela;
         }
 
-        public Tela(EColor color, ETela tipoTela, int cantidad)
+        public Tela(EColor color, ETipoTela tipoTela, int cantidad)
         : this(color, tipoTela, cantidad, DateTime.Now)
         {
         }
@@ -42,7 +42,7 @@ namespace Entidades
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("{0}, Color de tela: {1}, Tipo de tela: {2}\n", base.Mostrar(), this.Color, this.TipoTela);
+            sb.AppendFormat("Tela: {0}, Color de tela: {1}, Tipo de tela: {2}\n", base.Mostrar(), this.Color, this.TipoTela);
             return sb.ToString();
         }
 
@@ -83,7 +83,7 @@ namespace Entidades
         Violeta
     }
 
-    public enum ETela
+    public enum ETipoTela
     {
         Corderito,
         Peluche,

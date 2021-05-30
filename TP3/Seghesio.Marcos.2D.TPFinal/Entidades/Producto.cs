@@ -8,10 +8,10 @@ namespace Entidades
 {
     public abstract class Producto
     {
-        private Madera maderaPrincipal;
+        protected Madera maderaPrincipal;
      
-        private Tela telaProducto;
-        private EEstado estadoProducto;
+        protected Tela telaProducto;
+        protected EEstado estadoProducto;
         
 
         public Madera MaderaPrincipal
@@ -47,10 +47,6 @@ namespace Entidades
             {
                 return this.estadoProducto;
             }
-            set
-            {
-                this.estadoProducto = value;
-            }
         }
 
 
@@ -73,10 +69,10 @@ namespace Entidades
         public enum EEstado
         {
             Planificado,
+            MaterialesPreparados,
             MaderasLijadas,
             Barnizado,
             Alfombrado,
-            Ensamblado,
             Completo
         }
 
@@ -97,14 +93,62 @@ namespace Entidades
             return insumos;
         }
 
-        public virtual void LijarMaderaProducto(Producto producto)
+        public virtual bool LijarMaderaProducto()
         {
-            if (producto.EstadoProducto == Producto.EEstado.Planificado)
+            bool output = false;
+            if (this.EstadoProducto == Producto.EEstado.Planificado)
             {
-                producto.MaderaPrincipal.LijarMadera();                
-                producto.EstadoProducto = EEstado.MaderasLijadas;
+                this.MaderaPrincipal.LijarMadera();
+                this.estadoProducto = EEstado.MaderasLijadas;
+                output = true;
             }
-
+            return output;
         }
+
+        public bool PrepararProductoParaProduccion()
+        {
+            bool output = false;
+            if(this.EstadoProducto == EEstado.Planificado)
+            {
+                this.estadoProducto = EEstado.MaterialesPreparados;
+                output = true;
+            }
+            return output;
+        }
+
+        public bool BarnizarProducto()
+        {
+            bool output = false;
+            if(this is Estante && this.EstadoProducto == EEstado.MaterialesPreparados)
+            {
+                this.estadoProducto = EEstado.Barnizado;
+                output = true;
+            }
+            return output;
+        }
+
+        public bool AlfombrarProducto()
+        {
+            bool output = false;
+            if((this is Estante && this.estadoProducto == EEstado.Barnizado) ||
+                (this is Torre && this.estadoProducto == EEstado.MaderasLijadas)) 
+            {
+                this.estadoProducto = EEstado.Alfombrado;
+                output = true;
+            }
+            return output;
+        }
+
+        public bool EnsamblarProducto()
+        {
+            bool output = false;
+            if (this.estadoProducto == EEstado.Alfombrado) 
+            {
+                this.estadoProducto = EEstado.Completo;
+                output = true;
+            }
+            return output;
+        }
+
     }
 }
