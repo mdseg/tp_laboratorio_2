@@ -62,7 +62,7 @@ namespace Entidades
         public virtual string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Madera Principal: {0}, Tela: {1},{2}, Estado: {3}", this.MaderaPrincipal.TipoMadera, this.TelaProducto.TipoTela, this.TelaProducto.Color, this.EstadoProducto);
+            sb.AppendFormat("Madera Principal: {0} - Tela: {1},{2}, Estado: {3}", this.MaderaPrincipal.TipoMadera, this.TelaProducto.TipoTela, this.TelaProducto.Color, this.EstadoProducto);
             return sb.ToString();
         }
         
@@ -73,6 +73,7 @@ namespace Entidades
             MaderasLijadas,
             Barnizado,
             Alfombrado,
+            AdicionalesAgregados,
             Completo
         }
 
@@ -139,10 +140,13 @@ namespace Entidades
             return output;
         }
 
+
+
         public bool EnsamblarProducto()
         {
             bool output = false;
-            if (this.estadoProducto == EEstado.Alfombrado) 
+            if ((this is Torre && this.estadoProducto == EEstado.AdicionalesAgregados) ||
+                (this is Estante && this.estadoProducto == EEstado.Alfombrado))
             {
                 this.estadoProducto = EEstado.Completo;
                 output = true;

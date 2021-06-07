@@ -19,7 +19,7 @@ namespace Entidades
             }
             set
             {
-                if(value > 0)
+                if(value >= 0)
                 {
                     this.cantidad = value;
                 }
@@ -56,7 +56,7 @@ namespace Entidades
         public virtual string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Fecha Ingreso: {0}, cantidad {1}", this.FechaIngreso, this.Cantidad);
+            sb.AppendFormat("cantidad {0}", this.Cantidad);
             return sb.ToString();
         }
 
@@ -104,19 +104,62 @@ namespace Entidades
         public static bool operator -(List<Insumo> listaInsumos, Insumo insumo)
         {
             bool output = false;
+            List<Insumo> insumosSinStock = new List<Insumo>();
             foreach(Insumo i in listaInsumos)
             {
                 if((insumo == i) && (insumo.Cantidad <= i.Cantidad))
                 {
-                    i.Cantidad -= insumo.Cantidad;
+                    int nuevaCantidad = i.Cantidad - insumo.Cantidad;
+                    i.Cantidad = nuevaCantidad;
+                    if(i.Cantidad == 0)
+                    {
+                        insumosSinStock.Add(i);
+                    }
                     output = true;
                     break;
                 }
             }
+            foreach(Insumo i in insumosSinStock)
+            {
+                listaInsumos.Remove(i);
+            }
             return output;
         }
 
+        public static List<Insumo> operator +(List<Insumo> listaInsumos, Insumo insumo)
+        {
+            bool insumoAgregado = false;
+            foreach (Insumo i in listaInsumos)
+            {
 
+                if ((insumo == i))
+                {
+                    int nuevaCantidad = i.Cantidad + insumo.Cantidad;
+                    i.Cantidad = nuevaCantidad;
+                    if(insumo.FechaIngreso > i.FechaIngreso)
+                    {
+                        i.FechaIngreso = insumo.FechaIngreso;
+                    }
+                    insumoAgregado = true;
+                    break;
+                }
+            }
+            if(!insumoAgregado)
+            {
+                listaInsumos.Add(insumo);
+            }
+            return listaInsumos;
+        }
+
+        public static string ListarInsumos(List<Insumo> listaInsumos)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(Insumo insumo in listaInsumos)
+            {
+                sb.AppendFormat($"{insumo.Mostrar()}");
+            }
+            return sb.ToString();
+        }
     }
 
 

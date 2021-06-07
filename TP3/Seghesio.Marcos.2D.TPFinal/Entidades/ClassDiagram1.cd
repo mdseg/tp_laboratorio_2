@@ -7,8 +7,8 @@
       <FileName>Deposito.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.Estante" Collapsed="true">
-    <Position X="9.75" Y="7.25" Width="1.5" />
+  <Class Name="Entidades.Estante">
+    <Position X="10.25" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Estante.cs</FileName>
@@ -17,7 +17,7 @@
   <Class Name="Entidades.Fabrica">
     <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAQAAACAAAAAA=</HashCode>
+      <HashCode>AAAAIAQBAMAAEAAAABYgAAAAAABAAAAAQSAAAAEABEE=</HashCode>
       <FileName>Fabrica.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,7 +31,7 @@
   <Class Name="Entidades.Insumo">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAECAAQAAgAAAACAAgAAAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <HashCode>AQAAAAECAAQAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
       <FileName>Insumo.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -42,10 +42,17 @@
       <FileName>Madera.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.Producto" Collapsed="true">
-    <Position X="8.25" Y="5.75" Width="1.5" />
+  <Class Name="Entidades.Producto">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Entidades.Producto.EEstado" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Producto.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAGQAAACAAAAAAAAAADAAAACQAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAEgAAAAGQAAACAAAAAAAAAADAAAQCQEAAAAEAAAAQ=</HashCode>
       <FileName>Producto.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -56,29 +63,36 @@
       <FileName>Tela.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entidades.Torre" Collapsed="true">
-    <Position X="7" Y="7.5" Width="1.5" />
+  <Class Name="Entidades.Torre">
+    <Position X="6.5" Y="9" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Entidades.Torre.ModeloTorre" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Torre.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAQAAAAAQAAAAAAAAAQAAAAAAAAAAAAAgAAQAIAAU=</HashCode>
+      <HashCode>AAAAQAAAAAQAAAAAAAAAQAAAAAgAAAAAAAgAAQAIAAU=</HashCode>
       <FileName>Torre.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Yute">
-    <Position X="5.25" Y="5" Width="2.25" />
+    <Position X="5.25" Y="5.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Yute.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="Entidades.ETipoMadera" Collapsed="true">
-    <Position X="9.5" Y="3.5" Width="1.5" />
+  <Enum Name="Entidades.ETipoMadera">
+    <Position X="11.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Madera.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Entidades.EForma" Collapsed="true">
-    <Position X="9.5" Y="2.75" Width="1.5" />
+  <Enum Name="Entidades.EForma">
+    <Position X="11.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Madera.cs</FileName>
@@ -91,7 +105,7 @@
       <FileName>Tela.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Entidades.ETela" Collapsed="true">
+  <Enum Name="Entidades.ETipoTela" Collapsed="true">
     <Position X="7.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAQAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>

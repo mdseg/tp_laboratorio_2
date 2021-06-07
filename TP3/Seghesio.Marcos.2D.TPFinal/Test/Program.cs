@@ -22,12 +22,15 @@ namespace Test
             Insumo adicionalTres = new InsumoAccesorio(ETipoAccesorio.Pegamento, 10);
 
             List<Insumo> insumosAgregar = new List<Insumo>();
-            insumosAgregar.Add(adicionalUno);
-            insumosAgregar.Add(adicionalDos);
-            insumosAgregar.Add(adicionalTres);
-            insumosAgregar.Add(maderaUno);
-            insumosAgregar.Add(maderaSecundaria);
-            insumosAgregar.Add(telaUno);
+
+            insumosAgregar += maderaUno;
+            insumosAgregar += maderaSecundaria;
+            insumosAgregar += telaUno;
+            insumosAgregar += adicionalUno;
+            insumosAgregar += adicionalDos;
+            insumosAgregar += adicionalTres;
+
+            insumosAgregar += maderaUno;
 
             // Agregar a fabrica
 
@@ -37,22 +40,28 @@ namespace Test
 
             List<Insumo> insumosCargados = fabrica.StockInsumos;
 
+            /*
             foreach(Insumo i in insumosCargados)
             {
                 Console.WriteLine(i.Mostrar());
             }
-
+            */
             //2- Usuario da de alta un producto para agregar a la linea de producción
 
-            Producto productoValido = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoValido = new Torre(new Madera(ETipoMadera.Mdf, EForma.Tablon, 4), new Tela(EColor.Bordo, ETipoTela.Alfombra, 3), Torre.EModeloTorre.King, new Madera(ETipoMadera.Mdf, EForma.Tubo, 2));
             List<Insumo> faltantes = new List<Insumo>();
 
             fabrica.AgregarProductoLineaProduccion(productoValido, out faltantes);
 
+            
+            fabrica.AgregarProductoLineaProduccion(productoValido, out faltantes);
+
+            /*
             foreach (Insumo i in insumosCargados)
             {
                 Console.WriteLine(i.Mostrar());
             }
+            */
 
             // Caso de error
         }

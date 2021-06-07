@@ -42,7 +42,7 @@ namespace Entidades
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Tela: {0}, Color de tela: {1}, Tipo de tela: {2}\n", base.Mostrar(), this.Color, this.TipoTela);
+            sb.AppendFormat("Tela: {0} - Color de tela: {1} - Tipo de tela: {2}\n", base.Mostrar(), this.Color, this.TipoTela);
             return sb.ToString();
         }
 

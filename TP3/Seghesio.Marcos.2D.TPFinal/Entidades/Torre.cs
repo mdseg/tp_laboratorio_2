@@ -8,11 +8,12 @@ namespace Entidades
 {
     public class Torre : Producto
     {
-        private ModeloTorre modelo;
+        private EModeloTorre modelo;
         private Madera maderaColumna;
         private int metrosYute;
+        private bool yuteInstalado;
 
-        public ModeloTorre Modelo
+        public EModeloTorre Modelo
         {
             get
             {
@@ -48,18 +49,29 @@ namespace Entidades
                 this.metrosYute = value;
             }
         }
-
+        public bool YuteInstalado
+        {
+            get
+            {
+                return this.yuteInstalado;
+            }
+            set
+            {
+                this.yuteInstalado = value;
+            }
+        }
         
        
 
-        public Torre(Madera madera, Tela tela, ModeloTorre modelo, Madera maderaColumna)
+        public Torre(Madera madera, Tela tela, EModeloTorre modelo, Madera maderaColumna)
         :base(madera,tela)
         {
             this.Modelo = modelo;
             this.MaderaColumna = maderaColumna;
+            this.yuteInstalado = false;
         }
 
-        public Torre(Madera madera, Tela tela, ModeloTorre modelo,Madera maderaColumna, int metrosYute)
+        public Torre(Madera madera, Tela tela, EModeloTorre modelo,Madera maderaColumna, int metrosYute)
         :this(madera,tela,modelo,maderaColumna)
         {
             this.metrosYute = metrosYute;
@@ -71,7 +83,15 @@ namespace Entidades
             sb.AppendFormat("Torre - Modelo: {0}, Madera Columna: {1}, {2}", this.Modelo,this.MaderaColumna, base.Mostrar());
             if(this.metrosYute > 0)
             {
-                sb.AppendFormat("Metros yute: {0}\n", this.MetrosYute);
+                sb.AppendFormat("Metros yute: {0} - Yute Instalado: ", this.MetrosYute);
+                if(this.YuteInstalado)
+                {
+                    sb.AppendFormat("Si.\n");
+                }
+                else
+                {
+                    sb.AppendFormat("No.\n");
+                }
             }
             else
             {
@@ -79,7 +99,7 @@ namespace Entidades
             }
             return sb.ToString();
         }
-
+        //TODO revisar que el metodo sea para Torre
         public override bool LijarMaderaProducto()
         {
             bool output = false;
@@ -96,7 +116,20 @@ namespace Entidades
             return output;
         }
 
-        public enum ModeloTorre
+        public bool AgregarYute()
+        {
+            bool output = false;
+            if(this.EstadoProducto == EEstado.Alfombrado && this.metrosYute > 0 && this.YuteInstalado)
+            {
+                this.YuteInstalado = true;
+                this.estadoProducto = EEstado.AdicionalesAgregados;
+                output = true;
+            }
+            return output;
+        }
+
+
+        public enum EModeloTorre
         {
             King,
             Queen,

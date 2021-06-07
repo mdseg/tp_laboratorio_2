@@ -31,6 +31,14 @@ namespace Entidades
             }
         }
 
+        public List<Producto> LineaProduccion
+        {
+            get
+            {
+                return this.lineaProduccion;
+            }
+        }
+
         public static Fabrica Instance
         {
             get
@@ -90,7 +98,7 @@ namespace Entidades
                 }
                 if(!insumoEncontrado)
                 {
-                    insumosFaltantes.Add(insumoProducto);
+                    insumosFaltantes += insumoProducto;
                 }
             }
             if(insumosFaltantes.Count > 0)
@@ -140,7 +148,7 @@ namespace Entidades
             bool output = false;
             if(!(insumo is null))
             {
-                this.stockInsumos.Add(insumo);
+                this.stockInsumos +=insumo;
                 output = true;
             }
             return output;
@@ -174,6 +182,9 @@ namespace Entidades
                         break;
                     case EProceso.Alfombrar:
                         procesoRealizado = producto.AlfombrarProducto();
+                        break;
+                    case EProceso.AgregarYute:
+
                         break;
                     case EProceso.Ensamblar:
                         procesoRealizado = producto.EnsamblarProducto();
@@ -226,6 +237,7 @@ namespace Entidades
         Lijar,
         Barnizar,
         Alfombrar,
+        AgregarYute,
         Ensamblar
     }
 }

@@ -16,7 +16,8 @@ namespace VistaProyecto
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            FormPrincipal formularioPrincipal = new FormPrincipal();
+            Application.Run(formularioPrincipal);
         }
     }
 }

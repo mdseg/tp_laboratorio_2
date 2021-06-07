@@ -33,7 +33,11 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaUno);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoValido = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
+            Madera maderaProducto = new Madera(ETipoMadera.Mdf, EForma.Tablon, 4);
+            Madera maderaSecundariaProducto = new Madera(ETipoMadera.Mdf, EForma.Tubo, 3);
+            Tela telaProducto = new Tela(EColor.Bordo, ETipoTela.Alfombra, 3);
+
+            Producto productoValido = new Torre(maderaProducto, telaProducto, Torre.EModeloTorre.King, maderaSecundariaProducto);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
 
@@ -46,7 +50,7 @@ namespace TestsUnitarios
             Assert.IsTrue(faltantes[0].Cantidad == 2);
         }
         [TestMethod]
-        public void Retorna_True_Cuando_Recibe_Un_Producto_Con_Stock_Suficiente()
+        public void Retorna_True_Cuando_Recibe_Un_Producto_Con_Stock_Suficiente_Y_Elimina_Insumos_Del_Stock_Original()
         {
             // Arrange
 
@@ -70,7 +74,11 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaUno);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoValido = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
+            Madera maderaProducto = new Madera(ETipoMadera.Mdf, EForma.Tablon, 4);
+            Madera maderaSecundariaProducto = new Madera(ETipoMadera.Mdf, EForma.Tubo, 3);
+            Tela telaProducto = new Tela(EColor.Bordo, ETipoTela.Alfombra, 3);
+
+            Producto productoValido = new Torre(maderaProducto, telaProducto, Torre.EModeloTorre.King, maderaSecundariaProducto);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
 
@@ -80,6 +88,9 @@ namespace TestsUnitarios
             //Assert
 
             Assert.IsTrue(resultado);
+            Assert.AreEqual(6, maderaUno.Cantidad);
+            Assert.AreEqual(2, maderaSecundaria.Cantidad);
+            Assert.AreEqual(12, telaUno.Cantidad);
         }
 
         [TestMethod]
@@ -111,9 +122,14 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaUno);
             insumosAgregar.Add(telaDos);
 
+            Madera maderaProductoUno = new Madera(ETipoMadera.Mdf, EForma.Tablon, 4);
+            Madera maderaSecundariaProducto = new Madera(ETipoMadera.Mdf, EForma.Tubo, 3);
+            Tela telaProducto = new Tela(EColor.Bordo, ETipoTela.Alfombra, 3);
+
+
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -157,8 +173,8 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaDos);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -203,8 +219,8 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaDos);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -249,8 +265,8 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaDos);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -296,8 +312,8 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaDos);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -344,8 +360,8 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaDos);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -392,8 +408,8 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaDos);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -442,8 +458,8 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaDos);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -493,8 +509,8 @@ namespace TestsUnitarios
             insumosAgregar.Add(telaDos);
 
             List<Insumo> faltantes = new List<Insumo>();
-            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.ModeloTorre.King, (Madera)maderaSecundaria);
-            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.ModeloTorre.Queen, (Madera)maderaSecundaria);
+            Producto productoUno = new Torre((Madera)maderaUno, (Tela)telaUno, Torre.EModeloTorre.King, (Madera)maderaSecundaria);
+            Producto productoDos = new Torre((Madera)maderaDos, (Tela)telaDos, Torre.EModeloTorre.Queen, (Madera)maderaSecundaria);
             Producto productoTres = new Estante((Madera)maderaUno, (Tela)telaDos, 5);
             fabrica.AgregarInsumosAStock(insumosAgregar);
             //Act
@@ -528,7 +544,7 @@ namespace TestsUnitarios
             stockInsumos.listadoObjetos.Add(madera);
             stockInsumos.listadoObjetos.Add(tela);
             stockInsumos.listadoObjetos.Add(maderaColumna);
-            Producto producto = new Torre((Madera)madera, (Tela)tela, Torre.ModeloTorre.King, (Madera)maderaColumna);
+            Producto producto = new Torre((Madera)madera, (Tela)tela, Torre.EModeloTorre.King, (Madera)maderaColumna);
 
             //Act
 
@@ -549,7 +565,7 @@ namespace TestsUnitarios
             stockInsumos.listadoObjetos.Add(madera);
             stockInsumos.listadoObjetos.Add(tela);
             stockInsumos.listadoObjetos.Add(maderaColumna);
-            Producto producto = new Torre((Madera)madera, (Tela)tela, Torre.ModeloTorre.King, (Madera)maderaColumna);
+            Producto producto = new Torre((Madera)madera, (Tela)tela, Torre.EModeloTorre.King, (Madera)maderaColumna);
 
             //Act
 
