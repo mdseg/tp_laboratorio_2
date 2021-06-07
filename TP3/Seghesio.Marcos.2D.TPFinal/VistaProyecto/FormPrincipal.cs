@@ -54,7 +54,7 @@ namespace VistaProyecto
 
         private void iBProductosTerminados_Click(object sender, EventArgs e)
         {
-
+            OpenChildForm(new FormProductosTerminados());
         }
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
@@ -62,14 +62,27 @@ namespace VistaProyecto
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void iBFabrica_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormFabrica());
+        }
+
+
+        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogo = MessageBox.Show("¿ Desea Salir de la Aplicacion?",
+                      "Salir de Aplicacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dialogo != DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void iBSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

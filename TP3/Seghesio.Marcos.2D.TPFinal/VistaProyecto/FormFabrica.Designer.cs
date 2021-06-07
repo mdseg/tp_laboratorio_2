@@ -31,7 +31,15 @@ namespace VistaProyecto
         {
             this.tabControlFabrica = new System.Windows.Forms.TabControl();
             this.tabPageLineaProduccion = new System.Windows.Forms.TabPage();
+            this.dgLineaProduccionTodos = new System.Windows.Forms.DataGridView();
+            this.lblListaVacia = new System.Windows.Forms.Label();
+            this.lblLineaProduccion = new System.Windows.Forms.Label();
             this.tabPageAgregarProducto = new System.Windows.Forms.TabPage();
+            this.nudCantidadInsumos = new System.Windows.Forms.NumericUpDown();
+            this.lblPedido = new System.Windows.Forms.Label();
+            this.btnSolicitarFaltantes = new System.Windows.Forms.Button();
+            this.lblFaltantes = new System.Windows.Forms.Label();
+            this.dgFaltantes = new System.Windows.Forms.DataGridView();
             this.gbProducto = new System.Windows.Forms.GroupBox();
             this.cmbColorTela = new System.Windows.Forms.ComboBox();
             this.lblColorTela = new System.Windows.Forms.Label();
@@ -56,27 +64,23 @@ namespace VistaProyecto
             this.lblCantidadEstantes = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
-            this.iBInsumos = new FontAwesome.Sharp.IconButton();
-            this.dgFaltantes = new System.Windows.Forms.DataGridView();
-            this.lblFaltantes = new System.Windows.Forms.Label();
-            this.btnSolicitarFaltantes = new System.Windows.Forms.Button();
-            this.lblPedido = new System.Windows.Forms.Label();
-            this.nudCantidadInsumos = new System.Windows.Forms.NumericUpDown();
-            this.lblListaVacia = new System.Windows.Forms.Label();
-            this.lblLineaProduccion = new System.Windows.Forms.Label();
-            this.dgLineaProduccionTodos = new System.Windows.Forms.DataGridView();
+            this.iBLineaProduccion = new FontAwesome.Sharp.IconButton();
+            this.btnEjecutarProceso = new System.Windows.Forms.Button();
+            this.lblProesoFabrica = new System.Windows.Forms.Label();
+            this.cmbProcesoFabrica = new System.Windows.Forms.ComboBox();
+            this.btnDespacharProductos = new System.Windows.Forms.Button();
             this.tabControlFabrica.SuspendLayout();
             this.tabPageLineaProduccion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgLineaProduccionTodos)).BeginInit();
             this.tabPageAgregarProducto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadInsumos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFaltantes)).BeginInit();
             this.gbProducto.SuspendLayout();
             this.gbTorre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadYute)).BeginInit();
             this.gbEstante.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadEstantes)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgFaltantes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadInsumos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgLineaProduccionTodos)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlFabrica
@@ -87,21 +91,58 @@ namespace VistaProyecto
             this.tabControlFabrica.Location = new System.Drawing.Point(0, 0);
             this.tabControlFabrica.Name = "tabControlFabrica";
             this.tabControlFabrica.SelectedIndex = 0;
-            this.tabControlFabrica.Size = new System.Drawing.Size(1157, 667);
+            this.tabControlFabrica.Size = new System.Drawing.Size(1161, 740);
             this.tabControlFabrica.TabIndex = 14;
             // 
             // tabPageLineaProduccion
             // 
+            this.tabPageLineaProduccion.Controls.Add(this.btnDespacharProductos);
+            this.tabPageLineaProduccion.Controls.Add(this.cmbProcesoFabrica);
+            this.tabPageLineaProduccion.Controls.Add(this.lblProesoFabrica);
+            this.tabPageLineaProduccion.Controls.Add(this.btnEjecutarProceso);
             this.tabPageLineaProduccion.Controls.Add(this.dgLineaProduccionTodos);
             this.tabPageLineaProduccion.Controls.Add(this.lblListaVacia);
             this.tabPageLineaProduccion.Controls.Add(this.lblLineaProduccion);
             this.tabPageLineaProduccion.Location = new System.Drawing.Point(4, 22);
             this.tabPageLineaProduccion.Name = "tabPageLineaProduccion";
             this.tabPageLineaProduccion.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLineaProduccion.Size = new System.Drawing.Size(1149, 641);
+            this.tabPageLineaProduccion.Size = new System.Drawing.Size(1153, 714);
             this.tabPageLineaProduccion.TabIndex = 0;
-            this.tabPageLineaProduccion.Text = "tabPage1";
+            this.tabPageLineaProduccion.Text = "Linea de Produccion";
             this.tabPageLineaProduccion.UseVisualStyleBackColor = true;
+            // 
+            // dgLineaProduccionTodos
+            // 
+            this.dgLineaProduccionTodos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgLineaProduccionTodos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgLineaProduccionTodos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgLineaProduccionTodos.Location = new System.Drawing.Point(39, 153);
+            this.dgLineaProduccionTodos.Name = "dgLineaProduccionTodos";
+            this.dgLineaProduccionTodos.ReadOnly = true;
+            this.dgLineaProduccionTodos.Size = new System.Drawing.Size(993, 224);
+            this.dgLineaProduccionTodos.TabIndex = 6;
+            this.dgLineaProduccionTodos.Visible = false;
+            // 
+            // lblListaVacia
+            // 
+            this.lblListaVacia.AutoSize = true;
+            this.lblListaVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListaVacia.Location = new System.Drawing.Point(54, 208);
+            this.lblListaVacia.Name = "lblListaVacia";
+            this.lblListaVacia.Size = new System.Drawing.Size(351, 25);
+            this.lblListaVacia.TabIndex = 5;
+            this.lblListaVacia.Text = "Aun no se han agregado Productos";
+            this.lblListaVacia.Visible = false;
+            // 
+            // lblLineaProduccion
+            // 
+            this.lblLineaProduccion.AutoSize = true;
+            this.lblLineaProduccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLineaProduccion.Location = new System.Drawing.Point(34, 108);
+            this.lblLineaProduccion.Name = "lblLineaProduccion";
+            this.lblLineaProduccion.Size = new System.Drawing.Size(234, 29);
+            this.lblLineaProduccion.TabIndex = 4;
+            this.lblLineaProduccion.Text = "Linea de Producción";
             // 
             // tabPageAgregarProducto
             // 
@@ -121,6 +162,76 @@ namespace VistaProyecto
             this.tabPageAgregarProducto.TabIndex = 1;
             this.tabPageAgregarProducto.Text = "tabPage2";
             this.tabPageAgregarProducto.UseVisualStyleBackColor = true;
+            // 
+            // nudCantidadInsumos
+            // 
+            this.nudCantidadInsumos.Location = new System.Drawing.Point(370, 551);
+            this.nudCantidadInsumos.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudCantidadInsumos.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudCantidadInsumos.Name = "nudCantidadInsumos";
+            this.nudCantidadInsumos.Size = new System.Drawing.Size(49, 20);
+            this.nudCantidadInsumos.TabIndex = 19;
+            this.nudCantidadInsumos.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudCantidadInsumos.Visible = false;
+            // 
+            // lblPedido
+            // 
+            this.lblPedido.AutoSize = true;
+            this.lblPedido.Location = new System.Drawing.Point(326, 553);
+            this.lblPedido.Name = "lblPedido";
+            this.lblPedido.Size = new System.Drawing.Size(236, 13);
+            this.lblPedido.TabIndex = 16;
+            this.lblPedido.Text = "Solicitar                    veces los insumos faltantes.";
+            this.lblPedido.Visible = false;
+            this.lblPedido.Click += new System.EventHandler(this.lblPedido_Click);
+            // 
+            // btnSolicitarFaltantes
+            // 
+            this.btnSolicitarFaltantes.Location = new System.Drawing.Point(646, 543);
+            this.btnSolicitarFaltantes.Name = "btnSolicitarFaltantes";
+            this.btnSolicitarFaltantes.Size = new System.Drawing.Size(240, 33);
+            this.btnSolicitarFaltantes.TabIndex = 15;
+            this.btnSolicitarFaltantes.Text = "Realizar pedido de Insumos";
+            this.btnSolicitarFaltantes.UseVisualStyleBackColor = true;
+            this.btnSolicitarFaltantes.Visible = false;
+            this.btnSolicitarFaltantes.Click += new System.EventHandler(this.btnSolicitarFaltantes_Click);
+            // 
+            // lblFaltantes
+            // 
+            this.lblFaltantes.AutoSize = true;
+            this.lblFaltantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFaltantes.Location = new System.Drawing.Point(45, 317);
+            this.lblFaltantes.Name = "lblFaltantes";
+            this.lblFaltantes.Size = new System.Drawing.Size(244, 24);
+            this.lblFaltantes.TabIndex = 14;
+            this.lblFaltantes.Text = "Listado de Insumos faltantes";
+            this.lblFaltantes.Visible = false;
+            // 
+            // dgFaltantes
+            // 
+            this.dgFaltantes.AllowUserToAddRows = false;
+            this.dgFaltantes.AllowUserToDeleteRows = false;
+            this.dgFaltantes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgFaltantes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgFaltantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgFaltantes.Location = new System.Drawing.Point(49, 354);
+            this.dgFaltantes.Name = "dgFaltantes";
+            this.dgFaltantes.ReadOnly = true;
+            this.dgFaltantes.Size = new System.Drawing.Size(837, 185);
+            this.dgFaltantes.TabIndex = 13;
+            this.dgFaltantes.Visible = false;
             // 
             // gbProducto
             // 
@@ -363,11 +474,11 @@ namespace VistaProyecto
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Controls.Add(this.iBAgregarProducto);
-            this.panel1.Controls.Add(this.iBInsumos);
+            this.panel1.Controls.Add(this.iBLineaProduccion);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1157, 78);
+            this.panel1.Size = new System.Drawing.Size(1161, 78);
             this.panel1.TabIndex = 15;
             // 
             // iBAgregarProducto
@@ -392,134 +503,75 @@ namespace VistaProyecto
             this.iBAgregarProducto.UseVisualStyleBackColor = false;
             this.iBAgregarProducto.Click += new System.EventHandler(this.iBAgregarProducto_Click);
             // 
-            // iBInsumos
+            // iBLineaProduccion
             // 
-            this.iBInsumos.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.iBInsumos.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iBInsumos.FlatAppearance.BorderSize = 0;
-            this.iBInsumos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iBInsumos.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.iBInsumos.IconChar = FontAwesome.Sharp.IconChar.List;
-            this.iBInsumos.IconColor = System.Drawing.Color.Snow;
-            this.iBInsumos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iBInsumos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBInsumos.Location = new System.Drawing.Point(0, 0);
-            this.iBInsumos.Name = "iBInsumos";
-            this.iBInsumos.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
-            this.iBInsumos.Size = new System.Drawing.Size(180, 78);
-            this.iBInsumos.TabIndex = 2;
-            this.iBInsumos.Text = "Insumos";
-            this.iBInsumos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBInsumos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iBInsumos.UseVisualStyleBackColor = false;
+            this.iBLineaProduccion.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.iBLineaProduccion.Dock = System.Windows.Forms.DockStyle.Left;
+            this.iBLineaProduccion.FlatAppearance.BorderSize = 0;
+            this.iBLineaProduccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iBLineaProduccion.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.iBLineaProduccion.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.iBLineaProduccion.IconColor = System.Drawing.Color.Snow;
+            this.iBLineaProduccion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iBLineaProduccion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBLineaProduccion.Location = new System.Drawing.Point(0, 0);
+            this.iBLineaProduccion.Name = "iBLineaProduccion";
+            this.iBLineaProduccion.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
+            this.iBLineaProduccion.Size = new System.Drawing.Size(180, 78);
+            this.iBLineaProduccion.TabIndex = 2;
+            this.iBLineaProduccion.Text = "Linea de Produccion";
+            this.iBLineaProduccion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBLineaProduccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iBLineaProduccion.UseVisualStyleBackColor = false;
+            this.iBLineaProduccion.Click += new System.EventHandler(this.IBLineaProduccion_Click);
             // 
-            // dgFaltantes
+            // btnEjecutarProceso
             // 
-            this.dgFaltantes.AllowUserToAddRows = false;
-            this.dgFaltantes.AllowUserToDeleteRows = false;
-            this.dgFaltantes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgFaltantes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgFaltantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgFaltantes.Location = new System.Drawing.Point(49, 354);
-            this.dgFaltantes.Name = "dgFaltantes";
-            this.dgFaltantes.ReadOnly = true;
-            this.dgFaltantes.Size = new System.Drawing.Size(837, 185);
-            this.dgFaltantes.TabIndex = 13;
-            this.dgFaltantes.Visible = false;
+            this.btnEjecutarProceso.Location = new System.Drawing.Point(424, 397);
+            this.btnEjecutarProceso.Name = "btnEjecutarProceso";
+            this.btnEjecutarProceso.Size = new System.Drawing.Size(162, 40);
+            this.btnEjecutarProceso.TabIndex = 7;
+            this.btnEjecutarProceso.Text = "Ejecutar Proceso";
+            this.btnEjecutarProceso.UseVisualStyleBackColor = true;
+            this.btnEjecutarProceso.Visible = false;
+            this.btnEjecutarProceso.Click += new System.EventHandler(this.btnEjecutarProceso_Click);
             // 
-            // lblFaltantes
+            // lblProesoFabrica
             // 
-            this.lblFaltantes.AutoSize = true;
-            this.lblFaltantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFaltantes.Location = new System.Drawing.Point(45, 317);
-            this.lblFaltantes.Name = "lblFaltantes";
-            this.lblFaltantes.Size = new System.Drawing.Size(244, 24);
-            this.lblFaltantes.TabIndex = 14;
-            this.lblFaltantes.Text = "Listado de Insumos faltantes";
-            this.lblFaltantes.Visible = false;
+            this.lblProesoFabrica.AutoSize = true;
+            this.lblProesoFabrica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProesoFabrica.Location = new System.Drawing.Point(35, 397);
+            this.lblProesoFabrica.Name = "lblProesoFabrica";
+            this.lblProesoFabrica.Size = new System.Drawing.Size(236, 20);
+            this.lblProesoFabrica.TabIndex = 8;
+            this.lblProesoFabrica.Text = "Seleccione el proceso a realizar:";
+            this.lblProesoFabrica.Visible = false;
             // 
-            // btnSolicitarFaltantes
+            // cmbProcesoFabrica
             // 
-            this.btnSolicitarFaltantes.Location = new System.Drawing.Point(646, 543);
-            this.btnSolicitarFaltantes.Name = "btnSolicitarFaltantes";
-            this.btnSolicitarFaltantes.Size = new System.Drawing.Size(240, 33);
-            this.btnSolicitarFaltantes.TabIndex = 15;
-            this.btnSolicitarFaltantes.Text = "Realizar pedido de Insumos";
-            this.btnSolicitarFaltantes.UseVisualStyleBackColor = true;
-            this.btnSolicitarFaltantes.Visible = false;
-            this.btnSolicitarFaltantes.Click += new System.EventHandler(this.btnSolicitarFaltantes_Click);
+            this.cmbProcesoFabrica.FormattingEnabled = true;
+            this.cmbProcesoFabrica.Location = new System.Drawing.Point(284, 397);
+            this.cmbProcesoFabrica.Name = "cmbProcesoFabrica";
+            this.cmbProcesoFabrica.Size = new System.Drawing.Size(121, 21);
+            this.cmbProcesoFabrica.TabIndex = 9;
+            this.cmbProcesoFabrica.Visible = false;
             // 
-            // lblPedido
+            // btnDespacharProductos
             // 
-            this.lblPedido.AutoSize = true;
-            this.lblPedido.Location = new System.Drawing.Point(326, 553);
-            this.lblPedido.Name = "lblPedido";
-            this.lblPedido.Size = new System.Drawing.Size(236, 13);
-            this.lblPedido.TabIndex = 16;
-            this.lblPedido.Text = "Solicitar                    veces los insumos faltantes.";
-            this.lblPedido.Visible = false;
-            this.lblPedido.Click += new System.EventHandler(this.lblPedido_Click);
-            // 
-            // nudCantidadInsumos
-            // 
-            this.nudCantidadInsumos.Location = new System.Drawing.Point(370, 551);
-            this.nudCantidadInsumos.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudCantidadInsumos.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudCantidadInsumos.Name = "nudCantidadInsumos";
-            this.nudCantidadInsumos.Size = new System.Drawing.Size(49, 20);
-            this.nudCantidadInsumos.TabIndex = 19;
-            this.nudCantidadInsumos.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudCantidadInsumos.Visible = false;
-            // 
-            // lblListaVacia
-            // 
-            this.lblListaVacia.AutoSize = true;
-            this.lblListaVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListaVacia.Location = new System.Drawing.Point(438, 112);
-            this.lblListaVacia.Name = "lblListaVacia";
-            this.lblListaVacia.Size = new System.Drawing.Size(351, 25);
-            this.lblListaVacia.TabIndex = 5;
-            this.lblListaVacia.Text = "Aun no se han agregado Productos";
-            // 
-            // lblLineaProduccion
-            // 
-            this.lblLineaProduccion.AutoSize = true;
-            this.lblLineaProduccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLineaProduccion.Location = new System.Drawing.Point(34, 108);
-            this.lblLineaProduccion.Name = "lblLineaProduccion";
-            this.lblLineaProduccion.Size = new System.Drawing.Size(234, 29);
-            this.lblLineaProduccion.TabIndex = 4;
-            this.lblLineaProduccion.Text = "Linea de Producción";
-            // 
-            // dgLineaProduccionTodos
-            // 
-            this.dgLineaProduccionTodos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgLineaProduccionTodos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgLineaProduccionTodos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgLineaProduccionTodos.Location = new System.Drawing.Point(39, 208);
-            this.dgLineaProduccionTodos.Name = "dgLineaProduccionTodos";
-            this.dgLineaProduccionTodos.ReadOnly = true;
-            this.dgLineaProduccionTodos.Size = new System.Drawing.Size(993, 224);
-            this.dgLineaProduccionTodos.TabIndex = 6;
+            this.btnDespacharProductos.Location = new System.Drawing.Point(606, 397);
+            this.btnDespacharProductos.Name = "btnDespacharProductos";
+            this.btnDespacharProductos.Size = new System.Drawing.Size(246, 40);
+            this.btnDespacharProductos.TabIndex = 10;
+            this.btnDespacharProductos.Text = "Despachar Productos terminados";
+            this.btnDespacharProductos.UseVisualStyleBackColor = true;
+            this.btnDespacharProductos.Click += new System.EventHandler(this.btnDespacharProductos_Click);
             // 
             // FormFabrica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(1157, 667);
+            this.ClientSize = new System.Drawing.Size(1161, 740);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlFabrica);
             this.Name = "FormFabrica";
@@ -528,8 +580,11 @@ namespace VistaProyecto
             this.tabControlFabrica.ResumeLayout(false);
             this.tabPageLineaProduccion.ResumeLayout(false);
             this.tabPageLineaProduccion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgLineaProduccionTodos)).EndInit();
             this.tabPageAgregarProducto.ResumeLayout(false);
             this.tabPageAgregarProducto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadInsumos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFaltantes)).EndInit();
             this.gbProducto.ResumeLayout(false);
             this.gbProducto.PerformLayout();
             this.gbTorre.ResumeLayout(false);
@@ -539,9 +594,6 @@ namespace VistaProyecto
             this.gbEstante.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadEstantes)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgFaltantes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadInsumos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgLineaProduccionTodos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -575,7 +627,7 @@ namespace VistaProyecto
         private System.Windows.Forms.Label lblCantidadEstantes;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton iBAgregarProducto;
-        private FontAwesome.Sharp.IconButton iBInsumos;
+        private FontAwesome.Sharp.IconButton iBLineaProduccion;
         private System.Windows.Forms.DataGridView dgFaltantes;
         private System.Windows.Forms.Label lblPedido;
         private System.Windows.Forms.Button btnSolicitarFaltantes;
@@ -584,5 +636,9 @@ namespace VistaProyecto
         private System.Windows.Forms.Label lblListaVacia;
         private System.Windows.Forms.Label lblLineaProduccion;
         private System.Windows.Forms.DataGridView dgLineaProduccionTodos;
+        private System.Windows.Forms.ComboBox cmbProcesoFabrica;
+        private System.Windows.Forms.Label lblProesoFabrica;
+        private System.Windows.Forms.Button btnEjecutarProceso;
+        private System.Windows.Forms.Button btnDespacharProductos;
     }
 }

@@ -119,7 +119,7 @@ namespace Entidades
         public bool AgregarYute()
         {
             bool output = false;
-            if(this.EstadoProducto == EEstado.Alfombrado && this.metrosYute > 0 && this.YuteInstalado)
+            if(this.EstadoProducto == EEstado.Alfombrado && this.metrosYute > 0)
             {
                 this.YuteInstalado = true;
                 this.estadoProducto = EEstado.AdicionalesAgregados;

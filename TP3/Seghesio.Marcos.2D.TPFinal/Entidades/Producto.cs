@@ -140,12 +140,25 @@ namespace Entidades
             return output;
         }
 
+        public bool AgregarYuteProducto()
+        {
+            bool output = false;
+            if ((this is Torre && this.estadoProducto == EEstado.Alfombrado) && ((Torre)this).MetrosYute > 0)
+            {
+                ((Torre)this).AgregarYute();
+                this.estadoProducto = EEstado.AdicionalesAgregados;
+                output = true;
+            }
+            return output;
+        }
+
 
 
         public bool EnsamblarProducto()
         {
             bool output = false;
             if ((this is Torre && this.estadoProducto == EEstado.AdicionalesAgregados) ||
+                (this is Torre && this.estadoProducto == EEstado.Alfombrado && ((Torre)this).MetrosYute == 0) ||
                 (this is Estante && this.estadoProducto == EEstado.Alfombrado))
             {
                 this.estadoProducto = EEstado.Completo;

@@ -67,6 +67,12 @@
     <Compile Include="FormFabrica.Designer.cs">
       <DependentUpon>FormFabrica.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormProductosTerminados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductosTerminados.Designer.cs">
+      <DependentUpon>FormProductosTerminados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormPrincipal.resx">
@@ -77,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFabrica.resx">
       <DependentUpon>FormFabrica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductosTerminados.resx">
+      <DependentUpon>FormProductosTerminados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -517,7 +517,7 @@ namespace VistaProyecto
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlInsumos);
             this.Name = "FormInsumo";
-            this.Text = "Insumos";
+            this.Text = "Fabrica";
             this.Load += new System.EventHandler(this.FormFabrica_Load);
             this.tabControlInsumos.ResumeLayout(false);
             this.tabPageListadoInsumos.ResumeLayout(false);

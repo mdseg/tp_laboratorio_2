@@ -39,6 +39,14 @@ namespace Entidades
             }
         }
 
+        public List<Producto> StockProductosTerminados
+        {
+            get
+            {
+                return this.stockProductosTerminados;
+            }
+        }
+
         public static Fabrica Instance
         {
             get
@@ -184,7 +192,7 @@ namespace Entidades
                         procesoRealizado = producto.AlfombrarProducto();
                         break;
                     case EProceso.AgregarYute:
-
+                        procesoRealizado = producto.AgregarYuteProducto();
                         break;
                     case EProceso.Ensamblar:
                         procesoRealizado = producto.EnsamblarProducto();

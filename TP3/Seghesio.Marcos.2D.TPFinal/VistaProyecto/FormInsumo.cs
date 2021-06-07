@@ -91,6 +91,7 @@ namespace VistaProyecto
 
             FormPrincipal.fabricaSingleton.AgregarInsumosAStock(bufferInsumo);
             ActualizarListaInsumos();
+            MessageBox.Show("Insumo agregado con éxito");
         }
 
         private void nudCantidadEstantes_ValueChanged(object sender, EventArgs e)

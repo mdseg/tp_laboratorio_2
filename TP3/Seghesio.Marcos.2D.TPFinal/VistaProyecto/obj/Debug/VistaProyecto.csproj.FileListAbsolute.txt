@@ -14,3 +14,4 @@ C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal\VistaProyecto\bin\Debug\Entidades.pdb
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal\VistaProyecto\obj\Debug\VistaProyecto.FormInsumo.resources
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal\VistaProyecto\obj\Debug\VistaProyecto.FormPrincipal.resources
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal\VistaProyecto\obj\Debug\VistaProyecto.FormProductosTerminados.resources

@@ -25,6 +25,7 @@ namespace VistaProyecto
             cmbMaderaPrincipal.DataSource = Enum.GetValues(typeof(ETipoMadera));
             cmbMaderaColumna.DataSource = Enum.GetValues(typeof(ETipoMadera));
             cmbModeloTorre.DataSource = Enum.GetValues(typeof(EModeloTorre));
+            cmbProcesoFabrica.DataSource = Enum.GetValues(typeof(EProceso));
             tabControlFabrica.SelectedTab = tabPageLineaProduccion;
             cambiarVisibilidadControlesFaltantes(false);
             ActualizarVistaLineaProduccion();
@@ -32,10 +33,7 @@ namespace VistaProyecto
 
 
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void FormFabrica_Load(object sender, EventArgs e)
         {
@@ -62,16 +60,6 @@ namespace VistaProyecto
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void iBInsumos_Click(object sender, EventArgs e)
-        {
-            ActualizarVistaLineaProduccion();
-            tabControlFabrica.SelectedTab = tabPageLineaProduccion;
-        }
 
         private void iBAgregarProducto_Click(object sender, EventArgs e)
         {
@@ -91,6 +79,7 @@ namespace VistaProyecto
             {
                 MessageBox.Show("Producto agregado a linea de Producción con éxito");
                 cambiarVisibilidadControlesFaltantes(false);
+                CambiarVisibilidadControlesProcesos(true);
                 ActualizarVistaLineaProduccion();
             }
             else
@@ -122,7 +111,6 @@ namespace VistaProyecto
                     dgFaltantes.Rows.Add(stringInsumo, i.Mostrar());
                 }
                 cambiarVisibilidadControlesFaltantes(true);
-
 
             }
         }
@@ -261,14 +249,80 @@ namespace VistaProyecto
 
                     dgLineaProduccionTodos.Rows.Add(tipoProducto, modelo, maderaPrincipal, maderaSecundaria, tipoTelaProducto,colorTelaProducto, adicional, estado);
                 }
-                dgLineaProduccionTodos.Visible = true;
-                lblListaVacia.Visible = false;
+
             }
             else
             {
-                dgLineaProduccionTodos.Visible = false;
-                lblListaVacia.Visible = true;
+                CambiarVisibilidadControlesProcesos(false);
+
             }
+        }
+
+        private void CambiarVisibilidadControlesProcesos(bool estado)
+        {
+            dgLineaProduccionTodos.Visible = estado;
+            lblListaVacia.Visible = !estado;
+            lblProesoFabrica.Visible = estado;
+            cmbProcesoFabrica.Visible = estado;
+            btnEjecutarProceso.Visible = estado;
+            btnDespacharProductos.Visible = estado;
+        }
+
+        private void IBLineaProduccion_Click(object sender, EventArgs e)
+        {
+            ActualizarVistaLineaProduccion();
+            tabControlFabrica.SelectedTab = tabPageLineaProduccion;
+        }
+
+        private void btnEjecutarProceso_Click(object sender, EventArgs e)
+        {
+            EProceso proceso = (EProceso)cmbProcesoFabrica.SelectedItem;
+            string mensaje = String.Empty;
+            int productosModificados = FormPrincipal.fabricaSingleton.EjecutarProcesoLineaProduccion(proceso);
+            if(productosModificados > 0)
+            {
+                switch (proceso)
+                {
+                    case EProceso.Lijar:
+                        mensaje = $"Se han lijado {productosModificados} productos";
+                        break;
+                    case EProceso.Ensamblar:
+                        mensaje = $"Se han completado {productosModificados} productos";
+                        break;
+                    case EProceso.Barnizar:
+                        mensaje = $"Se han barnizado {productosModificados} productos";
+                        break;
+                    case EProceso.Alfombrar:
+                        mensaje = $"Se han alfombrado {productosModificados} productos";
+                        break;
+                    case EProceso.AgregarYute:
+                        mensaje = $"Se ha agregado yute a {productosModificados} torres";
+                        break;
+                }
+            }
+            else
+            {
+                mensaje = "No se ha modificado ningun producto";
+            }
+            ActualizarVistaLineaProduccion();
+            MessageBox.Show(mensaje);
+        }
+
+        private void btnDespacharProductos_Click(object sender, EventArgs e)
+        {
+            int productosDespachados = FormPrincipal.fabricaSingleton.MudarProductosAStockTerminado();
+            string mensaje;
+            if(productosDespachados > 0)
+            {
+                mensaje = $"Se han despachado {productosDespachados} productos";
+            }
+            else
+            {
+                mensaje = $"No hay productos listos para despachar";
+            }
+            ActualizarVistaLineaProduccion();
+            MessageBox.Show(mensaje);
+
         }
     }
 

@@ -31,6 +31,7 @@ namespace VistaProyecto
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.iBSalir = new FontAwesome.Sharp.IconButton();
             this.iBProductosTerminados = new FontAwesome.Sharp.IconButton();
             this.iBFabrica = new FontAwesome.Sharp.IconButton();
             this.iBInsumos = new FontAwesome.Sharp.IconButton();
@@ -48,6 +49,7 @@ namespace VistaProyecto
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel1.Controls.Add(this.iBSalir);
             this.panel1.Controls.Add(this.iBProductosTerminados);
             this.panel1.Controls.Add(this.iBFabrica);
             this.panel1.Controls.Add(this.iBInsumos);
@@ -58,6 +60,26 @@ namespace VistaProyecto
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(180, 664);
             this.panel1.TabIndex = 2;
+            // 
+            // iBSalir
+            // 
+            this.iBSalir.FlatAppearance.BorderSize = 0;
+            this.iBSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iBSalir.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.iBSalir.IconChar = FontAwesome.Sharp.IconChar.PowerOff;
+            this.iBSalir.IconColor = System.Drawing.Color.Snow;
+            this.iBSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iBSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBSalir.Location = new System.Drawing.Point(-3, 547);
+            this.iBSalir.Name = "iBSalir";
+            this.iBSalir.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
+            this.iBSalir.Size = new System.Drawing.Size(180, 70);
+            this.iBSalir.TabIndex = 4;
+            this.iBSalir.Text = "Salir";
+            this.iBSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iBSalir.UseVisualStyleBackColor = true;
+            this.iBSalir.Click += new System.EventHandler(this.iBSalir_Click);
             // 
             // iBProductosTerminados
             // 
@@ -140,7 +162,6 @@ namespace VistaProyecto
             this.pictureBox1.Size = new System.Drawing.Size(147, 114);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel3
             // 
@@ -184,6 +205,7 @@ namespace VistaProyecto
             this.Controls.Add(this.panel1);
             this.Name = "FormPrincipal";
             this.Text = "Principal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -204,6 +226,7 @@ namespace VistaProyecto
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.Label lblTitleChildForm;
+        private FontAwesome.Sharp.IconButton iBSalir;
     }
 }
 
