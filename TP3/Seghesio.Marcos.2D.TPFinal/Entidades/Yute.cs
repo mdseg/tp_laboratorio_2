@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    [Serializable]
     public class Yute : Insumo
     {
         
@@ -16,6 +17,11 @@ namespace Entidades
 
         public Yute(int cantidad)
         :base(cantidad)
+        {
+
+        }
+
+        public Yute()
         {
 
         }

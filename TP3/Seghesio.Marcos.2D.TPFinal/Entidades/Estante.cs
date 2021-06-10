@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    [Serializable]
     public class Estante : Producto
     {
         private int cantidadEstantes;
@@ -21,6 +22,10 @@ namespace Entidades
                 this.cantidadEstantes = value;
             }
         }
+        public Estante()
+        {
+
+        }
 
         public Estante(Madera madera, Tela tela, int cantidadEstantes)
         :base(madera,tela)
@@ -31,7 +36,7 @@ namespace Entidades
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Estante - cantidad: {0},\n", this.CantidadEstantes, base.Mostrar());
+            sb.AppendFormat("Estante - cantidad: {0} - {1}\n", this.CantidadEstantes, base.Mostrar());
             return sb.ToString();
 
         }

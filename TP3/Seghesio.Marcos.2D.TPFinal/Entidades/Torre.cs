@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Entidades
-{
+{   
+    [Serializable]
     public class Torre : Producto
     {
         private EModeloTorre modelo;
@@ -61,7 +62,10 @@ namespace Entidades
             }
         }
         
-       
+        public Torre()
+        {
+
+        }
 
         public Torre(Madera madera, Tela tela, EModeloTorre modelo, Madera maderaColumna)
         :base(madera,tela)
@@ -80,7 +84,7 @@ namespace Entidades
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Torre - Modelo: {0}, Madera Columna: {1}, {2}", this.Modelo,this.MaderaColumna, base.Mostrar());
+            sb.AppendFormat("Torre - Modelo: {0}, Madera Columna: {1}, {2}", this.Modelo,this.MaderaColumna.TipoMadera, base.Mostrar());
             if(this.metrosYute > 0)
             {
                 sb.AppendFormat("Metros yute: {0} - Yute Instalado: ", this.MetrosYute);

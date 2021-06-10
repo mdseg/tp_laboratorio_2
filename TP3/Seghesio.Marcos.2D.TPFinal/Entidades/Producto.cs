@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
+    [Serializable]
+    [XmlInclude(typeof(Torre))]
+    [XmlInclude(typeof(Estante))]
     public abstract class Producto
     {
         protected Madera maderaPrincipal;
@@ -47,9 +51,16 @@ namespace Entidades
             {
                 return this.estadoProducto;
             }
+            set
+            {
+                this.estadoProducto = value;
+            }
         }
 
+        public Producto()
+        {
 
+        }
         
 
         public Producto(Madera maderaPrincipal, Tela telaProducto)
@@ -62,7 +73,7 @@ namespace Entidades
         public virtual string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Madera Principal: {0} - Tela: {1},{2}, Estado: {3}", this.MaderaPrincipal.TipoMadera, this.TelaProducto.TipoTela, this.TelaProducto.Color, this.EstadoProducto);
+            sb.AppendFormat("Madera Principal: {0} - Tela: {1}, {2} - Estado: {3}", this.MaderaPrincipal.TipoMadera, this.TelaProducto.TipoTela, this.TelaProducto.Color, this.EstadoProducto);
             return sb.ToString();
         }
         

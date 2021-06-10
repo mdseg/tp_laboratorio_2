@@ -249,7 +249,7 @@ namespace VistaProyecto
 
                     dgLineaProduccionTodos.Rows.Add(tipoProducto, modelo, maderaPrincipal, maderaSecundaria, tipoTelaProducto,colorTelaProducto, adicional, estado);
                 }
-
+                CambiarVisibilidadControlesProcesos(true);
             }
             else
             {

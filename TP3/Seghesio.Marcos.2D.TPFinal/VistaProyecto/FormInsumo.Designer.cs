@@ -31,6 +31,9 @@ namespace VistaProyecto
         {
             this.tabControlInsumos = new System.Windows.Forms.TabControl();
             this.tabPageListadoInsumos = new System.Windows.Forms.TabPage();
+            this.lblListaVacia = new System.Windows.Forms.Label();
+            this.lblStockInsumos = new System.Windows.Forms.Label();
+            this.dgStockInsumos = new System.Windows.Forms.DataGridView();
             this.tabPageAgregarInsumo = new System.Windows.Forms.TabPage();
             this.gbTela = new System.Windows.Forms.GroupBox();
             this.cmbColorTela = new System.Windows.Forms.ComboBox();
@@ -62,11 +65,9 @@ namespace VistaProyecto
             this.panel1 = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
             this.iBInsumos = new FontAwesome.Sharp.IconButton();
-            this.dgStockInsumos = new System.Windows.Forms.DataGridView();
-            this.lblStockInsumos = new System.Windows.Forms.Label();
-            this.lblListaVacia = new System.Windows.Forms.Label();
             this.tabControlInsumos.SuspendLayout();
             this.tabPageListadoInsumos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStockInsumos)).BeginInit();
             this.tabPageAgregarInsumo.SuspendLayout();
             this.gbTela.SuspendLayout();
             this.gbProducto.SuspendLayout();
@@ -74,7 +75,6 @@ namespace VistaProyecto
             this.gbInsumosAccesorios.SuspendLayout();
             this.gbMadera.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgStockInsumos)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlInsumos
@@ -100,6 +100,40 @@ namespace VistaProyecto
             this.tabPageListadoInsumos.TabIndex = 0;
             this.tabPageListadoInsumos.Text = "tabPage1";
             this.tabPageListadoInsumos.UseVisualStyleBackColor = true;
+            // 
+            // lblListaVacia
+            // 
+            this.lblListaVacia.AutoSize = true;
+            this.lblListaVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListaVacia.Location = new System.Drawing.Point(71, 164);
+            this.lblListaVacia.Name = "lblListaVacia";
+            this.lblListaVacia.Size = new System.Drawing.Size(334, 25);
+            this.lblListaVacia.TabIndex = 2;
+            this.lblListaVacia.Text = "Aun no se han agregado Insumos";
+            // 
+            // lblStockInsumos
+            // 
+            this.lblStockInsumos.AutoSize = true;
+            this.lblStockInsumos.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStockInsumos.Location = new System.Drawing.Point(50, 90);
+            this.lblStockInsumos.Name = "lblStockInsumos";
+            this.lblStockInsumos.Size = new System.Drawing.Size(202, 29);
+            this.lblStockInsumos.TabIndex = 1;
+            this.lblStockInsumos.Text = "Insumos en Stock";
+            // 
+            // dgStockInsumos
+            // 
+            this.dgStockInsumos.AllowUserToAddRows = false;
+            this.dgStockInsumos.AllowUserToDeleteRows = false;
+            this.dgStockInsumos.AllowUserToResizeRows = false;
+            this.dgStockInsumos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgStockInsumos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgStockInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgStockInsumos.Location = new System.Drawing.Point(55, 134);
+            this.dgStockInsumos.Name = "dgStockInsumos";
+            this.dgStockInsumos.ReadOnly = true;
+            this.dgStockInsumos.Size = new System.Drawing.Size(876, 308);
+            this.dgStockInsumos.TabIndex = 0;
             // 
             // tabPageAgregarInsumo
             // 
@@ -477,37 +511,6 @@ namespace VistaProyecto
             this.iBInsumos.UseVisualStyleBackColor = false;
             this.iBInsumos.Click += new System.EventHandler(this.iBInsumos_Click);
             // 
-            // dgStockInsumos
-            // 
-            this.dgStockInsumos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgStockInsumos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgStockInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgStockInsumos.Location = new System.Drawing.Point(55, 134);
-            this.dgStockInsumos.Name = "dgStockInsumos";
-            this.dgStockInsumos.ReadOnly = true;
-            this.dgStockInsumos.Size = new System.Drawing.Size(1000, 308);
-            this.dgStockInsumos.TabIndex = 0;
-            // 
-            // lblStockInsumos
-            // 
-            this.lblStockInsumos.AutoSize = true;
-            this.lblStockInsumos.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockInsumos.Location = new System.Drawing.Point(50, 90);
-            this.lblStockInsumos.Name = "lblStockInsumos";
-            this.lblStockInsumos.Size = new System.Drawing.Size(202, 29);
-            this.lblStockInsumos.TabIndex = 1;
-            this.lblStockInsumos.Text = "Insumos en Stock";
-            // 
-            // lblListaVacia
-            // 
-            this.lblListaVacia.AutoSize = true;
-            this.lblListaVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListaVacia.Location = new System.Drawing.Point(71, 164);
-            this.lblListaVacia.Name = "lblListaVacia";
-            this.lblListaVacia.Size = new System.Drawing.Size(334, 25);
-            this.lblListaVacia.TabIndex = 2;
-            this.lblListaVacia.Text = "Aun no se han agregado Insumos";
-            // 
             // FormInsumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -522,6 +525,7 @@ namespace VistaProyecto
             this.tabControlInsumos.ResumeLayout(false);
             this.tabPageListadoInsumos.ResumeLayout(false);
             this.tabPageListadoInsumos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStockInsumos)).EndInit();
             this.tabPageAgregarInsumo.ResumeLayout(false);
             this.gbTela.ResumeLayout(false);
             this.gbTela.PerformLayout();
@@ -533,7 +537,6 @@ namespace VistaProyecto
             this.gbMadera.ResumeLayout(false);
             this.gbMadera.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgStockInsumos)).EndInit();
             this.ResumeLayout(false);
 
         }

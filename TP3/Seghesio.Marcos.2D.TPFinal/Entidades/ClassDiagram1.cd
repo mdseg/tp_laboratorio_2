@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Entidades.Deposito">
-    <Position X="7.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Deposito.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Entidades.Estante">
     <Position X="10.25" Y="10.25" Width="1.5" />
     <TypeIdentifier>
@@ -17,7 +10,7 @@
   <Class Name="Entidades.Fabrica">
     <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAQBAMAAEAAAABYgAAAAAABAAAAAQSAAAAEABEE=</HashCode>
+      <HashCode>AAAAIAQBAMAAEAAAABYgAAAAAABAAAAASSAAAQEABEE=</HashCode>
       <FileName>Fabrica.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,7 +24,7 @@
   <Class Name="Entidades.Insumo">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAECAAQAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <HashCode>AQAAAQECAAQAAgAAQAEAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
       <FileName>Insumo.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,7 +45,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAEgAAAAGQAAACAAAAAAAAAADAAAQCQEAAAAEAAAAQ=</HashCode>
+      <HashCode>AAAEgAAAAGQAAQCAAAAAAAAAADAAAQCQAAAAAEAAAAQ=</HashCode>
       <FileName>Producto.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,14 +59,14 @@
   <Class Name="Entidades.Torre">
     <Position X="6.5" Y="9" Width="1.5" />
     <NestedTypes>
-      <Enum Name="Entidades.Torre.ModeloTorre" Collapsed="true">
+      <Enum Name="Entidades.Torre.EModeloTorre" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Torre.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAQAAAAAQAAAAAAAAAQAAAAAgAAAAAAAgAAQAIAAU=</HashCode>
+      <HashCode>AAAAQAAAAAQAAAAAAAAASAAAAAgAAAAAEAgAAQAIAAU=</HashCode>
       <FileName>Torre.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    [Serializable]
     public class Fabrica
     {
         private static Fabrica instance;
@@ -29,6 +30,10 @@ namespace Entidades
             {
                 return this.stockInsumos;
             }
+            set
+            {
+                this.stockInsumos = value;
+            }
         }
 
         public List<Producto> LineaProduccion
@@ -37,6 +42,10 @@ namespace Entidades
             {
                 return this.lineaProduccion;
             }
+            set
+            {
+                this.lineaProduccion = value;
+            }
         }
 
         public List<Producto> StockProductosTerminados
@@ -44,6 +53,10 @@ namespace Entidades
             get
             {
                 return this.stockProductosTerminados;
+            }
+            set
+            {
+                this.stockProductosTerminados = value;
             }
         }
 

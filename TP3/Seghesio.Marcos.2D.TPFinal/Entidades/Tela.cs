@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    [Serializable]
     public class Tela : Insumo
     {
         private EColor color;
@@ -17,6 +18,10 @@ namespace Entidades
             {
                 return this.color;
             }
+            set
+            {
+                this.color = value;
+            }
         }
         public ETipoTela TipoTela
         {
@@ -24,9 +29,16 @@ namespace Entidades
             {
                 return this.tipoTela;
             }
+            set
+            {
+                this.tipoTela = value;
+            }
         }
 
-        
+        public Tela()
+        {
+
+        }
         public Tela(EColor color, ETipoTela tipoTela, int cantidad, DateTime fechaIngreso)
         :base(cantidad,fechaIngreso)
         {

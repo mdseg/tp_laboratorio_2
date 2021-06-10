@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,21 +48,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Excepciones\EliminarInsumoException.cs" />
+    <Compile Include="Exceptions\CustomException.cs" />
+    <Compile Include="Exceptions\ReadFactoryException.cs" />
+    <Compile Include="Exceptions\SaveFactoryException.cs" />
+    <Compile Include="Exceptions\XmlSerilizerException.cs" />
     <Compile Include="InsumoAccesorio.cs" />
-    <Compile Include="Deposito.cs" />
     <Compile Include="Estante.cs" />
     <Compile Include="Fabrica.cs" />
     <Compile Include="GenericInventario.cs" />
     <Compile Include="Insumo.cs" />
+    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Madera.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\FabricaReporte.cs" />
+    <Compile Include="Services\FabricaXmlService.cs" />
     <Compile Include="Tela.cs" />
     <Compile Include="Torre.cs" />
     <Compile Include="Yute.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Files\Files.csproj">
+      <Project>{79986099-ca9f-4c5a-b6e4-a0cc23eba75d}</Project>
+      <Name>Files</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

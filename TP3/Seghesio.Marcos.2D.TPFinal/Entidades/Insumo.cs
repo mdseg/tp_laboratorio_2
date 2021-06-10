@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
+    [Serializable]
+    [XmlInclude(typeof(Madera))]
+    [XmlInclude(typeof(Tela))]
+    [XmlInclude(typeof(Yute))]
+    [XmlInclude(typeof(InsumoAccesorio))]
     public abstract class Insumo
     {
         protected int cantidad;
@@ -19,10 +25,8 @@ namespace Entidades
             }
             set
             {
-                if(value >= 0)
-                {
-                    this.cantidad = value;
-                }
+                this.cantidad = value;
+                
             }
         }
 
@@ -30,7 +34,7 @@ namespace Entidades
         {
             get
             {
-                return this.fechaIngreso.Date;
+                return this.fechaIngreso;
             }
             set
             {
@@ -38,7 +42,10 @@ namespace Entidades
             }
         }
 
+        public Insumo()
+        {
 
+        }
 
         public Insumo(int cantidad,DateTime fechaIngreso)      
         {
@@ -160,6 +167,63 @@ namespace Entidades
             }
             return sb.ToString();
         }
+
+        public static int CountInsumoType(List<Insumo> listaInsumos, ETipoInsumo tipoInsumo)
+        {
+            int output = 0;
+            foreach(Insumo insumo in listaInsumos)
+            switch(tipoInsumo)
+            {
+                    case ETipoInsumo.Madera:
+                        if(insumo is Madera)
+                        {
+                            output++;
+                        }
+                        break;
+                    case ETipoInsumo.Tela:
+                        if (insumo is Tela)
+                        {
+                            output++;
+                        }
+                        break;
+                    case ETipoInsumo.Yute:
+                        if (insumo is Yute)
+                        {
+                            output += insumo.cantidad;
+                        }
+                        break;
+                    default:
+                        if(insumo is InsumoAccesorio)
+                        {
+                            InsumoAccesorio insumoAccesorio = (InsumoAccesorio)insumo;
+                            if (tipoInsumo == ETipoInsumo.Barniz && insumoAccesorio.TipoAccesorio == ETipoAccesorio.Barniz)
+                            {
+                                output += insumoAccesorio.Cantidad;
+                            }
+                            else if (tipoInsumo == ETipoInsumo.Pegamento && insumoAccesorio.TipoAccesorio == ETipoAccesorio.Pegamento)
+                            {
+                                output += insumoAccesorio.Cantidad;
+                            }
+                            else if (tipoInsumo == ETipoInsumo.Tornillo && insumoAccesorio.TipoAccesorio == ETipoAccesorio.Tornillo)
+                            {
+                                output += insumoAccesorio.Cantidad;
+                            }
+                        }                       
+                        break;
+            }
+            return output;
+        }
+
+    }
+
+    public enum ETipoInsumo
+    {
+        Madera,
+        Tela,
+        Yute,
+        Barniz,
+        Pegamento,
+        Tornillo
     }
 
 

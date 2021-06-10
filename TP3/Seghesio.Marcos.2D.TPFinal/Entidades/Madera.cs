@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    [Serializable]
     public class Madera : Insumo
     {
         private ETipoMadera tipoMadera;
@@ -18,6 +19,10 @@ namespace Entidades
             {
                 return this.tipoMadera;
             }
+            set
+            {
+                this.tipoMadera = value;
+            }
         }
 
         public EForma Forma
@@ -26,6 +31,10 @@ namespace Entidades
             {
                 return this.forma;
             }
+            set
+            {
+                this.forma = value;
+            }
         }
         public bool EstaLijada
         {
@@ -33,11 +42,17 @@ namespace Entidades
             {
                 return this.estaLijada;
             }
+            set
+            {
+                this.estaLijada = value;
+            }
         }
-        public void LijarMadera()
+
+        public Madera()
         {
-           this.estaLijada = true;
+
         }
+
         public Madera(ETipoMadera tipoMadera, EForma forma, int cantidad, DateTime fechaIngreso)
         :base(cantidad,fechaIngreso)
         {
@@ -79,6 +94,11 @@ namespace Entidades
                 output = true;
             }
             return output;
+        }
+
+        public void LijarMadera()
+        {
+            this.estaLijada = true;
         }
     }
 

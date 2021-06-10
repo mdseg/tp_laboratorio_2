@@ -4,11 +4,23 @@
     ".NETCoreApp,Version=v3.1": {
       "Entidades/1.0.0": {
         "type": "project",
+        "dependencies": {
+          "Files": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Entidades.dll": {}
         },
         "runtime": {
           "bin/placeholder/Entidades.dll": {}
+        }
+      },
+      "Files/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Files.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Files.dll": {}
         }
       }
     }
@@ -18,11 +30,17 @@
       "type": "project",
       "path": "../Entidades/Entidades.csproj",
       "msbuildProject": "../Entidades/Entidades.csproj"
+    },
+    "Files/1.0.0": {
+      "type": "project",
+      "path": "../Files/Files.csproj",
+      "msbuildProject": "../Files/Files.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Entidades >= 1.0.0"
+      "Entidades >= 1.0.0",
+      "Files >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -59,6 +77,9 @@
           "projectReferences": {
             "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP3\\Seghesio.Marcos.2D.TPFinal\\Entidades\\Entidades.csproj": {
               "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP3\\Seghesio.Marcos.2D.TPFinal\\Entidades\\Entidades.csproj"
+            },
+            "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP3\\Seghesio.Marcos.2D.TPFinal\\Files\\Files.csproj": {
+              "projectPath": "C:\\Users\\Usuario-PC\\source\\repos\\tp_laboratorio_2\\TP3\\Seghesio.Marcos.2D.TPFinal\\Files\\Files.csproj"
             }
           }
         }

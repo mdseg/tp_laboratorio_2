@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    [Serializable]
     public class InsumoAccesorio : Insumo
     {
         private ETipoAccesorio tipoAccesorio;
@@ -20,6 +21,11 @@ namespace Entidades
             {
                 this.tipoAccesorio = value;
             }
+        }
+
+        public InsumoAccesorio()
+        {
+
         }
 
         public InsumoAccesorio(ETipoAccesorio tipoAccesorio,int cantidad, DateTime fechaIngreso)

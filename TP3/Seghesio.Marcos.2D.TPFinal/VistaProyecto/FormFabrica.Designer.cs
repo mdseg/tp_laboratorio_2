@@ -31,6 +31,10 @@ namespace VistaProyecto
         {
             this.tabControlFabrica = new System.Windows.Forms.TabControl();
             this.tabPageLineaProduccion = new System.Windows.Forms.TabPage();
+            this.btnDespacharProductos = new System.Windows.Forms.Button();
+            this.cmbProcesoFabrica = new System.Windows.Forms.ComboBox();
+            this.lblProesoFabrica = new System.Windows.Forms.Label();
+            this.btnEjecutarProceso = new System.Windows.Forms.Button();
             this.dgLineaProduccionTodos = new System.Windows.Forms.DataGridView();
             this.lblListaVacia = new System.Windows.Forms.Label();
             this.lblLineaProduccion = new System.Windows.Forms.Label();
@@ -65,10 +69,6 @@ namespace VistaProyecto
             this.panel1 = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
             this.iBLineaProduccion = new FontAwesome.Sharp.IconButton();
-            this.btnEjecutarProceso = new System.Windows.Forms.Button();
-            this.lblProesoFabrica = new System.Windows.Forms.Label();
-            this.cmbProcesoFabrica = new System.Windows.Forms.ComboBox();
-            this.btnDespacharProductos = new System.Windows.Forms.Button();
             this.tabControlFabrica.SuspendLayout();
             this.tabPageLineaProduccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLineaProduccionTodos)).BeginInit();
@@ -111,8 +111,52 @@ namespace VistaProyecto
             this.tabPageLineaProduccion.Text = "Linea de Produccion";
             this.tabPageLineaProduccion.UseVisualStyleBackColor = true;
             // 
+            // btnDespacharProductos
+            // 
+            this.btnDespacharProductos.Location = new System.Drawing.Point(606, 397);
+            this.btnDespacharProductos.Name = "btnDespacharProductos";
+            this.btnDespacharProductos.Size = new System.Drawing.Size(246, 40);
+            this.btnDespacharProductos.TabIndex = 10;
+            this.btnDespacharProductos.Text = "Despachar Productos terminados";
+            this.btnDespacharProductos.UseVisualStyleBackColor = true;
+            this.btnDespacharProductos.Click += new System.EventHandler(this.btnDespacharProductos_Click);
+            // 
+            // cmbProcesoFabrica
+            // 
+            this.cmbProcesoFabrica.FormattingEnabled = true;
+            this.cmbProcesoFabrica.Location = new System.Drawing.Point(284, 397);
+            this.cmbProcesoFabrica.Name = "cmbProcesoFabrica";
+            this.cmbProcesoFabrica.Size = new System.Drawing.Size(121, 21);
+            this.cmbProcesoFabrica.TabIndex = 9;
+            this.cmbProcesoFabrica.Visible = false;
+            // 
+            // lblProesoFabrica
+            // 
+            this.lblProesoFabrica.AutoSize = true;
+            this.lblProesoFabrica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProesoFabrica.Location = new System.Drawing.Point(35, 397);
+            this.lblProesoFabrica.Name = "lblProesoFabrica";
+            this.lblProesoFabrica.Size = new System.Drawing.Size(236, 20);
+            this.lblProesoFabrica.TabIndex = 8;
+            this.lblProesoFabrica.Text = "Seleccione el proceso a realizar:";
+            this.lblProesoFabrica.Visible = false;
+            // 
+            // btnEjecutarProceso
+            // 
+            this.btnEjecutarProceso.Location = new System.Drawing.Point(424, 397);
+            this.btnEjecutarProceso.Name = "btnEjecutarProceso";
+            this.btnEjecutarProceso.Size = new System.Drawing.Size(162, 40);
+            this.btnEjecutarProceso.TabIndex = 7;
+            this.btnEjecutarProceso.Text = "Ejecutar Proceso";
+            this.btnEjecutarProceso.UseVisualStyleBackColor = true;
+            this.btnEjecutarProceso.Visible = false;
+            this.btnEjecutarProceso.Click += new System.EventHandler(this.btnEjecutarProceso_Click);
+            // 
             // dgLineaProduccionTodos
             // 
+            this.dgLineaProduccionTodos.AllowUserToAddRows = false;
+            this.dgLineaProduccionTodos.AllowUserToDeleteRows = false;
+            this.dgLineaProduccionTodos.AllowUserToResizeRows = false;
             this.dgLineaProduccionTodos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgLineaProduccionTodos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgLineaProduccionTodos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -158,7 +202,7 @@ namespace VistaProyecto
             this.tabPageAgregarProducto.Location = new System.Drawing.Point(4, 22);
             this.tabPageAgregarProducto.Name = "tabPageAgregarProducto";
             this.tabPageAgregarProducto.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAgregarProducto.Size = new System.Drawing.Size(1149, 641);
+            this.tabPageAgregarProducto.Size = new System.Drawing.Size(1153, 714);
             this.tabPageAgregarProducto.TabIndex = 1;
             this.tabPageAgregarProducto.Text = "tabPage2";
             this.tabPageAgregarProducto.UseVisualStyleBackColor = true;
@@ -223,6 +267,7 @@ namespace VistaProyecto
             // 
             this.dgFaltantes.AllowUserToAddRows = false;
             this.dgFaltantes.AllowUserToDeleteRows = false;
+            this.dgFaltantes.AllowUserToResizeRows = false;
             this.dgFaltantes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgFaltantes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgFaltantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -454,9 +499,24 @@ namespace VistaProyecto
             // nudCantidadEstantes
             // 
             this.nudCantidadEstantes.Location = new System.Drawing.Point(110, 19);
+            this.nudCantidadEstantes.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudCantidadEstantes.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             this.nudCantidadEstantes.Name = "nudCantidadEstantes";
             this.nudCantidadEstantes.Size = new System.Drawing.Size(120, 20);
             this.nudCantidadEstantes.TabIndex = 6;
+            this.nudCantidadEstantes.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
             // lblCantidadEstantes
             // 
@@ -524,47 +584,6 @@ namespace VistaProyecto
             this.iBLineaProduccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iBLineaProduccion.UseVisualStyleBackColor = false;
             this.iBLineaProduccion.Click += new System.EventHandler(this.IBLineaProduccion_Click);
-            // 
-            // btnEjecutarProceso
-            // 
-            this.btnEjecutarProceso.Location = new System.Drawing.Point(424, 397);
-            this.btnEjecutarProceso.Name = "btnEjecutarProceso";
-            this.btnEjecutarProceso.Size = new System.Drawing.Size(162, 40);
-            this.btnEjecutarProceso.TabIndex = 7;
-            this.btnEjecutarProceso.Text = "Ejecutar Proceso";
-            this.btnEjecutarProceso.UseVisualStyleBackColor = true;
-            this.btnEjecutarProceso.Visible = false;
-            this.btnEjecutarProceso.Click += new System.EventHandler(this.btnEjecutarProceso_Click);
-            // 
-            // lblProesoFabrica
-            // 
-            this.lblProesoFabrica.AutoSize = true;
-            this.lblProesoFabrica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProesoFabrica.Location = new System.Drawing.Point(35, 397);
-            this.lblProesoFabrica.Name = "lblProesoFabrica";
-            this.lblProesoFabrica.Size = new System.Drawing.Size(236, 20);
-            this.lblProesoFabrica.TabIndex = 8;
-            this.lblProesoFabrica.Text = "Seleccione el proceso a realizar:";
-            this.lblProesoFabrica.Visible = false;
-            // 
-            // cmbProcesoFabrica
-            // 
-            this.cmbProcesoFabrica.FormattingEnabled = true;
-            this.cmbProcesoFabrica.Location = new System.Drawing.Point(284, 397);
-            this.cmbProcesoFabrica.Name = "cmbProcesoFabrica";
-            this.cmbProcesoFabrica.Size = new System.Drawing.Size(121, 21);
-            this.cmbProcesoFabrica.TabIndex = 9;
-            this.cmbProcesoFabrica.Visible = false;
-            // 
-            // btnDespacharProductos
-            // 
-            this.btnDespacharProductos.Location = new System.Drawing.Point(606, 397);
-            this.btnDespacharProductos.Name = "btnDespacharProductos";
-            this.btnDespacharProductos.Size = new System.Drawing.Size(246, 40);
-            this.btnDespacharProductos.TabIndex = 10;
-            this.btnDespacharProductos.Text = "Despachar Productos terminados";
-            this.btnDespacharProductos.UseVisualStyleBackColor = true;
-            this.btnDespacharProductos.Click += new System.EventHandler(this.btnDespacharProductos_Click);
             // 
             // FormFabrica
             // 

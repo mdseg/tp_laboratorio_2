@@ -31,6 +31,8 @@ namespace VistaProyecto
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.iBGuardarDatos = new FontAwesome.Sharp.IconButton();
+            this.iBCargar = new FontAwesome.Sharp.IconButton();
             this.iBSalir = new FontAwesome.Sharp.IconButton();
             this.iBProductosTerminados = new FontAwesome.Sharp.IconButton();
             this.iBFabrica = new FontAwesome.Sharp.IconButton();
@@ -49,6 +51,8 @@ namespace VistaProyecto
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel1.Controls.Add(this.iBGuardarDatos);
+            this.panel1.Controls.Add(this.iBCargar);
             this.panel1.Controls.Add(this.iBSalir);
             this.panel1.Controls.Add(this.iBProductosTerminados);
             this.panel1.Controls.Add(this.iBFabrica);
@@ -60,6 +64,48 @@ namespace VistaProyecto
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(180, 664);
             this.panel1.TabIndex = 2;
+            // 
+            // iBGuardarDatos
+            // 
+            this.iBGuardarDatos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iBGuardarDatos.FlatAppearance.BorderSize = 0;
+            this.iBGuardarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iBGuardarDatos.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.iBGuardarDatos.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.iBGuardarDatos.IconColor = System.Drawing.Color.Snow;
+            this.iBGuardarDatos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iBGuardarDatos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBGuardarDatos.Location = new System.Drawing.Point(0, 400);
+            this.iBGuardarDatos.Name = "iBGuardarDatos";
+            this.iBGuardarDatos.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
+            this.iBGuardarDatos.Size = new System.Drawing.Size(180, 70);
+            this.iBGuardarDatos.TabIndex = 6;
+            this.iBGuardarDatos.Text = "Guardar Datos";
+            this.iBGuardarDatos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBGuardarDatos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iBGuardarDatos.UseVisualStyleBackColor = true;
+            this.iBGuardarDatos.Click += new System.EventHandler(this.iBGuardarDatos_Click);
+            // 
+            // iBCargar
+            // 
+            this.iBCargar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iBCargar.FlatAppearance.BorderSize = 0;
+            this.iBCargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iBCargar.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.iBCargar.IconChar = FontAwesome.Sharp.IconChar.Upload;
+            this.iBCargar.IconColor = System.Drawing.Color.Snow;
+            this.iBCargar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iBCargar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBCargar.Location = new System.Drawing.Point(0, 330);
+            this.iBCargar.Name = "iBCargar";
+            this.iBCargar.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
+            this.iBCargar.Size = new System.Drawing.Size(180, 70);
+            this.iBCargar.TabIndex = 5;
+            this.iBCargar.Text = "Cargar Datos";
+            this.iBCargar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBCargar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iBCargar.UseVisualStyleBackColor = true;
+            this.iBCargar.Click += new System.EventHandler(this.iBCargar_Click);
             // 
             // iBSalir
             // 
@@ -204,6 +250,7 @@ namespace VistaProyecto
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "FormPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -227,6 +274,8 @@ namespace VistaProyecto
         private System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.Label lblTitleChildForm;
         private FontAwesome.Sharp.IconButton iBSalir;
+        private FontAwesome.Sharp.IconButton iBGuardarDatos;
+        private FontAwesome.Sharp.IconButton iBCargar;
     }
 }
 

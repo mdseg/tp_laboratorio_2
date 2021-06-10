@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsUnitarios", "TestsUnit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VistaProyecto", "VistaProyecto\VistaProyecto.csproj", "{346F14E7-3497-4F55-A8F5-29DA770E2AA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Files", "Files\Files.csproj", "{79986099-CA9F-4C5A-B6E4-A0CC23EBA75D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{346F14E7-3497-4F55-A8F5-29DA770E2AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{346F14E7-3497-4F55-A8F5-29DA770E2AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{346F14E7-3497-4F55-A8F5-29DA770E2AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79986099-CA9F-4C5A-B6E4-A0CC23EBA75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79986099-CA9F-4C5A-B6E4-A0CC23EBA75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79986099-CA9F-4C5A-B6E4-A0CC23EBA75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79986099-CA9F-4C5A-B6E4-A0CC23EBA75D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
