@@ -22,3 +22,4 @@ C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal\VistaProyecto\bin\Debug\Entidades.dll.config
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal\VistaProyecto\bin\Debug\Files.dll.config
 C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal\VistaProyecto\bin\Debug\itextsharp.xml
+C:\Users\Usuario-PC\source\repos\tp_laboratorio_2\TP3\Seghesio.Marcos.2D.TPFinal\VistaProyecto\obj\Debug\VistaProyecto.FormIntro.resources

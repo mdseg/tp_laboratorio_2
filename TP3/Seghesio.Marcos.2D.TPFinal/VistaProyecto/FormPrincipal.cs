@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace VistaProyecto
             fabricaSingleton = Fabrica.Instance;
             logger = new Logger(AppDomain.CurrentDomain.BaseDirectory + "Logging.txt");
             serviceXmlFabrica = new FabricaXmlService(AppDomain.CurrentDomain.BaseDirectory);
+            OpenChildForm(new FormIntro());
 
 
         }
@@ -110,6 +112,7 @@ namespace VistaProyecto
                     if (!(currentChildForm is null) && currentChildForm.Visible)
                     {
                         currentChildForm.Close();
+                        OpenChildForm(new FormIntro());
                     }
                 }
                 catch (ReadFactoryException ex)
@@ -137,7 +140,9 @@ namespace VistaProyecto
                     serviceXmlFabrica.SaveXmlFabrica(fabricaSingleton);
                     MessageBox.Show("Datos guardados correctamente","Guardar datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FabricaReporte fs = new FabricaReporte();
-                    fs.CrearReporte(AppDomain.CurrentDomain.BaseDirectory, fabricaSingleton);
+                    fs.CrearReporte($"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf", fabricaSingleton);
+                    Process.Start($"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf");
+
                 }
                 catch (SaveFactoryException ex)
                 {
@@ -145,6 +150,16 @@ namespace VistaProyecto
                     logger.saveReport(ex);
                 }
             }
+        }
+
+        private void lblIntroduccion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

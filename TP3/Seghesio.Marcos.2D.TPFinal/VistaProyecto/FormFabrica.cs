@@ -184,7 +184,7 @@ namespace VistaProyecto
 
             insumosFaltantes.Clear();
             cambiarVisibilidadControlesFaltantes(false);
-            MessageBox.Show("Pedido de insumos faltantes realizado correctamente");
+            MessageBox.Show("Pedido de insumos faltantes realizado correctamente", "Solicitar faltantes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LimpiarDataGridFaltantes()
@@ -305,7 +305,7 @@ namespace VistaProyecto
                 mensaje = "No se ha modificado ningun producto";
             }
             ActualizarVistaLineaProduccion();
-            MessageBox.Show(mensaje);
+            MessageBox.Show(mensaje, "Realizar operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnDespacharProductos_Click(object sender, EventArgs e)
@@ -321,7 +321,7 @@ namespace VistaProyecto
                 mensaje = $"No hay productos listos para despachar";
             }
             ActualizarVistaLineaProduccion();
-            MessageBox.Show(mensaje);
+            MessageBox.Show(mensaje, "Despachar productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
     }

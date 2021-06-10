@@ -123,6 +123,7 @@ namespace VistaProyecto
             // 
             // cmbProcesoFabrica
             // 
+            this.cmbProcesoFabrica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProcesoFabrica.FormattingEnabled = true;
             this.cmbProcesoFabrica.Location = new System.Drawing.Point(284, 397);
             this.cmbProcesoFabrica.Name = "cmbProcesoFabrica";
@@ -298,6 +299,7 @@ namespace VistaProyecto
             // 
             // cmbColorTela
             // 
+            this.cmbColorTela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbColorTela.FormattingEnabled = true;
             this.cmbColorTela.Location = new System.Drawing.Point(101, 133);
             this.cmbColorTela.Name = "cmbColorTela";
@@ -316,6 +318,7 @@ namespace VistaProyecto
             // 
             // cmbTipoTela
             // 
+            this.cmbTipoTela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoTela.FormattingEnabled = true;
             this.cmbTipoTela.Location = new System.Drawing.Point(101, 92);
             this.cmbTipoTela.Name = "cmbTipoTela";
@@ -334,6 +337,8 @@ namespace VistaProyecto
             // 
             // cmbMaderaPrincipal
             // 
+            this.cmbMaderaPrincipal.BackColor = System.Drawing.SystemColors.Info;
+            this.cmbMaderaPrincipal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMaderaPrincipal.FormattingEnabled = true;
             this.cmbMaderaPrincipal.Location = new System.Drawing.Point(102, 51);
             this.cmbMaderaPrincipal.Name = "cmbMaderaPrincipal";
@@ -449,6 +454,7 @@ namespace VistaProyecto
             // 
             // cmbMaderaColumna
             // 
+            this.cmbMaderaColumna.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMaderaColumna.FormattingEnabled = true;
             this.cmbMaderaColumna.Location = new System.Drawing.Point(102, 53);
             this.cmbMaderaColumna.Name = "cmbMaderaColumna";
@@ -467,6 +473,7 @@ namespace VistaProyecto
             // 
             // cmbModeloTorre
             // 
+            this.cmbModeloTorre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbModeloTorre.FormattingEnabled = true;
             this.cmbModeloTorre.Location = new System.Drawing.Point(101, 16);
             this.cmbModeloTorre.Name = "cmbModeloTorre";

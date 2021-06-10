@@ -49,7 +49,7 @@ namespace VistaProyecto
             // 
             this.lblProductosTerminados.AutoSize = true;
             this.lblProductosTerminados.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductosTerminados.Location = new System.Drawing.Point(30, 107);
+            this.lblProductosTerminados.Location = new System.Drawing.Point(63, 105);
             this.lblProductosTerminados.Name = "lblProductosTerminados";
             this.lblProductosTerminados.Size = new System.Drawing.Size(91, 29);
             this.lblProductosTerminados.TabIndex = 17;
@@ -57,9 +57,12 @@ namespace VistaProyecto
             // 
             // dgProductosTerminados
             // 
+            this.dgProductosTerminados.AllowUserToAddRows = false;
+            this.dgProductosTerminados.AllowUserToDeleteRows = false;
+            this.dgProductosTerminados.AllowUserToResizeRows = false;
             this.dgProductosTerminados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgProductosTerminados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgProductosTerminados.Location = new System.Drawing.Point(35, 159);
+            this.dgProductosTerminados.Location = new System.Drawing.Point(68, 157);
             this.dgProductosTerminados.Name = "dgProductosTerminados";
             this.dgProductosTerminados.Size = new System.Drawing.Size(927, 168);
             this.dgProductosTerminados.TabIndex = 18;
@@ -68,7 +71,7 @@ namespace VistaProyecto
             // 
             this.lblProductosTerminadosVacio.AutoSize = true;
             this.lblProductosTerminadosVacio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductosTerminadosVacio.Location = new System.Drawing.Point(101, 213);
+            this.lblProductosTerminadosVacio.Location = new System.Drawing.Point(134, 211);
             this.lblProductosTerminadosVacio.Name = "lblProductosTerminadosVacio";
             this.lblProductosTerminadosVacio.Size = new System.Drawing.Size(265, 24);
             this.lblProductosTerminadosVacio.TabIndex = 19;

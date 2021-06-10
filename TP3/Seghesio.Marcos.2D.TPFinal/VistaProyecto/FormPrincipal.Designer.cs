@@ -62,7 +62,7 @@ namespace VistaProyecto
             this.panel1.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(180, 664);
+            this.panel1.Size = new System.Drawing.Size(180, 761);
             this.panel1.TabIndex = 2;
             // 
             // iBGuardarDatos
@@ -216,7 +216,7 @@ namespace VistaProyecto
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(180, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1059, 71);
+            this.panel3.Size = new System.Drawing.Size(1104, 71);
             this.panel3.TabIndex = 3;
             // 
             // lblTitleChildForm
@@ -234,21 +234,22 @@ namespace VistaProyecto
             // 
             // panelDesktop
             // 
-            this.panelDesktop.BackColor = System.Drawing.Color.Aquamarine;
+            this.panelDesktop.BackColor = System.Drawing.Color.White;
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(180, 71);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1059, 593);
+            this.panelDesktop.Size = new System.Drawing.Size(1104, 690);
             this.panelDesktop.TabIndex = 4;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1239, 664);
+            this.ClientSize = new System.Drawing.Size(1284, 761);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";

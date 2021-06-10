@@ -4,6 +4,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,7 @@ namespace Entidades.Reportes
 
         public void CrearReporte(string path, Fabrica fabrica)
         {
-            string fullPath = path + "reporte.pdf";
-            FileStream fs = new FileStream(fullPath, FileMode.Create);
+            FileStream fs = new FileStream(path, FileMode.Create);
             Document doc = new Document(PageSize.LETTER, 10, 10, 14, 14);
             PdfWriter PW = PdfWriter.GetInstance(doc, fs);
 
