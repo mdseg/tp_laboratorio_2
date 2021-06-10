@@ -10,7 +10,6 @@ namespace Entidades
     [Serializable]
     [XmlInclude(typeof(Madera))]
     [XmlInclude(typeof(Tela))]
-    [XmlInclude(typeof(Yute))]
     [XmlInclude(typeof(InsumoAccesorio))]
     public abstract class Insumo
     {
@@ -91,10 +90,6 @@ namespace Entidades
                 {
                     output = true;
                 }
-            }
-            else if(i1 is Yute && i2 is Yute)
-            {
-                output = true;
             }
             return output;
         }
@@ -186,12 +181,6 @@ namespace Entidades
                             output++;
                         }
                         break;
-                    case ETipoInsumo.Yute:
-                        if (insumo is Yute)
-                        {
-                            output += insumo.cantidad;
-                        }
-                        break;
                     default:
                         if(insumo is InsumoAccesorio)
                         {
@@ -208,6 +197,11 @@ namespace Entidades
                             {
                                 output += insumoAccesorio.Cantidad;
                             }
+                            else if (tipoInsumo == ETipoInsumo.Yute && insumoAccesorio.TipoAccesorio == ETipoAccesorio.Yute)
+                            {
+                                output += insumoAccesorio.Cantidad;
+                            }
+
                         }                       
                         break;
             }

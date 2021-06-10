@@ -78,16 +78,17 @@ namespace VistaProyecto
                 {
                     tipoInsumoAccesorio = ETipoAccesorio.Pegamento;
                 }
+                else if (rbYute.Checked)
+                {
+                    tipoInsumoAccesorio = ETipoAccesorio.Yute;
+                }
                 else
                 {
                     tipoInsumoAccesorio = ETipoAccesorio.Tornillo;
                 }
                 bufferInsumo = new InsumoAccesorio(tipoInsumoAccesorio, (int)nudCantidad.Value, dtpIngreso.Value.Date);
             }
-            else if(rbYute.Checked)
-            {
-                bufferInsumo = new Yute((int)nudCantidad.Value, dtpIngreso.Value.Date);
-            }
+
 
             FormPrincipal.fabricaSingleton.AgregarInsumosAStock(bufferInsumo);
             ActualizarListaInsumos();
@@ -151,10 +152,6 @@ namespace VistaProyecto
                     else if (i is Tela)
                     {
                         stringInsumo = "Tela";
-                    }
-                    else if (i is Yute)
-                    {
-                        stringInsumo = "Yute";
                     }
                     else
                     {

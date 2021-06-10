@@ -22,44 +22,7 @@ namespace Test
 
             FabricaXmlService serviceXmlFabrica = new FabricaXmlService(AppDomain.CurrentDomain.BaseDirectory);
             Fabrica fabrica = serviceXmlFabrica.ReadXmlFabrica();
-
-            /*
-            IFile<List<Insumo>> serializadorInsumos = new Xml<List<Insumo>>();
-            IFile<List<Producto>> serializadorProductos = new Xml<List<Producto>>();
-
-            
-            string rutaInsumos = AppDomain.CurrentDomain.BaseDirectory + "listaInsumosTest.xml";
-            string rutaLineaProduccion = AppDomain.CurrentDomain.BaseDirectory + "lineaProduccionTest.xml";
-            string rutaProductosTerminados = AppDomain.CurrentDomain.BaseDirectory + "productosTerminadosTest.xml";
-
-            List<Insumo> insumosStock = new List<Insumo>();
-            List<Producto> lineaProduccion = new List<Producto>();
-            List<Producto> stockProductosTerminados = new List<Producto>();
-
-            try
-            {
-                serializadorInsumos.Read(rutaInsumos, out insumosStock);
-                serializadorProductos.Read(rutaLineaProduccion, out lineaProduccion);
-                serializadorProductos.Read(rutaProductosTerminados, out stockProductosTerminados);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.InnerException);
-            }
-            Console.WriteLine("\n\n\n");
-            Console.WriteLine("-------------------------------------------------------------------------------");
-            Console.WriteLine("---------------------Archivos leidos correctamente-----------------------------");
-            Console.WriteLine("-------------------------------------------------------------------------------");
-
-            */
-            // Instancia fabrica y asigna valores leidos en el archivo XML
-            /*
-            Fabrica fabrica = Fabrica.Instance;
-
-            fabrica.StockInsumos = insumosStock;
-            fabrica.LineaProduccion = lineaProduccion;
-            fabrica.StockProductosTerminados = stockProductosTerminados;
-            */
+           
             Console.WriteLine("\n\n\n");
             Console.WriteLine("-------------------------------------------------------------------------------");
             Console.WriteLine("---------------------Atributos asignados a fabrica correctamente---------------");

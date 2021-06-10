@@ -99,11 +99,7 @@ namespace VistaProyecto
                     else if(i is Tela)
                     {
                         stringInsumo = "Tela";
-                    }
-                    else if (i is Yute)
-                    {
-                        stringInsumo = "Yute";
-                    }
+                    }                   
                     else
                     {
                         stringInsumo = "Insumo Accesorio";

@@ -54,6 +54,9 @@ namespace Entidades
                 case ETipoAccesorio.Barniz:
                     sb.AppendFormat("Barniz - {0}\n", base.Mostrar());
                     break;
+                case ETipoAccesorio.Yute:
+                    sb.AppendFormat("Yute - {0}\n", base.Mostrar());
+                    break;
             }
             return sb.ToString();
         }
@@ -87,6 +90,6 @@ namespace Entidades
         Tornillo,
         Pegamento,
         Barniz,
-
+        Yute
     }
 }

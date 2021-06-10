@@ -47,15 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Excepciones\EliminarInsumoException.cs" />
     <Compile Include="Exceptions\CustomException.cs" />
     <Compile Include="Exceptions\ReadFactoryException.cs" />
     <Compile Include="Exceptions\SaveFactoryException.cs" />
+    <Compile Include="Exceptions\SavePdfException.cs" />
     <Compile Include="Exceptions\XmlSerilizerException.cs" />
     <Compile Include="InsumoAccesorio.cs" />
     <Compile Include="Estante.cs" />
     <Compile Include="Fabrica.cs" />
-    <Compile Include="GenericInventario.cs" />
     <Compile Include="Insumo.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Madera.cs" />
@@ -65,12 +64,9 @@
     <Compile Include="Services\FabricaXmlService.cs" />
     <Compile Include="Tela.cs" />
     <Compile Include="Torre.cs" />
-    <Compile Include="Yute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

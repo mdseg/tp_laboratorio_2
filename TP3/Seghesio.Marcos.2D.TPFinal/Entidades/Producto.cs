@@ -99,7 +99,8 @@ namespace Entidades
                 insumos.Add(bufferTorre.MaderaColumna);
                 if(bufferTorre.MetrosYute > 0)
                 {
-                    insumos.Add(new Yute(bufferTorre.MetrosYute));
+                    insumos.Add(new InsumoAccesorio(ETipoAccesorio.Yute, bufferTorre.MetrosYute));
+                    
                 }               
             }
             return insumos;

@@ -139,11 +139,8 @@ namespace VistaProyecto
                 {
                     serviceXmlFabrica.SaveXmlFabrica(fabricaSingleton);
                     MessageBox.Show("Datos guardados correctamente","Guardar datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FabricaReporte fs = new FabricaReporte();
-                    fs.CrearReporte($"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf", fabricaSingleton);
-                    Process.Start($"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf");
-
                 }
+
                 catch (SaveFactoryException ex)
                 {
                     MessageBox.Show("Hubo errores al guardar el archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -152,13 +149,20 @@ namespace VistaProyecto
             }
         }
 
-        private void lblIntroduccion_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
+        private void iBGenerarReporte_Click(object sender, EventArgs e)
         {
+            try
+            {
+                FabricaReporte fs = new FabricaReporte();
+                fs.CrearReporte($"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf", fabricaSingleton);
+                Process.Start($"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf");
+            }
+            catch (SavePdfException ex)
+            {
+                MessageBox.Show("Hubo errores al crear el Pdf del reporte. Verifique que no tenga un reporte abierto actualmente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.saveReport(ex);
+            }
 
         }
     }

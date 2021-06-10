@@ -31,6 +31,7 @@ namespace VistaProyecto
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.iBGenerarReporte = new FontAwesome.Sharp.IconButton();
             this.iBGuardarDatos = new FontAwesome.Sharp.IconButton();
             this.iBCargar = new FontAwesome.Sharp.IconButton();
             this.iBSalir = new FontAwesome.Sharp.IconButton();
@@ -51,6 +52,7 @@ namespace VistaProyecto
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel1.Controls.Add(this.iBGenerarReporte);
             this.panel1.Controls.Add(this.iBGuardarDatos);
             this.panel1.Controls.Add(this.iBCargar);
             this.panel1.Controls.Add(this.iBSalir);
@@ -64,6 +66,27 @@ namespace VistaProyecto
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(180, 761);
             this.panel1.TabIndex = 2;
+            // 
+            // iBGenerarReporte
+            // 
+            this.iBGenerarReporte.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iBGenerarReporte.FlatAppearance.BorderSize = 0;
+            this.iBGenerarReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iBGenerarReporte.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.iBGenerarReporte.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
+            this.iBGenerarReporte.IconColor = System.Drawing.Color.Snow;
+            this.iBGenerarReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iBGenerarReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBGenerarReporte.Location = new System.Drawing.Point(0, 470);
+            this.iBGenerarReporte.Name = "iBGenerarReporte";
+            this.iBGenerarReporte.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
+            this.iBGenerarReporte.Size = new System.Drawing.Size(180, 70);
+            this.iBGenerarReporte.TabIndex = 7;
+            this.iBGenerarReporte.Text = "Generar Reporte";
+            this.iBGenerarReporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBGenerarReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iBGenerarReporte.UseVisualStyleBackColor = true;
+            this.iBGenerarReporte.Click += new System.EventHandler(this.iBGenerarReporte_Click);
             // 
             // iBGuardarDatos
             // 
@@ -116,7 +139,7 @@ namespace VistaProyecto
             this.iBSalir.IconColor = System.Drawing.Color.Snow;
             this.iBSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iBSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBSalir.Location = new System.Drawing.Point(-3, 547);
+            this.iBSalir.Location = new System.Drawing.Point(3, 651);
             this.iBSalir.Name = "iBSalir";
             this.iBSalir.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
             this.iBSalir.Size = new System.Drawing.Size(180, 70);
@@ -277,6 +300,7 @@ namespace VistaProyecto
         private FontAwesome.Sharp.IconButton iBSalir;
         private FontAwesome.Sharp.IconButton iBGuardarDatos;
         private FontAwesome.Sharp.IconButton iBCargar;
+        private FontAwesome.Sharp.IconButton iBGenerarReporte;
     }
 }
 

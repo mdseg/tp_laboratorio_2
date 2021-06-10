@@ -1,4 +1,5 @@
-﻿using Files.Pdf;
+﻿using Entidades.Exceptions;
+using Files.Pdf;
 using Files.Xml;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -17,93 +18,105 @@ namespace Entidades.Reportes
 
         public void CrearReporte(string path, Fabrica fabrica)
         {
-            FileStream fs = new FileStream(path, FileMode.Create);
-            Document doc = new Document(PageSize.LETTER, 10, 10, 14, 14);
-            PdfWriter PW = PdfWriter.GetInstance(doc, fs);
+            try
+            {
+                FileStream fs = new FileStream(path, FileMode.Create);
+                Document doc = new Document(PageSize.LETTER, 10, 10, 14, 14);
+                PdfWriter PW = PdfWriter.GetInstance(doc, fs);
 
-            doc.Open();
-            doc.AddAuthor("Marcos Seghesio");
-            doc.AddTitle("Reporte");
 
-            Paragraph parrafoTitulo = new Paragraph();
-            //Fuente
-            Font standarFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
-            doc.Add(new Paragraph($"Reporte de Fábrica del {DateTime.Now}"));
-            doc.Add(Chunk.NEWLINE);
-            doc.Add(Chunk.NEWLINE);
+
+                doc.Open();
+                doc.AddAuthor("Marcos Seghesio");
+                doc.AddTitle("Reporte");
+
+                Paragraph parrafoTitulo = new Paragraph();
+                //Fuente
+                Font standarFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+
+                doc.Add(new Paragraph($"Reporte de Fábrica del {DateTime.Now}"));
+                doc.Add(Chunk.NEWLINE);
+                doc.Add(Chunk.NEWLINE);
+
+
+                if (fabrica.LineaProduccion.Count > 0)
+                {
+
+                    doc.Add(new Paragraph("Informe linea de Producción"));
+                    doc.Add(Chunk.NEWLINE);
+                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.LineaProduccion, standarFont, true);
+                    doc.Add(tblLineaProduccion);
+                }
+                else
+                {
+                    doc.Add(new Paragraph("Informe linea de Producción: no productos en Linea de Producción"));
+                }
+                doc.Add(Chunk.NEWLINE);
+                doc.Add(Chunk.NEWLINE);
+
+                if (fabrica.StockProductosTerminados.Count > 0)
+                {
+                    doc.Add(new Paragraph("Informe stock de Productos terminados"));
+                    doc.Add(Chunk.NEWLINE);
+                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.StockProductosTerminados, standarFont, false);
+                    doc.Add(tblLineaProduccion);
+                }
+                else
+                {
+                    doc.Add(new Paragraph("Informe stock de Productos terminados: no productos en inventario"));
+                }
+                doc.Add(Chunk.NEWLINE);
+                doc.Add(Chunk.NEWLINE);
+
+                if (Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Madera) > 0)
+                {
+                    parrafoTitulo = new Paragraph("Informe maderas");
+                    parrafoTitulo.Alignment = Element.ALIGN_CENTER;
+                    doc.Add(parrafoTitulo);
+                    doc.Add(Chunk.NEWLINE);
+                    PdfPTable tblMadera = crearTablaInsumos(fabrica.StockInsumos, ETipoInforme.Madera, standarFont);
+                    doc.Add(tblMadera);
+                }
+                else
+                {
+                    doc.Add(new Paragraph("Informe maderas: no hay maderas cargadas"));
+                }
+                doc.Add(Chunk.NEWLINE);
+                doc.Add(Chunk.NEWLINE);
+
+                if (Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tela) > 0)
+                {
+                    parrafoTitulo = new Paragraph("Informe Telas");
+                    parrafoTitulo.Alignment = Element.ALIGN_CENTER;
+                    doc.Add(parrafoTitulo);
+                    doc.Add(Chunk.NEWLINE);
+                    PdfPTable tblTela = crearTablaInsumos(fabrica.StockInsumos, ETipoInforme.Tela, standarFont);
+                    doc.Add(tblTela);
+                }
+                else
+                {
+                    doc.Add(new Paragraph("Informe Telas: no hay telas cargadas"));
+                }
+                doc.Add(Chunk.NEWLINE);
+                doc.Add(Chunk.NEWLINE);
+
+                doc.Add(new Paragraph("Otros Insumos"));
+                doc.Add(Chunk.NEWLINE);
+                doc.Add(new Paragraph($"Cantidad de Yute disponible: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Yute)}"));
+                doc.Add(new Paragraph($"Cantidad de Tornillos disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tornillo)}"));
+                doc.Add(new Paragraph($"Cantidad de Barniz disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Barniz)}"));
+                doc.Add(new Paragraph($"Cantidad de Pegamento disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Pegamento)}"));
+
+                doc.Close();
+                PW.Close();
+            }
+            catch(IOException e)
+            {
+                throw new SavePdfException("Error al crear el reporte");
+            }
+
             
-
-            if (fabrica.LineaProduccion.Count > 0)
-            {
-
-                doc.Add(new Paragraph("Informe linea de Producción"));
-                doc.Add(Chunk.NEWLINE);
-                PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.LineaProduccion, standarFont, true);
-                doc.Add(tblLineaProduccion);
-            }
-            else
-            {
-                doc.Add(new Paragraph("Informe linea de Producción: no productos en Linea de Producción"));
-            }
-            doc.Add(Chunk.NEWLINE);
-            doc.Add(Chunk.NEWLINE);
-
-            if (fabrica.StockProductosTerminados.Count > 0)
-            {
-                doc.Add(new Paragraph("Informe stock de Productos terminados"));
-                doc.Add(Chunk.NEWLINE);
-                PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.StockProductosTerminados, standarFont, false);
-                doc.Add(tblLineaProduccion);
-            }
-            else
-            {
-                doc.Add(new Paragraph("Informe stock de Productos terminados: no productos en inventario"));
-            }
-            doc.Add(Chunk.NEWLINE);
-            doc.Add(Chunk.NEWLINE);
-
-            if (Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Madera) > 0)
-            {
-                parrafoTitulo = new Paragraph("Informe maderas");
-                parrafoTitulo.Alignment = Element.ALIGN_CENTER;
-                doc.Add(parrafoTitulo);
-                doc.Add(Chunk.NEWLINE);
-                PdfPTable tblMadera = crearTablaInsumos(fabrica.StockInsumos, ETipoInforme.Madera, standarFont);
-                doc.Add(tblMadera);
-            }
-            else
-            {
-                doc.Add(new Paragraph("Informe maderas: no hay maderas cargadas"));
-            }
-            doc.Add(Chunk.NEWLINE);
-            doc.Add(Chunk.NEWLINE);
-
-            if (Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tela) > 0)
-            {
-                parrafoTitulo = new Paragraph("Informe Telas");
-                parrafoTitulo.Alignment = Element.ALIGN_CENTER;
-                doc.Add(parrafoTitulo);
-                doc.Add(Chunk.NEWLINE);
-                PdfPTable tblTela = crearTablaInsumos(fabrica.StockInsumos, ETipoInforme.Tela, standarFont);
-                doc.Add(tblTela);
-            }
-            else
-            {
-                doc.Add(new Paragraph("Informe Telas: no hay telas cargadas"));
-            }
-            doc.Add(Chunk.NEWLINE);
-            doc.Add(Chunk.NEWLINE);
-
-            doc.Add(new Paragraph("Otros Insumos"));
-            doc.Add(Chunk.NEWLINE);
-            doc.Add(new Paragraph($"Cantidad de Yute disponible: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Yute)}"));
-            doc.Add(new Paragraph($"Cantidad de Tornillos disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tornillo)}"));
-            doc.Add(new Paragraph($"Cantidad de Barniz disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Barniz)}"));
-            doc.Add(new Paragraph($"Cantidad de Pegamento disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Pegamento)}"));
-
-            doc.Close();
-            PW.Close();
 
 
 

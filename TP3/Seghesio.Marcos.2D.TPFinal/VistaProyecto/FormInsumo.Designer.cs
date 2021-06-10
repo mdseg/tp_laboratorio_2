@@ -208,7 +208,6 @@ namespace VistaProyecto
             this.gbProducto.Controls.Add(this.nudCantidad);
             this.gbProducto.Controls.Add(this.lblCantidad);
             this.gbProducto.Controls.Add(this.rbInsumoAccesorio);
-            this.gbProducto.Controls.Add(this.rbYute);
             this.gbProducto.Controls.Add(this.lblTipoProducto);
             this.gbProducto.Controls.Add(this.rbTela);
             this.gbProducto.Controls.Add(this.rbMadera);
@@ -269,7 +268,7 @@ namespace VistaProyecto
             // rbInsumoAccesorio
             // 
             this.rbInsumoAccesorio.AutoSize = true;
-            this.rbInsumoAccesorio.Location = new System.Drawing.Point(236, 21);
+            this.rbInsumoAccesorio.Location = new System.Drawing.Point(213, 24);
             this.rbInsumoAccesorio.Name = "rbInsumoAccesorio";
             this.rbInsumoAccesorio.Size = new System.Drawing.Size(119, 17);
             this.rbInsumoAccesorio.TabIndex = 14;
@@ -281,7 +280,7 @@ namespace VistaProyecto
             // rbYute
             // 
             this.rbYute.AutoSize = true;
-            this.rbYute.Location = new System.Drawing.Point(183, 22);
+            this.rbYute.Location = new System.Drawing.Point(297, 32);
             this.rbYute.Name = "rbYute";
             this.rbYute.Size = new System.Drawing.Size(47, 17);
             this.rbYute.TabIndex = 13;
@@ -302,7 +301,7 @@ namespace VistaProyecto
             // rbTela
             // 
             this.rbTela.AutoSize = true;
-            this.rbTela.Location = new System.Drawing.Point(131, 22);
+            this.rbTela.Location = new System.Drawing.Point(149, 24);
             this.rbTela.Name = "rbTela";
             this.rbTela.Size = new System.Drawing.Size(46, 17);
             this.rbTela.TabIndex = 8;
@@ -314,7 +313,7 @@ namespace VistaProyecto
             // rbMadera
             // 
             this.rbMadera.AutoSize = true;
-            this.rbMadera.Location = new System.Drawing.Point(64, 22);
+            this.rbMadera.Location = new System.Drawing.Point(66, 24);
             this.rbMadera.Name = "rbMadera";
             this.rbMadera.Size = new System.Drawing.Size(61, 17);
             this.rbMadera.TabIndex = 0;
@@ -339,6 +338,7 @@ namespace VistaProyecto
             this.gbInsumosAccesorios.Controls.Add(this.label1);
             this.gbInsumosAccesorios.Controls.Add(this.rbPegamento);
             this.gbInsumosAccesorios.Controls.Add(this.rbBarniz);
+            this.gbInsumosAccesorios.Controls.Add(this.rbYute);
             this.gbInsumosAccesorios.Enabled = false;
             this.gbInsumosAccesorios.Location = new System.Drawing.Point(49, 266);
             this.gbInsumosAccesorios.Name = "gbInsumosAccesorios";
@@ -350,7 +350,7 @@ namespace VistaProyecto
             // rbTornillo
             // 
             this.rbTornillo.AutoSize = true;
-            this.rbTornillo.Location = new System.Drawing.Point(236, 32);
+            this.rbTornillo.Location = new System.Drawing.Point(222, 32);
             this.rbTornillo.Name = "rbTornillo";
             this.rbTornillo.Size = new System.Drawing.Size(59, 17);
             this.rbTornillo.TabIndex = 17;
@@ -370,7 +370,7 @@ namespace VistaProyecto
             // rbPegamento
             // 
             this.rbPegamento.AutoSize = true;
-            this.rbPegamento.Location = new System.Drawing.Point(131, 31);
+            this.rbPegamento.Location = new System.Drawing.Point(127, 31);
             this.rbPegamento.Name = "rbPegamento";
             this.rbPegamento.Size = new System.Drawing.Size(79, 17);
             this.rbPegamento.TabIndex = 15;
@@ -381,7 +381,7 @@ namespace VistaProyecto
             // rbBarniz
             // 
             this.rbBarniz.AutoSize = true;
-            this.rbBarniz.Location = new System.Drawing.Point(64, 31);
+            this.rbBarniz.Location = new System.Drawing.Point(51, 31);
             this.rbBarniz.Name = "rbBarniz";
             this.rbBarniz.Size = new System.Drawing.Size(54, 17);
             this.rbBarniz.TabIndex = 14;

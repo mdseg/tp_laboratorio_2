@@ -127,7 +127,7 @@ namespace VistaProyecto
             this.Controls.Add(this.lblExpUno);
             this.Controls.Add(this.lblTitulo);
             this.Name = "FormIntro";
-            this.Text = "FormIntro";
+            this.Text = "Introducción";
             this.ResumeLayout(false);
             this.PerformLayout();
 

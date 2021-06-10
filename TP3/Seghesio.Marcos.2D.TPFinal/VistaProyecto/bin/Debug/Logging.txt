@@ -5,3 +5,9 @@ Hubo problemas al ejecutar la operación a la fecha de 9/6/2021 00:00:00 y horar
 Fecha error: 9/6/2021 14:55, hora 14:55. Los problemas estan vinculados al guardar los datos de la fábrica en los archivos
 Fecha error: 9/6/2021 15:02, hora 15:2. Los problemas estan vinculados al guardar los datos de la fábrica en los archivos
 Fecha error: 9/6/2021 15:04.. Los problemas estan vinculados al guardar los datos de la fábrica en los archivos
+Fecha error: 10/6/2021 18:10. Los problemas estan vinculados al abrir los archivos de fábrica
+Fecha error: 10/6/2021 18:43. Hubo problemas al crear el reporte en PDF
+Fecha error: 10/6/2021 19:49. Hubo problemas al crear el reporte en PDF
+Fecha error: 10/6/2021 19:55. Hubo problemas al crear el reporte en PDF
+Fecha error: 10/6/2021 19:55. Hubo problemas al crear el reporte en PDF
+Fecha error: 10/6/2021 20:01. Hubo problemas al crear el reporte en PDF
