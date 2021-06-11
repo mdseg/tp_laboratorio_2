@@ -15,13 +15,21 @@ namespace Entidades
         private List<Producto> lineaProduccion;
         private List<Producto> stockProductosTerminados;
 
-        private const int CANTIDAD_TORNILLOS_TORRE = 16;
-        private const int CANTIDAD_BARNIZ_TORRE = 3;
-        private const int CANTIDAD_PEGAMENTO_TORRE = 3;
+        public const int CANTIDAD_TORNILLOS_TORRE = 16;
+        public const int CANTIDAD_BARNIZ_TORRE = 3;
+        public const int CANTIDAD_PEGAMENTO_TORRE = 3;
 
-        private const int CANTIDAD_TORNILLOS_ESTANTE = 8;
-        private const int CANTIDAD_BARNIZ_ESTANTE = 1;
-        private const int CANTIDAD_PEGAMENTO_ESTANTE = 1;
+        public const int CANTIDAD_TORNILLOS_ESTANTE = 8;
+        public const int CANTIDAD_BARNIZ_ESTANTE = 1;
+        public const int CANTIDAD_PEGAMENTO_ESTANTE = 1;
+
+        public const int CANTIDAD_MADERA_TORRE_PRINCIPAL = 4;
+        public const int CANTIDAD_MADERA_TORRE_COLUMNA = 2;
+        public const int CANTIDAD_MADERA_ESTANTE = 4;
+
+        public const int CANTIDAD_TELA_TORRE = 2;
+        public const int CANTIDAD_TELA_ESTANTE = 2;
+
 
         public List<Insumo> StockInsumos
         {
@@ -70,6 +78,8 @@ namespace Entidades
                 return instance;
             }
         }
+
+
 
         private Fabrica()
         {

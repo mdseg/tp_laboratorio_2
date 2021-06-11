@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Exceptions;
 using Files;
 using Files.Xml;
 using System;
@@ -11,24 +12,23 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            // Declarar los objetos necesarios para leer archivos XML
 
-            Console.WriteLine(Directory.GetCurrentDirectory());
+
 
 
             Console.WriteLine("-------------------------------------------------------------------------------");
             Console.WriteLine("----------Fabrica de Productos para Gatos: demostración Consola----------------");
             Console.WriteLine("-------------------------------------------------------------------------------");
 
+            // Declarar los objetos necesarios para leer archivos XML
+
             FabricaXmlService serviceXmlFabrica = new FabricaXmlService(AppDomain.CurrentDomain.BaseDirectory);
             Fabrica fabrica = serviceXmlFabrica.ReadXmlFabrica();
-           
-            Console.WriteLine("\n\n\n");
+
             Console.WriteLine("-------------------------------------------------------------------------------");
             Console.WriteLine("---------------------Atributos asignados a fabrica correctamente---------------");
             Console.WriteLine("-------------------------------------------------------------------------------");
 
-            Console.WriteLine("\n\n\n");
             Console.WriteLine("-------------------------------------------------------------------------------");
             Console.WriteLine("---------------------Iterar lista de insumos ----------------------------------");
             Console.WriteLine("-------------------------------------------------------------------------------");
@@ -72,6 +72,7 @@ namespace Test
             Console.WriteLine("-------------------------------------------------------------------------------");
 
             Console.WriteLine("---------------------Se itera de nuevo el stock de insumos----------------------");
+            Console.WriteLine("\n");
             foreach (Insumo i in fabrica.StockInsumos)
             {
                 Console.WriteLine(i.Mostrar());
@@ -86,8 +87,8 @@ namespace Test
             Console.WriteLine("-------------------------------------------------------------------------------");
 
 
-            Producto productoTorre = new Torre(new Madera(ETipoMadera.Mdf, EForma.Tablon, 4), new Tela(EColor.Bordo, ETipoTela.Alfombra, 3), Torre.EModeloTorre.Queen, new Madera(ETipoMadera.Mdf, EForma.Tubo, 2));
-            Producto productoEstante = new Estante(new Madera(ETipoMadera.Pino, EForma.Tablon, 4), new Tela(EColor.Rosa, ETipoTela.Alfombra, 3),5);
+            Producto productoTorre = new Torre(new Madera(ETipoMadera.Mdf, EForma.Tablon, Fabrica.CANTIDAD_MADERA_TORRE_PRINCIPAL), new Tela(EColor.Bordo, ETipoTela.Alfombra, Fabrica.CANTIDAD_TELA_TORRE), Torre.EModeloTorre.Queen, new Madera(ETipoMadera.Pino, EForma.Tubo, Fabrica.CANTIDAD_MADERA_TORRE_COLUMNA));
+            Producto productoEstante = new Estante(new Madera(ETipoMadera.Pino, EForma.Tablon, Fabrica.CANTIDAD_MADERA_ESTANTE), new Tela(EColor.Rosa, ETipoTela.Alfombra, Fabrica.CANTIDAD_TELA_ESTANTE),5);
             List<Insumo> faltantes = new List<Insumo>();
 
             Console.WriteLine("-------------------------------------------------------------------------------");
@@ -105,7 +106,7 @@ namespace Test
             Console.WriteLine("----------------Se van a ejecutar los porceos de la fábrica en orden-----------");
             Console.WriteLine("-------------------------------------------------------------------------------");
 
-            Console.WriteLine("----------------Lijar Maderas------------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("----------------Lijar Maderas--------------------------------------------------\n");
 
             //3- Ejecutar procesos de linea de Producción
 
@@ -116,7 +117,7 @@ namespace Test
                 Console.WriteLine(p.Mostrar());
             }
 
-            Console.WriteLine("----------------Barnizar------------------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("----------------Barnizar--------------------------------------------------------\n");
 
             fabrica.EjecutarProcesoLineaProduccion(EProceso.Barnizar);
 
@@ -124,7 +125,7 @@ namespace Test
             {
                 Console.WriteLine(p.Mostrar());
             }
-            Console.WriteLine("----------------Alfombrar-----------------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("----------------Alfombrar--------------------------------------------------------\n");
 
             fabrica.EjecutarProcesoLineaProduccion(EProceso.Alfombrar);
 
@@ -132,14 +133,14 @@ namespace Test
             {
                 Console.WriteLine(p.Mostrar());
             }
-            Console.WriteLine("----------------Agregar Yute---------------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("----------------Agregar Yute------------------------------------------------------\n");
             fabrica.EjecutarProcesoLineaProduccion(EProceso.AgregarYute);
 
             foreach (Producto p in fabrica.LineaProduccion)
             {
                 Console.WriteLine(p.Mostrar());
             }
-            Console.WriteLine("----------------Ensamblar-----------------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("----------------Ensamblar----------------------------------------------------------\n");
             fabrica.EjecutarProcesoLineaProduccion(EProceso.Ensamblar);
 
             foreach (Producto p in fabrica.LineaProduccion)
@@ -148,15 +149,15 @@ namespace Test
             }
 
             // 4 - Mudar productos terminados de la linea de producción al stock de productos terminados
-            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------\n");
-            Console.WriteLine("----------------Mudar productos terminados de la linea de producción al stock de productos terminados--------------------------\n");
-            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("--Mudar productos terminados de la linea de producción al stock de productos terminados---\n");
+            Console.WriteLine("------------------------------------------------------------------------------------------\n");
 
             fabrica.MudarProductosAStockTerminado();
 
-            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------\n");
-            Console.WriteLine("----------------Iterar lista de productos terminados de la fabrica ------------------------------------------------------------\n");
-            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("----------------Iterar lista de productos terminados de la fabrica -----------------------\n");
+            Console.WriteLine("------------------------------------------------------------------------------------------\n");
 
             foreach (Producto p in fabrica.StockProductosTerminados)
             {
@@ -165,30 +166,26 @@ namespace Test
 
             // 5 - Guardar datos de fábrica en archivos XML
 
-            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------\n");
-            Console.WriteLine("----------------Persistir atributos de fábrica en archivos XML-----------------------------------------------------------------\n");
-            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------\n");
-
-            /*
-            string rutaInsumosAlternativa = AppDomain.CurrentDomain.BaseDirectory + "listaInsumosTestAlternativo.xml";
-            string rutaLineaProduccionAlternativa = AppDomain.CurrentDomain.BaseDirectory + "lineaProduccionTestAlternativa.xml";
-            string rutaStockInsumosAlternativa = AppDomain.CurrentDomain.BaseDirectory + "stockInsumosAlternativa.xml";
+            Console.WriteLine("-------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("----------------Persistir atributos de fábrica en archivos XML-----------------------------\n");
+            Console.WriteLine("-------------------------------------------------------------------------------------------\n");
 
             try
             {
-                serializadorInsumos.Save(rutaInsumosAlternativa, fabrica.StockInsumos);
-                serializadorProductos.Save(rutaLineaProduccionAlternativa, fabrica.LineaProduccion);
-                serializadorProductos.Save(rutaStockInsumosAlternativa, fabrica.StockProductosTerminados);
+                serviceXmlFabrica.SaveXmlFabrica(fabrica);
+                Console.WriteLine("---------------------------------------------------------------------------------------\n");
+                Console.WriteLine("----------------Datos guardados correctamente -----------------------------------------\n");
+                Console.WriteLine("---------------------------------------------------------------------------------------\n");
             }
-            catch(Exception e)
+            catch(SaveFactoryException e)
             {
-                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("---------------------------------------------------------------------------------------\n");
+                Console.WriteLine("----------------Errores al guardar los datos ------------------------------------------\n");
+                Console.WriteLine("---------------------------------------------------------------------------------------\n");
             }
-            */
+            
 
-            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------\n");
-            Console.WriteLine("----------------Datos guardados correctamente ---------------------------------------------------------------------------------\n");
-            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------\n");
+
 
         }
     }

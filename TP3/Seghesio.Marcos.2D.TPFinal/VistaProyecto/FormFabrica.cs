@@ -125,11 +125,13 @@ namespace VistaProyecto
             ETipoTela tipoTela = (ETipoTela)cmbTipoTela.SelectedItem;
             EColor colorTela = (EColor)cmbColorTela.SelectedItem;
 
-            Madera maderaPrincipal = new Madera(tipoMaderaPrincipal, EForma.Tablon, 4);
-            Tela telaProducto = new Tela(colorTela, tipoTela, 2);
+            Madera maderaPrincipal;
+            Tela telaProducto;
 
             if (rbTorre.Checked)
             {
+                maderaPrincipal = new Madera(tipoMaderaPrincipal, EForma.Tablon, Fabrica.CANTIDAD_MADERA_TORRE_PRINCIPAL);
+                telaProducto = new Tela(colorTela, tipoTela, Fabrica.CANTIDAD_TELA_TORRE);
                 EModeloTorre modeloTorre = (EModeloTorre)cmbModeloTorre.SelectedItem;
                 ETipoMadera tipoMaderaColumna = (ETipoMadera)cmbMaderaColumna.SelectedItem;
 
@@ -147,6 +149,8 @@ namespace VistaProyecto
             }
             else
             {
+                maderaPrincipal = new Madera(tipoMaderaPrincipal, EForma.Tablon, Fabrica.CANTIDAD_MADERA_ESTANTE);
+                telaProducto = new Tela(colorTela, tipoTela, Fabrica.CANTIDAD_TELA_ESTANTE);
                 producto = new Estante(maderaPrincipal, telaProducto, (int)nudCantidadEstantes.Value);
             }
             return producto;
