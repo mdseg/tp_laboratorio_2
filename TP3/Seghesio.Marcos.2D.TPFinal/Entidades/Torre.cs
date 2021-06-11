@@ -61,12 +61,20 @@ namespace Entidades
                 this.yuteInstalado = value;
             }
         }
-        
+        /// <summary>
+        /// Constructor sin parámetros
+        /// </summary>
         public Torre()
         {
 
         }
-
+        /// <summary>
+        /// Constructor con parámetros, sin el agregado de Yute
+        /// </summary>
+        /// <param name="madera"></param>
+        /// <param name="tela"></param>
+        /// <param name="modelo"></param>
+        /// <param name="maderaColumna"></param>
         public Torre(Madera madera, Tela tela, EModeloTorre modelo, Madera maderaColumna)
         :base(madera,tela)
         {
@@ -74,13 +82,23 @@ namespace Entidades
             this.MaderaColumna = maderaColumna;
             this.yuteInstalado = false;
         }
-
+        /// <summary>
+        /// Constructor con parámetros, con agregado de yute expresado en metros
+        /// </summary>
+        /// <param name="madera"></param>
+        /// <param name="tela"></param>
+        /// <param name="modelo"></param>
+        /// <param name="maderaColumna"></param>
+        /// <param name="metrosYute"></param>
         public Torre(Madera madera, Tela tela, EModeloTorre modelo,Madera maderaColumna, int metrosYute)
         :this(madera,tela,modelo,maderaColumna)
         {
             this.metrosYute = metrosYute;
         }
-
+        /// <summary>
+        /// Sobrescritura del método Mostrar() incluyendo los atributos propios de una Torre
+        /// </summary>
+        /// <returns></returns>
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
@@ -103,23 +121,44 @@ namespace Entidades
             }
             return sb.ToString();
         }
-        //TODO revisar que el metodo sea para Torre
+        /// <summary>
+        /// Verifica que el producto se encuentre en estado Planificado para luego ejecutar el método LijarMadera por cada insumo del Tipo Madera que compone el producto
+        /// </summary>
+        /// <returns></returns>
         public override bool LijarMaderaProducto()
         {
             bool output = false;
-            if (this.EstadoProducto == Producto.EEstado.Planificado)
+            if (this.EstadoProducto == EEstado.Planificado)
             {
                 this.MaderaPrincipal.LijarMadera();
-                if (this is Torre)
-                {
-                    ((Torre)this).MaderaColumna.LijarMadera();
-                }
-                ((Torre)this).estadoProducto = EEstado.MaderasLijadas;
+                this.MaderaColumna.LijarMadera();
+                this.estadoProducto = EEstado.MaderasLijadas;
                 output = true;
             }
             return output;
         }
 
+        /// <summary>
+        ///  Método que verifica que un producto sea del tipo Torre y este en el estado MaderasLijadas, o que sea del tipo Estante y este Barnizado
+        ///  para luego cambiar el estado del producto a Alfombrado
+        /// </summary>
+        /// <returns></returns>
+        public override bool AlfombrarProducto()
+        {
+            bool output = false;
+            if (this.estadoProducto == EEstado.MaderasLijadas)
+            {
+                this.estadoProducto = EEstado.Alfombrado;
+                output = true;
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// Verifica que el producto se encuentre en estado Alfombrado y que existe yute a agregar expresado con valores de metrosYute > 0 asignando el estado del producto como
+        /// AdicionalesAgregados
+        /// </summary>
+        /// <returns></returns>
         public bool AgregarYute()
         {
             bool output = false;
@@ -131,8 +170,25 @@ namespace Entidades
             }
             return output;
         }
+        /// <summary>
+        /// Verifica que los estados del producto sean 
+        /// </summary>
+        /// <returns></returns>
+        public override bool EnsamblarProducto()
+        {
+            bool output = false;
+            if ((this.estadoProducto == EEstado.AdicionalesAgregados) ||
+                (this.estadoProducto == EEstado.Alfombrado && this.MetrosYute == 0))
+            {
+                this.estadoProducto = EEstado.Completo;
+                output = true;
+            }
+            return output;
+        }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public enum EModeloTorre
         {
             King,

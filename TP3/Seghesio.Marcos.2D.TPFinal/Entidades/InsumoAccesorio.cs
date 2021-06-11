@@ -39,7 +39,10 @@ namespace Entidades
         {
 
         }
-
+        /// <summary>
+        /// Sobrescritura del método Mostrar()
+        /// </summary>
+        /// <returns></returns>
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
@@ -60,7 +63,12 @@ namespace Entidades
             }
             return sb.ToString();
         }
-
+        /// <summary>
+        /// Sobrecarga de operador que plantea la igual entre dos InsumoAccesorio siempre y cuando cada Insumo.TipoAccesorio sea equivalente entre ambos
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator ==(InsumoAccesorio i1, InsumoAccesorio i2)
         {
             bool output = false;
@@ -73,7 +81,12 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Sobrecarga para desigualdad
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator !=(InsumoAccesorio i1, InsumoAccesorio i2)
         {
             bool output = false;
@@ -84,7 +97,9 @@ namespace Entidades
             return output;        
         }
     }
-
+    /// <summary>
+    /// Enum con los tipos de accesorios que puede adoptar un objeto del tipo InsumoAccesorio
+    /// </summary>
     public enum ETipoAccesorio
     {
         Tornillo,

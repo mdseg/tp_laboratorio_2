@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entidades.Exceptions
 {
+    /// <summary>
+    /// Excepción derivada de CustomException pensada  para los problemas al generar reportes en pdf
+    /// </summary>
     public class SavePdfException : CustomException
     {
         public SavePdfException(string message)

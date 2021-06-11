@@ -11,3 +11,4 @@ Fecha error: 10/6/2021 19:49. Hubo problemas al crear el reporte en PDF
 Fecha error: 10/6/2021 19:55. Hubo problemas al crear el reporte en PDF
 Fecha error: 10/6/2021 19:55. Hubo problemas al crear el reporte en PDF
 Fecha error: 10/6/2021 20:01. Hubo problemas al crear el reporte en PDF
+Fecha error: 11/6/2021 12:04. Hubo problemas al crear el reporte en PDF

@@ -135,37 +135,63 @@ namespace VistaProyecto
 
         private void ActualizarListaInsumos()
         {
-            if(FormPrincipal.fabricaSingleton.StockInsumos.Count > 0)
+            int cantidadPegamento = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Pegamento);
+            int cantidadBarniz = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Barniz);
+            int cantidadTornillos = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Tornillo);
+            int cantidadYute = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Yute);
+
+            lblPegamento.Text = $"Stock Pegamento: {cantidadPegamento}";
+            lblBarniz.Text = $"Stock Barniz: {cantidadBarniz}";
+            lblTornillos.Text = $"Stock Tornillos: {cantidadTornillos}";
+            lblYute.Text = $"Stock Yute: {cantidadYute}";
+
+            if (Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos,ETipoInsumo.Madera) > 0)
             { 
-                dgStockInsumos.Rows.Clear();
-                dgStockInsumos.Columns.Clear();
-                dgStockInsumos.Columns.Add("tipoInsumo", "Tipo de Insumo");
-                dgStockInsumos.Columns.Add("caracteristicas", "Características");
+                dgStockMaderas.Rows.Clear();
+                dgStockMaderas.Columns.Clear();
+                dgStockMaderas.Columns.Add("tipoMadera", "Material");
+                dgStockMaderas.Columns.Add("formaMadera", "Forma");
+                dgStockMaderas.Columns.Add("cantidad", "Cantidad");
 
                 foreach (Insumo i in FormPrincipal.fabricaSingleton.StockInsumos)
                 {
-                    string stringInsumo;
                     if (i is Madera)
                     {
-                        stringInsumo = "Madera";
+                        dgStockMaderas.Rows.Add(((Madera)i).TipoMadera, ((Madera)i).Forma, i.Cantidad);
                     }
-                    else if (i is Tela)
-                    {
-                        stringInsumo = "Tela";
-                    }
-                    else
-                    {
-                        stringInsumo = "Insumo Accesorio";
-                    }
-                    dgStockInsumos.Rows.Add(stringInsumo, i.Mostrar());
+
                 }
-                dgStockInsumos.Visible = true;
-                lblListaVacia.Visible = false;
+                dgStockMaderas.Visible = true;
+                lblListaVaciaMadera.Visible = false;
             }
             else
             {
-                dgStockInsumos.Visible = false;
-                lblListaVacia.Visible = true;
+                dgStockMaderas.Visible = false;
+                lblListaVaciaMadera.Visible = true;
+            }
+
+            if (Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Tela) > 0)
+            {
+                dgStockTelas.Rows.Clear();
+                dgStockTelas.Columns.Clear();
+                dgStockTelas.Columns.Add("tipoTela", "Material");
+                dgStockTelas.Columns.Add("colorTela", "Color");
+                dgStockTelas.Columns.Add("cantidad", "Cantidad");
+
+                foreach (Insumo i in FormPrincipal.fabricaSingleton.StockInsumos)
+                {
+                    if (i is Tela)
+                    {
+                        dgStockTelas.Rows.Add(((Tela)i).TipoTela, ((Tela)i).Color, i.Cantidad);
+                    }                    
+                }
+                dgStockTelas.Visible = true;
+                lblListaVaciaTela.Visible = false;
+            }
+            else
+            {
+                dgStockTelas.Visible = false;
+                lblListaVaciaTela.Visible = true;
             }
         }
 

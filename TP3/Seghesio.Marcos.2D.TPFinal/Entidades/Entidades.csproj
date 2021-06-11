@@ -51,7 +51,6 @@
     <Compile Include="Exceptions\ReadFactoryException.cs" />
     <Compile Include="Exceptions\SaveFactoryException.cs" />
     <Compile Include="Exceptions\SavePdfException.cs" />
-    <Compile Include="Exceptions\XmlSerilizerException.cs" />
     <Compile Include="InsumoAccesorio.cs" />
     <Compile Include="Estante.cs" />
     <Compile Include="Fabrica.cs" />

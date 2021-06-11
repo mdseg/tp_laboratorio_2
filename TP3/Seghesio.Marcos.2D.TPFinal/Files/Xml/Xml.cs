@@ -8,8 +8,18 @@ using System.Xml.Serialization;
 
 namespace Files.Xml
 {
+    /// <summary>
+    /// Clase genérnica encargada de la serialización y desserialización de Xml
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Xml<T> : IFile<T>
     {
+        /// <summary>
+        /// método encargado de leer un archivo Xml y desserializarlo al tipo de Dato T adoptado por el genérico
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public bool Read(string file, out T data)
         {
             bool output = false;
@@ -28,7 +38,12 @@ namespace Files.Xml
             }
             return output;
         }
-
+        /// <summary>
+        /// Método encargado de recibir un tipo de dato por parámetros y serializarlo en la ruta del archivo enviada en el parametro file
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public bool Save(string file, T data)
         {
             bool output = false;

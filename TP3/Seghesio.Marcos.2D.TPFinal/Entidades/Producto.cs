@@ -56,13 +56,19 @@ namespace Entidades
                 this.estadoProducto = value;
             }
         }
-
+        /// <summary>
+        /// Constructor sin parámetros
+        /// </summary>
         public Producto()
         {
 
         }
         
-
+        /// <summary>
+        /// Constructor con parámetros
+        /// </summary>
+        /// <param name="maderaPrincipal"></param>
+        /// <param name="telaProducto"></param>
         public Producto(Madera maderaPrincipal, Tela telaProducto)
         {
             this.maderaPrincipal = maderaPrincipal;
@@ -70,6 +76,39 @@ namespace Entidades
             this.estadoProducto = EEstado.Planificado;
         }
 
+        /// <summary>
+        /// Método abstracto para alfombrar producto 
+        /// </summary>
+        /// <returns></returns>
+        public abstract bool AlfombrarProducto();
+
+        /// <summary>
+        /// Verifica que un producto se encuentre en los distintos estados validos previos para luego asignar como estadoProducto a Completo
+        /// </summary>
+        /// <returns></returns>
+        public abstract bool EnsamblarProducto();
+
+        /// <summary>
+        /// Método que verifica que el estado del producto sea planificado y ejecuta el proceso de LijarMadera() en cada una de las Maderas del producto
+        /// y posteriormente cambia el estado del producto a MaderasLijadas
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool LijarMaderaProducto()
+        {
+            bool output = false;
+            if (this.EstadoProducto == EEstado.Planificado)
+            {
+                this.MaderaPrincipal.LijarMadera();
+                this.estadoProducto = EEstado.MaderasLijadas;
+                output = true;
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// Método encargado de mostrar en consola los atributos del producto, que puede ser sobreescrito en clases derivadas
+        /// </summary>
+        /// <returns></returns>
         public virtual string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
@@ -77,17 +116,10 @@ namespace Entidades
             return sb.ToString();
         }
         
-        public enum EEstado
-        {
-            Planificado,
-            MaterialesPreparados,
-            MaderasLijadas,
-            Barnizado,
-            Alfombrado,
-            AdicionalesAgregados,
-            Completo
-        }
-
+        /// <summary>
+        /// Conversion explicita que recibe un producto y devuelve la lista de insumos que lo componen
+        /// </summary>
+        /// <param name="p"></param>
         public static explicit operator List<Insumo>(Producto p)
         {
             List<Insumo> insumos = new List<Insumo>();
@@ -106,80 +138,17 @@ namespace Entidades
             return insumos;
         }
 
-        public virtual bool LijarMaderaProducto()
-        {
-            bool output = false;
-            if (this.EstadoProducto == Producto.EEstado.Planificado)
-            {
-                this.MaderaPrincipal.LijarMadera();
-                this.estadoProducto = EEstado.MaderasLijadas;
-                output = true;
-            }
-            return output;
-        }
-
-        public bool PrepararProductoParaProduccion()
-        {
-            bool output = false;
-            if(this.EstadoProducto == EEstado.Planificado)
-            {
-                this.estadoProducto = EEstado.MaterialesPreparados;
-                output = true;
-            }
-            return output;
-        }
-
-        public bool BarnizarProducto()
-        {
-            bool output = false;
-            if(this is Estante && this.EstadoProducto == EEstado.MaderasLijadas)
-            {
-                this.estadoProducto = EEstado.Barnizado;
-                output = true;
-            }
-            return output;
-        }
-
-        public bool AlfombrarProducto()
-        {
-            bool output = false;
-            if((this is Estante && this.estadoProducto == EEstado.Barnizado) ||
-                (this is Torre && this.estadoProducto == EEstado.MaderasLijadas)) 
-            {
-                this.estadoProducto = EEstado.Alfombrado;
-                output = true;
-            }
-            return output;
-        }
-
-        public bool AgregarYuteProducto()
-        {
-            bool output = false;
-            if ((this is Torre && this.estadoProducto == EEstado.Alfombrado) && ((Torre)this).MetrosYute > 0)
-            {
-                ((Torre)this).AgregarYute();
-                this.estadoProducto = EEstado.AdicionalesAgregados;
-                output = true;
-            }
-            return output;
-        }
-
-
-
-        public bool EnsamblarProducto()
-        {
-            bool output = false;
-            if ((this is Torre && this.estadoProducto == EEstado.AdicionalesAgregados) ||
-                (this is Torre && this.estadoProducto == EEstado.Alfombrado && ((Torre)this).MetrosYute == 0) ||
-                (this is Estante && this.estadoProducto == EEstado.Alfombrado))
-            {
-                this.estadoProducto = EEstado.Completo;
-                output = true;
-            }
-            return output;
-        }
-
-
-
+    }
+    /// <summary>
+    /// Enum con los distintos estados que puede adoptar un producto en un proceso de fabricación
+    /// </summary>
+    public enum EEstado
+    {
+        Planificado,
+        MaderasLijadas,
+        Barnizado,
+        Alfombrado,
+        AdicionalesAgregados,
+        Completo
     }
 }

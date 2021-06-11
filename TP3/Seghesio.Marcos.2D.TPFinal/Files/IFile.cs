@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Files.Xml;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Files
 {
-    public interface IFile<T>
+    /// <summary>
+    /// Interfaz genérica utilizada para leer y guardar un tipo de archivo
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IFile<T> : ISaveOnlyFile<T>
     {
-        bool Save(string file, T data);
-
         bool Read(string file, out T data);
     }
 }

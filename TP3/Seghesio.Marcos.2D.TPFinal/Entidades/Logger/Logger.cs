@@ -9,7 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Entidades.Logger
-{
+{   
+    /// <summary>
+    /// Clase utilizada para guardar en formato texto las distintas CustomException surgidas utilizando un objeto que implementa la interfaz ISaveOnlyFile
+    /// </summary>
     public class Logger
     {
         private ISaveOnlyFile<string> serviceArchivoTexto;
@@ -20,7 +23,10 @@ namespace Entidades.Logger
             this.serviceArchivoTexto = new TxtLogger();
             this.filePath = path;
         }
-
+        /// <summary>
+        /// Abre un archivo de texto y la añada la información de la CustomException
+        /// </summary>
+        /// <param name="e"></param>
         public void saveReport(CustomException e)
         {
             try

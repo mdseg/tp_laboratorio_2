@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace TestsUnitarios
 {
     [TestClass]
-    public class UnitTest1
+    public class TestUnitarios
     {
         [TestMethod]
         public void Retorna_ListInsumoFaltante_Cuando_Recibe_Un_Producto_Sin_Stock_Suficiente()

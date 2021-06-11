@@ -34,30 +34,52 @@ namespace Entidades
                 this.tipoTela = value;
             }
         }
-
+        /// <summary>
+        /// Constructor sin parámetros
+        /// </summary>
         public Tela()
         {
 
         }
+        /// <summary>
+        /// Constructor con parámetros y fecha de ingreso distinta a la actual
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="tipoTela"></param>
+        /// <param name="cantidad"></param>
+        /// <param name="fechaIngreso"></param>
         public Tela(EColor color, ETipoTela tipoTela, int cantidad, DateTime fechaIngreso)
         :base(cantidad,fechaIngreso)
         {
             this.color = color;
             this.tipoTela = tipoTela;
         }
-
+        /// <summary>
+        /// Constructor con parámetros y fecha de ingreso actual
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="tipoTela"></param>
+        /// <param name="cantidad"></param>
         public Tela(EColor color, ETipoTela tipoTela, int cantidad)
         : this(color, tipoTela, cantidad, DateTime.Now)
         {
         }
-
+        /// <summary>
+        /// Sobrescritura del método Mostrar()
+        /// </summary>
+        /// <returns></returns>
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("Tela: {0} - Color de tela: {1} - Tipo de tela: {2}\n", base.Mostrar(), this.Color, this.TipoTela);
             return sb.ToString();
         }
-
+        /// <summary>
+        /// Sobrecarga de operador == que plantea la igualdad cuanto un objeto tipo Tela tiene igual Color y TipoTela que otro
+        /// </summary>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        /// <returns></returns>
         public static bool operator ==(Tela t1, Tela t2)
         {
             bool output = false;
@@ -70,6 +92,12 @@ namespace Entidades
             }
             return output;
         }
+        /// <summary>
+        /// Sobrecarga de operador !=
+        /// </summary>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        /// <returns></returns>
         public static bool operator !=(Tela t1, Tela t2)
         {
             bool output = false;
@@ -82,6 +110,9 @@ namespace Entidades
 
 
     }
+    /// <summary>
+    /// Enum con todos los colores posibles para la tela
+    /// </summary>
     public enum EColor
     {
         Amarillo,
@@ -94,7 +125,9 @@ namespace Entidades
         Rosa,
         Violeta
     }
-
+    /// <summary>
+    /// Enum con todos los tipos posibles para la tela
+    /// </summary>
     public enum ETipoTela
     {
         Corderito,

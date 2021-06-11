@@ -66,7 +66,9 @@ namespace Entidades
                 this.stockProductosTerminados = value;
             }
         }
-
+        /// <summary>
+        /// Propiedad que devuelve una instancia de Fabrica, permitiendose solo en una ocasion instanciar la clase
+        /// </summary>
         public static Fabrica Instance
         {
             get
@@ -78,16 +80,24 @@ namespace Entidades
                 return instance;
             }
         }
-
-
-
+        /// <summary>
+        /// Constructor privado sin argumentos
+        /// </summary>
         private Fabrica()
         {
             this.stockInsumos = new List<Insumo>();
             this.lineaProduccion = new List<Producto>();
             this.stockProductosTerminados = new List<Producto>();
         }
-
+        /// <summary>
+        /// Método que recibe un producto, añade los Insumos adicionales necesarios para su fabriación, retorna true si puede fabricarse el producto y false si no es posible por falta
+        /// de stock. En el caso de haber falta de stkock se indican los insumos que faltan a traves de la variable de salida insumosFaltantes y la totalidad de insumos necesarios por medio de
+        /// la variable de saluda materialesProducto
+        /// </summary>
+        /// <param name="prospectoProducto"></param>
+        /// <param name="insumosFaltantes"></param>
+        /// <param name="materialesProducto"></param>
+        /// <returns></returns>
         public bool VerificarStockInsumo(Producto prospectoProducto, out List<Insumo> insumosFaltantes, out List<Insumo> materialesProducto)
         {
             materialesProducto = (List<Insumo>)prospectoProducto;
@@ -154,7 +164,14 @@ namespace Entidades
                bool resultado = this.stockInsumos - i;               
             }
         }
-        
+        /// <summary>
+        /// Método que recibe un producto a fabricar y en el caso que el método VerificarStockInsumo de true va a separar los insumos necesarios del inventario
+        /// y agregar el producto a la linea de producción, devolviendo true en el output. En el caso de no haber stock se devolverá por medio de la variable de salida insumosFaltantes
+        /// aquellos insumos que hagan falta
+        /// </summary>
+        /// <param name="prospectoProducto"></param>
+        /// <param name="insumosFaltantes"></param>
+        /// <returns></returns>
         public bool AgregarProductoLineaProduccion(Producto prospectoProducto, out List<Insumo> insumosFaltantes)
         {
             bool output = false;
@@ -172,7 +189,11 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Agrega un unico insumo al stock de la fábrica
+        /// </summary>
+        /// <param name="insumo"></param>
+        /// <returns></returns>
         public bool AgregarInsumosAStock(Insumo insumo)
         {
             bool output = false;
@@ -183,7 +204,11 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Agrega una lista de insumos al stock de la fábrica
+        /// </summary>
+        /// <param name="insumos"></param>
+        /// <returns></returns>
         public int AgregarInsumosAStock(List<Insumo> insumos)
         {
             int output = 0;
@@ -196,6 +221,12 @@ namespace Entidades
             }
             return output;
         }
+        /// <summary>
+        /// El método recibe una variable del tipo EProceso indicando el proceso a realizar y recorre la lista de linea de produccion para ejecutar dicho proceso
+        /// cuando corresponda, devolviendo la cantidad de productos a los cuales se les aplico el proceso.
+        /// </summary>
+        /// <param name="proceso"></param>
+        /// <returns></returns>
         public int EjecutarProcesoLineaProduccion(EProceso proceso)
         {
             int output = 0;
@@ -205,16 +236,23 @@ namespace Entidades
                 switch (proceso)
                 {
                     case EProceso.Lijar:
+                        
                         procesoRealizado = producto.LijarMaderaProducto();
                         break;
                     case EProceso.Barnizar:
-                        procesoRealizado = producto.BarnizarProducto();
+                        if(producto is Estante)
+                        {
+                            procesoRealizado = ((Estante)producto).BarnizarProducto();
+                        }
                         break;
                     case EProceso.Alfombrar:
                         procesoRealizado = producto.AlfombrarProducto();
                         break;
                     case EProceso.AgregarYute:
-                        procesoRealizado = producto.AgregarYuteProducto();
+                        if(producto is Torre)
+                        {
+                            procesoRealizado = ((Torre)producto).AgregarYute();
+                        }
                         break;
                     case EProceso.Ensamblar:
                         procesoRealizado = producto.EnsamblarProducto();
@@ -228,21 +266,26 @@ namespace Entidades
             return output;
 
         }
-
+        /// <summary>
+        /// Método que limpia los atributos de la fábrica
+        /// </summary>
         public void ResetearFabrica()
         {
             this.lineaProduccion.Clear();
             this.stockInsumos.Clear();
             this.stockProductosTerminados.Clear();
         }
-
+        /// <summary>
+        /// Itera la lista de linea de producción, separando los productos que esten en estado Completo
+        /// </summary>
+        /// <returns></returns>
         public int MudarProductosAStockTerminado()
         {
             int output = 0;
             List<Producto> productosAEliminar = new List<Producto>();
             foreach (Producto producto in this.lineaProduccion)
             {
-                if (producto.EstadoProducto == Producto.EEstado.Completo)
+                if (producto.EstadoProducto == EEstado.Completo)
                 {
                     this.stockProductosTerminados.Add(producto);
                     productosAEliminar.Add(producto);
@@ -262,6 +305,9 @@ namespace Entidades
 
 
     }
+    /// <summary>
+    /// Enum con todos los procesos que la fábrica realiza
+    /// </summary>
     public enum EProceso
     {
         Lijar,

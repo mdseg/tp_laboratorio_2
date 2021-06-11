@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entidades.Exceptions
 {
+    /// <summary>
+    /// Excepción derivada de CustomException pensada  para los problemas al deserializar los atributos de la fabrica
+    /// </summary>
     public class ReadFactoryException : CustomException
     {
         public ReadFactoryException(string message)

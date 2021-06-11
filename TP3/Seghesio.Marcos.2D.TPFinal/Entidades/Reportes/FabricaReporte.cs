@@ -14,7 +14,12 @@ namespace Entidades.Reportes
 {
     public class FabricaReporte
     {
-
+        /// <summary>
+        /// Método encargado de crear en un archivo PDF válido en el directorio proporcionado y extraer la información que obtiene cada atributo
+        /// de la clase fábrica.
+        /// </summary>
+        /// <param name="path">ruta que incluye el nombre del archivo pdf a crear</param>
+        /// <param name="fabrica"></param>
         public void CrearReporte(string path, Fabrica fabrica)
         {
             try
@@ -121,6 +126,13 @@ namespace Entidades.Reportes
 
 
         }
+        /// <summary>
+        /// Método encargado de crear una tabla para un listado de productos, ya sea si es una tabla para la linea de produccion o para el stock de productos terminados
+        /// </summary>
+        /// <param name="listaProductos"></param>
+        /// <param name="standarFont">Fuente estándar</param>
+        /// <param name="esLineaProduccion">si es true es una tabla para la linea de producción, si es false es una tabla para stock de productos terminados</param>
+        /// <returns></returns>
         private PdfPTable crearTablaProductos(List<Producto> listaProductos, Font standarFont, bool esLineaProduccion)
         {
             PdfPTable tblEjemplo;
@@ -244,7 +256,13 @@ namespace Entidades.Reportes
 
             return tblEjemplo;
         }
-
+        /// <summary>
+        /// Crea una tabla para el stock de Insumos dando al posibilidad a elegir si es para Telas o Maderas
+        /// </summary>
+        /// <param name="listaInsumos">Listado de Insumos</param>
+        /// <param name="tipoInforme">Tipo de informe a elegir entre Tela o Madera</param>
+        /// <param name="standarFont">Fuente estándar</param>
+        /// <returns></returns>
         private PdfPTable crearTablaInsumos(List<Insumo> listaInsumos, ETipoInforme tipoInforme, Font standarFont)
         {
             PdfPTable tblInsumo = new PdfPTable(3);

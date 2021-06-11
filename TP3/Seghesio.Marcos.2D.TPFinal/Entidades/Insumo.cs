@@ -40,32 +40,49 @@ namespace Entidades
                 this.fechaIngreso = value;
             }
         }
-
+        /// <summary>
+        /// Constructor sin parámetros
+        /// </summary>
         public Insumo()
         {
 
         }
-
+        /// <summary>
+        /// Constructor de clase base con fecha de ingreso distinta a la actual
+        /// </summary>
+        /// <param name="cantidad"></param>
+        /// <param name="fechaIngreso"></param>
         public Insumo(int cantidad,DateTime fechaIngreso)      
         {
             this.fechaIngreso = fechaIngreso;
             this.cantidad = cantidad;
 
         }
-
+        /// <summary>
+        /// Constructor de clase base con fecha de ingreso actual
+        /// </summary>
+        /// <param name="cantidad"></param>
         public Insumo(int cantidad)
         :this(cantidad,DateTime.Now)
         {
 
         }
-
+        /// <summary>
+        /// Método basico para Mostrar en consola el objeto Insumo
+        /// </summary>
+        /// <returns></returns>
         public virtual string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("cantidad {0}", this.Cantidad);
             return sb.ToString();
         }
-
+        /// <summary>
+        /// sobrecarga de operador que valida que un Insumo sea o on equivalente a otro
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator ==(Insumo i1, Insumo i2)
         {
             bool output = false;
@@ -93,6 +110,12 @@ namespace Entidades
             }
             return output;
         }
+        /// <summary>
+        /// Verificar desigualdad entre Insumos
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator !=(Insumo i1, Insumo i2)
         {
             bool output = false;
@@ -102,7 +125,15 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Verifica que un insumo esté presente en una lista y si la cantidad del mismo es menor o igual a la de la lista
+        /// modifica la cantidad de insumos presentes en la misma. Por ejemplo si tengo una lista con 40 unidades de un tipo de Madera y quiero restar una Madera
+        /// que tiene 30 unidades, la nueva cantidad de la madera de la lista será 10. En el caso de que la cantidad del insumo sea 0 tras la resta, este insumo será
+        /// retirado de la lista
+        /// </summary>
+        /// <param name="listaInsumos"></param>
+        /// <param name="insumo"></param>
+        /// <returns></returns>
         public static bool operator -(List<Insumo> listaInsumos, Insumo insumo)
         {
             bool output = false;
@@ -127,7 +158,13 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Verifica que un insumo esté en una lista y en el caso de ser así suma las cantidades del insumo ingresado y el insumo presente, colocando como fecha de Ingreso
+        /// la del insumo mas reciente. En el caso de no estar presente lo agrega a la lista como un nuevo objeto. 
+        /// </summary>
+        /// <param name="listaInsumos"></param>
+        /// <param name="insumo"></param>
+        /// <returns></returns>
         public static List<Insumo> operator +(List<Insumo> listaInsumos, Insumo insumo)
         {
             bool insumoAgregado = false;
@@ -152,7 +189,11 @@ namespace Entidades
             }
             return listaInsumos;
         }
-
+        /// <summary>
+        /// Itera todos los insumos de la lista para corres el método Mostrar()
+        /// </summary>
+        /// <param name="listaInsumos"></param>
+        /// <returns></returns>
         public static string ListarInsumos(List<Insumo> listaInsumos)
         {
             StringBuilder sb = new StringBuilder();
@@ -162,7 +203,13 @@ namespace Entidades
             }
             return sb.ToString();
         }
-
+        /// <summary>
+        /// Recibe como parametro un ETipoInsumo que representa cada uno de los tipos de insumos posibles y devuelve la cantidad de insumos de este tipo
+        /// existentes
+        /// </summary>
+        /// <param name="listaInsumos"></param>
+        /// <param name="tipoInsumo"></param>
+        /// <returns></returns>
         public static int CountInsumoType(List<Insumo> listaInsumos, ETipoInsumo tipoInsumo)
         {
             int output = 0;
@@ -209,7 +256,9 @@ namespace Entidades
         }
 
     }
-
+    /// <summary>
+    /// Enum con los distintos tipos de insumos presentes en la aplicación
+    /// </summary>
     public enum ETipoInsumo
     {
         Madera,

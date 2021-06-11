@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entidades.Exceptions
 {
+    /// <summary>
+    /// Excepción derivada de CustomException pensada  para los problemas al serializar los atributos de la fabrica
+    /// </summary>
     public class SaveFactoryException : CustomException
     {
         public SaveFactoryException(string message)

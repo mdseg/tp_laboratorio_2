@@ -31,9 +31,12 @@ namespace VistaProyecto
         {
             this.tabControlInsumos = new System.Windows.Forms.TabControl();
             this.tabPageListadoInsumos = new System.Windows.Forms.TabPage();
-            this.lblListaVacia = new System.Windows.Forms.Label();
-            this.lblStockInsumos = new System.Windows.Forms.Label();
-            this.dgStockInsumos = new System.Windows.Forms.DataGridView();
+            this.lblListaVaciaTela = new System.Windows.Forms.Label();
+            this.lblStockTelas = new System.Windows.Forms.Label();
+            this.dgStockTelas = new System.Windows.Forms.DataGridView();
+            this.lblListaVaciaMadera = new System.Windows.Forms.Label();
+            this.lblStockMaderas = new System.Windows.Forms.Label();
+            this.dgStockMaderas = new System.Windows.Forms.DataGridView();
             this.tabPageAgregarInsumo = new System.Windows.Forms.TabPage();
             this.gbTela = new System.Windows.Forms.GroupBox();
             this.cmbColorTela = new System.Windows.Forms.ComboBox();
@@ -46,7 +49,6 @@ namespace VistaProyecto
             this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.rbInsumoAccesorio = new System.Windows.Forms.RadioButton();
-            this.rbYute = new System.Windows.Forms.RadioButton();
             this.lblTipoProducto = new System.Windows.Forms.Label();
             this.rbTela = new System.Windows.Forms.RadioButton();
             this.rbMadera = new System.Windows.Forms.RadioButton();
@@ -56,6 +58,7 @@ namespace VistaProyecto
             this.label1 = new System.Windows.Forms.Label();
             this.rbPegamento = new System.Windows.Forms.RadioButton();
             this.rbBarniz = new System.Windows.Forms.RadioButton();
+            this.rbYute = new System.Windows.Forms.RadioButton();
             this.gbMadera = new System.Windows.Forms.GroupBox();
             this.rbColumna = new System.Windows.Forms.RadioButton();
             this.rbTablon = new System.Windows.Forms.RadioButton();
@@ -65,9 +68,14 @@ namespace VistaProyecto
             this.panel1 = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
             this.iBInsumos = new FontAwesome.Sharp.IconButton();
+            this.lblTornillos = new System.Windows.Forms.Label();
+            this.lblBarniz = new System.Windows.Forms.Label();
+            this.lblPegamento = new System.Windows.Forms.Label();
+            this.lblYute = new System.Windows.Forms.Label();
             this.tabControlInsumos.SuspendLayout();
             this.tabPageListadoInsumos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgStockInsumos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStockTelas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStockMaderas)).BeginInit();
             this.tabPageAgregarInsumo.SuspendLayout();
             this.gbTela.SuspendLayout();
             this.gbProducto.SuspendLayout();
@@ -90,9 +98,16 @@ namespace VistaProyecto
             // 
             // tabPageListadoInsumos
             // 
-            this.tabPageListadoInsumos.Controls.Add(this.lblListaVacia);
-            this.tabPageListadoInsumos.Controls.Add(this.lblStockInsumos);
-            this.tabPageListadoInsumos.Controls.Add(this.dgStockInsumos);
+            this.tabPageListadoInsumos.Controls.Add(this.lblYute);
+            this.tabPageListadoInsumos.Controls.Add(this.lblPegamento);
+            this.tabPageListadoInsumos.Controls.Add(this.lblBarniz);
+            this.tabPageListadoInsumos.Controls.Add(this.lblTornillos);
+            this.tabPageListadoInsumos.Controls.Add(this.lblListaVaciaTela);
+            this.tabPageListadoInsumos.Controls.Add(this.lblStockTelas);
+            this.tabPageListadoInsumos.Controls.Add(this.dgStockTelas);
+            this.tabPageListadoInsumos.Controls.Add(this.lblListaVaciaMadera);
+            this.tabPageListadoInsumos.Controls.Add(this.lblStockMaderas);
+            this.tabPageListadoInsumos.Controls.Add(this.dgStockMaderas);
             this.tabPageListadoInsumos.Location = new System.Drawing.Point(4, 22);
             this.tabPageListadoInsumos.Name = "tabPageListadoInsumos";
             this.tabPageListadoInsumos.Padding = new System.Windows.Forms.Padding(3);
@@ -101,39 +116,73 @@ namespace VistaProyecto
             this.tabPageListadoInsumos.Text = "tabPage1";
             this.tabPageListadoInsumos.UseVisualStyleBackColor = true;
             // 
-            // lblListaVacia
+            // lblListaVaciaTela
             // 
-            this.lblListaVacia.AutoSize = true;
-            this.lblListaVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListaVacia.Location = new System.Drawing.Point(71, 164);
-            this.lblListaVacia.Name = "lblListaVacia";
-            this.lblListaVacia.Size = new System.Drawing.Size(334, 25);
-            this.lblListaVacia.TabIndex = 2;
-            this.lblListaVacia.Text = "Aun no se han agregado Insumos";
+            this.lblListaVaciaTela.AutoSize = true;
+            this.lblListaVaciaTela.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListaVaciaTela.Location = new System.Drawing.Point(71, 388);
+            this.lblListaVaciaTela.Name = "lblListaVaciaTela";
+            this.lblListaVaciaTela.Size = new System.Drawing.Size(307, 25);
+            this.lblListaVaciaTela.TabIndex = 5;
+            this.lblListaVaciaTela.Text = "Aun no se han agregado Telas";
             // 
-            // lblStockInsumos
+            // lblStockTelas
             // 
-            this.lblStockInsumos.AutoSize = true;
-            this.lblStockInsumos.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockInsumos.Location = new System.Drawing.Point(50, 90);
-            this.lblStockInsumos.Name = "lblStockInsumos";
-            this.lblStockInsumos.Size = new System.Drawing.Size(202, 29);
-            this.lblStockInsumos.TabIndex = 1;
-            this.lblStockInsumos.Text = "Insumos en Stock";
+            this.lblStockTelas.AutoSize = true;
+            this.lblStockTelas.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStockTelas.Location = new System.Drawing.Point(50, 314);
+            this.lblStockTelas.Name = "lblStockTelas";
+            this.lblStockTelas.Size = new System.Drawing.Size(173, 29);
+            this.lblStockTelas.TabIndex = 4;
+            this.lblStockTelas.Text = "Telas en Stock";
             // 
-            // dgStockInsumos
+            // dgStockTelas
             // 
-            this.dgStockInsumos.AllowUserToAddRows = false;
-            this.dgStockInsumos.AllowUserToDeleteRows = false;
-            this.dgStockInsumos.AllowUserToResizeRows = false;
-            this.dgStockInsumos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgStockInsumos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgStockInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgStockInsumos.Location = new System.Drawing.Point(55, 134);
-            this.dgStockInsumos.Name = "dgStockInsumos";
-            this.dgStockInsumos.ReadOnly = true;
-            this.dgStockInsumos.Size = new System.Drawing.Size(876, 308);
-            this.dgStockInsumos.TabIndex = 0;
+            this.dgStockTelas.AllowUserToAddRows = false;
+            this.dgStockTelas.AllowUserToDeleteRows = false;
+            this.dgStockTelas.AllowUserToResizeRows = false;
+            this.dgStockTelas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgStockTelas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgStockTelas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgStockTelas.Location = new System.Drawing.Point(55, 358);
+            this.dgStockTelas.Name = "dgStockTelas";
+            this.dgStockTelas.ReadOnly = true;
+            this.dgStockTelas.Size = new System.Drawing.Size(435, 156);
+            this.dgStockTelas.TabIndex = 3;
+            // 
+            // lblListaVaciaMadera
+            // 
+            this.lblListaVaciaMadera.AutoSize = true;
+            this.lblListaVaciaMadera.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListaVaciaMadera.Location = new System.Drawing.Point(71, 164);
+            this.lblListaVaciaMadera.Name = "lblListaVaciaMadera";
+            this.lblListaVaciaMadera.Size = new System.Drawing.Size(338, 25);
+            this.lblListaVaciaMadera.TabIndex = 2;
+            this.lblListaVaciaMadera.Text = "Aun no se han agregado Maderas";
+            // 
+            // lblStockMaderas
+            // 
+            this.lblStockMaderas.AutoSize = true;
+            this.lblStockMaderas.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStockMaderas.Location = new System.Drawing.Point(50, 90);
+            this.lblStockMaderas.Name = "lblStockMaderas";
+            this.lblStockMaderas.Size = new System.Drawing.Size(206, 29);
+            this.lblStockMaderas.TabIndex = 1;
+            this.lblStockMaderas.Text = "Maderas en Stock";
+            // 
+            // dgStockMaderas
+            // 
+            this.dgStockMaderas.AllowUserToAddRows = false;
+            this.dgStockMaderas.AllowUserToDeleteRows = false;
+            this.dgStockMaderas.AllowUserToResizeRows = false;
+            this.dgStockMaderas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgStockMaderas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgStockMaderas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgStockMaderas.Location = new System.Drawing.Point(55, 134);
+            this.dgStockMaderas.Name = "dgStockMaderas";
+            this.dgStockMaderas.ReadOnly = true;
+            this.dgStockMaderas.Size = new System.Drawing.Size(435, 159);
+            this.dgStockMaderas.TabIndex = 0;
             // 
             // tabPageAgregarInsumo
             // 
@@ -277,18 +326,6 @@ namespace VistaProyecto
             this.rbInsumoAccesorio.UseVisualStyleBackColor = true;
             this.rbInsumoAccesorio.CheckedChanged += new System.EventHandler(this.rbGeneric_CheckedChanged);
             // 
-            // rbYute
-            // 
-            this.rbYute.AutoSize = true;
-            this.rbYute.Location = new System.Drawing.Point(297, 32);
-            this.rbYute.Name = "rbYute";
-            this.rbYute.Size = new System.Drawing.Size(47, 17);
-            this.rbYute.TabIndex = 13;
-            this.rbYute.TabStop = true;
-            this.rbYute.Text = "Yute";
-            this.rbYute.UseVisualStyleBackColor = true;
-            this.rbYute.CheckedChanged += new System.EventHandler(this.rbGeneric_CheckedChanged);
-            // 
             // lblTipoProducto
             // 
             this.lblTipoProducto.AutoSize = true;
@@ -388,6 +425,18 @@ namespace VistaProyecto
             this.rbBarniz.TabStop = true;
             this.rbBarniz.Text = "Barniz";
             this.rbBarniz.UseVisualStyleBackColor = true;
+            // 
+            // rbYute
+            // 
+            this.rbYute.AutoSize = true;
+            this.rbYute.Location = new System.Drawing.Point(297, 32);
+            this.rbYute.Name = "rbYute";
+            this.rbYute.Size = new System.Drawing.Size(47, 17);
+            this.rbYute.TabIndex = 13;
+            this.rbYute.TabStop = true;
+            this.rbYute.Text = "Yute";
+            this.rbYute.UseVisualStyleBackColor = true;
+            this.rbYute.CheckedChanged += new System.EventHandler(this.rbGeneric_CheckedChanged);
             // 
             // gbMadera
             // 
@@ -511,6 +560,46 @@ namespace VistaProyecto
             this.iBInsumos.UseVisualStyleBackColor = false;
             this.iBInsumos.Click += new System.EventHandler(this.iBInsumos_Click);
             // 
+            // lblTornillos
+            // 
+            this.lblTornillos.AutoSize = true;
+            this.lblTornillos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTornillos.Location = new System.Drawing.Point(545, 134);
+            this.lblTornillos.Name = "lblTornillos";
+            this.lblTornillos.Size = new System.Drawing.Size(138, 24);
+            this.lblTornillos.TabIndex = 6;
+            this.lblTornillos.Text = "Stock Tornillos:";
+            // 
+            // lblBarniz
+            // 
+            this.lblBarniz.AutoSize = true;
+            this.lblBarniz.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBarniz.Location = new System.Drawing.Point(545, 196);
+            this.lblBarniz.Name = "lblBarniz";
+            this.lblBarniz.Size = new System.Drawing.Size(118, 24);
+            this.lblBarniz.TabIndex = 7;
+            this.lblBarniz.Text = "Stock Barniz:";
+            // 
+            // lblPegamento
+            // 
+            this.lblPegamento.AutoSize = true;
+            this.lblPegamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPegamento.Location = new System.Drawing.Point(545, 255);
+            this.lblPegamento.Name = "lblPegamento";
+            this.lblPegamento.Size = new System.Drawing.Size(163, 24);
+            this.lblPegamento.TabIndex = 8;
+            this.lblPegamento.Text = "Stock Pegamento:";
+            // 
+            // lblYute
+            // 
+            this.lblYute.AutoSize = true;
+            this.lblYute.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYute.Location = new System.Drawing.Point(545, 314);
+            this.lblYute.Name = "lblYute";
+            this.lblYute.Size = new System.Drawing.Size(104, 24);
+            this.lblYute.TabIndex = 9;
+            this.lblYute.Text = "Stock Yute:";
+            // 
             // FormInsumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,7 +614,8 @@ namespace VistaProyecto
             this.tabControlInsumos.ResumeLayout(false);
             this.tabPageListadoInsumos.ResumeLayout(false);
             this.tabPageListadoInsumos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgStockInsumos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStockTelas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStockMaderas)).EndInit();
             this.tabPageAgregarInsumo.ResumeLayout(false);
             this.gbTela.ResumeLayout(false);
             this.gbTela.PerformLayout();
@@ -576,8 +666,15 @@ namespace VistaProyecto
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rbPegamento;
         private System.Windows.Forms.RadioButton rbBarniz;
-        private System.Windows.Forms.Label lblStockInsumos;
-        private System.Windows.Forms.DataGridView dgStockInsumos;
-        private System.Windows.Forms.Label lblListaVacia;
+        private System.Windows.Forms.Label lblStockMaderas;
+        private System.Windows.Forms.DataGridView dgStockMaderas;
+        private System.Windows.Forms.Label lblListaVaciaMadera;
+        private System.Windows.Forms.Label lblListaVaciaTela;
+        private System.Windows.Forms.Label lblStockTelas;
+        private System.Windows.Forms.DataGridView dgStockTelas;
+        private System.Windows.Forms.Label lblYute;
+        private System.Windows.Forms.Label lblPegamento;
+        private System.Windows.Forms.Label lblBarniz;
+        private System.Windows.Forms.Label lblTornillos;
     }
 }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entidades.Exceptions
 {
+    /// <summary>
+    /// Clase personalizada del tipo excepción pensada para poder ser almacenada en un archivo de texto sobrescribiendo método ToString()
+    /// </summary>
     public class CustomException : Exception
     {
         DateTime dateException;
@@ -16,7 +19,10 @@ namespace Entidades.Exceptions
         {
             this.dateException = DateTime.Now;
         }
-
+        /// <summary>
+        /// Sobrescritura método ToString() usada para el Logger
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
