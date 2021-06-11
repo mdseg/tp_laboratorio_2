@@ -89,6 +89,7 @@ namespace VistaProyecto
             this.Controls.Add(this.panel1);
             this.Name = "FormProductosTerminados";
             this.Text = "Productos Terminados";
+            this.Load += new System.EventHandler(this.FormProductosTerminados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgProductosTerminados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

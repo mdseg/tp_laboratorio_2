@@ -18,6 +18,15 @@ namespace VistaProyecto
 
         public FormFabrica()
         {
+
+        }
+        /// <summary>
+        /// Carga todos los controles del formulario con los datos de las entidades
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormFabrica_Load(object sender, EventArgs e)
+        {
             InitializeComponent();
             rbTorre.Checked = true;
             cmbColorTela.DataSource = Enum.GetValues(typeof(EColor));
@@ -32,16 +41,11 @@ namespace VistaProyecto
         }
 
 
-
- 
-
-        private void FormFabrica_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-
+        /// <summary>
+        /// Activa y desactiva controles para el ingreso de un Producto del tipo Torre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbTorre_CheckedChanged(object sender, EventArgs e)
         {
             if (rbTorre.Checked)
@@ -50,7 +54,11 @@ namespace VistaProyecto
                 gbEstante.Enabled = false;
             }
         }
-
+        /// <summary>
+        /// Activa y desactiva controles para el ingreso de un Producto del tipo Estante
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbEstante_CheckedChanged(object sender, EventArgs e)
         {
             if (rbEstante.Checked)
@@ -60,12 +68,21 @@ namespace VistaProyecto
             }
         }
 
-
+        /// <summary>
+        /// Cambia a la pestaña de agregar producto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBAgregarProducto_Click(object sender, EventArgs e)
         {
             tabControlFabrica.SelectedTab = tabPageAgregarProducto;
         }
-
+        /// <summary>
+        /// Verifica los campos cargados y envia a cargar un producto. En el caso de no poder por haber faltantes, activa los controles correspondientes
+        /// al ingreso de los insumos faltantes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             
@@ -86,7 +103,8 @@ namespace VistaProyecto
             {
 
                 MessageBox.Show("No se puede ingresar el producto, dado que hay faltantes");
-                LimpiarDataGridFaltantes();
+                dgFaltantes.Rows.Clear();
+                dgFaltantes.Columns.Clear();
                 dgFaltantes.Columns.Add("tipoInsumo", "Tipo de Insumo");
                 dgFaltantes.Columns.Add("caracteristicas", "Características");
                 foreach (Insumo i in insumosFaltantes)
@@ -110,12 +128,10 @@ namespace VistaProyecto
 
             }
         }
-
-        private void SolicitarInsumosFaltantes(List<Insumo> insumosFaltantes)
-        {
-            FormPrincipal.fabricaSingleton.AgregarInsumosAStock(insumosFaltantes);
-        }
-
+        /// <summary>
+        /// Crea el tipo de producto apropiado conforme a lo ingresado en el formulario
+        /// </summary>
+        /// <returns></returns>
         private Producto CargarCamposProducto()
         {
 
@@ -156,11 +172,10 @@ namespace VistaProyecto
             return producto;
         }
 
-        private void lblPedido_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Activa o desactiva controles vinculados al ingreso de insumos faltantes
+        /// </summary>
+        /// <param name="visibilidad"></param>
         private void cambiarVisibilidadControlesFaltantes(bool visibilidad)
         {
             lblFaltantes.Visible = visibilidad;
@@ -170,6 +185,11 @@ namespace VistaProyecto
             btnSolicitarFaltantes.Visible = visibilidad;
         }
 
+        /// <summary>
+        /// Solicita los insumos faltantes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSolicitarFaltantes_Click(object sender, EventArgs e)
         {
             int multiplicadorInsumos = (int)nudCantidadInsumos.Value;
@@ -187,12 +207,9 @@ namespace VistaProyecto
             MessageBox.Show("Pedido de insumos faltantes realizado correctamente", "Solicitar faltantes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void LimpiarDataGridFaltantes()
-        {
-                dgFaltantes.Rows.Clear();
-            dgFaltantes.Columns.Clear();
-        }
-
+        /// <summary>
+        /// Carga los elementos de la linea de producción actualizando el datagrid dgLineaProduccionTodos
+        /// </summary>
         private void ActualizarVistaLineaProduccion()
         {
             if (FormPrincipal.fabricaSingleton.LineaProduccion.Count > 0)
@@ -257,23 +274,34 @@ namespace VistaProyecto
 
             }
         }
-
+        /// <summary>
+        /// Cambia la visibilidad si hay o no productos en linea de produccion
+        /// </summary>
+        /// <param name="estado"></param>
         private void CambiarVisibilidadControlesProcesos(bool estado)
         {
             dgLineaProduccionTodos.Visible = estado;
             lblListaVacia.Visible = !estado;
-            lblProesoFabrica.Visible = estado;
+            lblProcesoFabrica.Visible = estado;
             cmbProcesoFabrica.Visible = estado;
             btnEjecutarProceso.Visible = estado;
             btnDespacharProductos.Visible = estado;
         }
-
+        /// <summary>
+        /// Abre la pestaña de linea de producción
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IBLineaProduccion_Click(object sender, EventArgs e)
         {
             ActualizarVistaLineaProduccion();
             tabControlFabrica.SelectedTab = tabPageLineaProduccion;
         }
-
+        /// <summary>
+        /// Ejecuta el proceso de linea de producción e informa de la cantidad de productos modificados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEjecutarProceso_Click(object sender, EventArgs e)
         {
             EProceso proceso = (EProceso)cmbProcesoFabrica.SelectedItem;
@@ -307,7 +335,11 @@ namespace VistaProyecto
             ActualizarVistaLineaProduccion();
             MessageBox.Show(mensaje, "Realizar operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+        /// <summary>
+        /// Solicita despacha los productos e informa de la cantidad de productos despachados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDespacharProductos_Click(object sender, EventArgs e)
         {
             int productosDespachados = FormPrincipal.fabricaSingleton.MudarProductosAStockTerminado();

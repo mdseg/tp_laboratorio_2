@@ -33,7 +33,7 @@ namespace VistaProyecto
             this.tabPageLineaProduccion = new System.Windows.Forms.TabPage();
             this.btnDespacharProductos = new System.Windows.Forms.Button();
             this.cmbProcesoFabrica = new System.Windows.Forms.ComboBox();
-            this.lblProesoFabrica = new System.Windows.Forms.Label();
+            this.lblProcesoFabrica = new System.Windows.Forms.Label();
             this.btnEjecutarProceso = new System.Windows.Forms.Button();
             this.dgLineaProduccionTodos = new System.Windows.Forms.DataGridView();
             this.lblListaVacia = new System.Windows.Forms.Label();
@@ -98,7 +98,7 @@ namespace VistaProyecto
             // 
             this.tabPageLineaProduccion.Controls.Add(this.btnDespacharProductos);
             this.tabPageLineaProduccion.Controls.Add(this.cmbProcesoFabrica);
-            this.tabPageLineaProduccion.Controls.Add(this.lblProesoFabrica);
+            this.tabPageLineaProduccion.Controls.Add(this.lblProcesoFabrica);
             this.tabPageLineaProduccion.Controls.Add(this.btnEjecutarProceso);
             this.tabPageLineaProduccion.Controls.Add(this.dgLineaProduccionTodos);
             this.tabPageLineaProduccion.Controls.Add(this.lblListaVacia);
@@ -131,16 +131,16 @@ namespace VistaProyecto
             this.cmbProcesoFabrica.TabIndex = 9;
             this.cmbProcesoFabrica.Visible = false;
             // 
-            // lblProesoFabrica
+            // lblProcesoFabrica
             // 
-            this.lblProesoFabrica.AutoSize = true;
-            this.lblProesoFabrica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProesoFabrica.Location = new System.Drawing.Point(35, 397);
-            this.lblProesoFabrica.Name = "lblProesoFabrica";
-            this.lblProesoFabrica.Size = new System.Drawing.Size(236, 20);
-            this.lblProesoFabrica.TabIndex = 8;
-            this.lblProesoFabrica.Text = "Seleccione el proceso a realizar:";
-            this.lblProesoFabrica.Visible = false;
+            this.lblProcesoFabrica.AutoSize = true;
+            this.lblProcesoFabrica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProcesoFabrica.Location = new System.Drawing.Point(35, 397);
+            this.lblProcesoFabrica.Name = "lblProcesoFabrica";
+            this.lblProcesoFabrica.Size = new System.Drawing.Size(236, 20);
+            this.lblProcesoFabrica.TabIndex = 8;
+            this.lblProcesoFabrica.Text = "Seleccione el proceso a realizar:";
+            this.lblProcesoFabrica.Visible = false;
             // 
             // btnEjecutarProceso
             // 
@@ -240,7 +240,6 @@ namespace VistaProyecto
             this.lblPedido.TabIndex = 16;
             this.lblPedido.Text = "Solicitar                    veces los insumos faltantes.";
             this.lblPedido.Visible = false;
-            this.lblPedido.Click += new System.EventHandler(this.lblPedido_Click);
             // 
             // btnSolicitarFaltantes
             // 
@@ -663,7 +662,7 @@ namespace VistaProyecto
         private System.Windows.Forms.Label lblLineaProduccion;
         private System.Windows.Forms.DataGridView dgLineaProduccionTodos;
         private System.Windows.Forms.ComboBox cmbProcesoFabrica;
-        private System.Windows.Forms.Label lblProesoFabrica;
+        private System.Windows.Forms.Label lblProcesoFabrica;
         private System.Windows.Forms.Button btnEjecutarProceso;
         private System.Windows.Forms.Button btnDespacharProductos;
     }

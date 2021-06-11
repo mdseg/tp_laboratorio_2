@@ -13,7 +13,19 @@ namespace VistaProyecto
 {
     public partial class FormProductosTerminados : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public FormProductosTerminados()
+        {
+
+        }
+        /// <summary>
+        /// Carga el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormProductosTerminados_Load(object sender, EventArgs e)
         {
             InitializeComponent();
             dgProductosTerminados.Columns.Clear();
@@ -25,8 +37,10 @@ namespace VistaProyecto
             dgProductosTerminados.Columns.Add("colorTela", "Color Tela");
             dgProductosTerminados.Columns.Add("detalles", "Detalles");
             ActualizarVistaLineaProduccion();
-         }
-
+        }
+        /// <summary>
+        /// Actualiza los elementos del dgProductosTerminados y cambia la visibilidad de los controles segun haya productos cambiados o no
+        /// </summary>
         private void ActualizarVistaLineaProduccion()
         {
             if (FormPrincipal.fabricaSingleton.StockProductosTerminados.Count > 0)
@@ -79,11 +93,16 @@ namespace VistaProyecto
 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="visibilidad"></param>
         private void CambiarVisibilidadControles(bool visibilidad)
         {
             dgProductosTerminados.Visible = visibilidad;
             lblProductosTerminadosVacio.Visible = !visibilidad;
         }
+
+
     }
 }

@@ -31,6 +31,10 @@ namespace VistaProyecto
         {
             this.tabControlInsumos = new System.Windows.Forms.TabControl();
             this.tabPageListadoInsumos = new System.Windows.Forms.TabPage();
+            this.lblYute = new System.Windows.Forms.Label();
+            this.lblPegamento = new System.Windows.Forms.Label();
+            this.lblBarniz = new System.Windows.Forms.Label();
+            this.lblTornillos = new System.Windows.Forms.Label();
             this.lblListaVaciaTela = new System.Windows.Forms.Label();
             this.lblStockTelas = new System.Windows.Forms.Label();
             this.dgStockTelas = new System.Windows.Forms.DataGridView();
@@ -68,10 +72,6 @@ namespace VistaProyecto
             this.panel1 = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
             this.iBInsumos = new FontAwesome.Sharp.IconButton();
-            this.lblTornillos = new System.Windows.Forms.Label();
-            this.lblBarniz = new System.Windows.Forms.Label();
-            this.lblPegamento = new System.Windows.Forms.Label();
-            this.lblYute = new System.Windows.Forms.Label();
             this.tabControlInsumos.SuspendLayout();
             this.tabPageListadoInsumos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgStockTelas)).BeginInit();
@@ -115,6 +115,46 @@ namespace VistaProyecto
             this.tabPageListadoInsumos.TabIndex = 0;
             this.tabPageListadoInsumos.Text = "tabPage1";
             this.tabPageListadoInsumos.UseVisualStyleBackColor = true;
+            // 
+            // lblYute
+            // 
+            this.lblYute.AutoSize = true;
+            this.lblYute.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYute.Location = new System.Drawing.Point(545, 314);
+            this.lblYute.Name = "lblYute";
+            this.lblYute.Size = new System.Drawing.Size(104, 24);
+            this.lblYute.TabIndex = 9;
+            this.lblYute.Text = "Stock Yute:";
+            // 
+            // lblPegamento
+            // 
+            this.lblPegamento.AutoSize = true;
+            this.lblPegamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPegamento.Location = new System.Drawing.Point(545, 255);
+            this.lblPegamento.Name = "lblPegamento";
+            this.lblPegamento.Size = new System.Drawing.Size(163, 24);
+            this.lblPegamento.TabIndex = 8;
+            this.lblPegamento.Text = "Stock Pegamento:";
+            // 
+            // lblBarniz
+            // 
+            this.lblBarniz.AutoSize = true;
+            this.lblBarniz.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBarniz.Location = new System.Drawing.Point(545, 196);
+            this.lblBarniz.Name = "lblBarniz";
+            this.lblBarniz.Size = new System.Drawing.Size(118, 24);
+            this.lblBarniz.TabIndex = 7;
+            this.lblBarniz.Text = "Stock Barniz:";
+            // 
+            // lblTornillos
+            // 
+            this.lblTornillos.AutoSize = true;
+            this.lblTornillos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTornillos.Location = new System.Drawing.Point(545, 134);
+            this.lblTornillos.Name = "lblTornillos";
+            this.lblTornillos.Size = new System.Drawing.Size(138, 24);
+            this.lblTornillos.TabIndex = 6;
+            this.lblTornillos.Text = "Stock Tornillos:";
             // 
             // lblListaVaciaTela
             // 
@@ -301,7 +341,6 @@ namespace VistaProyecto
             0,
             0,
             0});
-            this.nudCantidad.ValueChanged += new System.EventHandler(this.nudCantidadEstantes_ValueChanged);
             // 
             // lblCantidad
             // 
@@ -367,7 +406,7 @@ namespace VistaProyecto
             this.btnAgregarInsumo.TabIndex = 12;
             this.btnAgregarInsumo.Text = "Agregar Insumo a Linea de Produccion";
             this.btnAgregarInsumo.UseVisualStyleBackColor = true;
-            this.btnAgregarInsumo.Click += new System.EventHandler(this.btnAgregarProducto_Click);
+            this.btnAgregarInsumo.Click += new System.EventHandler(this.btnAgregarInsumo_Click);
             // 
             // gbInsumosAccesorios
             // 
@@ -436,7 +475,6 @@ namespace VistaProyecto
             this.rbYute.TabStop = true;
             this.rbYute.Text = "Yute";
             this.rbYute.UseVisualStyleBackColor = true;
-            this.rbYute.CheckedChanged += new System.EventHandler(this.rbGeneric_CheckedChanged);
             // 
             // gbMadera
             // 
@@ -559,46 +597,6 @@ namespace VistaProyecto
             this.iBInsumos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iBInsumos.UseVisualStyleBackColor = false;
             this.iBInsumos.Click += new System.EventHandler(this.iBInsumos_Click);
-            // 
-            // lblTornillos
-            // 
-            this.lblTornillos.AutoSize = true;
-            this.lblTornillos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTornillos.Location = new System.Drawing.Point(545, 134);
-            this.lblTornillos.Name = "lblTornillos";
-            this.lblTornillos.Size = new System.Drawing.Size(138, 24);
-            this.lblTornillos.TabIndex = 6;
-            this.lblTornillos.Text = "Stock Tornillos:";
-            // 
-            // lblBarniz
-            // 
-            this.lblBarniz.AutoSize = true;
-            this.lblBarniz.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBarniz.Location = new System.Drawing.Point(545, 196);
-            this.lblBarniz.Name = "lblBarniz";
-            this.lblBarniz.Size = new System.Drawing.Size(118, 24);
-            this.lblBarniz.TabIndex = 7;
-            this.lblBarniz.Text = "Stock Barniz:";
-            // 
-            // lblPegamento
-            // 
-            this.lblPegamento.AutoSize = true;
-            this.lblPegamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPegamento.Location = new System.Drawing.Point(545, 255);
-            this.lblPegamento.Name = "lblPegamento";
-            this.lblPegamento.Size = new System.Drawing.Size(163, 24);
-            this.lblPegamento.TabIndex = 8;
-            this.lblPegamento.Text = "Stock Pegamento:";
-            // 
-            // lblYute
-            // 
-            this.lblYute.AutoSize = true;
-            this.lblYute.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYute.Location = new System.Drawing.Point(545, 314);
-            this.lblYute.Name = "lblYute";
-            this.lblYute.Size = new System.Drawing.Size(104, 24);
-            this.lblYute.TabIndex = 9;
-            this.lblYute.Text = "Stock Yute:";
             // 
             // FormInsumo
             // 

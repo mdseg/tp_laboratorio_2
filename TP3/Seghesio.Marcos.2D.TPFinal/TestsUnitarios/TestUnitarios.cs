@@ -8,6 +8,9 @@ namespace TestsUnitarios
     [TestClass]
     public class TestUnitarios
     {
+        /// <summary>
+        /// Retorna los insumos que faltan cuando intencionalmente no se cargan todos los insumos necesarios para la fabricacion del producto
+        /// </summary>
         [TestMethod]
         public void Retorna_ListInsumoFaltante_Cuando_Recibe_Un_Producto_Sin_Stock_Suficiente()
         {
@@ -49,6 +52,9 @@ namespace TestsUnitarios
             Assert.IsTrue(adicionalTres == faltantes[0]);
             Assert.IsTrue(faltantes[0].Cantidad == 2);
         }
+        /// <summary>
+        /// Test de creación correcta de tres productos existiendo stock suficiente
+        /// </summary>
         [TestMethod]
         public void Retorna_True_Cuando_Recibe_Un_Producto_Con_Stock_Suficiente_Y_Elimina_Insumos_Del_Stock_Original()
         {
@@ -93,6 +99,9 @@ namespace TestsUnitarios
             Assert.AreEqual(12, telaUno.Cantidad);
         }
 
+        /// <summary>
+        /// Prueba del primer proceso de fabricación el cual se aplica a todo tipo de producto que este como "Planificado"
+        /// </summary>
         [TestMethod]
         public void Retorna_Tres_Cuando_Se_Lijaron_Todos_Los_Productos_Para_Lijar()
         {
@@ -144,6 +153,9 @@ namespace TestsUnitarios
 
             Assert.AreEqual(3, numeroModificados);
         }
+        /// <summary>
+        /// Teste que vuelve a intentar lijar productos previente lijados
+        /// </summary>
         [TestMethod]
         public void Retorna_Cero_Cuando_No_Hay_Productos_Para_Lijar()
         {
@@ -191,6 +203,9 @@ namespace TestsUnitarios
 
             Assert.AreEqual(0, numeroModificados);
         }
+        /// <summary>
+        /// Test que intenta barnizar productos que no están aptos para dicho proceso
+        /// </summary>
         [TestMethod]
         public void Retorna_Cero_Cuando_No_Hay_Productos_Para_Barnizar()
         {
@@ -237,6 +252,9 @@ namespace TestsUnitarios
 
             Assert.AreEqual(0, numeroModificados);
         }
+        /// <summary>
+        /// Test que prueba barnizar tres productos siendo solo el Estante el unico apto para este proceso
+        /// </summary>
         [TestMethod]
         public void Retorna_Uno_Cuando_Hay_Productos_Para_Barnizar()
         {
@@ -285,6 +303,9 @@ namespace TestsUnitarios
 
             Assert.AreEqual(1, numeroModificados);
         }
+        /// <summary>
+        /// Test que retorna cero cuando no hay productos aptos para ser alfombrados
+        /// </summary>
         [TestMethod]
         public void Retorna_Cero_Cuando_No_Hay_Productos_Para_Alfombrar()
         {
@@ -333,6 +354,9 @@ namespace TestsUnitarios
             Assert.AreEqual(0, numeroModificados);
         }
 
+        /// <summary>
+        /// Test que prueba alfombrar tres productos actos para dicho procedimiento
+        /// </summary>
         [TestMethod]
         public void Retorna_Tres_Cuando_Hay_Productos_Para_Alfombrar()
         {
@@ -383,6 +407,9 @@ namespace TestsUnitarios
             Assert.AreEqual(3, numeroModificados);
         }
 
+        /// <summary>
+        /// Test que prueba ejecutar el proceso de ensamblar no habiendo productos aptos para este procedimiento, retornando 0
+        /// </summary>
         [TestMethod]
         public void Retorna_Cero_Cuando_No_Hay_Productos_Para_Ensamblar()
         {
@@ -432,7 +459,9 @@ namespace TestsUnitarios
 
             Assert.AreEqual(0, numeroModificados);
         }
-
+        /// <summary>
+        /// Test que intenta ensamblar tres productos aptos para este procedimiento
+        /// </summary>
         [TestMethod]
         public void Retorna_Tres_Cuando_Hay_Productos_Para_Ensamblar()
         {
@@ -484,7 +513,9 @@ namespace TestsUnitarios
 
             Assert.AreEqual(3, numeroModificados);
         }
-
+        /// <summary>
+        /// Test que verifica que todos los productos que esten en estado Completado sean enviados al Stock de Productos terminados
+        /// </summary>
         [TestMethod]
         public void Retorna_Tres_Cuando_Hay_Productos_Terminados_Y_Los_Envia_A_Stock_Permanente()
         {

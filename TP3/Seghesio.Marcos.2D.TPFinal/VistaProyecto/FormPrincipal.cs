@@ -31,8 +31,13 @@ namespace VistaProyecto
             InitializeComponent();
 
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Método encargado de cargar la unica instancia de la clase Fabrica, ejecutar el logger donde se guardaran las Excepciones al leer y guardar archivos,
+        /// además del serviceXml para leer y abrir los datos de fábrica
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormPrincipal_Load(object sender, EventArgs e)
         {
             fabricaSingleton = Fabrica.Instance;
             logger = new Logger(AppDomain.CurrentDomain.BaseDirectory + "Logging.txt");
@@ -41,7 +46,10 @@ namespace VistaProyecto
 
 
         }
-
+        /// <summary>
+        /// Método encargado de gestionar los formularios hijos y anexarlos dentro del FormPrincipal
+        /// </summary>
+        /// <param name="childForm"></param>
         private void OpenChildForm(Form childForm)
         {
             if(this.currentChildForm != null)
@@ -60,30 +68,39 @@ namespace VistaProyecto
         }
 
 
-
+        /// <summary>
+        /// Crea una instancia de FormInsumo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBInsumos_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormInsumo());
         }
-
+        /// <summary>
+        /// Crea una instancia de FormProductosTerminados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBProductosTerminados_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormProductosTerminados());
         }
-
-        private void iconPictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
+        /// <summary>
+        /// Crea una instancia de FormFabrica
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBFabrica_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormFabrica());
         }
 
-
+        /// <summary>
+        /// Método que consulta antes de cerrar la aplicación
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dialogo = MessageBox.Show("¿ Desea Salir de la Aplicacion?",
@@ -93,12 +110,20 @@ namespace VistaProyecto
                 e.Cancel = true;
             }
         }
-
+        /// <summary>
+        /// Salir de la aplicación
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Método que permite cargar los datos del archivo Xml e informar de los eventuales errores al leer archivos que pudieran surgir
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBCargar_Click(object sender, EventArgs e)
         {
             DialogResult dialogo = MessageBox.Show("¿ Desea cargar los datos? Todo cambio no guardado se perderá",
@@ -127,7 +152,11 @@ namespace VistaProyecto
 
 
         }
-
+        /// <summary>
+        /// Método que permite guardar los datos en un archivo Xml e informar de los eventuales errores al leer archivos que pudieran surgir
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBGuardarDatos_Click(object sender, EventArgs e)
         {
 
@@ -149,7 +178,11 @@ namespace VistaProyecto
             }
         }
 
-
+        /// <summary>
+        /// Genera un reporte de los campos de fábrica e informa de los resultados de la creación de este archivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBGenerarReporte_Click(object sender, EventArgs e)
         {
             try

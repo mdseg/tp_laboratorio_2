@@ -19,7 +19,15 @@ namespace VistaProyecto
         public FormInsumo()
         {
             InitializeComponent();
+        }
 
+        /// <summary>
+        /// Inicia los controles del formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormFabrica_Load(object sender, EventArgs e)
+        {
             rbMadera.Checked = true;
             rbTablon.Checked = true;
             rbBarniz.Checked = true;
@@ -28,26 +36,32 @@ namespace VistaProyecto
             cmbTipoMadera.DataSource = Enum.GetValues(typeof(ETipoMadera));
             tabControlInsumos.SelectedTab = tabPageListadoInsumos;
             ActualizarListaInsumos();
-        }
-
-
-        private void FormFabrica_Load(object sender, EventArgs e)
-        {
-
         }     
-
+        /// <summary>
+        /// Para cambiar la pestaña al listado de insumos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBInsumos_Click(object sender, EventArgs e)
         {
             ActualizarListaInsumos();
             tabControlInsumos.SelectedTab = tabPageListadoInsumos;
         }
-
+        /// <summary>
+        /// Para cambiar la pestaña al formulario de ingreso de nuevo insumo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iBAgregarInsumo_Click(object sender, EventArgs e)
         {
             tabControlInsumos.SelectedTab = tabPageAgregarInsumo;
         }
-
-        private void btnAgregarProducto_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Verifica los datos ingresados en el formulario y agrega un nuevo Insumo al stock de Insumos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAgregarInsumo_Click(object sender, EventArgs e)
         {
 
             if(rbMadera.Checked)
@@ -95,11 +109,9 @@ namespace VistaProyecto
             MessageBox.Show("Insumo agregado con éxito", "Agregar insumo", MessageBoxButtons.OK, MessageBoxIcon.Information);            
         }
 
-        private void nudCantidadEstantes_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-        
+        /// <summary>
+        /// Activa o desactiva controles vinculados al ingreso de insumos
+        /// </summary>
         private void VerificarOptionButtons()
         {
             if (rbTela.Checked)
@@ -127,12 +139,18 @@ namespace VistaProyecto
                 gbTela.Enabled = false;
             }
         }
-
+        /// <summary>
+        /// Metodo genérico para habilitar o deshabilitar controles vinculados al ingreso de insumos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbGeneric_CheckedChanged(object sender, EventArgs e)
         {
             VerificarOptionButtons();
         }
-
+        /// <summary>
+        /// Método encargado actualizar todos los controles que muestran los insumos cargados.
+        /// </summary>
         private void ActualizarListaInsumos()
         {
             int cantidadPegamento = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Pegamento);
