@@ -30,7 +30,7 @@ namespace VistaProyecto
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelLateralIzquierdo = new System.Windows.Forms.Panel();
             this.iBLogger = new FontAwesome.Sharp.IconButton();
             this.iBGenerarReporte = new FontAwesome.Sharp.IconButton();
             this.iBGuardarDatos = new FontAwesome.Sharp.IconButton();
@@ -39,35 +39,35 @@ namespace VistaProyecto
             this.iBProductosTerminados = new FontAwesome.Sharp.IconButton();
             this.iBFabrica = new FontAwesome.Sharp.IconButton();
             this.iBInsumos = new FontAwesome.Sharp.IconButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelTopIzq = new System.Windows.Forms.Panel();
+            this.pBoxLogo = new System.Windows.Forms.PictureBox();
+            this.panelTop = new System.Windows.Forms.Panel();
             this.lblTitleChildForm = new System.Windows.Forms.Label();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel3.SuspendLayout();
+            this.panelLateralIzquierdo.SuspendLayout();
+            this.panelTopIzq.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
+            this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelLateralIzquierdo
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkCyan;
-            this.panel1.Controls.Add(this.iBLogger);
-            this.panel1.Controls.Add(this.iBGenerarReporte);
-            this.panel1.Controls.Add(this.iBGuardarDatos);
-            this.panel1.Controls.Add(this.iBCargar);
-            this.panel1.Controls.Add(this.iBSalir);
-            this.panel1.Controls.Add(this.iBProductosTerminados);
-            this.panel1.Controls.Add(this.iBFabrica);
-            this.panel1.Controls.Add(this.iBInsumos);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(180, 761);
-            this.panel1.TabIndex = 2;
+            this.panelLateralIzquierdo.BackColor = System.Drawing.Color.DarkCyan;
+            this.panelLateralIzquierdo.Controls.Add(this.iBLogger);
+            this.panelLateralIzquierdo.Controls.Add(this.iBGenerarReporte);
+            this.panelLateralIzquierdo.Controls.Add(this.iBGuardarDatos);
+            this.panelLateralIzquierdo.Controls.Add(this.iBCargar);
+            this.panelLateralIzquierdo.Controls.Add(this.iBSalir);
+            this.panelLateralIzquierdo.Controls.Add(this.iBProductosTerminados);
+            this.panelLateralIzquierdo.Controls.Add(this.iBFabrica);
+            this.panelLateralIzquierdo.Controls.Add(this.iBInsumos);
+            this.panelLateralIzquierdo.Controls.Add(this.panelTopIzq);
+            this.panelLateralIzquierdo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLateralIzquierdo.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.panelLateralIzquierdo.Location = new System.Drawing.Point(0, 0);
+            this.panelLateralIzquierdo.Name = "panelLateralIzquierdo";
+            this.panelLateralIzquierdo.Size = new System.Drawing.Size(180, 761);
+            this.panelLateralIzquierdo.TabIndex = 2;
             // 
             // iBLogger
             // 
@@ -79,7 +79,7 @@ namespace VistaProyecto
             this.iBLogger.IconColor = System.Drawing.Color.Snow;
             this.iBLogger.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iBLogger.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBLogger.Location = new System.Drawing.Point(0, 540);
+            this.iBLogger.Location = new System.Drawing.Point(0, 556);
             this.iBLogger.Name = "iBLogger";
             this.iBLogger.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
             this.iBLogger.Size = new System.Drawing.Size(180, 70);
@@ -100,7 +100,7 @@ namespace VistaProyecto
             this.iBGenerarReporte.IconColor = System.Drawing.Color.Snow;
             this.iBGenerarReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iBGenerarReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBGenerarReporte.Location = new System.Drawing.Point(0, 470);
+            this.iBGenerarReporte.Location = new System.Drawing.Point(0, 486);
             this.iBGenerarReporte.Name = "iBGenerarReporte";
             this.iBGenerarReporte.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
             this.iBGenerarReporte.Size = new System.Drawing.Size(180, 70);
@@ -121,7 +121,7 @@ namespace VistaProyecto
             this.iBGuardarDatos.IconColor = System.Drawing.Color.Snow;
             this.iBGuardarDatos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iBGuardarDatos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBGuardarDatos.Location = new System.Drawing.Point(0, 400);
+            this.iBGuardarDatos.Location = new System.Drawing.Point(0, 416);
             this.iBGuardarDatos.Name = "iBGuardarDatos";
             this.iBGuardarDatos.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
             this.iBGuardarDatos.Size = new System.Drawing.Size(180, 70);
@@ -142,7 +142,7 @@ namespace VistaProyecto
             this.iBCargar.IconColor = System.Drawing.Color.Snow;
             this.iBCargar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iBCargar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBCargar.Location = new System.Drawing.Point(0, 330);
+            this.iBCargar.Location = new System.Drawing.Point(0, 346);
             this.iBCargar.Name = "iBCargar";
             this.iBCargar.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
             this.iBCargar.Size = new System.Drawing.Size(180, 70);
@@ -183,7 +183,7 @@ namespace VistaProyecto
             this.iBProductosTerminados.IconColor = System.Drawing.Color.Snow;
             this.iBProductosTerminados.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iBProductosTerminados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBProductosTerminados.Location = new System.Drawing.Point(0, 260);
+            this.iBProductosTerminados.Location = new System.Drawing.Point(0, 276);
             this.iBProductosTerminados.Name = "iBProductosTerminados";
             this.iBProductosTerminados.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
             this.iBProductosTerminados.Size = new System.Drawing.Size(180, 70);
@@ -204,7 +204,7 @@ namespace VistaProyecto
             this.iBFabrica.IconColor = System.Drawing.Color.Snow;
             this.iBFabrica.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iBFabrica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBFabrica.Location = new System.Drawing.Point(0, 190);
+            this.iBFabrica.Location = new System.Drawing.Point(0, 206);
             this.iBFabrica.Name = "iBFabrica";
             this.iBFabrica.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
             this.iBFabrica.Size = new System.Drawing.Size(180, 70);
@@ -225,7 +225,7 @@ namespace VistaProyecto
             this.iBInsumos.IconColor = System.Drawing.Color.Snow;
             this.iBInsumos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iBInsumos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iBInsumos.Location = new System.Drawing.Point(0, 120);
+            this.iBInsumos.Location = new System.Drawing.Point(0, 136);
             this.iBInsumos.Name = "iBInsumos";
             this.iBInsumos.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
             this.iBInsumos.Size = new System.Drawing.Size(180, 70);
@@ -236,34 +236,35 @@ namespace VistaProyecto
             this.iBInsumos.UseVisualStyleBackColor = true;
             this.iBInsumos.Click += new System.EventHandler(this.iBInsumos_Click);
             // 
-            // panel2
+            // panelTopIzq
             // 
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(180, 120);
-            this.panel2.TabIndex = 0;
+            this.panelTopIzq.Controls.Add(this.pBoxLogo);
+            this.panelTopIzq.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTopIzq.Location = new System.Drawing.Point(0, 0);
+            this.panelTopIzq.Name = "panelTopIzq";
+            this.panelTopIzq.Size = new System.Drawing.Size(180, 136);
+            this.panelTopIzq.TabIndex = 0;
             // 
-            // pictureBox1
+            // pBoxLogo
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.pictureBox1.Size = new System.Drawing.Size(147, 114);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pBoxLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pBoxLogo.BackgroundImage")));
+            this.pBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pBoxLogo.Location = new System.Drawing.Point(12, 6);
+            this.pBoxLogo.Name = "pBoxLogo";
+            this.pBoxLogo.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            this.pBoxLogo.Size = new System.Drawing.Size(146, 114);
+            this.pBoxLogo.TabIndex = 0;
+            this.pBoxLogo.TabStop = false;
             // 
-            // panel3
+            // panelTop
             // 
-            this.panel3.BackColor = System.Drawing.Color.DarkCyan;
-            this.panel3.Controls.Add(this.lblTitleChildForm);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(180, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1104, 71);
-            this.panel3.TabIndex = 3;
+            this.panelTop.BackColor = System.Drawing.Color.DarkCyan;
+            this.panelTop.Controls.Add(this.lblTitleChildForm);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(180, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1104, 71);
+            this.panelTop.TabIndex = 3;
             // 
             // lblTitleChildForm
             // 
@@ -293,31 +294,31 @@ namespace VistaProyecto
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 761);
             this.Controls.Add(this.panelDesktop);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelTop);
+            this.Controls.Add(this.panelLateralIzquierdo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panelLateralIzquierdo.ResumeLayout(false);
+            this.panelTopIzq.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).EndInit();
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelLateralIzquierdo;
         private FontAwesome.Sharp.IconButton iBProductosTerminados;
         private FontAwesome.Sharp.IconButton iBFabrica;
         private FontAwesome.Sharp.IconButton iBInsumos;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelTopIzq;
+        private System.Windows.Forms.PictureBox pBoxLogo;
+        private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.Label lblTitleChildForm;
         private FontAwesome.Sharp.IconButton iBSalir;

@@ -29,21 +29,21 @@ namespace VistaProyecto
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTop = new System.Windows.Forms.Panel();
             this.lblProductosTerminados = new System.Windows.Forms.Label();
             this.dgProductosTerminados = new System.Windows.Forms.DataGridView();
             this.lblProductosTerminadosVacio = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductosTerminados)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelTop
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1019, 78);
-            this.panel1.TabIndex = 16;
+            this.panelTop.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1019, 78);
+            this.panelTop.TabIndex = 16;
             // 
             // lblProductosTerminados
             // 
@@ -86,7 +86,7 @@ namespace VistaProyecto
             this.Controls.Add(this.lblProductosTerminadosVacio);
             this.Controls.Add(this.dgProductosTerminados);
             this.Controls.Add(this.lblProductosTerminados);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelTop);
             this.Name = "FormProductosTerminados";
             this.Text = "Productos Terminados";
             this.Load += new System.EventHandler(this.FormProductosTerminados_Load);
@@ -98,7 +98,7 @@ namespace VistaProyecto
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label lblProductosTerminados;
         private System.Windows.Forms.DataGridView dgProductosTerminados;
         private System.Windows.Forms.Label lblProductosTerminadosVacio;

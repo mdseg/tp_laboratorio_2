@@ -66,7 +66,7 @@ namespace VistaProyecto
             this.gbEstante = new System.Windows.Forms.GroupBox();
             this.nudCantidadEstantes = new System.Windows.Forms.NumericUpDown();
             this.lblCantidadEstantes = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTop = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
             this.iBLineaProduccion = new FontAwesome.Sharp.IconButton();
             this.tabControlFabrica.SuspendLayout();
@@ -80,7 +80,7 @@ namespace VistaProyecto
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadYute)).BeginInit();
             this.gbEstante.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadEstantes)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlFabrica
@@ -536,16 +536,16 @@ namespace VistaProyecto
             this.lblCantidadEstantes.TabIndex = 7;
             this.lblCantidadEstantes.Text = "Cantidad Estantes:";
             // 
-            // panel1
+            // panelTop
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Controls.Add(this.iBAgregarProducto);
-            this.panel1.Controls.Add(this.iBLineaProduccion);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1161, 78);
-            this.panel1.TabIndex = 15;
+            this.panelTop.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTop.Controls.Add(this.iBAgregarProducto);
+            this.panelTop.Controls.Add(this.iBLineaProduccion);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1161, 78);
+            this.panelTop.TabIndex = 15;
             // 
             // iBAgregarProducto
             // 
@@ -597,7 +597,7 @@ namespace VistaProyecto
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1161, 740);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelTop);
             this.Controls.Add(this.tabControlFabrica);
             this.Name = "FormFabrica";
             this.Text = "Fabrica";
@@ -618,7 +618,7 @@ namespace VistaProyecto
             this.gbEstante.ResumeLayout(false);
             this.gbEstante.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadEstantes)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panelTop.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -650,7 +650,7 @@ namespace VistaProyecto
         private System.Windows.Forms.GroupBox gbEstante;
         private System.Windows.Forms.NumericUpDown nudCantidadEstantes;
         private System.Windows.Forms.Label lblCantidadEstantes;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelTop;
         private FontAwesome.Sharp.IconButton iBAgregarProducto;
         private FontAwesome.Sharp.IconButton iBLineaProduccion;
         private System.Windows.Forms.DataGridView dgFaltantes;
