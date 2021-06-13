@@ -14,11 +14,13 @@ namespace VistaProyecto
 {
     public partial class FormInsumo : Form
     {
-        public Insumo bufferInsumo;
+        private Insumo bufferInsumo;
+        private Fabrica fabrica;
         
-        public FormInsumo()
+        public FormInsumo(Fabrica fabrica)
         {
             InitializeComponent();
+            this.fabrica = fabrica;
         }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace VistaProyecto
             }
 
 
-            FormPrincipal.fabricaSingleton.AgregarInsumosAStock(bufferInsumo);
+            fabrica.AgregarInsumosAStock(bufferInsumo);
             ActualizarListaInsumos();
             MessageBox.Show("Insumo agregado con éxito", "Agregar insumo", MessageBoxButtons.OK, MessageBoxIcon.Information);            
         }
@@ -153,17 +155,17 @@ namespace VistaProyecto
         /// </summary>
         private void ActualizarListaInsumos()
         {
-            int cantidadPegamento = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Pegamento);
-            int cantidadBarniz = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Barniz);
-            int cantidadTornillos = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Tornillo);
-            int cantidadYute = Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Yute);
+            int cantidadPegamento = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Pegamento);
+            int cantidadBarniz = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Barniz);
+            int cantidadTornillos = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tornillo);
+            int cantidadYute = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Yute);
 
             lblPegamento.Text = $"Stock Pegamento: {cantidadPegamento}";
             lblBarniz.Text = $"Stock Barniz: {cantidadBarniz}";
             lblTornillos.Text = $"Stock Tornillos: {cantidadTornillos}";
             lblYute.Text = $"Stock Yute: {cantidadYute}";
 
-            if (Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos,ETipoInsumo.Madera) > 0)
+            if (Insumo.CountInsumoType(fabrica.StockInsumos,ETipoInsumo.Madera) > 0)
             { 
                 dgStockMaderas.Rows.Clear();
                 dgStockMaderas.Columns.Clear();
@@ -172,7 +174,7 @@ namespace VistaProyecto
                 dgStockMaderas.Columns.Add("cantidad", "Cantidad");
                 dgStockMaderas.Columns.Add("fechaIngreso", "Fecha");
 
-                foreach (Insumo i in FormPrincipal.fabricaSingleton.StockInsumos)
+                foreach (Insumo i in fabrica.StockInsumos)
                 {
                     if (i is Madera)
                     {
@@ -189,7 +191,7 @@ namespace VistaProyecto
                 lblListaVaciaMadera.Visible = true;
             }
 
-            if (Insumo.CountInsumoType(FormPrincipal.fabricaSingleton.StockInsumos, ETipoInsumo.Tela) > 0)
+            if (Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tela) > 0)
             {
                 dgStockTelas.Rows.Clear();
                 dgStockTelas.Columns.Clear();
@@ -198,7 +200,7 @@ namespace VistaProyecto
                 dgStockTelas.Columns.Add("cantidad", "Cantidad");
                 dgStockTelas.Columns.Add("fechaIngreso", "Fecha");
 
-                foreach (Insumo i in FormPrincipal.fabricaSingleton.StockInsumos)
+                foreach (Insumo i in fabrica.StockInsumos)
                 {
                     if (i is Tela)
                     {

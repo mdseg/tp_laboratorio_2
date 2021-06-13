@@ -35,7 +35,7 @@ namespace VistaProyecto
             this.lblExpDos = new System.Windows.Forms.Label();
             this.lblExpUno = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTop = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // lblExpCinco
@@ -105,21 +105,21 @@ namespace VistaProyecto
             this.lblTitulo.TabIndex = 23;
             this.lblTitulo.Text = "TP3: Sistema para Fabricación de productos para Gatos";
             // 
-            // panel1
+            // panelTop
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1065, 78);
-            this.panel1.TabIndex = 29;
+            this.panelTop.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1065, 78);
+            this.panelTop.TabIndex = 29;
             // 
             // FormIntro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 509);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelTop);
             this.Controls.Add(this.lblExpCinco);
             this.Controls.Add(this.lblExpCuatro);
             this.Controls.Add(this.lblExpTres);
@@ -141,6 +141,6 @@ namespace VistaProyecto
         private System.Windows.Forms.Label lblExpDos;
         private System.Windows.Forms.Label lblExpUno;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelTop;
     }
 }

@@ -13,11 +13,14 @@ namespace VistaProyecto
 {
     public partial class FormProductosTerminados : Form
     {
+        private Fabrica fabrica;
+
         /// <summary>
         /// 
         /// </summary>
-        public FormProductosTerminados()
+        public FormProductosTerminados(Fabrica fabrica)
         {
+            this.fabrica = fabrica;
             InitializeComponent();
         }
         /// <summary>
@@ -43,11 +46,11 @@ namespace VistaProyecto
         /// </summary>
         private void ActualizarVistaLineaProduccion()
         {
-            if (FormPrincipal.fabricaSingleton.StockProductosTerminados.Count > 0)
+            if (fabrica.StockProductosTerminados.Count > 0)
             {
                 dgProductosTerminados.Rows.Clear();
 
-                foreach (Producto p in FormPrincipal.fabricaSingleton.StockProductosTerminados)
+                foreach (Producto p in fabrica.StockProductosTerminados)
                 {
                     string tipoProducto;
                     string maderaPrincipal;

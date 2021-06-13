@@ -30,7 +30,7 @@ namespace VistaProyecto
         private void InitializeComponent()
         {
             this.richTextBoxBitacora = new System.Windows.Forms.RichTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTop = new System.Windows.Forms.Panel();
             this.lblBitacora = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -43,14 +43,14 @@ namespace VistaProyecto
             this.richTextBoxBitacora.TabIndex = 1;
             this.richTextBoxBitacora.Text = "";
             // 
-            // panel1
+            // panelTop
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 78);
-            this.panel1.TabIndex = 30;
+            this.panelTop.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(800, 78);
+            this.panelTop.TabIndex = 30;
             // 
             // lblBitacora
             // 
@@ -69,10 +69,10 @@ namespace VistaProyecto
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lblBitacora);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelTop);
             this.Controls.Add(this.richTextBoxBitacora);
             this.Name = "FormBitacora";
-            this.Text = "FormBitacora";
+            this.Text = "Bitacora";
             this.Load += new System.EventHandler(this.FormBitacora_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -82,7 +82,7 @@ namespace VistaProyecto
         #endregion
 
         private System.Windows.Forms.RichTextBox richTextBoxBitacora;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label lblBitacora;
     }
 }

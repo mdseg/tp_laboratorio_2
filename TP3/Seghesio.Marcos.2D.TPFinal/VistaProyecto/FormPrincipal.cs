@@ -20,9 +20,9 @@ namespace VistaProyecto
 {
     public partial class FormPrincipal : Form
     {
-        public static Fabrica fabricaSingleton;
+        private static Fabrica fabricaSingleton;
         private FabricaXmlService serviceXmlFabrica;
-        public Logger logger;
+        private Logger logger;
 
         private Form currentChildForm;
 
@@ -75,7 +75,7 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void iBInsumos_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormInsumo());
+            OpenChildForm(new FormInsumo(fabricaSingleton));
         }
         /// <summary>
         /// Crea una instancia de FormProductosTerminados
@@ -84,7 +84,7 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void iBProductosTerminados_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormProductosTerminados());
+            OpenChildForm(new FormProductosTerminados(fabricaSingleton));
         }
         /// <summary>
         /// Crea una instancia de FormFabrica
@@ -93,7 +93,7 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void iBFabrica_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormFabrica());
+            OpenChildForm(new FormFabrica(fabricaSingleton));
         }
 
         /// <summary>

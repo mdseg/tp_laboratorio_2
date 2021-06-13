@@ -13,7 +13,7 @@ namespace VistaProyecto
 {
     public partial class FormBitacora : Form
     {
-        Logger logger;
+        private Logger logger;
 
         public FormBitacora(Logger logger)
         {

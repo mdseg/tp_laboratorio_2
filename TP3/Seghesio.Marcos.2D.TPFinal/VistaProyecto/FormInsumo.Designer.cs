@@ -69,7 +69,7 @@ namespace VistaProyecto
             this.lblFormaMadera = new System.Windows.Forms.Label();
             this.cmbTipoMadera = new System.Windows.Forms.ComboBox();
             this.lblTipoMadera = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTop = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
             this.iBInsumos = new FontAwesome.Sharp.IconButton();
             this.tabControlInsumos.SuspendLayout();
@@ -82,7 +82,7 @@ namespace VistaProyecto
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.gbInsumosAccesorios.SuspendLayout();
             this.gbMadera.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlInsumos
@@ -543,16 +543,16 @@ namespace VistaProyecto
             this.lblTipoMadera.TabIndex = 8;
             this.lblTipoMadera.Text = "Tipo:";
             // 
-            // panel1
+            // panelTop
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Controls.Add(this.iBAgregarProducto);
-            this.panel1.Controls.Add(this.iBInsumos);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1157, 78);
-            this.panel1.TabIndex = 15;
+            this.panelTop.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTop.Controls.Add(this.iBAgregarProducto);
+            this.panelTop.Controls.Add(this.iBInsumos);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1157, 78);
+            this.panelTop.TabIndex = 15;
             // 
             // iBAgregarProducto
             // 
@@ -604,7 +604,7 @@ namespace VistaProyecto
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1157, 667);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelTop);
             this.Controls.Add(this.tabControlInsumos);
             this.Name = "FormInsumo";
             this.Text = "Insumos";
@@ -624,7 +624,7 @@ namespace VistaProyecto
             this.gbInsumosAccesorios.PerformLayout();
             this.gbMadera.ResumeLayout(false);
             this.gbMadera.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.panelTop.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -641,7 +641,7 @@ namespace VistaProyecto
         private System.Windows.Forms.Button btnAgregarInsumo;
         private System.Windows.Forms.GroupBox gbInsumosAccesorios;
         private System.Windows.Forms.GroupBox gbMadera;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelTop;
         private FontAwesome.Sharp.IconButton iBAgregarProducto;
         private FontAwesome.Sharp.IconButton iBInsumos;
         private System.Windows.Forms.RadioButton rbYute;

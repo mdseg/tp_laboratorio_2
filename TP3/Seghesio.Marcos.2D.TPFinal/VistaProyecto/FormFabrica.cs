@@ -14,10 +14,12 @@ namespace VistaProyecto
 {
     public partial class FormFabrica : Form
     {
-        List<Insumo> insumosFaltantes;
+        private List<Insumo> insumosFaltantes;
+        private Fabrica fabrica;
 
-        public FormFabrica()
+        public FormFabrica(Fabrica fabrica)
         {
+            this.fabrica = fabrica;
             InitializeComponent();
         }
         /// <summary>
@@ -91,17 +93,16 @@ namespace VistaProyecto
 
 
 
-            if (FormPrincipal.fabricaSingleton.AgregarProductoLineaProduccion(bufferProducto, out insumosFaltantes))
+            if (fabrica.AgregarProductoLineaProduccion(bufferProducto, out insumosFaltantes))
             {
-                MessageBox.Show("Producto agregado a linea de Producción con éxito");
+                MessageBox.Show("Producto agregado a linea de Producción con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cambiarVisibilidadControlesFaltantes(false);
                 CambiarVisibilidadControlesProcesos(true);
                 ActualizarVistaLineaProduccion();
             }
             else
             {
-
-                MessageBox.Show("No se puede ingresar el producto, dado que hay faltantes");
+                MessageBox.Show("No se puede agregar producto debido a que hay faltantes", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dgFaltantes.Rows.Clear();
                 dgFaltantes.Columns.Clear();
                 dgFaltantes.Columns.Add("tipoInsumo", "Tipo de Insumo");
@@ -199,7 +200,7 @@ namespace VistaProyecto
                 insumo.Cantidad *= multiplicadorInsumos;
             }
 
-            FormPrincipal.fabricaSingleton.AgregarInsumosAStock(insumosFaltantes);
+            fabrica.AgregarInsumosAStock(insumosFaltantes);
 
             insumosFaltantes.Clear();
             cambiarVisibilidadControlesFaltantes(false);
@@ -211,7 +212,7 @@ namespace VistaProyecto
         /// </summary>
         private void ActualizarVistaLineaProduccion()
         {
-            if (FormPrincipal.fabricaSingleton.LineaProduccion.Count > 0)
+            if (fabrica.LineaProduccion.Count > 0)
             {
                 dgLineaProduccionTodos.Rows.Clear();
                 dgLineaProduccionTodos.Columns.Clear();
@@ -224,7 +225,7 @@ namespace VistaProyecto
                 dgLineaProduccionTodos.Columns.Add("detalles", "Detalles");
                 dgLineaProduccionTodos.Columns.Add("estado", "Estado");
 
-                foreach (Producto p in FormPrincipal.fabricaSingleton.LineaProduccion)
+                foreach (Producto p in fabrica.LineaProduccion)
                 {
                     string tipoProducto;
                     string maderaPrincipal;
@@ -305,7 +306,7 @@ namespace VistaProyecto
         {
             EProceso proceso = (EProceso)cmbProcesoFabrica.SelectedItem;
             string mensaje = String.Empty;
-            int productosModificados = FormPrincipal.fabricaSingleton.EjecutarProcesoLineaProduccion(proceso);
+            int productosModificados = fabrica.EjecutarProcesoLineaProduccion(proceso);
             if(productosModificados > 0)
             {
                 switch (proceso)
@@ -341,7 +342,7 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void btnDespacharProductos_Click(object sender, EventArgs e)
         {
-            int productosDespachados = FormPrincipal.fabricaSingleton.MudarProductosAStockTerminado();
+            int productosDespachados = fabrica.MudarProductosAStockTerminado();
             string mensaje;
             if(productosDespachados > 0)
             {
