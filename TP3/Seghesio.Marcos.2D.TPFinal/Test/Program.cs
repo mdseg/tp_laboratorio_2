@@ -15,7 +15,15 @@ namespace Test
 
 
             Console.Title = "Seghesio, Marcos Daniel TP3 2D";
-            Console.SetWindowSize(200, 40);
+            try
+            {
+                Console.SetWindowSize(200, 40);
+            }
+            catch(ArgumentOutOfRangeException e)
+            {
+
+            }
+
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine("----------Fabrica de Productos para Gatos: demostración Consola---------------------------------------------------------------------------------------");
