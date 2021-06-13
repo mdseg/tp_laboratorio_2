@@ -10,6 +10,7 @@ namespace TestsUnitarios
     {
         /// <summary>
         /// Retorna los insumos que faltan cuando intencionalmente no se cargan todos los insumos necesarios para la fabricacion del producto
+        /// Incluye conceptos de la clase 16 Test Unitarios
         /// </summary>
         [TestMethod]
         public void Retorna_ListInsumoFaltante_Cuando_Recibe_Un_Producto_Sin_Stock_Suficiente()

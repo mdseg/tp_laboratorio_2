@@ -18,7 +18,7 @@ namespace VistaProyecto
 
         public FormFabrica()
         {
-
+            InitializeComponent();
         }
         /// <summary>
         /// Carga todos los controles del formulario con los datos de las entidades
@@ -27,7 +27,6 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void FormFabrica_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
             rbTorre.Checked = true;
             cmbColorTela.DataSource = Enum.GetValues(typeof(EColor));
             cmbTipoTela.DataSource = Enum.GetValues(typeof(ETipoTela));

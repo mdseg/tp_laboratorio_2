@@ -105,7 +105,7 @@ namespace Entidades
             sb.AppendFormat("Torre - Modelo: {0}, Madera Columna: {1}, {2}", this.Modelo,this.MaderaColumna.TipoMadera, base.Mostrar());
             if(this.metrosYute > 0)
             {
-                sb.AppendFormat("Metros yute: {0} - Yute Instalado: ", this.MetrosYute);
+                sb.AppendFormat(", Metros yute: {0} - Yute Instalado: ", this.MetrosYute);
                 if(this.YuteInstalado)
                 {
                     sb.AppendFormat("Si.\n");

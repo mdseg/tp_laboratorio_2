@@ -10,6 +10,7 @@ namespace Files.Xml
 {
     /// <summary>
     /// Clase genérnica encargada de la serialización y desserialización de Xml
+    /// Incluye conceptos de la clase 15 Excepciones, 17 Generics, 18 Interfaces y 19 Archivos 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Xml<T> : IFile<T>

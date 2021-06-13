@@ -17,6 +17,7 @@ namespace Entidades.Reportes
         /// <summary>
         /// Método encargado de crear en un archivo PDF válido en el directorio proporcionado y extraer la información que obtiene cada atributo
         /// de la clase fábrica.
+        /// Incluye conceptos de la clase 19 Archivos
         /// </summary>
         /// <param name="path">ruta que incluye el nombre del archivo pdf a crear</param>
         /// <param name="fabrica"></param>
@@ -265,7 +266,7 @@ namespace Entidades.Reportes
         /// <returns></returns>
         private PdfPTable crearTablaInsumos(List<Insumo> listaInsumos, ETipoInforme tipoInforme, Font standarFont)
         {
-            PdfPTable tblInsumo = new PdfPTable(3);
+            PdfPTable tblInsumo = new PdfPTable(4);
 
             string campo2;
 
@@ -289,11 +290,16 @@ namespace Entidades.Reportes
             clCantidad.BorderWidth = 0;
             clCantidad.BorderWidth = 0.75f;
 
+            PdfPCell clFechaIngreso = new PdfPCell(new Phrase("Fecha de Ingreso", standarFont));
+            clFechaIngreso.BorderWidth = 0;
+            clFechaIngreso.BorderWidth = 0.75f;
+
             tblInsumo.AddCell(clCampoUno);
             tblInsumo.AddCell(clCampoDos);
             tblInsumo.AddCell(clCantidad);
+            tblInsumo.AddCell(clFechaIngreso);
 
-            foreach(Insumo insumo in listaInsumos)
+            foreach (Insumo insumo in listaInsumos)
             {
                 if(tipoInforme == ETipoInforme.Madera && insumo is Madera)
                 {
@@ -305,10 +311,13 @@ namespace Entidades.Reportes
                     clCampoDos.BorderWidth = 0;
                     clCantidad = new PdfPCell(new Phrase(madera.Cantidad.ToString(), standarFont));
                     clCantidad.BorderWidth = 0;
+                    clFechaIngreso = new PdfPCell(new Phrase(madera.FechaIngreso.Date.ToString("MM/dd/yyyy"), standarFont));
+                    clFechaIngreso.BorderWidth = 0;
 
                     tblInsumo.AddCell(clCampoUno);
                     tblInsumo.AddCell(clCampoDos);
                     tblInsumo.AddCell(clCantidad);
+                    tblInsumo.AddCell(clFechaIngreso);
                 }
                 else if(tipoInforme == ETipoInforme.Tela && insumo is Tela)
                 {
@@ -320,10 +329,13 @@ namespace Entidades.Reportes
                     clCampoDos.BorderWidth = 0;
                     clCantidad = new PdfPCell(new Phrase(tela.Cantidad.ToString(), standarFont));
                     clCantidad.BorderWidth = 0;
+                    clFechaIngreso = new PdfPCell(new Phrase(tela.FechaIngreso.Date.ToString("MM/dd/yyyy"), standarFont));
+                    clFechaIngreso.BorderWidth = 0;
 
                     tblInsumo.AddCell(clCampoUno);
                     tblInsumo.AddCell(clCampoDos);
                     tblInsumo.AddCell(clCantidad);
+                    tblInsumo.AddCell(clFechaIngreso);
                 }
 
             }

@@ -31,6 +31,7 @@ namespace VistaProyecto
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.iBLogger = new FontAwesome.Sharp.IconButton();
             this.iBGenerarReporte = new FontAwesome.Sharp.IconButton();
             this.iBGuardarDatos = new FontAwesome.Sharp.IconButton();
             this.iBCargar = new FontAwesome.Sharp.IconButton();
@@ -52,6 +53,7 @@ namespace VistaProyecto
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel1.Controls.Add(this.iBLogger);
             this.panel1.Controls.Add(this.iBGenerarReporte);
             this.panel1.Controls.Add(this.iBGuardarDatos);
             this.panel1.Controls.Add(this.iBCargar);
@@ -66,6 +68,27 @@ namespace VistaProyecto
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(180, 761);
             this.panel1.TabIndex = 2;
+            // 
+            // iBLogger
+            // 
+            this.iBLogger.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iBLogger.FlatAppearance.BorderSize = 0;
+            this.iBLogger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iBLogger.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.iBLogger.IconChar = FontAwesome.Sharp.IconChar.BookOpen;
+            this.iBLogger.IconColor = System.Drawing.Color.Snow;
+            this.iBLogger.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iBLogger.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBLogger.Location = new System.Drawing.Point(0, 540);
+            this.iBLogger.Name = "iBLogger";
+            this.iBLogger.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
+            this.iBLogger.Size = new System.Drawing.Size(180, 70);
+            this.iBLogger.TabIndex = 8;
+            this.iBLogger.Text = "Bitácora";
+            this.iBLogger.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iBLogger.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iBLogger.UseVisualStyleBackColor = true;
+            this.iBLogger.Click += new System.EventHandler(this.iBLogger_Click);
             // 
             // iBGenerarReporte
             // 
@@ -301,6 +324,7 @@ namespace VistaProyecto
         private FontAwesome.Sharp.IconButton iBGuardarDatos;
         private FontAwesome.Sharp.IconButton iBCargar;
         private FontAwesome.Sharp.IconButton iBGenerarReporte;
+        private FontAwesome.Sharp.IconButton iBLogger;
     }
 }
 

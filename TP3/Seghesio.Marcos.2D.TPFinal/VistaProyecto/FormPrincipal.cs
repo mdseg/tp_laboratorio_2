@@ -21,8 +21,8 @@ namespace VistaProyecto
     public partial class FormPrincipal : Form
     {
         public static Fabrica fabricaSingleton;
-        FabricaXmlService serviceXmlFabrica;
-        Logger logger;
+        private FabricaXmlService serviceXmlFabrica;
+        public Logger logger;
 
         private Form currentChildForm;
 
@@ -197,6 +197,15 @@ namespace VistaProyecto
                 logger.saveReport(ex);
             }
 
+        }
+        /// <summary>
+        /// Abre el formulario de Bitacora
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void iBLogger_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormBitacora(logger));
         }
     }
 }

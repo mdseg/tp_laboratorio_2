@@ -170,12 +170,13 @@ namespace VistaProyecto
                 dgStockMaderas.Columns.Add("tipoMadera", "Material");
                 dgStockMaderas.Columns.Add("formaMadera", "Forma");
                 dgStockMaderas.Columns.Add("cantidad", "Cantidad");
+                dgStockMaderas.Columns.Add("fechaIngreso", "Fecha");
 
                 foreach (Insumo i in FormPrincipal.fabricaSingleton.StockInsumos)
                 {
                     if (i is Madera)
                     {
-                        dgStockMaderas.Rows.Add(((Madera)i).TipoMadera, ((Madera)i).Forma, i.Cantidad);
+                        dgStockMaderas.Rows.Add(((Madera)i).TipoMadera, ((Madera)i).Forma, i.Cantidad, i.FechaIngreso.Date.ToString("MM/dd/yyyy"));
                     }
 
                 }
@@ -195,12 +196,13 @@ namespace VistaProyecto
                 dgStockTelas.Columns.Add("tipoTela", "Material");
                 dgStockTelas.Columns.Add("colorTela", "Color");
                 dgStockTelas.Columns.Add("cantidad", "Cantidad");
+                dgStockTelas.Columns.Add("fechaIngreso", "Fecha");
 
                 foreach (Insumo i in FormPrincipal.fabricaSingleton.StockInsumos)
                 {
                     if (i is Tela)
                     {
-                        dgStockTelas.Rows.Add(((Tela)i).TipoTela, ((Tela)i).Color, i.Cantidad);
+                        dgStockTelas.Rows.Add(((Tela)i).TipoTela, ((Tela)i).Color, i.Cantidad, i.FechaIngreso.Date.ToString("MM/dd/yyyy"));
                     }                    
                 }
                 dgStockTelas.Visible = true;

@@ -18,7 +18,7 @@ namespace VistaProyecto
         /// </summary>
         public FormProductosTerminados()
         {
-
+            InitializeComponent();
         }
         /// <summary>
         /// Carga el formulario
@@ -27,7 +27,7 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void FormProductosTerminados_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
+
             dgProductosTerminados.Columns.Clear();
             dgProductosTerminados.Columns.Add("tipoProducto", "Tipo de Producto");
             dgProductosTerminados.Columns.Add("modelo", "Modelo");

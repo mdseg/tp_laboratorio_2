@@ -70,12 +70,12 @@
   <ItemGroup>
     <Compile Include="IFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Text\SaveOnlyText.cs" />
-    <Compile Include="ISaveOnlyFile.cs" />
+    <Compile Include="Text\TxtLogger.cs" />
     <Compile Include="Xml\Xml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

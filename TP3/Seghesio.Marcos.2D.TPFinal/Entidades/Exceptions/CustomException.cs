@@ -9,8 +9,9 @@ namespace Entidades.Exceptions
 {
     /// <summary>
     /// Clase personalizada del tipo excepción pensada para poder ser almacenada en un archivo de texto sobrescribiendo método ToString()
+    /// Esta clase y sus derivadas incluyen los conceptos propios de la clase 15 Excepciones
     /// </summary>
-    public class CustomException : Exception
+    public abstract class CustomException : Exception
     {
         DateTime dateException;
 

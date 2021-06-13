@@ -11,9 +11,22 @@ namespace Files.Xml
 {
     public class FabricaXmlService
     {
-        IFile<List<Insumo>> serializadorInsumos;
-        IFile<List<Producto>> serializadorProductos;
-        string path;
+        private IFile<List<Insumo>> serializadorInsumos;
+        private IFile<List<Producto>> serializadorProductos;
+        private string path;
+
+        public string Path
+        {
+            get
+            {
+                return this.path;
+            }
+            set
+            {
+                this.path = value;
+            }
+        }
+
 
         public FabricaXmlService(string path)
         {
