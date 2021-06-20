@@ -19,7 +19,7 @@ namespace TestsUnitarios
 
             List<Insumo> faltantes = new List<Insumo>();
             
-            Fabrica fabrica = PrepararFabrica(false);
+            Fabrica fabrica = getFabricaTest(false);
 
             Producto productoValido = getTorreValido();
             //Act
@@ -49,7 +49,7 @@ namespace TestsUnitarios
 
             List<Insumo> faltantes = new List<Insumo>();
 
-            Fabrica fabrica = PrepararFabrica(true);
+            Fabrica fabrica = getFabricaTest(true);
 
             Producto productoValido = getTorreValido();
 

@@ -55,6 +55,12 @@
     <Compile Include="FormBitacora.Designer.cs">
       <DependentUpon>FormBitacora.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDetalles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDetalles.Designer.cs">
+      <DependentUpon>FormDetalles.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormIntro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,10 +91,14 @@
     <Compile Include="FormProductosTerminados.Designer.cs">
       <DependentUpon>FormProductosTerminados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Proceso.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormBitacora.resx">
       <DependentUpon>FormBitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDetalles.resx">
+      <DependentUpon>FormDetalles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormIntro.resx">
       <DependentUpon>FormIntro.cs</DependentUpon>

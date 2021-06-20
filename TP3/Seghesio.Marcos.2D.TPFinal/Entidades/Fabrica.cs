@@ -230,39 +230,48 @@ namespace Entidades
         public int EjecutarProcesoLineaProduccion(EProceso proceso)
         {
             int output = 0;
-            foreach(Producto producto in lineaProduccion)
+            if(proceso != EProceso.Despachar)
             {
-                bool procesoRealizado = false;
-                switch (proceso)
+                foreach (Producto producto in lineaProduccion)
                 {
-                    case EProceso.Lijar:
-                        
-                        procesoRealizado = producto.LijarMaderaProducto();
-                        break;
-                    case EProceso.Barnizar:
-                        if(producto is Estante)
-                        {
-                            procesoRealizado = ((Estante)producto).BarnizarProducto();
-                        }
-                        break;
-                    case EProceso.Alfombrar:
-                        procesoRealizado = producto.AlfombrarProducto();
-                        break;
-                    case EProceso.AgregarYute:
-                        if(producto is Torre)
-                        {
-                            procesoRealizado = ((Torre)producto).AgregarYute();
-                        }
-                        break;
-                    case EProceso.Ensamblar:
-                        procesoRealizado = producto.EnsamblarProducto();
-                        break;
-                }
-                if(procesoRealizado)
-                {
-                    output++;
+                    bool procesoRealizado = false;
+                    switch (proceso)
+                    {
+                        case EProceso.Lijar:
+
+                            procesoRealizado = producto.LijarMaderaProducto();
+                            break;
+                        case EProceso.Barnizar:
+                            if (producto is Estante)
+                            {
+                                procesoRealizado = ((Estante)producto).BarnizarProducto();
+                            }
+                            break;
+                        case EProceso.Alfombrar:
+                            procesoRealizado = producto.AlfombrarProducto();
+                            break;
+                        case EProceso.AgregarYute:
+                            if (producto is Torre)
+                            {
+                                procesoRealizado = ((Torre)producto).AgregarYute();
+                            }
+                            break;
+                        case EProceso.Ensamblar:
+                            procesoRealizado = producto.EnsamblarProducto();
+                            break;
+
+                    }
+                    if (procesoRealizado)
+                    {
+                        output++;
+                    }
                 }
             }
+            else
+            {
+                output = MudarProductosAStockTerminado();
+            }
+            
             return output;
 
         }
@@ -301,10 +310,78 @@ namespace Entidades
             return output;
         }
 
+        public int CalcularCantidadDeProductosAptosProceso(EProceso proceso, out List<Producto> listadoProductos)
+        {
+            int output = 0;
+            listadoProductos = new List<Producto>();
+            foreach (Producto producto in this.LineaProduccion)
+            {
+                switch(proceso)
+                {
+                    case EProceso.Lijar:
+                        if(producto.EstadoProducto == EEstado.Planificado)
+                        {
+                            output++;
+                            listadoProductos.Add(producto);
+                        }
+                        break;
+                    case EProceso.Barnizar:
+                        if(producto is Estante && producto.EstadoProducto == EEstado.MaderasLijadas )
+                        {
+                            output++;
+                            listadoProductos.Add(producto);
+                        }
+                        break;
+                    case EProceso.Alfombrar:
+                        if((producto is Torre && producto.EstadoProducto == EEstado.MaderasLijadas) ||
+                            (producto.EstadoProducto == EEstado.Barnizado))
+                        {
+                            output++;
+                            listadoProductos.Add(producto);
+                        }
+                        break;
+                    case EProceso.AgregarYute:
+                        if(producto is Torre && producto.EstadoProducto == EEstado.Alfombrado && ((Torre)producto).MetrosYute > 0)
+                        {
+                            output++;
+                            listadoProductos.Add(producto);
+                        }
+                        break;
+                    case EProceso.Ensamblar:
+                        if (producto is Torre)
+                        {
+                            if ((producto.EstadoProducto == EEstado.Alfombrado && ((Torre)producto).MetrosYute == 0) ||
+                                (producto.EstadoProducto == EEstado.AdicionalesAgregados))
+                            {
+                                output++;
+                                listadoProductos.Add(producto);
+                            }
+                        } else if( producto.EstadoProducto == EEstado.Alfombrado)
+                        {
+                            output++;
+                            listadoProductos.Add(producto);
+                        }
+                        break;
+                    case EProceso.Despachar:
+                        if(producto.EstadoProducto == EEstado.Completo)
+                        {
+                            output++;
+                            listadoProductos.Add(producto);
+                        }
+                        break;
+
+                }
+            }
+
+
+            return output;
+        }
 
 
 
     }
+    
+
     /// <summary>
     /// Enum con todos los procesos que la fábrica realiza
     /// </summary>
@@ -314,6 +391,7 @@ namespace Entidades
         Barnizar,
         Alfombrar,
         AgregarYute,
-        Ensamblar
+        Ensamblar,
+        Despachar
     }
 }

@@ -16,10 +16,20 @@ namespace VistaProyecto
     {
         private List<Insumo> insumosFaltantes;
         private Fabrica fabrica;
+        private Form formDetalles;
+
+        private Producto bufferProducto;
+
+
+
+
+        private List<Proceso> controlPaneles;
 
         public FormFabrica(Fabrica fabrica)
         {
             this.fabrica = fabrica;
+            controlPaneles = new List<Proceso>();
+            
             InitializeComponent();
         }
         /// <summary>
@@ -38,7 +48,8 @@ namespace VistaProyecto
             cmbProcesoFabrica.DataSource = Enum.GetValues(typeof(EProceso));
             tabControlFabrica.SelectedTab = tabPageLineaProduccion;
             cambiarVisibilidadControlesFaltantes(false);
-            ActualizarVistaLineaProduccion();
+            CargarControlPaneles();
+            ActualizarCantidadProductosAptos();
         }
 
 
@@ -89,7 +100,7 @@ namespace VistaProyecto
             
             insumosFaltantes = new List<Insumo>();
 
-            Producto bufferProducto = CargarCamposProducto();
+            CargarCamposProducto();
 
 
 
@@ -97,7 +108,6 @@ namespace VistaProyecto
             {
                 MessageBox.Show("Producto agregado a linea de Producción con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cambiarVisibilidadControlesFaltantes(false);
-                CambiarVisibilidadControlesProcesos(true);
                 ActualizarVistaLineaProduccion();
             }
             else
@@ -132,10 +142,8 @@ namespace VistaProyecto
         /// Crea el tipo de producto apropiado conforme a lo ingresado en el formulario
         /// </summary>
         /// <returns></returns>
-        private Producto CargarCamposProducto()
+        private void CargarCamposProducto()
         {
-
-            Producto producto;
 
             ETipoMadera tipoMaderaPrincipal = (ETipoMadera)cmbMaderaPrincipal.SelectedItem;
             ETipoTela tipoTela = (ETipoTela)cmbTipoTela.SelectedItem;
@@ -156,20 +164,19 @@ namespace VistaProyecto
                 if (chkYute.Checked)
                 {
                     int metrosYute = (int)nudCantidadYute.Value;
-                    producto = new Torre(maderaPrincipal, telaProducto, modeloTorre, maderaColumna, metrosYute);
+                    bufferProducto = new Torre(maderaPrincipal, telaProducto, modeloTorre, maderaColumna, metrosYute);
                 }
                 else
                 {
-                    producto = new Torre(maderaPrincipal, telaProducto, modeloTorre, maderaColumna);
+                    bufferProducto = new Torre(maderaPrincipal, telaProducto, modeloTorre, maderaColumna);
                 }
             }
             else
             {
                 maderaPrincipal = new Madera(tipoMaderaPrincipal, EForma.Tablon, Fabrica.CANTIDAD_MADERA_ESTANTE);
                 telaProducto = new Tela(colorTela, tipoTela, Fabrica.CANTIDAD_TELA_ESTANTE);
-                producto = new Estante(maderaPrincipal, telaProducto, (int)nudCantidadEstantes.Value);
+                bufferProducto = new Estante(maderaPrincipal, telaProducto, (int)nudCantidadEstantes.Value);
             }
-            return producto;
         }
 
         /// <summary>
@@ -193,7 +200,7 @@ namespace VistaProyecto
         private void btnSolicitarFaltantes_Click(object sender, EventArgs e)
         {
             int multiplicadorInsumos = (int)nudCantidadInsumos.Value;
-            
+            List<Insumo> listaFaltantes = new List<Insumo>();
 
             foreach(Insumo insumo in insumosFaltantes)
             {
@@ -204,89 +211,23 @@ namespace VistaProyecto
 
             insumosFaltantes.Clear();
             cambiarVisibilidadControlesFaltantes(false);
-            MessageBox.Show("Pedido de insumos faltantes realizado correctamente", "Solicitar faltantes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult result = MessageBox.Show("Pedido de insumos faltantes realizado correctamente. ¿Desea dar de alta el producto ahora que hay insumos suficientes?", "Solicitar faltantes", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if(result == DialogResult.Yes)
+            {
+                fabrica.AgregarProductoLineaProduccion(bufferProducto,out listaFaltantes);
+                MessageBox.Show("Producto agregado a linea de Producción con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
         /// Carga los elementos de la linea de producción actualizando el datagrid dgLineaProduccionTodos
         /// </summary>
-        private void ActualizarVistaLineaProduccion()
+        public void ActualizarVistaLineaProduccion()
         {
-            if (fabrica.LineaProduccion.Count > 0)
-            {
-                dgLineaProduccionTodos.Rows.Clear();
-                dgLineaProduccionTodos.Columns.Clear();
-                dgLineaProduccionTodos.Columns.Add("tipoProducto", "Tipo de Producto");
-                dgLineaProduccionTodos.Columns.Add("modelo", "Modelo");
-                dgLineaProduccionTodos.Columns.Add("maderaPrincipal", "Madera Principal");
-                dgLineaProduccionTodos.Columns.Add("maderaSecundaria", "Madera Secundaria");
-                dgLineaProduccionTodos.Columns.Add("tipoTela", "Material Tela");
-                dgLineaProduccionTodos.Columns.Add("colorTela", "Color Tela");
-                dgLineaProduccionTodos.Columns.Add("detalles", "Detalles");
-                dgLineaProduccionTodos.Columns.Add("estado", "Estado");
-
-                foreach (Producto p in fabrica.LineaProduccion)
-                {
-                    string tipoProducto;
-                    string maderaPrincipal;
-                    string maderaSecundaria;
-                    string modelo;
-                    string tipoTelaProducto;
-                    string colorTelaProducto;
-                    string estado;
-                    string adicional;
-
-                    maderaPrincipal = p.MaderaPrincipal.TipoMadera.ToString();
-                    tipoTelaProducto = p.TelaProducto.TipoTela.ToString();
-                    colorTelaProducto = p.TelaProducto.Color.ToString();
-                    estado = p.EstadoProducto.ToString();
-
-                    if (p is Torre)
-                    {
-                        maderaSecundaria = ((Torre)p).MaderaPrincipal.TipoMadera.ToString();
-                        modelo = ((Torre)p).Modelo.ToString();
-                        tipoProducto = "Torre";
-                        if(((Torre)p).MetrosYute > 0)
-                        {
-                            adicional = $"Agregado de Yute: {((Torre)p).MetrosYute} metros";
-                        }
-                        else
-                        {
-                            adicional = "Sin adicionales";
-                        }
-
-                    }
-                    else
-                    {
-                        modelo = "Unico";
-                        tipoProducto = "Estante";
-                        maderaSecundaria = "No aplica";
-                        adicional = $"Cantidad: {((Estante)p).CantidadEstantes}";
-                    }
-
-                    dgLineaProduccionTodos.Rows.Add(tipoProducto, modelo, maderaPrincipal, maderaSecundaria, tipoTelaProducto,colorTelaProducto, adicional, estado);
-                }
-                CambiarVisibilidadControlesProcesos(true);
-            }
-            else
-            {
-                CambiarVisibilidadControlesProcesos(false);
-
-            }
+            ActualizarCantidadProductosAptos();           
         }
-        /// <summary>
-        /// Cambia la visibilidad si hay o no productos en linea de produccion
-        /// </summary>
-        /// <param name="estado"></param>
-        private void CambiarVisibilidadControlesProcesos(bool estado)
-        {
-            dgLineaProduccionTodos.Visible = estado;
-            lblListaVacia.Visible = !estado;
-            lblProcesoFabrica.Visible = estado;
-            cmbProcesoFabrica.Visible = estado;
-            btnEjecutarProceso.Visible = estado;
-            btnDespacharProductos.Visible = estado;
-        }
+
+
         /// <summary>
         /// Abre la pestaña de linea de producción
         /// </summary>
@@ -302,9 +243,8 @@ namespace VistaProyecto
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEjecutarProceso_Click(object sender, EventArgs e)
+        public void EjecutarProceso(EProceso proceso)
         {
-            EProceso proceso = (EProceso)cmbProcesoFabrica.SelectedItem;
             string mensaje = String.Empty;
             int productosModificados = fabrica.EjecutarProcesoLineaProduccion(proceso);
             if(productosModificados > 0)
@@ -356,6 +296,137 @@ namespace VistaProyecto
             MessageBox.Show(mensaje, "Despachar productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+
+        private void btnLijar_Click(object sender, EventArgs e)
+        {
+            EjecutarProceso(EProceso.Lijar);
+        }
+
+        private void btnBarnizar_Click(object sender, EventArgs e)
+        {
+            EjecutarProceso(EProceso.Barnizar);
+        }
+
+        private void btnAlfombrar_Click(object sender, EventArgs e)
+        {
+            EjecutarProceso(EProceso.Alfombrar);
+        }
+
+        private void btnAgregarAdicional_Click(object sender, EventArgs e)
+        {
+            EjecutarProceso(EProceso.AgregarYute);
+        }
+        private void btnProductosEnsamblar_Click(object sender, EventArgs e)
+        {
+            EjecutarProceso(EProceso.Ensamblar);
+        }
+        private void btnDespachar_Click(object sender, EventArgs e)
+        {
+            int productosDespachados = fabrica.MudarProductosAStockTerminado();
+            string mensaje;
+            if (productosDespachados > 0)
+            {
+                mensaje = $"Se han despachado {productosDespachados} productos";
+            }
+            else
+            {
+                mensaje = $"No hay productos listos para despachar";
+            }
+            ActualizarVistaLineaProduccion();
+            MessageBox.Show(mensaje, "Despachar productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ActualizarCantidadProductosAptos()
+        {
+            List<Producto> productos = new List<Producto>();
+            foreach( Proceso proceso in controlPaneles)
+            {
+                proceso.ProductosAptos = fabrica.CalcularCantidadDeProductosAptosProceso(proceso.ProcesoAsociado, out productos);
+                proceso.LabelAsociado.Text = $"Productos disponibles: {proceso.ProductosAptos}";
+                proceso.CambiarEstadoPaneles();
+            }
+        }
+
+        private void CargarControlPaneles()
+        {
+            List<Producto> productos = new List<Producto>();
+            Proceso controlLijar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Lijar, out productos), EProceso.Lijar,iBLijarMaderas,btnLijar,btnMostarProductosLijar);
+            Proceso controlBarnizar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Barnizar, out productos), EProceso.Barnizar,IBBarnizar,btnBarnizar,btnMostrarProductosBarnizar);
+            Proceso controlAlfombrar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Alfombrar, out productos), EProceso.Alfombrar,IBAlfombrar,btnAlfombrar,btnMostrarProductosAlfombrar);
+            Proceso controlAgregarAdicional = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.AgregarYute, out productos), EProceso.AgregarYute, IBAgregarAdicional,btnAgregarAdicional,btnMostrarProductosAgregarAdicionales);
+            Proceso controlEnsamblar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Ensamblar, out productos), EProceso.Ensamblar,IBEnsamblar, btnEnsamblar,btnMostrarProductosEnsamblar);
+            Proceso controlDespachar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Despachar, out productos), EProceso.Despachar, IBCompleto,btnDespachar,btnMostrarProductosCompletos);
+
+            controlPaneles.Add(controlLijar);
+            controlPaneles.Add(controlBarnizar);
+            controlPaneles.Add(controlAlfombrar);
+            controlPaneles.Add(controlAgregarAdicional);
+            controlPaneles.Add(controlEnsamblar);
+            controlPaneles.Add(controlDespachar);
+
+
+
+        }
+
+        private void btnMostarProductosLijar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this,fabrica,EProceso.Lijar));
+        }
+
+        /// <summary>
+        /// Método encargado de gestionar los formularios hijos y anexarlos dentro del FormPrincipal
+        /// </summary>
+        /// <param name="childForm"></param>
+        private void OpenChildForm(Form childForm)
+        {
+            if (this.formDetalles != null)
+            {
+                formDetalles.Close();
+            }
+            
+            formDetalles = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add(childForm);
+            panelDesktop.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            
+        }
+
+        private void btnMostrarProductosBarnizar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this,fabrica, EProceso.Barnizar));
+        }
+
+        private void btnMostrarProductosAlfombrar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Alfombrar));
+        }
+
+        private void btnMostrarProductosAgregarAdicionales_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.AgregarYute));
+        }
+
+
+        private void btnMostrarProductosEnsamblar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Ensamblar));
+        }
+
+        private void btnMostrarProductosCompletos_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Despachar));
+        }
+
+        private void Actualizar(object sender, EventArgs e)
+        {
+            ActualizarVistaLineaProduccion();
+        }
+
+        
     }
 
 }
