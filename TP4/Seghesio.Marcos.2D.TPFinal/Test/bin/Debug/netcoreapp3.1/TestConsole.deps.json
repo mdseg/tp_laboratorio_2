@@ -1,0 +1,76 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "TestConsole/1.0.0": {
+        "dependencies": {
+          "Entidades": "1.0.0",
+          "Files": "1.0.0"
+        },
+        "runtime": {
+          "TestConsole.dll": {}
+        }
+      },
+      "Entidades/1.0.0": {
+        "dependencies": {
+          "Files": "1.0.0"
+        },
+        "runtime": {
+          "Entidades.dll": {}
+        }
+      },
+      "Files/1.0.0": {
+        "runtime": {
+          "Files.dll": {}
+        }
+      },
+      "itextsharp/5.5.13.2": {
+        "runtime": {
+          "itextsharp.dll": {
+            "assemblyVersion": "5.5.13.2",
+            "fileVersion": "5.5.13.2"
+          }
+        }
+      },
+      "BouncyCastle.Crypto/1.8.6.0": {
+        "runtime": {
+          "BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.8.6.0",
+            "fileVersion": "1.8.20052.1"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TestConsole/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Entidades/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Files/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "itextsharp/5.5.13.2": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BouncyCastle.Crypto/1.8.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

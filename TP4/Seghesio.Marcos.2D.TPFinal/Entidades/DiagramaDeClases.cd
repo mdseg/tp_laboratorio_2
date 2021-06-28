@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Entidades.Estante">
+    <Position X="1" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAEAAQABAAAAAAAAAAAAAAAAQAAAAAAAEAAAAA=</HashCode>
+      <FileName>Estante.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Fabrica">
+    <Position X="10.25" Y="7.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAoAQBAMAAEAAAABYgQAAAAABAAAIASSAAAQEABEU=</HashCode>
+      <FileName>Fabrica.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Insumo">
+    <Position X="1" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAQECAAQAEgAAQAEAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <FileName>Insumo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.InsumoAccesorio">
+    <Position X="3.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAiA=</HashCode>
+      <FileName>InsumoAccesorio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Madera">
+    <Position X="8" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAACAAAQAAAAAAAAACAAAAAgAAAAAAIAAQACAAiA=</HashCode>
+      <FileName>Madera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Producto">
+    <Position X="3.25" Y="14" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAGQAAACAAAAAAAAAADAAAQCQAAAAAEAAAAQ=</HashCode>
+      <FileName>Producto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Tela">
+    <Position X="5.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAQAAAAAAAAAAAAAAAAAAACAAAAAgACAAiA=</HashCode>
+      <FileName>Tela.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Torre">
+    <Position X="6.5" Y="14" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Entidades.Torre.EModeloTorre" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Torre.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAQAAAAAAAAASAAAAAgAAQAAEAgAAUAIAAU=</HashCode>
+      <FileName>Torre.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Exceptions.CustomException">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\CustomException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Exceptions.ReadFactoryException">
+    <Position X="0.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\ReadFactoryException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Exceptions.SaveFactoryException">
+    <Position X="3" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\SaveFactoryException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Exceptions.SavePdfException">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\SavePdfException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Logger.Logger">
+    <Position X="6.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAAAAAAgEAA=</HashCode>
+      <FileName>Logger\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Reportes.FabricaReporte">
+    <Position X="2.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAgIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reportes\FabricaReporte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Files.Xml.FabricaXmlService">
+    <Position X="4.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAggAAAAUA=</HashCode>
+      <FileName>Services\FabricaXmlService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Entidades.EProceso" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAQAAAAAA=</HashCode>
+      <FileName>Fabrica.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.ETipoInsumo" Collapsed="true">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAACBCAAAAAA=</HashCode>
+      <FileName>Insumo.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.ETipoAccesorio" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>InsumoAccesorio.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.ETipoMadera" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Madera.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EForma" Collapsed="true">
+    <Position X="11.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Madera.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EEstado" Collapsed="true">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAACAAIAAEAAAAAAAAgAAAAAACAAAAAAA=</HashCode>
+      <FileName>Producto.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.EColor" Collapsed="true">
+    <Position X="7.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAABAAAAAAACEAAQUAABAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Tela.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.ETipoTela" Collapsed="true">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAQAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Tela.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Entidades.Reportes.ETipoInforme" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCAAAAAA=</HashCode>
+      <FileName>Reportes\FabricaReporte.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
