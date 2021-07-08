@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entidades.Repositories
+namespace Entidades.Services
 {
-    public class GenericService<T>
+    public interface ICRUDService<T>
     {
-        private RepositoryBase<T> repo;
+
     }
 }

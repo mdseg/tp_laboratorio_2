@@ -10,7 +10,7 @@ namespace Entidades
     [Serializable]
     [XmlInclude(typeof(Torre))]
     [XmlInclude(typeof(Estante))]
-    public abstract class Producto
+    public abstract class Producto : Entity
     {
         protected Madera maderaPrincipal;
      
@@ -136,6 +136,53 @@ namespace Entidades
                 }               
             }
             return insumos;
+        }
+
+        public static List<Producto> ConcatenarProductos(List<Producto> listaUno, List<Producto> listaDos)
+        {
+            if (!(listaUno is null || listaUno is null))
+            {
+                foreach (Producto producto in listaDos)
+                {
+                    listaUno += producto;
+                }
+            }
+            return listaUno;
+        }
+
+        public static List<Producto> operator +(List<Producto> listaProductos, Producto producto)
+        {
+            if (!(listaProductos is null || producto is null))
+            {
+                listaProductos.Add(producto);
+            }
+            return listaProductos;
+        }
+
+        public static List<Producto> ToListProducto(List<Torre> torres)
+        {
+            List<Producto> output = new List<Producto>();
+            if (!(torres is null))
+            {
+                foreach (Torre producto in torres)
+                {
+                    output.Add(producto);
+                }
+            }
+            return output;
+        }
+
+        public static List<Producto> ToListProducto(List<Estante> estantes)
+        {
+            List<Producto> output = new List<Producto>();
+            if (!(estantes is null))
+            {
+                foreach (Estante estante in estantes)
+                {
+                    output.Add(estante);
+                }
+            }
+            return output;
         }
 
     }

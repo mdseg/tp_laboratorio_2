@@ -16,14 +16,64 @@ namespace TestSql
             string conexion = @"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True";
 
             InsumoService serviceInsumo = new InsumoService(conexion);
+            ProductoService serviceProducto = new ProductoService(conexion);
+            RepositoryBase<Estante> estanteRepo = new RepositoryEstanteSQL(conexion);
+            RepositoryBase<Torre> torreRepo = new RepositoryTorreSQL(conexion);
+
+            Madera madera = new Madera(ETipoMadera.Pino, EForma.Tablon, 20);
+
+            serviceInsumo.CreateEntity(madera);
+            serviceInsumo.CreateEntity(madera);
+
+            List<Insumo> insumos = serviceInsumo.GetAll();
 
 
+            /*
+
+            Madera maderaDos = new Madera(ETipoMadera.Mdf, EForma.Tubo, 3);
+            Tela tela = new Tela(EColor.Bordo, ETipoTela.Alfombra, 35);
+
+            estanteRepo.Create(new Estante(madera,tela,5));
+            Torre torre = new Torre(madera, tela, Torre.EModeloTorre.FunnyCat, maderaDos, 5);
+
+
+            torreRepo.Create(torre);
+
+            List<Producto> listadoProductos = serviceProducto.GetAll();
+            */
+            //List<Torre> listTorre = torreRepo.GetAll();
+
+
+            //torreDos.YuteInstalado = true;
+
+
+            //estanteRepo.Create(new Estante(madera,tela,5));
+
+            //Estante estante = estanteRepo.GetById(3);
+
+
+
+            //torreRepo.Create(torre);
+
+
+            //estante.CantidadEstantes = 300;
+
+            //estanteRepo.Update(estante);
+
+            //estanteRepo.Remove(estante);
+
+            /*
             InsumoAccesorio acc1 = new InsumoAccesorio(ETipoAccesorio.Tornillo, 170);
             InsumoAccesorio acc2 = new InsumoAccesorio(ETipoAccesorio.Yute, 20);
 
-            Tela tela = new Tela(EColor.Bordo, ETipoTela.Alfombra, 28);
 
-            serviceInsumo.AltaInsumo(tela);
+
+            List<Insumo> todo = serviceInsumo.GetAll();
+
+            serviceInsumo.CreateEntity(tela);
+            */
+
+
 
             /*
             

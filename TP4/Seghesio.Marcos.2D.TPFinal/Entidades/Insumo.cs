@@ -25,7 +25,7 @@ namespace Entidades
             set
             {
                 this.cantidad = value;
-                
+
             }
         }
 
@@ -52,7 +52,7 @@ namespace Entidades
         /// </summary>
         /// <param name="cantidad"></param>
         /// <param name="fechaIngreso"></param>
-        public Insumo(int cantidad,DateTime fechaIngreso)      
+        public Insumo(int cantidad, DateTime fechaIngreso)
         {
             this.fechaIngreso = fechaIngreso;
             this.cantidad = cantidad;
@@ -63,7 +63,7 @@ namespace Entidades
         /// </summary>
         /// <param name="cantidad"></param>
         public Insumo(int cantidad)
-        :this(cantidad,DateTime.Now)
+        : this(cantidad, DateTime.Now)
         {
 
         }
@@ -86,17 +86,17 @@ namespace Entidades
         public static bool operator ==(Insumo i1, Insumo i2)
         {
             bool output = false;
-            
+
             if (i1 is Madera && i2 is Madera)
             {
-                if((Madera)i1 == (Madera)i2)
+                if ((Madera)i1 == (Madera)i2)
                 {
                     output = true;
                 }
             }
-            else if(i1 is Tela && i2 is Tela)
+            else if (i1 is Tela && i2 is Tela)
             {
-                if((Tela)i1 == (Tela)i2)
+                if ((Tela)i1 == (Tela)i2)
                 {
                     output = true;
                 }
@@ -119,7 +119,7 @@ namespace Entidades
         public static bool operator !=(Insumo i1, Insumo i2)
         {
             bool output = false;
-            if(!(i1 == i2))
+            if (!(i1 == i2))
             {
                 output = true;
             }
@@ -138,13 +138,13 @@ namespace Entidades
         {
             bool output = false;
             List<Insumo> insumosSinStock = new List<Insumo>();
-            foreach(Insumo i in listaInsumos)
+            foreach (Insumo i in listaInsumos)
             {
-                if((insumo == i) && (insumo.Cantidad <= i.Cantidad))
+                if ((insumo == i) && (insumo.Cantidad <= i.Cantidad))
                 {
                     int nuevaCantidad = i.Cantidad - insumo.Cantidad;
                     i.Cantidad = nuevaCantidad;
-                    if(i.Cantidad == 0)
+                    if (i.Cantidad == 0)
                     {
                         insumosSinStock.Add(i);
                     }
@@ -152,7 +152,7 @@ namespace Entidades
                     break;
                 }
             }
-            foreach(Insumo i in insumosSinStock)
+            foreach (Insumo i in insumosSinStock)
             {
                 listaInsumos.Remove(i);
             }
@@ -175,7 +175,7 @@ namespace Entidades
                 {
                     int nuevaCantidad = i.Cantidad + insumo.Cantidad;
                     i.Cantidad = nuevaCantidad;
-                    if(insumo.FechaIngreso > i.FechaIngreso)
+                    if (insumo.FechaIngreso > i.FechaIngreso)
                     {
                         i.FechaIngreso = insumo.FechaIngreso;
                     }
@@ -183,11 +183,62 @@ namespace Entidades
                     break;
                 }
             }
-            if(!insumoAgregado)
+            if (!insumoAgregado)
             {
                 listaInsumos.Add(insumo);
             }
             return listaInsumos;
+        }
+        public static List<Insumo> ConcatenarInsumos(List<Insumo> listaUno, List<Insumo> listaDos)
+        {
+            if (!(listaUno is null || listaUno is null))
+            {
+                foreach (Insumo insumo in listaDos)
+                {
+                    listaUno += insumo;
+                }
+            }
+            return listaUno;
+        }
+
+        public static List<Insumo> ToListInsumo(List<Madera> maderas)
+        {
+            List<Insumo> output = new List<Insumo>();
+            if (!(maderas is null))
+            {
+                foreach (Madera insumo in maderas)
+                {
+                    output.Add(insumo);
+                }
+            }
+            return output;
+        }
+
+
+        public static List<Insumo> ToListInsumo(List<Tela> telas)
+        {
+            List<Insumo> output = new List<Insumo>();
+            if (!(telas is null))
+            {
+                foreach (Tela insumo in telas)
+                {
+                    output.Add(insumo);
+                }
+            }
+            return output;
+        }
+
+        public static List<Insumo> ToListInsumo(List<InsumoAccesorio> insumoAccesorios)
+        {
+            List<Insumo> output = new List<Insumo>();
+            if (!(insumoAccesorios is null))
+            {
+                foreach (InsumoAccesorio insumo in insumoAccesorios)
+                {
+                    output.Add(insumo);
+                }
+            }
+            return output;
         }
         /// <summary>
         /// Itera todos los insumos de la lista para corres el método Mostrar()

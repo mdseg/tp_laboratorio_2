@@ -43,6 +43,35 @@ namespace Entidades.Repositories
             }
         }
 
+        public override int GetMaxId()
+        {
+            int id = 0;
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.Connection = connection;
+                command.CommandText = string.Format($"SELECT MAX(id) AS id FROM InsumoAccesorio;");
+                SqlDataReader dataReader = command.ExecuteReader();
+                if (dataReader.Read() == false)
+                {
+                    throw new Exception("Datos de insumo no encontrados");
+                }
+                else
+                {
+                    id = Convert.ToInt32(dataReader["id"]);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
+            return id;
+
+        }
+
         public override List<InsumoAccesorio> GetAll()
         {
             List<InsumoAccesorio> insumoAccesorios = new List<InsumoAccesorio>();

@@ -16,35 +16,78 @@ namespace Entidades.Services
 
         public InsumoService(string connectionStr)
         {
-            this.maderaRepo = new RepositoryMaderaSQL(connectionStr);
-            this.telasRepo = new RepositoryTelaSQL(connectionStr);
+            this.maderaRepo = new RepositoryMaderaSQL(connectionStr,"Madera");
+            this.telasRepo = new RepositoryTelaSQL(connectionStr,"Tela");
             this.accesorioRepo = new RepositoryInsumoAccesorioSQL(connectionStr);
         }
 
-        public void AltaInsumo(Insumo insumo)
+        public void CreateEntity(Insumo insumo)
         {
+            bool insumoExistente = false;
+
             try
             {
-                if (insumo is Madera)
+                List<Insumo> bufferInsumos = this.GetAll();
+                foreach(Insumo insumoBD in bufferInsumos)
                 {
-                    maderaRepo.Create((Madera)insumo);
+                    if(insumoBD == insumo)
+                    {
+                        insumoBD.Cantidad += insumo.Cantidad;
+                        insumoBD.FechaIngreso = insumo.FechaIngreso;
+
+                        this.UpdateEntity(insumoBD);
+                        insumoExistente = true;
+                    }
                 }
-                else if (insumo is Tela)
+                if(!insumoExistente)
                 {
-                    telasRepo.Create((Tela)insumo);
+                    if (insumo is Madera)
+                    {
+                        maderaRepo.Create((Madera)insumo);
+                    }
+                    else if (insumo is Tela)
+                    {
+                        telasRepo.Create((Tela)insumo);
+                    }
+                    else
+                    {
+                        accesorioRepo.Create((InsumoAccesorio)insumo);
+                    }
                 }
-                else
-                {
-                    accesorioRepo.Create((InsumoAccesorio)insumo);
-                }
+                
             }
             catch(Exception e)
             {
-                throw new CreateEntityException($"Error al persistir el objeto {insumo.Mostrar()}");
+                throw new SQLEntityException($"Error al persistir el objeto {insumo.Mostrar()}");
             }
         }
 
-        public void EliminarInsumo(Insumo insumo)
+        public int GetMaxIdEntity(ETipoInsumoConsulta tipoInsumo)
+        {
+            int output = 0;
+            try
+            {
+                switch(tipoInsumo)
+                {
+                    case ETipoInsumoConsulta.Madera:
+                        output = maderaRepo.GetMaxId();
+                        break;
+                    case ETipoInsumoConsulta.Tela:
+                        output = telasRepo.GetMaxId();
+                        break;
+                    case ETipoInsumoConsulta.InsumoAccesorio:
+                        output = accesorioRepo.GetMaxId();
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new SQLEntityException($"Error al realizar al consulta");
+            }
+            return output;
+        }
+
+        public void DeleteEntity(Insumo insumo)
         {
             try
             {
@@ -63,9 +106,83 @@ namespace Entidades.Services
             }
             catch (Exception e)
             {
-                throw new CreateEntityException($"Error al persistir el objeto {insumo.Mostrar()}");
+                throw new SQLEntityException($"Error al persistir el objeto {insumo.Mostrar()}");
             }
         }
 
+        public Insumo GetEntityById(Insumo insumo)
+        {
+            Insumo output = null;
+            if (insumo is Madera)
+            {
+                output = maderaRepo.GetById(insumo.Id);
+            }
+            else if (insumo is Tela)
+            {
+                output = telasRepo.GetById(insumo.Id);
+            }
+            else
+            {
+                output = accesorioRepo.GetById(insumo.Id);
+            }
+            return output;
+        }
+
+        public void UpdateEntity(Insumo insumo)
+        {
+            try
+            {
+                if (insumo is Madera)
+                {
+                    maderaRepo.Update((Madera)insumo);
+                }
+                else if (insumo is Tela)
+                {
+                    telasRepo.Update((Tela)insumo);
+                }
+                else
+                {
+                    accesorioRepo.Update((InsumoAccesorio)insumo);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new SQLEntityException($"Error al actualizar el objeto {insumo.Mostrar()}");
+            }
+        }
+
+        public List<Insumo> GetAll()
+        {
+            List<Insumo> listadoInsumo = new List<Insumo>();
+            try
+            {
+                List<Insumo> bufferMadera = Insumo.ToListInsumo(maderaRepo.GetAll());
+                List<Insumo> bufferTelas = Insumo.ToListInsumo(telasRepo.GetAll());
+                List<Insumo> bufferAccesorios = Insumo.ToListInsumo(accesorioRepo.GetAll());
+
+                Insumo.ConcatenarInsumos(listadoInsumo, bufferMadera);
+                Insumo.ConcatenarInsumos(listadoInsumo, bufferTelas);
+                Insumo.ConcatenarInsumos(listadoInsumo, bufferAccesorios);
+            }
+            catch(Exception e)
+            {
+                throw new SQLEntityException("Error al recuperar el listado completo de Insumos");
+            }
+
+            return listadoInsumo;
+        }
+
+        private void EliminarInsumosDuplicados()
+        {
+            
+        }
+
+    }
+
+    public enum ETipoInsumoConsulta
+    {
+        Madera,
+        Tela,
+        InsumoAccesorio
     }
 }

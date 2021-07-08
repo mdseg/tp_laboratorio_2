@@ -24,5 +24,7 @@ namespace Entidades.Repositories
         public abstract void Update(T entity);
 
         public abstract void Remove(T entity);
+
+        public abstract int GetMaxId();
     }
 }

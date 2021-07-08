@@ -9,11 +9,11 @@ namespace Entidades.Repositories
 {
     public class RepositoryTelaSQL : RepositoryBase<Tela>
     {
-
-        public RepositoryTelaSQL(string connectionString)
+        private string table;
+        public RepositoryTelaSQL(string connectionString, string table)
         :base(connectionString)
         {
-
+            this.table = table;
         }
 
         public override void Create(Tela entity)
@@ -30,7 +30,7 @@ namespace Entidades.Repositories
                     command.CommandType = System.Data.CommandType.Text;
                     command.Connection = connection;
 
-                    command.CommandText = "INSERT INTO [Tela] ([cantidad], [fechaIngreso], [color], [tipoTela])" + "Values (@cantidad, @fechaIngreso, @color, @tipoTela)";
+                    command.CommandText = $"INSERT INTO [{table}] ([cantidad], [fechaIngreso], [color], [tipoTela])" + "Values (@cantidad, @fechaIngreso, @color, @tipoTela)";
                     command.Parameters.AddWithValue("@cantidad", entity.Cantidad);
                     command.Parameters.AddWithValue("@fechaIngreso", entity.FechaIngreso);
                     command.Parameters.AddWithValue("@color", entity.Color);
@@ -40,8 +40,39 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-
+                
             }
+        
+        
+        }
+
+        public override int GetMaxId()
+        {
+            int id = 0;
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.Connection = connection;
+                command.CommandText = string.Format($"SELECT MAX(id) AS id FROM {table};");
+                SqlDataReader dataReader = command.ExecuteReader();
+                if (dataReader.Read() == false)
+                {
+                    throw new Exception("Datos de insumo no encontrados");
+                }
+                else
+                {
+                    id = Convert.ToInt32(dataReader["id"]);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
+            return id;
+
         }
 
         public override List<Tela> GetAll()
@@ -60,7 +91,7 @@ namespace Entidades.Repositories
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
 
-                command.CommandText = string.Format("SELECT * FROM Tela");
+                command.CommandText = string.Format($"SELECT * FROM {table}");
 
                 SqlDataReader dataReader = command.ExecuteReader();
 
@@ -94,7 +125,7 @@ namespace Entidades.Repositories
             command.CommandType = System.Data.CommandType.Text;
             command.Connection = connection;
 
-            command.CommandText = string.Format($"SELECT * FROM Tela WHERE id = {entityId}");
+            command.CommandText = string.Format($"SELECT * FROM {table} WHERE id = {entityId}");
 
             SqlDataReader dataReader = command.ExecuteReader();
 
@@ -124,7 +155,7 @@ namespace Entidades.Repositories
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
 
-                command.CommandText = string.Format($"DELETE FROM Tela WHERE ID = {entity.Id}");
+                command.CommandText = string.Format($"DELETE FROM {table} WHERE ID = {entity.Id}");
 
                 command.ExecuteNonQuery();
 
@@ -150,7 +181,7 @@ namespace Entidades.Repositories
                     command.CommandType = System.Data.CommandType.Text;
                     command.Connection = connection;
 
-                    command.CommandText = $"UPDATE [Tela] SET cantidad = @cantidad, fechaIngreso = @fechaIngreso, color = @color, tipoTela = @tipoTela WHERE Id = {entity.Id}";
+                    command.CommandText = $"UPDATE [{table}] SET cantidad = @cantidad, fechaIngreso = @fechaIngreso, color = @color, tipoTela = @tipoTela WHERE Id = {entity.Id}";
 
                     command.Parameters.AddWithValue("@cantidad", entity.Cantidad);
                     command.Parameters.AddWithValue("@fechaIngreso", entity.FechaIngreso);

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Entidades.Estante">
-    <Position X="1" Y="14" Width="1.5" />
+    <Position X="6.75" Y="16.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAEAAQABAAAAAAAAAAAAAAAAQAAAAAAAEAAAAA=</HashCode>
       <FileName>Estante.cs</FileName>
@@ -10,14 +10,14 @@
   <Class Name="Entidades.Fabrica">
     <Position X="10.25" Y="7.25" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAgAoAQBAMAAEAAAABYgQAAAAABAAAIASSAAAQEABEU=</HashCode>
+      <HashCode>AAgAoAQBAMAAEAAAABYgQAAAAABAAAIASSAAAQEgBEU=</HashCode>
       <FileName>Fabrica.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Insumo">
     <Position X="1" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAQECAAQAEgAAQAEAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <HashCode>AQAAAQECAAQAEgAAQQEABAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
       <FileName>Insumo.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -50,7 +50,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Entidades.Torre">
-    <Position X="6.5" Y="14" Width="1.5" />
+    <Position X="8.75" Y="14" Width="1.5" />
     <NestedTypes>
       <Enum Name="Entidades.Torre.EModeloTorre" Collapsed="true">
         <TypeIdentifier>
@@ -108,14 +108,14 @@
   <Class Name="Files.Xml.FabricaXmlService">
     <Position X="4.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAggAAAAUA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAACAAAAAAAAAAAAAAAggAAAAUA=</HashCode>
       <FileName>Services\FabricaXmlService.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="Entidades.EProceso" Collapsed="true">
     <Position X="7.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CEAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAQAAAAAA=</HashCode>
+      <HashCode>CEAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAQIAAAAA=</HashCode>
       <FileName>Fabrica.cs</FileName>
     </TypeIdentifier>
   </Enum>
