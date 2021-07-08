@@ -19,5 +19,7 @@ namespace Entidades.Repositories
         void Remove(T entity);
 
         int GetMaxId();
+
+        int Count();
     }
 }

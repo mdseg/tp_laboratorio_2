@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,9 @@ namespace Entidades
         private List<Insumo> stockInsumos;
         private List<Producto> lineaProduccion;
         private List<Producto> stockProductosTerminados;
+
+        private ProductoService productoService;
+        private InsumoService insumoService;
 
         public const int CANTIDAD_TORNILLOS_TORRE = 16;
         public const int CANTIDAD_BARNIZ_TORRE = 3;
@@ -66,6 +70,24 @@ namespace Entidades
                 this.stockProductosTerminados = value;
             }
         }
+
+        public ProductoService ServicioProducto
+        {
+            get
+            {
+                return this.productoService;
+            }            
+        }
+
+        public InsumoService ServicioInsumo
+        {
+            get
+            {
+                return this.insumoService;
+            }
+        }
+
+
         /// <summary>
         /// Propiedad que devuelve una instancia de Fabrica, permitiendose solo en una ocasion instanciar la clase
         /// </summary>
@@ -88,6 +110,8 @@ namespace Entidades
             this.stockInsumos = new List<Insumo>();
             this.lineaProduccion = new List<Producto>();
             this.stockProductosTerminados = new List<Producto>();
+            this.insumoService = new InsumoService(@"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True");
+            this.productoService = new ProductoService(@"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True");
         }
         /// <summary>
         /// Método que recibe un producto, añade los Insumos adicionales necesarios para su fabriación, retorna true si puede fabricarse el producto y false si no es posible por falta
@@ -120,13 +144,14 @@ namespace Entidades
             {
                 bool insumoEncontrado = false;
                 contador++;
-                foreach(Insumo insumo in stockInsumos)
+                foreach(Insumo insumo in this.insumoService.GetAll())
                 {
                     if(insumo == insumoProducto)
                     {
                         if(insumoProducto.Cantidad <= insumo.Cantidad)
                         {
                             insumoEncontrado = true;
+                            insumoProducto.Id = insumo.Id;
                         }
                         else
                         {
@@ -161,7 +186,18 @@ namespace Entidades
         {
             foreach(Insumo i in insumosASeparar)
             {
-               bool resultado = this.stockInsumos - i;               
+                Insumo bufferInsumo = insumoService.GetEntityById(i);
+               bufferInsumo.Cantidad = bufferInsumo.Cantidad - i.Cantidad;
+               if(bufferInsumo.Cantidad > 0)
+               {
+                    insumoService.UpdateEntity(bufferInsumo);
+               }
+               else
+               {
+                    insumoService.DeleteEntity(bufferInsumo);
+               }
+
+                            
             }
         }
         /// <summary>
@@ -179,7 +215,8 @@ namespace Entidades
             if (VerificarStockInsumo(prospectoProducto,out insumosFaltantes, out insumosCompletos))
             {
                 SepararInsumos(insumosCompletos);
-                this.lineaProduccion.Add(prospectoProducto);
+                //this.lineaProduccion.Add(prospectoProducto);
+                this.ServicioProducto.CreateEntity(prospectoProducto);
                 output = true;
             }
             else
@@ -199,7 +236,8 @@ namespace Entidades
             bool output = false;
             if(!(insumo is null))
             {
-                this.stockInsumos +=insumo;
+                insumoService.CreateEntity(insumo);
+                //this.stockInsumos +=insumo;
                 output = true;
             }
             return output;
@@ -232,7 +270,7 @@ namespace Entidades
             int output = 0;
             if(proceso != EProceso.Despachar)
             {
-                foreach (Producto producto in lineaProduccion)
+                foreach (Producto producto in this.ServicioProducto.GetAll())
                 {
                     bool procesoRealizado = false;
                     switch (proceso)
@@ -240,24 +278,29 @@ namespace Entidades
                         case EProceso.Lijar:
 
                             procesoRealizado = producto.LijarMaderaProducto();
+                            ServicioProducto.UpdateEntity(producto);
                             break;
                         case EProceso.Barnizar:
                             if (producto is Estante)
                             {
                                 procesoRealizado = ((Estante)producto).BarnizarProducto();
+                                ServicioProducto.UpdateEntity(producto);
                             }
                             break;
                         case EProceso.Alfombrar:
                             procesoRealizado = producto.AlfombrarProducto();
+                            ServicioProducto.UpdateEntity(producto);
                             break;
                         case EProceso.AgregarYute:
                             if (producto is Torre)
                             {
                                 procesoRealizado = ((Torre)producto).AgregarYute();
+                                ServicioProducto.UpdateEntity(producto);
                             }
                             break;
                         case EProceso.Ensamblar:
                             procesoRealizado = producto.EnsamblarProducto();
+                            ServicioProducto.UpdateEntity(producto);
                             break;
 
                     }
@@ -281,9 +324,8 @@ namespace Entidades
         /// </summary>
         public void ResetearFabrica()
         {
-            this.lineaProduccion.Clear();
-            this.stockInsumos.Clear();
-            this.stockProductosTerminados.Clear();
+            this.productoService.DeleteAll();
+            this.insumoService.DeleteAll();
         }
         /// <summary>
         /// Itera la lista de linea de producción, separando los productos que esten en estado Completo
@@ -292,20 +334,14 @@ namespace Entidades
         public int MudarProductosAStockTerminado()
         {
             int output = 0;
-            List<Producto> productosAEliminar = new List<Producto>();
-            foreach (Producto producto in this.lineaProduccion)
+            foreach (Producto producto in this.ServicioProducto.GetAll())
             {
                 if (producto.EstadoProducto == EEstado.Completo)
                 {
-                    this.stockProductosTerminados.Add(producto);
-                    productosAEliminar.Add(producto);
+                    producto.EstadoProducto = EEstado.Despachado;
+                    this.ServicioProducto.UpdateEntity(producto);
                     output++;
                 }
-            }
-
-            foreach (Producto producto in productosAEliminar)
-            {
-                this.lineaProduccion.Remove(producto);
             }
 
             return output;
@@ -315,7 +351,7 @@ namespace Entidades
         {
             int output = 0;
             listadoProductos = new List<Producto>();
-            foreach (Producto producto in this.LineaProduccion)
+            foreach (Producto producto in this.productoService.GetAll())
             {
                 switch(proceso)
                 {

@@ -426,7 +426,7 @@ namespace VistaProyecto
             ActualizarVistaLineaProduccion();
         }
 
-        
+
     }
 
 }

@@ -18,7 +18,25 @@ namespace Entidades.Services
         {
             this.maderaRepo = new RepositoryMaderaSQL(connectionStr,"Madera");
             this.telasRepo = new RepositoryTelaSQL(connectionStr,"Tela");
-            this.accesorioRepo = new RepositoryInsumoAccesorioSQL(connectionStr);
+            this.accesorioRepo = new RepositoryInsumoAccesorioSQL(connectionStr,"InsumoAccesorio");
+        }
+
+        public void CreateEntity(List<Insumo> listaInsumos)
+        {
+            try
+            {
+                if (listaInsumos != null && listaInsumos.Count > 0)
+                {
+                    foreach (Insumo insumo in listaInsumos)
+                    {
+                        this.CreateEntity(insumo);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new SQLEntityException($"Error al persistir un listado de objetos");
+            }
         }
 
         public void CreateEntity(Insumo insumo)
@@ -113,17 +131,60 @@ namespace Entidades.Services
         public Insumo GetEntityById(Insumo insumo)
         {
             Insumo output = null;
-            if (insumo is Madera)
+            try
             {
-                output = maderaRepo.GetById(insumo.Id);
+
+                if (insumo is Madera)
+                {
+                    output = maderaRepo.GetById(insumo.Id);
+                }
+                else if (insumo is Tela)
+                {
+                    output = telasRepo.GetById(insumo.Id);
+                }
+                else
+                {
+                    output = accesorioRepo.GetById(insumo.Id);
+                }
             }
-            else if (insumo is Tela)
+            catch(Exception e)
             {
-                output = telasRepo.GetById(insumo.Id);
+                throw new SQLEntityException($"Error al obtener el objeto {insumo.Mostrar()}");
             }
-            else
+            return output;
+        }
+
+        public int GetCountByTipoInsumo(ETipoInsumo tipoInsumo)
+        {
+            int output = 0;
+            try
             {
-                output = accesorioRepo.GetById(insumo.Id);
+                switch (tipoInsumo)
+                {
+                    case ETipoInsumo.Madera:
+                        output = maderaRepo.Count();
+                        break;
+                    case ETipoInsumo.Tela:
+                        output = telasRepo.Count();
+                        break;
+                    case ETipoInsumo.Barniz:
+                        output = ((RepositoryInsumoAccesorioSQL)accesorioRepo).SumTipoInsumoAccesorio(ETipoAccesorio.Barniz);
+                        break;
+                    case ETipoInsumo.Pegamento:
+                        output = ((RepositoryInsumoAccesorioSQL)accesorioRepo).SumTipoInsumoAccesorio(ETipoAccesorio.Pegamento);
+                        break;
+                    case ETipoInsumo.Tornillo:
+                        output = ((RepositoryInsumoAccesorioSQL)accesorioRepo).SumTipoInsumoAccesorio(ETipoAccesorio.Tornillo);
+                        break;
+                    case ETipoInsumo.Yute:
+                        output = ((RepositoryInsumoAccesorioSQL)accesorioRepo).SumTipoInsumoAccesorio(ETipoAccesorio.Yute);
+                        break;
+                }
+            }
+            
+            catch (Exception e)
+            {
+                throw new SQLEntityException($"Error al obtener el conteo de insumos");
             }
             return output;
         }
@@ -172,10 +233,55 @@ namespace Entidades.Services
             return listadoInsumo;
         }
 
-        private void EliminarInsumosDuplicados()
+        public List<Insumo> GetAll(ETipoInsumo tipoInsumo)
         {
-            
+            List<Insumo> listadoInsumo = new List<Insumo>();
+            try
+            {
+                switch(tipoInsumo)
+                {
+                    case ETipoInsumo.Madera:
+                        listadoInsumo = Insumo.ToListInsumo(maderaRepo.GetAll());
+                        break;
+                    case ETipoInsumo.Tela:
+                        listadoInsumo = Insumo.ToListInsumo(telasRepo.GetAll());
+                        break;
+                    case ETipoInsumo.Pegamento:
+                        listadoInsumo.Add(((RepositoryInsumoAccesorioSQL)accesorioRepo).GetByTipoAccesorio(ETipoAccesorio.Pegamento));
+                        break;
+                    case ETipoInsumo.Barniz:
+                        listadoInsumo.Add(((RepositoryInsumoAccesorioSQL)accesorioRepo).GetByTipoAccesorio(ETipoAccesorio.Barniz));
+                        break;
+                    case ETipoInsumo.Tornillo:
+                        listadoInsumo.Add(((RepositoryInsumoAccesorioSQL)accesorioRepo).GetByTipoAccesorio(ETipoAccesorio.Tornillo));
+                        break;
+                    case ETipoInsumo.Yute:
+                        listadoInsumo.Add(((RepositoryInsumoAccesorioSQL)accesorioRepo).GetByTipoAccesorio(ETipoAccesorio.Tornillo));
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new SQLEntityException("Error al recuperar el listado completo de Insumos");
+            }
+
+            return listadoInsumo;
         }
+
+        public void DeleteAll()
+        {
+            try
+            {
+                ((RepositoryInsumoAccesorioSQL)accesorioRepo).DeleteAll();
+                ((RepositoryMaderaSQL)maderaRepo).DeleteAll();
+                ((RepositoryTelaSQL)telasRepo).DeleteAll();
+            } catch (Exception e)
+            {
+                throw new SQLEntityException("Error al eliminar el listado completo de Insumos");
+            }
+
+        }
+
 
     }
 

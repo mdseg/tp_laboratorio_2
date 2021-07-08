@@ -13,11 +13,16 @@ namespace Entidades.Repositories
         private RepositoryBase<Madera> maderasRepo;
         private RepositoryBase<Tela> telasRepo;
 
-        public RepositoryTorreSQL(string connectionStr)
-        : base(connectionStr)
+        public RepositoryTorreSQL(string connectionStr,string table)
+        : base(connectionStr,table)
         {
             this.maderasRepo = new RepositoryMaderaSQL(connectionStr,"MaderaProducto");
             this.telasRepo = new RepositoryTelaSQL(connectionStr, "TelaProducto");
+        }
+
+        public override int Count()
+        {
+            throw new NotImplementedException();
         }
 
         public override void Create(Torre entity)
@@ -46,7 +51,7 @@ namespace Entidades.Repositories
                     command.CommandType = System.Data.CommandType.Text;
                     command.Connection = connection;
 
-                    command.CommandText = "INSERT INTO [Torre] ([estadoProducto], [idMaderaPrincipal], [idTelaProducto], [idMaderaColumna], [metrosYute], [modelo], [yuteInstalado])" + "Values (@estadoProducto, @idMaderaPrincipal, @idTelaProducto, @idMaderaColumna, @metrosYute, @modelo, @YuteInstalado)";
+                    command.CommandText = $"INSERT INTO [{table}] ([estadoProducto], [idMaderaPrincipal], [idTelaProducto], [idMaderaColumna], [metrosYute], [modelo], [yuteInstalado])" + "Values (@estadoProducto, @idMaderaPrincipal, @idTelaProducto, @idMaderaColumna, @metrosYute, @modelo, @YuteInstalado)";
                     command.Parameters.AddWithValue("@estadoProducto", entity.EstadoProducto);
                     command.Parameters.AddWithValue("@idMaderaPrincipal", bufferMaderaPrincipal.Id);
                     command.Parameters.AddWithValue("@idTelaProducto", bufferTelaPrincipal.Id);
@@ -79,7 +84,7 @@ namespace Entidades.Repositories
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
 
-                command.CommandText = string.Format($"SELECT * FROM Torre");
+                command.CommandText = string.Format($"SELECT * FROM {table}");
 
                 SqlDataReader dataReader = command.ExecuteReader();
 
@@ -90,7 +95,8 @@ namespace Entidades.Repositories
                     torre.EstadoProducto = (EEstado)Enum.Parse(typeof(EEstado), dataReader["estadoProducto"].ToString());
                     torre.MaderaPrincipal = maderasRepo.GetById(Convert.ToInt32(dataReader["idMaderaPrincipal"]));
                     torre.TelaProducto = telasRepo.GetById(Convert.ToInt32(dataReader["idTelaProducto"]));
-                    torre.MaderaColumna = maderasRepo.GetById(Convert.ToInt32(dataReader["idMaderaColumna"]));
+                    Madera madera = maderasRepo.GetById(Convert.ToInt32(dataReader["idMaderaColumna"]));
+                    torre.MaderaColumna = madera;
                     torre.MetrosYute = Convert.ToInt32(dataReader["metrosYute"]);
                     torre.Modelo = (EModeloTorre)Enum.Parse(typeof(EModeloTorre), dataReader["modelo"].ToString());
                     torre.YuteInstalado = Convert.ToBoolean(dataReader["yuteInstalado"]);
@@ -102,7 +108,7 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-
+                throw new Exception();
             }
             return torres;
         }
@@ -117,8 +123,8 @@ namespace Entidades.Repositories
             command.CommandType = System.Data.CommandType.Text;
             command.Connection = connection;
 
-            command.CommandText = string.Format($"SELECT * FROM Torre WHERE id = {entityId}");
-
+            command.CommandText = string.Format($"SELECT * FROM {table} WHERE id = @id");
+            command.Parameters.AddWithValue("@id", entityId);
             SqlDataReader dataReader = command.ExecuteReader();
 
             if (dataReader.Read() == false)
@@ -150,7 +156,7 @@ namespace Entidades.Repositories
                 SqlCommand command = new SqlCommand();
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
-                command.CommandText = string.Format($"SELECT MAX(id) AS id FROM Torre;");
+                command.CommandText = string.Format($"SELECT MAX(id) AS id FROM {table};");
                 SqlDataReader dataReader = command.ExecuteReader();
                 if (dataReader.Read() == false)
                 {
@@ -185,7 +191,8 @@ namespace Entidades.Repositories
                 maderasRepo.Remove(maderasRepo.GetById(entity.MaderaColumna.Id));
                 telasRepo.Remove(telasRepo.GetById(entity.TelaProducto.Id));
 
-                command.CommandText = string.Format($"DELETE FROM Torre WHERE ID = {entity.Id}");
+                command.CommandText = string.Format($"DELETE FROM {table} WHERE ID = @id");
+                command.Parameters.AddWithValue("@id", entity.Id);
 
                 command.ExecuteNonQuery();
 
@@ -217,7 +224,7 @@ namespace Entidades.Repositories
 
 
 
-                    command.CommandText = $"UPDATE [Torre] SET estadoProducto = @estadoProducto, idMaderaPrincipal = @idMaderaPrincipal, idTelaProducto = @idTelaProducto, idMaderaColumna = @idMaderaColumna, metrosYute = @metrosYute, modelo = @modelo, yuteInstalado = @yuteInstalado WHERE Id = {entity.Id}";
+                    command.CommandText = $"UPDATE [{table}] SET estadoProducto = @estadoProducto, idMaderaPrincipal = @idMaderaPrincipal, idTelaProducto = @idTelaProducto, idMaderaColumna = @idMaderaColumna, metrosYute = @metrosYute, modelo = @modelo, yuteInstalado = @yuteInstalado WHERE Id = @id";
                     command.Parameters.AddWithValue("@estadoProducto", entity.EstadoProducto);
                     command.Parameters.AddWithValue("@idMaderaPrincipal", entity.MaderaPrincipal.Id);
                     command.Parameters.AddWithValue("@idTelaProducto", entity.TelaProducto.Id);
@@ -225,6 +232,7 @@ namespace Entidades.Repositories
                     command.Parameters.AddWithValue("@metrosYute", entity.MetrosYute);
                     command.Parameters.AddWithValue("@modelo", entity.Modelo);
                     command.Parameters.AddWithValue("@yuteInstalado", entity.YuteInstalado);
+                    command.Parameters.AddWithValue("@id", entity.Id);
 
                     columnasAfectadas = command.ExecuteNonQuery();
 
@@ -235,5 +243,119 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
+
+        public List<Torre> GetAllByEstadoNotIn(EEstado estado)
+        {
+            List<Torre> torres = new List<Torre>();
+
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+
+
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.Connection = connection;
+
+                command.CommandText = string.Format($"SELECT * FROM {table} WHERE NOT estado = @estado"); ;
+                command.Parameters.AddWithValue("@estado", Convert.ToInt32(estado));
+                SqlDataReader dataReader = command.ExecuteReader();
+
+                while (dataReader.Read() != false)
+                {
+                    Torre torre = new Torre();
+                    torre.Id = Convert.ToInt32(dataReader["id"]);
+                    torre.EstadoProducto = (EEstado)Enum.Parse(typeof(EEstado), dataReader["estadoProducto"].ToString());
+                    torre.MaderaPrincipal = maderasRepo.GetById(Convert.ToInt32(dataReader["idMaderaPrincipal"]));
+                    torre.TelaProducto = telasRepo.GetById(Convert.ToInt32(dataReader["idTelaProducto"]));
+                    torre.MaderaColumna = maderasRepo.GetById(Convert.ToInt32(dataReader["idMaderaColumna"]));
+                    torre.MetrosYute = Convert.ToInt32(dataReader["metrosYute"]);
+                    torre.Modelo = (EModeloTorre)Enum.Parse(typeof(EModeloTorre), dataReader["modelo"].ToString());
+                    torre.YuteInstalado = Convert.ToBoolean(dataReader["yuteInstalado"]);
+                    torres.Add(torre);
+                }
+                dataReader.Close();
+                connection.Close();
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
+            return torres;
+        }
+
+        public override void DeleteAll()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.Connection = connection;
+
+                command.CommandText = string.Format($"DELETE FROM {table}");
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        public List<Torre> GetAllByEstado(EEstado estado)
+        {
+            List<Torre> torres = new List<Torre>();
+
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+
+
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.Connection = connection;
+
+                command.CommandText = string.Format($"SELECT * FROM {table} WHERE estadoProducto = @estadoProducto");
+                command.Parameters.AddWithValue("@estadoProducto", Convert.ToInt32(estado));
+
+                SqlDataReader dataReader = command.ExecuteReader();
+
+                while (dataReader.Read() != false)
+                {
+                    Torre torre = new Torre();
+                    torre.Id = Convert.ToInt32(dataReader["id"]);
+                    torre.EstadoProducto = (EEstado)Enum.Parse(typeof(EEstado), dataReader["estadoProducto"].ToString());
+                    torre.MaderaPrincipal = maderasRepo.GetById(Convert.ToInt32(dataReader["idMaderaPrincipal"]));
+                    torre.TelaProducto = telasRepo.GetById(Convert.ToInt32(dataReader["idTelaProducto"]));
+                    torre.MaderaColumna = maderasRepo.GetById(Convert.ToInt32(dataReader["idMaderaColumna"]));
+                    torre.MetrosYute = Convert.ToInt32(dataReader["metrosYute"]);
+                    torre.Modelo = (EModeloTorre)Enum.Parse(typeof(EModeloTorre), dataReader["modelo"].ToString());
+                    torre.YuteInstalado = Convert.ToBoolean(dataReader["yuteInstalado"]);
+                    torres.Add(torre);
+                }
+                dataReader.Close();
+                connection.Close();
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
+            return torres;
+        }
+
+
     }
 }

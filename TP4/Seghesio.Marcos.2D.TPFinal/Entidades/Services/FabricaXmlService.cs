@@ -38,14 +38,12 @@ namespace Files.Xml
         public void SaveXmlFabrica(Fabrica fabrica)
         {
             string pathInsumos = path + "listadoInsumosFabrica.xml";
-            string pathLineaProduccion = path + "lineaProduccionFabrica.xml";
-            string pathStockProductos = path + "stockProductosFabrica.xml";
+            string pathProductos = path + "listadoProductosFabrica.xml";
 
-            if(File.Exists(pathInsumos) && File.Exists(pathLineaProduccion) && File.Exists(pathStockProductos))
+            if(File.Exists(pathInsumos) && File.Exists(pathProductos))
             {
-                serializadorInsumos.Save(pathInsumos, fabrica.StockInsumos);
-                serializadorProductos.Save(pathLineaProduccion, fabrica.LineaProduccion);
-                serializadorProductos.Save(pathStockProductos, fabrica.StockProductosTerminados);
+                serializadorInsumos.Save(pathInsumos, fabrica.ServicioInsumo.GetAll());
+                serializadorProductos.Save(pathProductos, fabrica.ServicioProducto.GetAll());
             }
             else
             {
@@ -60,26 +58,22 @@ namespace Files.Xml
             Fabrica fabrica = Fabrica.Instance;
 
             string pathInsumos = path + "listadoInsumosFabrica.xml";
-            string pathLineaProduccion = path + "lineaProduccionFabrica.xml";
-            string pathStockProductos = path + "stockProductosFabrica.xml";
+            string pathProductos = path + "listadoProductosFabrica.xml";
 
             List<Insumo> insumosStock = new List<Insumo>();
-            List<Producto> lineaProduccion = new List<Producto>();
-            List<Producto> stockProductosTerminados = new List<Producto>();
+            List<Producto> listadoProductos = new List<Producto>();
 
             try
             {
                 serializadorInsumos.Read(pathInsumos, out insumosStock);
-                serializadorProductos.Read(pathLineaProduccion, out lineaProduccion);
-                serializadorProductos.Read(pathStockProductos, out stockProductosTerminados);
+                serializadorProductos.Read(pathProductos, out listadoProductos);
 
 
 
                 fabrica.ResetearFabrica();
 
-                fabrica.StockInsumos = insumosStock;
-                fabrica.LineaProduccion = lineaProduccion;
-                fabrica.StockProductosTerminados = stockProductosTerminados;
+                fabrica.ServicioInsumo.CreateEntity(insumosStock);
+                fabrica.ServicioProducto.CreateEntity(listadoProductos);
             }
             catch(Exception e)
             {

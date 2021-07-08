@@ -196,6 +196,7 @@ namespace Entidades
         Barnizado,
         Alfombrado,
         AdicionalesAgregados,
-        Completo
+        Completo,
+        Despachado
     }
 }

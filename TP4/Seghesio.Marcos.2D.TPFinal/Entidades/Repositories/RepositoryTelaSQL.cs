@@ -9,9 +9,8 @@ namespace Entidades.Repositories
 {
     public class RepositoryTelaSQL : RepositoryBase<Tela>
     {
-        private string table;
         public RepositoryTelaSQL(string connectionString, string table)
-        :base(connectionString)
+        :base(connectionString,table)
         {
             this.table = table;
         }
@@ -40,10 +39,65 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-                
+                throw new Exception();
             }
         
         
+        }
+
+        public override int Count()
+        {
+            int output = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.Connection = connection;
+
+                    command.CommandText = $"SELECT COUNT(*) AS cuenta FROM {table};";
+
+                    SqlDataReader dataReader = command.ExecuteReader();
+
+                    if (dataReader.Read() == false)
+                    {
+                        throw new Exception("Customer no encontrada");
+                    }
+                    output = Convert.ToInt32(dataReader["cuenta"]);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
+            return output;
+        }
+
+        public override void DeleteAll()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.Connection = connection;
+
+                command.CommandText = string.Format($"DELETE FROM {table}");
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
         }
 
         public override int GetMaxId()
@@ -109,7 +163,7 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-
+                throw new Exception();
             }
             return telas;
         }
@@ -125,8 +179,8 @@ namespace Entidades.Repositories
             command.CommandType = System.Data.CommandType.Text;
             command.Connection = connection;
 
-            command.CommandText = string.Format($"SELECT * FROM {table} WHERE id = {entityId}");
-
+            command.CommandText = string.Format($"SELECT * FROM {table} WHERE id = @id");
+            command.Parameters.AddWithValue("@id", entityId);
             SqlDataReader dataReader = command.ExecuteReader();
 
             if (dataReader.Read() == false)
@@ -155,7 +209,8 @@ namespace Entidades.Repositories
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
 
-                command.CommandText = string.Format($"DELETE FROM {table} WHERE ID = {entity.Id}");
+                command.CommandText = string.Format($"DELETE FROM {table} WHERE ID = @id");
+                command.Parameters.AddWithValue("@id", entity.Id);
 
                 command.ExecuteNonQuery();
 
@@ -163,7 +218,7 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-
+                throw new Exception();
             }
 
         }
@@ -181,12 +236,13 @@ namespace Entidades.Repositories
                     command.CommandType = System.Data.CommandType.Text;
                     command.Connection = connection;
 
-                    command.CommandText = $"UPDATE [{table}] SET cantidad = @cantidad, fechaIngreso = @fechaIngreso, color = @color, tipoTela = @tipoTela WHERE Id = {entity.Id}";
+                    command.CommandText = $"UPDATE [{table}] SET cantidad = @cantidad, fechaIngreso = @fechaIngreso, color = @color, tipoTela = @tipoTela WHERE Id = @id";
 
                     command.Parameters.AddWithValue("@cantidad", entity.Cantidad);
                     command.Parameters.AddWithValue("@fechaIngreso", entity.FechaIngreso);
                     command.Parameters.AddWithValue("@color", entity.Color);
                     command.Parameters.AddWithValue("@tipoTela", entity.TipoTela);
+                    command.Parameters.AddWithValue("@id", entity.Id);
 
                     columnasAfectadas = command.ExecuteNonQuery();
 
@@ -194,7 +250,7 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-
+                throw new Exception();
             }
         }
     }

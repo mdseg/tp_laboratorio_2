@@ -17,16 +17,36 @@ namespace TestSql
 
             InsumoService serviceInsumo = new InsumoService(conexion);
             ProductoService serviceProducto = new ProductoService(conexion);
-            RepositoryBase<Estante> estanteRepo = new RepositoryEstanteSQL(conexion);
-            RepositoryBase<Torre> torreRepo = new RepositoryTorreSQL(conexion);
+            RepositoryBase<Estante> estanteRepo = new RepositoryEstanteSQL(conexion,"Estante");
+            RepositoryBase<Torre> torreRepo = new RepositoryTorreSQL(conexion,"Torre");
 
-            Madera madera = new Madera(ETipoMadera.Pino, EForma.Tablon, 20);
+            Madera madera = new Madera(ETipoMadera.Mdf, EForma.Tablon, 3);
+            Tela tela = new Tela(EColor.Bordo, ETipoTela.Alfombra, 35);
 
-            serviceInsumo.CreateEntity(madera);
-            serviceInsumo.CreateEntity(madera);
+            //estanteRepo.Create(new Estante(madera, tela, 5));
 
-            List<Insumo> insumos = serviceInsumo.GetAll();
+            Estante estante = estanteRepo.GetById(14);
+            estante.CantidadEstantes= 34;
+            serviceProducto.UpdateEntity(estante);
+            
 
+            //estanteRepo.Remove(estanteRepo.GetById(13));
+            /*
+            //Madera madera = new Madera(ETipoMadera.Pino, EForma.Tablon, 20);
+            Insumo barniz = new InsumoAccesorio(ETipoAccesorio.Barniz, 50);
+            serviceInsumo.CreateEntity(barniz);
+            serviceInsumo.CreateEntity(barniz);
+
+            Madera maderaDos = new Madera(ETipoMadera.Mdf, EForma.Tubo, 3);
+            Tela tela = new Tela(EColor.Bordo, ETipoTela.Alfombra, 35);
+
+            serviceInsumo.CreateEntity(tela);
+            serviceInsumo.CreateEntity(maderaDos);
+
+
+
+            int output = serviceInsumo.GetCountByTipoInsumo(ETipoInsumo.Barniz);
+            */
 
             /*
 

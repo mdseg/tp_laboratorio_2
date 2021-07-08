@@ -10,8 +10,8 @@ namespace Entidades.Repositories
     public class RepositoryInsumoAccesorioSQL : RepositoryBase<InsumoAccesorio>
     {
 
-        public RepositoryInsumoAccesorioSQL(string connectionString)
-        :base(connectionString)
+        public RepositoryInsumoAccesorioSQL(string connectionString,string table)
+        :base(connectionString,table)
         {
 
         }
@@ -30,7 +30,7 @@ namespace Entidades.Repositories
                     command.CommandType = System.Data.CommandType.Text;
                     command.Connection = connection;
 
-                    command.CommandText = "INSERT INTO [InsumoAccesorio] ([cantidad], [fechaIngreso], [tipoAccesorio])" + "Values (@cantidad, @fechaIngreso, @tipoAccesorio)";
+                    command.CommandText = $"INSERT INTO [{table}] ([cantidad], [fechaIngreso], [tipoAccesorio])" + "Values (@cantidad, @fechaIngreso, @tipoAccesorio)";
                     command.Parameters.AddWithValue("@cantidad", entity.Cantidad);
                     command.Parameters.AddWithValue("@fechaIngreso", entity.FechaIngreso);
                     command.Parameters.AddWithValue("@tipoAccesorio", entity.TipoAccesorio);
@@ -39,7 +39,7 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-
+                throw new Exception();
             }
         }
 
@@ -53,7 +53,7 @@ namespace Entidades.Repositories
                 SqlCommand command = new SqlCommand();
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
-                command.CommandText = string.Format($"SELECT MAX(id) AS id FROM InsumoAccesorio;");
+                command.CommandText = string.Format($"SELECT MAX(id) AS id FROM {table};");
                 SqlDataReader dataReader = command.ExecuteReader();
                 if (dataReader.Read() == false)
                 {
@@ -88,7 +88,7 @@ namespace Entidades.Repositories
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
 
-                command.CommandText = string.Format("SELECT * FROM InsumoAccesorio");
+                command.CommandText = string.Format($"SELECT * FROM {table}");
 
                 SqlDataReader dataReader = command.ExecuteReader();
 
@@ -105,7 +105,7 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-
+                throw new Exception();
             }
             return insumoAccesorios;
         }
@@ -121,7 +121,8 @@ namespace Entidades.Repositories
             command.CommandType = System.Data.CommandType.Text;
             command.Connection = connection;
 
-            command.CommandText = string.Format($"SELECT * FROM InsumoAccesorio WHERE id = {entityId}");
+            command.CommandText = string.Format($"SELECT * FROM {table} WHERE id = @id");
+            command.Parameters.AddWithValue("@id", entityId);
 
             SqlDataReader dataReader = command.ExecuteReader();
 
@@ -149,15 +150,15 @@ namespace Entidades.Repositories
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
 
-                command.CommandText = string.Format($"DELETE FROM InsumoAccesorio WHERE ID = {entity.Id}");
-
+                command.CommandText = string.Format($"DELETE FROM {table} WHERE ID = @id");
+                command.Parameters.AddWithValue("@id", entity.Id);
                 command.ExecuteNonQuery();
 
                 connection.Close();
             }
             catch (Exception e)
             {
-
+                throw new Exception();
             }
 
         }
@@ -175,11 +176,12 @@ namespace Entidades.Repositories
                     command.CommandType = System.Data.CommandType.Text;
                     command.Connection = connection;
 
-                    command.CommandText = $"UPDATE [InsumoAccesorio] SET cantidad = @cantidad, fechaIngreso = @fechaIngreso, tipoAccesorio = @tipoAccesorio WHERE Id = {entity.Id}";
+                    command.CommandText = $"UPDATE [InsumoAccesorio] SET cantidad = @cantidad, fechaIngreso = @fechaIngreso, tipoAccesorio = @tipoAccesorio WHERE Id = @id";
 
                     command.Parameters.AddWithValue("@cantidad", entity.Cantidad);
                     command.Parameters.AddWithValue("@fechaIngreso", entity.FechaIngreso);
                     command.Parameters.AddWithValue("@tipoAccesorio", entity.TipoAccesorio);
+                    command.Parameters.AddWithValue("@id", entity.Id);
 
                     columnasAfectadas = command.ExecuteNonQuery();
 
@@ -187,8 +189,127 @@ namespace Entidades.Repositories
             }
             catch (Exception e)
             {
-
+                throw new Exception();
             }
+        }
+
+        public override int Count()
+        {
+            int output = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.Connection = connection;
+
+                    command.CommandText = $"SELECT COUNT(*) AS cuenta FROM InsumoAccesorio;";
+
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    if (dataReader.Read() == false)
+                    {
+                        throw new Exception("Error");
+                    }
+                    output = Convert.ToInt32(dataReader["cuenta"]);
+
+
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
+            return output;
+        }
+
+        public override void DeleteAll()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.Connection = connection;
+
+                command.CommandText = string.Format($"DELETE FROM InsumoAccesorio");
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
+        }
+
+        public int SumTipoInsumoAccesorio(ETipoAccesorio tipoAccesorio)
+        {
+            int output = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.Connection = connection;
+
+                    command.CommandText = $"SELECT COALESCE(SUM(cantidad),0) AS cuenta FROM InsumoAccesorio WHERE tipoAccesorio = @numero;";
+                    command.Parameters.AddWithValue("@numero", Convert.ToInt32(tipoAccesorio));
+
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    if (dataReader.Read() == false)
+                    {
+                        throw new Exception("Error");
+                    }
+                    output = Convert.ToInt32(dataReader["cuenta"]);
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
+            return output;
+
+        }
+
+        public InsumoAccesorio GetByTipoAccesorio(ETipoAccesorio tipoAccesorioInput)
+        {
+            InsumoAccesorio insumoAccesorio = null;
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.Connection = connection;
+
+            command.CommandText = string.Format($"SELECT * FROM InsumoAccesorio WHERE tipoAccesorio = @numero");
+            command.Parameters.AddWithValue("@numero", Convert.ToInt32(tipoAccesorioInput));
+            SqlDataReader dataReader = command.ExecuteReader();
+
+            if (dataReader.Read() == false)
+            {
+                throw new Exception("Insumo no encontrado");
+            }
+            ETipoAccesorio tipoAccesorio = (ETipoAccesorio)Enum.Parse(typeof(ETipoAccesorio), dataReader["tipoAccesorio"].ToString());
+            insumoAccesorio = new InsumoAccesorio(tipoAccesorio, Convert.ToInt32(dataReader["cantidad"]), Convert.ToDateTime(dataReader["fechaIngreso"]));
+            insumoAccesorio.Id = Convert.ToInt32(dataReader["id"]);
+
+            dataReader.Close();
+            connection.Close();
+            return insumoAccesorio;
         }
     }
 }

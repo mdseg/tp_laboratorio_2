@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,12 @@ namespace Entidades.Repositories
     public abstract class RepositoryBase<T> : IRepository<T>
     {
         protected string connectionString;
+        protected string table;
 
-        public RepositoryBase(string connectionString)
+        public RepositoryBase(string connectionString, string table)
         {
             this.connectionString = connectionString;
+            this.table = table;
         }
 
         public abstract List<T> GetAll();
@@ -25,6 +28,12 @@ namespace Entidades.Repositories
 
         public abstract void Remove(T entity);
 
+        
+
+        public abstract int Count();
+
         public abstract int GetMaxId();
+
+        public abstract void DeleteAll();
     }
 }

@@ -165,6 +165,9 @@ namespace VistaProyecto
                     case EProceso.AgregarYute:
                         mensaje = $"Se ha agregado yute a {productosModificados} torres";
                         break;
+                    case EProceso.Despachar:
+                        mensaje = $"Se han despachado {productosModificados} productos";
+                        break;
                 }
             }
             else

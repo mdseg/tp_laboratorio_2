@@ -46,11 +46,11 @@ namespace VistaProyecto
         /// </summary>
         private void ActualizarVistaLineaProduccion()
         {
-            if (fabrica.StockProductosTerminados.Count > 0)
+            if (fabrica.ServicioProducto.GetAllByEstado(EEstado.Despachado).Count > 0)
             {
                 dgProductosTerminados.Rows.Clear();
 
-                foreach (Producto p in fabrica.StockProductosTerminados)
+                foreach (Producto p in fabrica.ServicioProducto.GetAllByEstado(EEstado.Despachado))
                 {
                     string tipoProducto;
                     string maderaPrincipal;

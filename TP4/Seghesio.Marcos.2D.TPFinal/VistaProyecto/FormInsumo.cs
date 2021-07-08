@@ -105,8 +105,8 @@ namespace VistaProyecto
                 bufferInsumo = new InsumoAccesorio(tipoInsumoAccesorio, (int)nudCantidad.Value, dtpIngreso.Value.Date);
             }
 
-
-            fabrica.AgregarInsumosAStock(bufferInsumo);
+            fabrica.ServicioInsumo.CreateEntity(bufferInsumo);
+            //fabrica.AgregarInsumosAStock(bufferInsumo);
             ActualizarListaInsumos();
             MessageBox.Show("Insumo agregado con éxito", "Agregar insumo", MessageBoxButtons.OK, MessageBoxIcon.Information);            
         }
@@ -155,17 +155,22 @@ namespace VistaProyecto
         /// </summary>
         private void ActualizarListaInsumos()
         {
+            int cantidadPegamento = fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Pegamento);
+            int cantidadBarniz = fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Barniz);
+            int cantidadTornillos = fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Tornillo);
+            int cantidadYute = fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Yute);
+            /*
             int cantidadPegamento = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Pegamento);
             int cantidadBarniz = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Barniz);
             int cantidadTornillos = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tornillo);
             int cantidadYute = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Yute);
-
+            */
             lblPegamento.Text = $"Stock Pegamento: {cantidadPegamento}";
             lblBarniz.Text = $"Stock Barniz: {cantidadBarniz}";
             lblTornillos.Text = $"Stock Tornillos: {cantidadTornillos}";
             lblYute.Text = $"Stock Yute: {cantidadYute}";
 
-            if (Insumo.CountInsumoType(fabrica.StockInsumos,ETipoInsumo.Madera) > 0)
+            if (fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Madera) > 0)
             { 
                 dgStockMaderas.Rows.Clear();
                 dgStockMaderas.Columns.Clear();
@@ -174,12 +179,10 @@ namespace VistaProyecto
                 dgStockMaderas.Columns.Add("cantidad", "Cantidad");
                 dgStockMaderas.Columns.Add("fechaIngreso", "Fecha");
 
-                foreach (Insumo i in fabrica.StockInsumos)
+                foreach (Insumo i in fabrica.ServicioInsumo.GetAll(ETipoInsumo.Madera))
                 {
-                    if (i is Madera)
-                    {
                         dgStockMaderas.Rows.Add(((Madera)i).TipoMadera, ((Madera)i).Forma, i.Cantidad, i.FechaIngreso.Date.ToString("MM/dd/yyyy"));
-                    }
+                
 
                 }
                 dgStockMaderas.Visible = true;
@@ -191,7 +194,7 @@ namespace VistaProyecto
                 lblListaVaciaMadera.Visible = true;
             }
 
-            if (Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tela) > 0)
+            if (fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Tela) > 0)
             {
                 dgStockTelas.Rows.Clear();
                 dgStockTelas.Columns.Clear();
@@ -200,12 +203,9 @@ namespace VistaProyecto
                 dgStockTelas.Columns.Add("cantidad", "Cantidad");
                 dgStockTelas.Columns.Add("fechaIngreso", "Fecha");
 
-                foreach (Insumo i in fabrica.StockInsumos)
+                foreach (Insumo i in fabrica.ServicioInsumo.GetAll(ETipoInsumo.Tela))
                 {
-                    if (i is Tela)
-                    {
                         dgStockTelas.Rows.Add(((Tela)i).TipoTela, ((Tela)i).Color, i.Cantidad, i.FechaIngreso.Date.ToString("MM/dd/yyyy"));
-                    }                    
                 }
                 dgStockTelas.Visible = true;
                 lblListaVaciaTela.Visible = false;

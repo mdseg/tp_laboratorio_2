@@ -50,7 +50,7 @@ namespace Entidades.Reportes
 
                     doc.Add(new Paragraph("Informe linea de Producción"));
                     doc.Add(Chunk.NEWLINE);
-                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.LineaProduccion, standarFont, true);
+                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.ServicioProducto.GetAll(), standarFont, true);
                     doc.Add(tblLineaProduccion);
                 }
                 else

@@ -12,11 +12,16 @@ namespace Entidades.Services
     {
         private IRepository<Torre> torresRepo;
         private IRepository<Estante> estantesRepo;
+        private IRepository<Madera> maderaRepo;
+        private IRepository<Tela> telasRepo;
+
 
         public ProductoService(string connectionStr)
         {
-            this.torresRepo = new RepositoryTorreSQL(connectionStr);
-            this.estantesRepo = new RepositoryEstanteSQL(connectionStr);
+            this.torresRepo = new RepositoryTorreSQL(connectionStr,"Torre");
+            this.estantesRepo = new RepositoryEstanteSQL(connectionStr,"Estante");
+            this.maderaRepo = new RepositoryMaderaSQL(connectionStr, "MaderaProdcuto");
+            this.telasRepo = new RepositoryTelaSQL(connectionStr, "TelaProdcuto");
         }
 
         public void CreateEntity(Producto producto)
@@ -35,6 +40,17 @@ namespace Entidades.Services
             catch (Exception e)
             {
                 throw new SQLEntityException($"Error al persistir el objeto {producto.Mostrar()}");
+            }
+        }
+
+        public void CreateEntity(List<Producto> listaProductos)
+        {
+            if (listaProductos != null && listaProductos.Count > 0)
+            {
+                foreach (Producto producto in listaProductos)
+                {
+                    this.CreateEntity(producto);
+                }
             }
         }
 
@@ -129,6 +145,43 @@ namespace Entidades.Services
             }
 
             return listadoProducto;
+        }
+
+        public List<Producto> GetAllByEstado(EEstado estado)
+        {
+            List<Producto> listadoProducto = new List<Producto>();
+            try
+            {
+
+                List<Producto> bufferTorres = Producto.ToListProducto(((RepositoryTorreSQL)torresRepo).GetAllByEstado(estado));
+                List<Producto> bufferEstantes = Producto.ToListProducto(((RepositoryEstanteSQL)estantesRepo).GetAllByEstado(estado));
+
+                Producto.ConcatenarProductos(listadoProducto, bufferTorres);
+                Producto.ConcatenarProductos(listadoProducto, bufferEstantes);
+
+            }
+            catch (Exception e)
+            {
+                throw new SQLEntityException("Error al recuperar el listado completo de Productos");
+            }
+
+            return listadoProducto;
+        }
+
+        public void DeleteAll()
+        {
+            try
+            {
+                ((RepositoryTorreSQL)torresRepo).DeleteAll();
+                ((RepositoryEstanteSQL)estantesRepo).DeleteAll();
+                ((RepositoryMaderaSQL)maderaRepo).DeleteAll();
+                ((RepositoryTelaSQL)telasRepo).DeleteAll();
+            }
+            catch(Exception e)
+            {
+                throw new SQLEntityException("Error al eliminar los productos cargados");
+            }
+
         }
 
     }
