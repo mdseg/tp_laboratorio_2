@@ -175,14 +175,14 @@ namespace VistaProyecto
                 mensaje = "No se ha modificado ningun producto";
             }
             MessageBox.Show(mensaje, "Realizar operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            formPadre.ActualizarVistaLineaProduccion();
+            //formPadre.ActualizarVistaLineaProduccion();
             this.Close();
             
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            formPadre.ActualizarVistaLineaProduccion();
+            //formPadre.ActualizarVistaLineaProduccion();
             this.Close();
 
         }

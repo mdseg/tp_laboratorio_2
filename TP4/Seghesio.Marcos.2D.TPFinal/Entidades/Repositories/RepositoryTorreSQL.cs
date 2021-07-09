@@ -244,7 +244,7 @@ namespace Entidades.Repositories
             }
         }
 
-        public List<Torre> GetAllByEstadoNotIn(EEstado estado)
+        public List<Torre> GetAllByEstadoNotInCompletoAndDespachado()
         {
             List<Torre> torres = new List<Torre>();
 
@@ -260,8 +260,8 @@ namespace Entidades.Repositories
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
 
-                command.CommandText = string.Format($"SELECT * FROM {table} WHERE NOT estado = @estado"); ;
-                command.Parameters.AddWithValue("@estado", Convert.ToInt32(estado));
+                command.CommandText = string.Format($"SELECT * FROM {table} WHERE NOT [estadoProducto] BETWEEN 5 AND 6"); ;
+                
                 SqlDataReader dataReader = command.ExecuteReader();
 
                 while (dataReader.Read() != false)

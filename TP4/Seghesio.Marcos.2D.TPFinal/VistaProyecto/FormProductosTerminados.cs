@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Entidades.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,11 +47,11 @@ namespace VistaProyecto
         /// </summary>
         private void ActualizarVistaLineaProduccion()
         {
-            if (fabrica.ServicioProducto.GetAllByEstado(EEstado.Despachado).Count > 0)
+            if (fabrica.ServicioProducto.GetAllByEstado(EEstado.Completo).Count > 0)
             {
                 dgProductosTerminados.Rows.Clear();
 
-                foreach (Producto p in fabrica.ServicioProducto.GetAllByEstado(EEstado.Despachado))
+                foreach (Producto p in fabrica.ServicioProducto.GetAllByEstado(EEstado.Completo))
                 {
                     string tipoProducto;
                     string maderaPrincipal;
@@ -106,6 +107,17 @@ namespace VistaProyecto
             lblProductosTerminadosVacio.Visible = !visibilidad;
         }
 
-
+        private void btnDespacharProductos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                fabrica.EjecutarProcesoLineaProduccion(EProceso.Despachar);
+                MessageBox.Show("Productos despachados correctamente", "Despachar Productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(SQLEntityException ex)
+            {
+                MessageBox.Show("Error al ejecutar el proceso");
+            }
+        }
     }
 }

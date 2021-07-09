@@ -33,6 +33,7 @@ namespace VistaProyecto
             this.lblProductosTerminados = new System.Windows.Forms.Label();
             this.dgProductosTerminados = new System.Windows.Forms.DataGridView();
             this.lblProductosTerminadosVacio = new System.Windows.Forms.Label();
+            this.btnDespacharProductos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductosTerminados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,11 +79,22 @@ namespace VistaProyecto
             this.lblProductosTerminadosVacio.Text = "No hay productos Terminados";
             this.lblProductosTerminadosVacio.Visible = false;
             // 
+            // btnDespacharProductos
+            // 
+            this.btnDespacharProductos.Location = new System.Drawing.Point(68, 366);
+            this.btnDespacharProductos.Name = "btnDespacharProductos";
+            this.btnDespacharProductos.Size = new System.Drawing.Size(182, 39);
+            this.btnDespacharProductos.TabIndex = 20;
+            this.btnDespacharProductos.Text = "Despachar Productos";
+            this.btnDespacharProductos.UseVisualStyleBackColor = true;
+            this.btnDespacharProductos.Click += new System.EventHandler(this.btnDespacharProductos_Click);
+            // 
             // FormProductosTerminados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1019, 564);
+            this.Controls.Add(this.btnDespacharProductos);
             this.Controls.Add(this.lblProductosTerminadosVacio);
             this.Controls.Add(this.dgProductosTerminados);
             this.Controls.Add(this.lblProductosTerminados);
@@ -102,5 +114,6 @@ namespace VistaProyecto
         private System.Windows.Forms.Label lblProductosTerminados;
         private System.Windows.Forms.DataGridView dgProductosTerminados;
         private System.Windows.Forms.Label lblProductosTerminadosVacio;
+        private System.Windows.Forms.Button btnDespacharProductos;
     }
 }

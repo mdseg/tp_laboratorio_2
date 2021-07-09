@@ -32,46 +32,32 @@ namespace VistaProyecto
             this.tabControlFabrica = new System.Windows.Forms.TabControl();
             this.tabPageLineaProduccion = new System.Windows.Forms.TabPage();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.panelContainerCompleto = new System.Windows.Forms.Panel();
-            this.btnDespachar = new System.Windows.Forms.Button();
-            this.btnMostrarProductosCompletos = new System.Windows.Forms.Button();
-            this.IBCompleto = new FontAwesome.Sharp.IconButton();
-            this.panelContainerTopCompleto = new System.Windows.Forms.Panel();
-            this.lblProductosCompletos = new System.Windows.Forms.Label();
             this.panelContainerEnsamblar = new System.Windows.Forms.Panel();
-            this.btnEnsamblar = new System.Windows.Forms.Button();
             this.btnMostrarProductosEnsamblar = new System.Windows.Forms.Button();
             this.IBEnsamblar = new FontAwesome.Sharp.IconButton();
             this.panelContainerEnsamblarTop = new System.Windows.Forms.Panel();
             this.lblEnsamblar = new System.Windows.Forms.Label();
             this.panelContainerAgregarAdicional = new System.Windows.Forms.Panel();
-            this.btnAgregarAdicional = new System.Windows.Forms.Button();
             this.btnMostrarProductosAgregarAdicionales = new System.Windows.Forms.Button();
             this.IBAgregarAdicional = new FontAwesome.Sharp.IconButton();
             this.panelContainerAgregarAdicionalesTop = new System.Windows.Forms.Panel();
             this.lblAgregarAdicionales = new System.Windows.Forms.Label();
             this.panelContainerAlfombrar = new System.Windows.Forms.Panel();
-            this.btnAlfombrar = new System.Windows.Forms.Button();
             this.btnMostrarProductosAlfombrar = new System.Windows.Forms.Button();
             this.IBAlfombrar = new FontAwesome.Sharp.IconButton();
             this.panelContainerTopAlfombrar = new System.Windows.Forms.Panel();
             this.lblAlfombrar = new System.Windows.Forms.Label();
             this.panelContainerBarnizar = new System.Windows.Forms.Panel();
-            this.btnBarnizar = new System.Windows.Forms.Button();
             this.btnMostrarProductosBarnizar = new System.Windows.Forms.Button();
             this.IBBarnizar = new FontAwesome.Sharp.IconButton();
             this.panelContainerTopBarnizar = new System.Windows.Forms.Panel();
             this.lblBarnizar = new System.Windows.Forms.Label();
             this.panelContainerLijar = new System.Windows.Forms.Panel();
-            this.btnLijar = new System.Windows.Forms.Button();
             this.btnMostarProductosLijar = new System.Windows.Forms.Button();
             this.iBLijarMaderas = new FontAwesome.Sharp.IconButton();
             this.panelContainerTopLijar = new System.Windows.Forms.Panel();
             this.lblLijarMaderas = new System.Windows.Forms.Label();
             this.lblLineaProduccion = new System.Windows.Forms.Label();
-            this.cmbProcesoFabrica = new System.Windows.Forms.ComboBox();
-            this.lblProcesoFabrica = new System.Windows.Forms.Label();
-            this.btnEjecutarProceso = new System.Windows.Forms.Button();
             this.tabPageAgregarProducto = new System.Windows.Forms.TabPage();
             this.nudCantidadInsumos = new System.Windows.Forms.NumericUpDown();
             this.lblPedido = new System.Windows.Forms.Label();
@@ -106,8 +92,6 @@ namespace VistaProyecto
             this.tabControlFabrica.SuspendLayout();
             this.tabPageLineaProduccion.SuspendLayout();
             this.panelDesktop.SuspendLayout();
-            this.panelContainerCompleto.SuspendLayout();
-            this.panelContainerTopCompleto.SuspendLayout();
             this.panelContainerEnsamblar.SuspendLayout();
             this.panelContainerEnsamblarTop.SuspendLayout();
             this.panelContainerAgregarAdicional.SuspendLayout();
@@ -144,9 +128,6 @@ namespace VistaProyecto
             // 
             this.tabPageLineaProduccion.BackColor = System.Drawing.Color.LightCyan;
             this.tabPageLineaProduccion.Controls.Add(this.panelDesktop);
-            this.tabPageLineaProduccion.Controls.Add(this.cmbProcesoFabrica);
-            this.tabPageLineaProduccion.Controls.Add(this.lblProcesoFabrica);
-            this.tabPageLineaProduccion.Controls.Add(this.btnEjecutarProceso);
             this.tabPageLineaProduccion.Location = new System.Drawing.Point(4, 22);
             this.tabPageLineaProduccion.Name = "tabPageLineaProduccion";
             this.tabPageLineaProduccion.Padding = new System.Windows.Forms.Padding(3);
@@ -156,7 +137,6 @@ namespace VistaProyecto
             // 
             // panelDesktop
             // 
-            this.panelDesktop.Controls.Add(this.panelContainerCompleto);
             this.panelDesktop.Controls.Add(this.panelContainerEnsamblar);
             this.panelDesktop.Controls.Add(this.panelContainerAgregarAdicional);
             this.panelDesktop.Controls.Add(this.panelContainerAlfombrar);
@@ -168,92 +148,10 @@ namespace VistaProyecto
             this.panelDesktop.Size = new System.Drawing.Size(1136, 573);
             this.panelDesktop.TabIndex = 10;
             // 
-            // panelContainerCompleto
-            // 
-            this.panelContainerCompleto.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContainerCompleto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContainerCompleto.Controls.Add(this.btnDespachar);
-            this.panelContainerCompleto.Controls.Add(this.btnMostrarProductosCompletos);
-            this.panelContainerCompleto.Controls.Add(this.IBCompleto);
-            this.panelContainerCompleto.Controls.Add(this.panelContainerTopCompleto);
-            this.panelContainerCompleto.Location = new System.Drawing.Point(621, 325);
-            this.panelContainerCompleto.Name = "panelContainerCompleto";
-            this.panelContainerCompleto.Size = new System.Drawing.Size(229, 233);
-            this.panelContainerCompleto.TabIndex = 24;
-            // 
-            // btnDespachar
-            // 
-            this.btnDespachar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.btnDespachar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnDespachar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDespachar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDespachar.Location = new System.Drawing.Point(0, 145);
-            this.btnDespachar.Name = "btnDespachar";
-            this.btnDespachar.Size = new System.Drawing.Size(227, 43);
-            this.btnDespachar.TabIndex = 12;
-            this.btnDespachar.Text = "Despachar";
-            this.btnDespachar.UseVisualStyleBackColor = false;
-            // 
-            // btnMostrarProductosCompletos
-            // 
-            this.btnMostrarProductosCompletos.BackColor = System.Drawing.Color.Navy;
-            this.btnMostrarProductosCompletos.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnMostrarProductosCompletos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrarProductosCompletos.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnMostrarProductosCompletos.Location = new System.Drawing.Point(0, 188);
-            this.btnMostrarProductosCompletos.Name = "btnMostrarProductosCompletos";
-            this.btnMostrarProductosCompletos.Size = new System.Drawing.Size(227, 43);
-            this.btnMostrarProductosCompletos.TabIndex = 4;
-            this.btnMostrarProductosCompletos.Text = "Ver Productos";
-            this.btnMostrarProductosCompletos.UseVisualStyleBackColor = false;
-            this.btnMostrarProductosCompletos.Click += new System.EventHandler(this.btnMostrarProductosCompletos_Click);
-            // 
-            // IBCompleto
-            // 
-            this.IBCompleto.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.IBCompleto.FlatAppearance.BorderSize = 0;
-            this.IBCompleto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IBCompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IBCompleto.ForeColor = System.Drawing.Color.Black;
-            this.IBCompleto.IconChar = FontAwesome.Sharp.IconChar.Box;
-            this.IBCompleto.IconColor = System.Drawing.Color.Black;
-            this.IBCompleto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.IBCompleto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.IBCompleto.Location = new System.Drawing.Point(3, 54);
-            this.IBCompleto.Name = "IBCompleto";
-            this.IBCompleto.Padding = new System.Windows.Forms.Padding(10, 20, 20, 0);
-            this.IBCompleto.Size = new System.Drawing.Size(211, 84);
-            this.IBCompleto.TabIndex = 3;
-            this.IBCompleto.Text = "Productos a despachar:";
-            this.IBCompleto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.IBCompleto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.IBCompleto.UseVisualStyleBackColor = false;
-            // 
-            // panelContainerTopCompleto
-            // 
-            this.panelContainerTopCompleto.BackColor = System.Drawing.Color.Black;
-            this.panelContainerTopCompleto.Controls.Add(this.lblProductosCompletos);
-            this.panelContainerTopCompleto.Location = new System.Drawing.Point(-1, -1);
-            this.panelContainerTopCompleto.Name = "panelContainerTopCompleto";
-            this.panelContainerTopCompleto.Size = new System.Drawing.Size(229, 49);
-            this.panelContainerTopCompleto.TabIndex = 0;
-            // 
-            // lblProductosCompletos
-            // 
-            this.lblProductosCompletos.AutoSize = true;
-            this.lblProductosCompletos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductosCompletos.ForeColor = System.Drawing.Color.White;
-            this.lblProductosCompletos.Location = new System.Drawing.Point(29, 13);
-            this.lblProductosCompletos.Name = "lblProductosCompletos";
-            this.lblProductosCompletos.Size = new System.Drawing.Size(110, 24);
-            this.lblProductosCompletos.TabIndex = 12;
-            this.lblProductosCompletos.Text = "Despachar";
-            // 
             // panelContainerEnsamblar
             // 
             this.panelContainerEnsamblar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContainerEnsamblar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContainerEnsamblar.Controls.Add(this.btnEnsamblar);
             this.panelContainerEnsamblar.Controls.Add(this.btnMostrarProductosEnsamblar);
             this.panelContainerEnsamblar.Controls.Add(this.IBEnsamblar);
             this.panelContainerEnsamblar.Controls.Add(this.panelContainerEnsamblarTop);
@@ -261,19 +159,6 @@ namespace VistaProyecto
             this.panelContainerEnsamblar.Name = "panelContainerEnsamblar";
             this.panelContainerEnsamblar.Size = new System.Drawing.Size(229, 233);
             this.panelContainerEnsamblar.TabIndex = 23;
-            // 
-            // btnEnsamblar
-            // 
-            this.btnEnsamblar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.btnEnsamblar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnEnsamblar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnsamblar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEnsamblar.Location = new System.Drawing.Point(0, 145);
-            this.btnEnsamblar.Name = "btnEnsamblar";
-            this.btnEnsamblar.Size = new System.Drawing.Size(227, 43);
-            this.btnEnsamblar.TabIndex = 12;
-            this.btnEnsamblar.Text = "Ensamblar";
-            this.btnEnsamblar.UseVisualStyleBackColor = false;
             // 
             // btnMostrarProductosEnsamblar
             // 
@@ -335,7 +220,6 @@ namespace VistaProyecto
             // 
             this.panelContainerAgregarAdicional.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContainerAgregarAdicional.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContainerAgregarAdicional.Controls.Add(this.btnAgregarAdicional);
             this.panelContainerAgregarAdicional.Controls.Add(this.btnMostrarProductosAgregarAdicionales);
             this.panelContainerAgregarAdicional.Controls.Add(this.IBAgregarAdicional);
             this.panelContainerAgregarAdicional.Controls.Add(this.panelContainerAgregarAdicionalesTop);
@@ -343,19 +227,6 @@ namespace VistaProyecto
             this.panelContainerAgregarAdicional.Name = "panelContainerAgregarAdicional";
             this.panelContainerAgregarAdicional.Size = new System.Drawing.Size(229, 233);
             this.panelContainerAgregarAdicional.TabIndex = 22;
-            // 
-            // btnAgregarAdicional
-            // 
-            this.btnAgregarAdicional.BackColor = System.Drawing.Color.MidnightBlue;
-            this.btnAgregarAdicional.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnAgregarAdicional.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarAdicional.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAgregarAdicional.Location = new System.Drawing.Point(0, 145);
-            this.btnAgregarAdicional.Name = "btnAgregarAdicional";
-            this.btnAgregarAdicional.Size = new System.Drawing.Size(227, 43);
-            this.btnAgregarAdicional.TabIndex = 12;
-            this.btnAgregarAdicional.Text = "Agregar Adicionales";
-            this.btnAgregarAdicional.UseVisualStyleBackColor = false;
             // 
             // btnMostrarProductosAgregarAdicionales
             // 
@@ -417,7 +288,6 @@ namespace VistaProyecto
             // 
             this.panelContainerAlfombrar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContainerAlfombrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContainerAlfombrar.Controls.Add(this.btnAlfombrar);
             this.panelContainerAlfombrar.Controls.Add(this.btnMostrarProductosAlfombrar);
             this.panelContainerAlfombrar.Controls.Add(this.IBAlfombrar);
             this.panelContainerAlfombrar.Controls.Add(this.panelContainerTopAlfombrar);
@@ -425,19 +295,6 @@ namespace VistaProyecto
             this.panelContainerAlfombrar.Name = "panelContainerAlfombrar";
             this.panelContainerAlfombrar.Size = new System.Drawing.Size(229, 233);
             this.panelContainerAlfombrar.TabIndex = 21;
-            // 
-            // btnAlfombrar
-            // 
-            this.btnAlfombrar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.btnAlfombrar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnAlfombrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlfombrar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAlfombrar.Location = new System.Drawing.Point(0, 145);
-            this.btnAlfombrar.Name = "btnAlfombrar";
-            this.btnAlfombrar.Size = new System.Drawing.Size(227, 43);
-            this.btnAlfombrar.TabIndex = 12;
-            this.btnAlfombrar.Text = "Alfombrar";
-            this.btnAlfombrar.UseVisualStyleBackColor = false;
             // 
             // btnMostrarProductosAlfombrar
             // 
@@ -498,7 +355,6 @@ namespace VistaProyecto
             // 
             this.panelContainerBarnizar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContainerBarnizar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContainerBarnizar.Controls.Add(this.btnBarnizar);
             this.panelContainerBarnizar.Controls.Add(this.btnMostrarProductosBarnizar);
             this.panelContainerBarnizar.Controls.Add(this.IBBarnizar);
             this.panelContainerBarnizar.Controls.Add(this.panelContainerTopBarnizar);
@@ -506,19 +362,6 @@ namespace VistaProyecto
             this.panelContainerBarnizar.Name = "panelContainerBarnizar";
             this.panelContainerBarnizar.Size = new System.Drawing.Size(229, 233);
             this.panelContainerBarnizar.TabIndex = 20;
-            // 
-            // btnBarnizar
-            // 
-            this.btnBarnizar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.btnBarnizar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnBarnizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBarnizar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnBarnizar.Location = new System.Drawing.Point(0, 145);
-            this.btnBarnizar.Name = "btnBarnizar";
-            this.btnBarnizar.Size = new System.Drawing.Size(227, 43);
-            this.btnBarnizar.TabIndex = 12;
-            this.btnBarnizar.Text = "Barnizar";
-            this.btnBarnizar.UseVisualStyleBackColor = false;
             // 
             // btnMostrarProductosBarnizar
             // 
@@ -580,7 +423,6 @@ namespace VistaProyecto
             // 
             this.panelContainerLijar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContainerLijar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContainerLijar.Controls.Add(this.btnLijar);
             this.panelContainerLijar.Controls.Add(this.btnMostarProductosLijar);
             this.panelContainerLijar.Controls.Add(this.iBLijarMaderas);
             this.panelContainerLijar.Controls.Add(this.panelContainerTopLijar);
@@ -588,21 +430,6 @@ namespace VistaProyecto
             this.panelContainerLijar.Name = "panelContainerLijar";
             this.panelContainerLijar.Size = new System.Drawing.Size(229, 233);
             this.panelContainerLijar.TabIndex = 19;
-            // 
-            // btnLijar
-            // 
-            this.btnLijar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.btnLijar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnLijar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLijar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnLijar.Location = new System.Drawing.Point(0, 145);
-            this.btnLijar.Name = "btnLijar";
-            this.btnLijar.Size = new System.Drawing.Size(227, 43);
-            this.btnLijar.TabIndex = 12;
-            this.btnLijar.Text = "Lijar";
-            this.btnLijar.UseVisualStyleBackColor = false;
-            this.btnLijar.VisibleChanged += new System.EventHandler(this.Actualizar);
-            this.btnLijar.Click += new System.EventHandler(this.btnLijar_Click);
             // 
             // btnMostarProductosLijar
             // 
@@ -669,37 +496,6 @@ namespace VistaProyecto
             this.lblLineaProduccion.Size = new System.Drawing.Size(234, 29);
             this.lblLineaProduccion.TabIndex = 18;
             this.lblLineaProduccion.Text = "Linea de Producción";
-            // 
-            // cmbProcesoFabrica
-            // 
-            this.cmbProcesoFabrica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbProcesoFabrica.FormattingEnabled = true;
-            this.cmbProcesoFabrica.Location = new System.Drawing.Point(299, 656);
-            this.cmbProcesoFabrica.Name = "cmbProcesoFabrica";
-            this.cmbProcesoFabrica.Size = new System.Drawing.Size(121, 21);
-            this.cmbProcesoFabrica.TabIndex = 9;
-            this.cmbProcesoFabrica.Visible = false;
-            // 
-            // lblProcesoFabrica
-            // 
-            this.lblProcesoFabrica.AutoSize = true;
-            this.lblProcesoFabrica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProcesoFabrica.Location = new System.Drawing.Point(31, 657);
-            this.lblProcesoFabrica.Name = "lblProcesoFabrica";
-            this.lblProcesoFabrica.Size = new System.Drawing.Size(236, 20);
-            this.lblProcesoFabrica.TabIndex = 8;
-            this.lblProcesoFabrica.Text = "Seleccione el proceso a realizar:";
-            this.lblProcesoFabrica.Visible = false;
-            // 
-            // btnEjecutarProceso
-            // 
-            this.btnEjecutarProceso.Location = new System.Drawing.Point(439, 656);
-            this.btnEjecutarProceso.Name = "btnEjecutarProceso";
-            this.btnEjecutarProceso.Size = new System.Drawing.Size(162, 40);
-            this.btnEjecutarProceso.TabIndex = 7;
-            this.btnEjecutarProceso.Text = "Ejecutar Proceso";
-            this.btnEjecutarProceso.UseVisualStyleBackColor = true;
-            this.btnEjecutarProceso.Visible = false;
             // 
             // tabPageAgregarProducto
             // 
@@ -1117,12 +913,8 @@ namespace VistaProyecto
             this.Load += new System.EventHandler(this.FormFabrica_Load);
             this.tabControlFabrica.ResumeLayout(false);
             this.tabPageLineaProduccion.ResumeLayout(false);
-            this.tabPageLineaProduccion.PerformLayout();
             this.panelDesktop.ResumeLayout(false);
             this.panelDesktop.PerformLayout();
-            this.panelContainerCompleto.ResumeLayout(false);
-            this.panelContainerTopCompleto.ResumeLayout(false);
-            this.panelContainerTopCompleto.PerformLayout();
             this.panelContainerEnsamblar.ResumeLayout(false);
             this.panelContainerEnsamblarTop.ResumeLayout(false);
             this.panelContainerEnsamblarTop.PerformLayout();
@@ -1190,42 +982,28 @@ namespace VistaProyecto
         private System.Windows.Forms.Button btnSolicitarFaltantes;
         private System.Windows.Forms.Label lblFaltantes;
         private System.Windows.Forms.NumericUpDown nudCantidadInsumos;
-        private System.Windows.Forms.ComboBox cmbProcesoFabrica;
-        private System.Windows.Forms.Label lblProcesoFabrica;
-        private System.Windows.Forms.Button btnEjecutarProceso;
         private System.Windows.Forms.Panel panelDesktop;
-        private System.Windows.Forms.Panel panelContainerCompleto;
-        private System.Windows.Forms.Button btnDespachar;
-        private System.Windows.Forms.Button btnMostrarProductosCompletos;
-        private FontAwesome.Sharp.IconButton IBCompleto;
-        private System.Windows.Forms.Panel panelContainerTopCompleto;
-        private System.Windows.Forms.Label lblProductosCompletos;
         private System.Windows.Forms.Panel panelContainerEnsamblar;
-        private System.Windows.Forms.Button btnEnsamblar;
         private System.Windows.Forms.Button btnMostrarProductosEnsamblar;
         private FontAwesome.Sharp.IconButton IBEnsamblar;
         private System.Windows.Forms.Panel panelContainerEnsamblarTop;
         private System.Windows.Forms.Label lblEnsamblar;
         private System.Windows.Forms.Panel panelContainerAgregarAdicional;
-        private System.Windows.Forms.Button btnAgregarAdicional;
         private System.Windows.Forms.Button btnMostrarProductosAgregarAdicionales;
         private FontAwesome.Sharp.IconButton IBAgregarAdicional;
         private System.Windows.Forms.Panel panelContainerAgregarAdicionalesTop;
         private System.Windows.Forms.Label lblAgregarAdicionales;
         private System.Windows.Forms.Panel panelContainerAlfombrar;
-        private System.Windows.Forms.Button btnAlfombrar;
         private System.Windows.Forms.Button btnMostrarProductosAlfombrar;
         private FontAwesome.Sharp.IconButton IBAlfombrar;
         private System.Windows.Forms.Panel panelContainerTopAlfombrar;
         private System.Windows.Forms.Label lblAlfombrar;
         private System.Windows.Forms.Panel panelContainerBarnizar;
-        private System.Windows.Forms.Button btnBarnizar;
         private System.Windows.Forms.Button btnMostrarProductosBarnizar;
         private FontAwesome.Sharp.IconButton IBBarnizar;
         private System.Windows.Forms.Panel panelContainerTopBarnizar;
         private System.Windows.Forms.Label lblBarnizar;
         private System.Windows.Forms.Panel panelContainerLijar;
-        private System.Windows.Forms.Button btnLijar;
         private System.Windows.Forms.Button btnMostarProductosLijar;
         private FontAwesome.Sharp.IconButton iBLijarMaderas;
         private System.Windows.Forms.Panel panelContainerTopLijar;

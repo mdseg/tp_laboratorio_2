@@ -29,7 +29,7 @@ namespace Entidades.Reportes
                 Document doc = new Document(PageSize.LETTER, 10, 10, 14, 14);
                 PdfWriter PW = PdfWriter.GetInstance(doc, fs);
 
-
+                List<Insumo> stockInsumos = fabrica.ServicioInsumo.GetAll();
 
 
                 doc.Open();
@@ -45,12 +45,12 @@ namespace Entidades.Reportes
                 doc.Add(Chunk.NEWLINE);
 
 
-                if (fabrica.LineaProduccion.Count > 0)
+                if (fabrica.ServicioProducto.GetAllProductosLineaProduccion().Count > 0)
                 {
 
                     doc.Add(new Paragraph("Informe linea de Producción"));
                     doc.Add(Chunk.NEWLINE);
-                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.ServicioProducto.GetAll(), standarFont, true);
+                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.ServicioProducto.GetAllProductosLineaProduccion(), standarFont, true);
                     doc.Add(tblLineaProduccion);
                 }
                 else
@@ -60,11 +60,11 @@ namespace Entidades.Reportes
                 doc.Add(Chunk.NEWLINE);
                 doc.Add(Chunk.NEWLINE);
 
-                if (fabrica.StockProductosTerminados.Count > 0)
+                if (fabrica.ServicioProducto.GetAllProductosByEstado(EEstado.Completo).Count > 0)
                 {
                     doc.Add(new Paragraph("Informe stock de Productos terminados"));
                     doc.Add(Chunk.NEWLINE);
-                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.StockProductosTerminados, standarFont, false);
+                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.ServicioProducto.GetAllProductosByEstado(EEstado.Completo), standarFont, false);
                     doc.Add(tblLineaProduccion);
                 }
                 else
@@ -74,13 +74,13 @@ namespace Entidades.Reportes
                 doc.Add(Chunk.NEWLINE);
                 doc.Add(Chunk.NEWLINE);
 
-                if (Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Madera) > 0)
+                if (Insumo.CountInsumoType(stockInsumos, ETipoInsumo.Madera) > 0)
                 {
                     parrafoTitulo = new Paragraph("Informe maderas");
                     parrafoTitulo.Alignment = Element.ALIGN_CENTER;
                     doc.Add(parrafoTitulo);
                     doc.Add(Chunk.NEWLINE);
-                    PdfPTable tblMadera = crearTablaInsumos(fabrica.StockInsumos, ETipoInforme.Madera, standarFont);
+                    PdfPTable tblMadera = crearTablaInsumos(stockInsumos, ETipoInforme.Madera, standarFont);
                     doc.Add(tblMadera);
                 }
                 else
@@ -90,13 +90,13 @@ namespace Entidades.Reportes
                 doc.Add(Chunk.NEWLINE);
                 doc.Add(Chunk.NEWLINE);
 
-                if (Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tela) > 0)
+                if (Insumo.CountInsumoType(stockInsumos, ETipoInsumo.Tela) > 0)
                 {
                     parrafoTitulo = new Paragraph("Informe Telas");
                     parrafoTitulo.Alignment = Element.ALIGN_CENTER;
                     doc.Add(parrafoTitulo);
                     doc.Add(Chunk.NEWLINE);
-                    PdfPTable tblTela = crearTablaInsumos(fabrica.StockInsumos, ETipoInforme.Tela, standarFont);
+                    PdfPTable tblTela = crearTablaInsumos(stockInsumos, ETipoInforme.Tela, standarFont);
                     doc.Add(tblTela);
                 }
                 else
@@ -108,10 +108,10 @@ namespace Entidades.Reportes
 
                 doc.Add(new Paragraph("Otros Insumos"));
                 doc.Add(Chunk.NEWLINE);
-                doc.Add(new Paragraph($"Cantidad de Yute disponible: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Yute)}"));
-                doc.Add(new Paragraph($"Cantidad de Tornillos disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tornillo)}"));
-                doc.Add(new Paragraph($"Cantidad de Barniz disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Barniz)}"));
-                doc.Add(new Paragraph($"Cantidad de Pegamento disponibles: {Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Pegamento)}"));
+                doc.Add(new Paragraph($"Cantidad de Yute disponible: {Insumo.CountInsumoType(stockInsumos, ETipoInsumo.Yute)}"));
+                doc.Add(new Paragraph($"Cantidad de Tornillos disponibles: {Insumo.CountInsumoType(stockInsumos, ETipoInsumo.Tornillo)}"));
+                doc.Add(new Paragraph($"Cantidad de Barniz disponibles: {Insumo.CountInsumoType(stockInsumos, ETipoInsumo.Barniz)}"));
+                doc.Add(new Paragraph($"Cantidad de Pegamento disponibles: {Insumo.CountInsumoType(stockInsumos, ETipoInsumo.Pegamento)}"));
 
                 doc.Close();
                 PW.Close();

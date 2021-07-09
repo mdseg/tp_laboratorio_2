@@ -172,7 +172,7 @@ namespace Entidades.Repositories
             return estantes;
         }
 
-        public List<Estante> GetAllByEstadoNotIn(EEstado estado)
+        public List<Estante> GetAllByEstadoNotInCompletoAndDespachado()
         {
             List<Estante> estantes = new List<Estante>();
 
@@ -188,10 +188,8 @@ namespace Entidades.Repositories
                 command.CommandType = System.Data.CommandType.Text;
                 command.Connection = connection;
 
-                int numero = Convert.ToInt32(estado);
 
-                command.CommandText = string.Format($"SELECT* FROM {table} WHERE NOT [estadoProducto] = @numero");
-                command.Parameters.AddWithValue("@numero", numero);
+                command.CommandText = string.Format($"SELECT * FROM {table} WHERE NOT [estadoProducto] BETWEEN 5 AND 6");
 
                 SqlDataReader dataReader = command.ExecuteReader();
 

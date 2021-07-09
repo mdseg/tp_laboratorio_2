@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entidades.Services
 {
+    public delegate void ProductoModificado();
+
     public class ProductoService
     {
         private IRepository<Torre> torresRepo;
@@ -15,13 +17,28 @@ namespace Entidades.Services
         private IRepository<Madera> maderaRepo;
         private IRepository<Tela> telasRepo;
 
+        public event ProductoModificado avisoProducto;
+        bool lanzarEvento;
+
+        public bool LanzarEvento
+        {
+            get
+            {
+                return this.lanzarEvento;
+            }
+            set
+            {
+                this.lanzarEvento = value;
+            }
+        }
 
         public ProductoService(string connectionStr)
         {
             this.torresRepo = new RepositoryTorreSQL(connectionStr,"Torre");
             this.estantesRepo = new RepositoryEstanteSQL(connectionStr,"Estante");
-            this.maderaRepo = new RepositoryMaderaSQL(connectionStr, "MaderaProdcuto");
-            this.telasRepo = new RepositoryTelaSQL(connectionStr, "TelaProdcuto");
+            this.maderaRepo = new RepositoryMaderaSQL(connectionStr, "MaderaProducto");
+            this.telasRepo = new RepositoryTelaSQL(connectionStr, "TelaProducto");
+            this.LanzarEvento = true;
         }
 
         public void CreateEntity(Producto producto)
@@ -36,6 +53,7 @@ namespace Entidades.Services
                 {
                     estantesRepo.Create((Estante)producto);
                 }
+                EmitirEvento();
             }
             catch (Exception e)
             {
@@ -51,6 +69,7 @@ namespace Entidades.Services
                 {
                     this.CreateEntity(producto);
                 }
+                EmitirEvento();
             }
         }
 
@@ -87,6 +106,7 @@ namespace Entidades.Services
                 {
                     estantesRepo.Create((Estante)producto);
                 }
+                EmitirEvento();
             }
             catch (Exception e)
             {
@@ -120,6 +140,7 @@ namespace Entidades.Services
                 {
                     estantesRepo.Update((Estante)producto);
                 }
+                EmitirEvento();
             }
             catch (Exception e)
             {
@@ -168,6 +189,48 @@ namespace Entidades.Services
             return listadoProducto;
         }
 
+        public List<Producto> GetAllProductosByEstado(EEstado estado)
+        {
+            List<Producto> listadoProducto = new List<Producto>();
+            try
+            {
+
+                List<Producto> bufferTorres = Producto.ToListProducto(((RepositoryTorreSQL)torresRepo).GetAllByEstado(estado));
+                List<Producto> bufferEstantes = Producto.ToListProducto(((RepositoryEstanteSQL)estantesRepo).GetAllByEstado(estado));
+
+                Producto.ConcatenarProductos(listadoProducto, bufferTorres);
+                Producto.ConcatenarProductos(listadoProducto, bufferEstantes);
+
+            }
+            catch (Exception e)
+            {
+                throw new SQLEntityException("Error al recuperar el listado completo de Productos");
+            }
+
+            return listadoProducto;
+        }
+
+        public List<Producto> GetAllProductosLineaProduccion()
+        {
+            List<Producto> listadoProducto = new List<Producto>();
+            try
+            {
+
+                List<Producto> bufferTorres = Producto.ToListProducto(((RepositoryTorreSQL)torresRepo).GetAllByEstadoNotInCompletoAndDespachado());
+                List<Producto> bufferEstantes = Producto.ToListProducto(((RepositoryEstanteSQL)estantesRepo).GetAllByEstadoNotInCompletoAndDespachado());
+
+                Producto.ConcatenarProductos(listadoProducto, bufferTorres);
+                Producto.ConcatenarProductos(listadoProducto, bufferEstantes);
+
+            }
+            catch (Exception e)
+            {
+                throw new SQLEntityException("Error al recuperar el listado completo de Productos terminados");
+            }
+
+            return listadoProducto;
+        }
+
         public void DeleteAll()
         {
             try
@@ -176,12 +239,28 @@ namespace Entidades.Services
                 ((RepositoryEstanteSQL)estantesRepo).DeleteAll();
                 ((RepositoryMaderaSQL)maderaRepo).DeleteAll();
                 ((RepositoryTelaSQL)telasRepo).DeleteAll();
+                EmitirEvento();
             }
             catch(Exception e)
             {
                 throw new SQLEntityException("Error al eliminar los productos cargados");
             }
 
+        }
+
+        public void EmitirEvento()
+        {
+            if(LanzarEvento)
+            {
+                try
+                {
+                    this.avisoProducto.Invoke();
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
         }
 
     }

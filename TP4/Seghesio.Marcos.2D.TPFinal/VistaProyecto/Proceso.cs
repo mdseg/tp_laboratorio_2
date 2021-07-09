@@ -14,7 +14,6 @@ namespace VistaProyecto
         private int productosAptos;
         private EProceso procesoAsociado;
         private IconButton labelAsociado;
-        private Button btnProceso;
         private Button btnDetalles;
 
         public int ProductosAptos
@@ -48,13 +47,7 @@ namespace VistaProyecto
             }
         }
 
-        public Button BtnProceso
-        {
-            get
-            {
-                return this.btnProceso;
-            }
-        }
+        
 
         public Button BtnDetalles
         {
@@ -65,12 +58,11 @@ namespace VistaProyecto
         }
 
 
-        public Proceso(int productosAptos,EProceso procesoAsociado, IconButton labelAsociado, Button btnProceso, Button btnDetalles)
+        public Proceso(int productosAptos,EProceso procesoAsociado, IconButton labelAsociado, Button btnDetalles)
         {
             this.productosAptos = productosAptos;
             this.procesoAsociado = procesoAsociado;
             this.labelAsociado = labelAsociado;
-            this.btnProceso = btnProceso;
             this.btnDetalles = btnDetalles;
         }
 
@@ -78,13 +70,11 @@ namespace VistaProyecto
         {
             if(this.productosAptos > 0)
             {
-                btnProceso.Enabled = true;
                 btnDetalles.Enabled = true;
                 labelAsociado.Enabled = true;
             }
             else
             {
-                btnProceso.Enabled = false;
                 btnDetalles.Enabled = false;
                 labelAsociado.Enabled = false;
             }

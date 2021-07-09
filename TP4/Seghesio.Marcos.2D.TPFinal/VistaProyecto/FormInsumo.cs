@@ -21,6 +21,8 @@ namespace VistaProyecto
         {
             InitializeComponent();
             this.fabrica = fabrica;
+            this.fabrica.ServicioInsumo.avisoInsumo += ActualizarListaInsumos;
+
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void iBInsumos_Click(object sender, EventArgs e)
         {
-            ActualizarListaInsumos();
+            //ActualizarListaInsumos();
             tabControlInsumos.SelectedTab = tabPageListadoInsumos;
         }
         /// <summary>
@@ -106,8 +108,7 @@ namespace VistaProyecto
             }
 
             fabrica.ServicioInsumo.CreateEntity(bufferInsumo);
-            //fabrica.AgregarInsumosAStock(bufferInsumo);
-            ActualizarListaInsumos();
+            //ActualizarListaInsumos();
             MessageBox.Show("Insumo agregado con éxito", "Agregar insumo", MessageBoxButtons.OK, MessageBoxIcon.Information);            
         }
 

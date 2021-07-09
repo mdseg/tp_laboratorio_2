@@ -12,9 +12,9 @@ namespace Entidades
     {
         private static Fabrica instance;
 
-        private List<Insumo> stockInsumos;
-        private List<Producto> lineaProduccion;
-        private List<Producto> stockProductosTerminados;
+        //private List<Insumo> stockInsumos;
+        //private List<Producto> lineaProduccion;
+        //private List<Producto> stockProductosTerminados;
 
         private ProductoService productoService;
         private InsumoService insumoService;
@@ -35,41 +35,7 @@ namespace Entidades
         public const int CANTIDAD_TELA_ESTANTE = 2;
 
 
-        public List<Insumo> StockInsumos
-        {
-            get
-            {
-                return this.stockInsumos;
-            }
-            set
-            {
-                this.stockInsumos = value;
-            }
-        }
 
-        public List<Producto> LineaProduccion
-        {
-            get
-            {
-                return this.lineaProduccion;
-            }
-            set
-            {
-                this.lineaProduccion = value;
-            }
-        }
-
-        public List<Producto> StockProductosTerminados
-        {
-            get
-            {
-                return this.stockProductosTerminados;
-            }
-            set
-            {
-                this.stockProductosTerminados = value;
-            }
-        }
 
         public ProductoService ServicioProducto
         {
@@ -107,9 +73,6 @@ namespace Entidades
         /// </summary>
         private Fabrica()
         {
-            this.stockInsumos = new List<Insumo>();
-            this.lineaProduccion = new List<Producto>();
-            this.stockProductosTerminados = new List<Producto>();
             this.insumoService = new InsumoService(@"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True");
             this.productoService = new ProductoService(@"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True");
         }
@@ -215,7 +178,6 @@ namespace Entidades
             if (VerificarStockInsumo(prospectoProducto,out insumosFaltantes, out insumosCompletos))
             {
                 SepararInsumos(insumosCompletos);
-                //this.lineaProduccion.Add(prospectoProducto);
                 this.ServicioProducto.CreateEntity(prospectoProducto);
                 output = true;
             }

@@ -42,8 +42,13 @@ namespace Files.Xml
 
             if(File.Exists(pathInsumos) && File.Exists(pathProductos))
             {
+                fabrica.ServicioInsumo.LanzarEvento = false;
+                fabrica.ServicioProducto.LanzarEvento = false;
                 serializadorInsumos.Save(pathInsumos, fabrica.ServicioInsumo.GetAll());
                 serializadorProductos.Save(pathProductos, fabrica.ServicioProducto.GetAll());
+
+                fabrica.ServicioInsumo.LanzarEvento = true;
+                fabrica.ServicioProducto.LanzarEvento = true;
             }
             else
             {
@@ -69,11 +74,15 @@ namespace Files.Xml
                 serializadorProductos.Read(pathProductos, out listadoProductos);
 
 
-
+                fabrica.ServicioInsumo.LanzarEvento = false;
+                fabrica.ServicioProducto.LanzarEvento = false;
                 fabrica.ResetearFabrica();
 
                 fabrica.ServicioInsumo.CreateEntity(insumosStock);
                 fabrica.ServicioProducto.CreateEntity(listadoProductos);
+
+                fabrica.ServicioInsumo.LanzarEvento = true;
+                fabrica.ServicioProducto.LanzarEvento = true;
             }
             catch(Exception e)
             {

@@ -8,17 +8,34 @@ using System.Threading.Tasks;
 
 namespace Entidades.Services
 {
+    public delegate void InsumoModificado();
+
     public class InsumoService
     {
         private IRepository<Madera> maderaRepo;
         private IRepository<Tela> telasRepo;
         private IRepository<InsumoAccesorio> accesorioRepo;
+        public event InsumoModificado avisoInsumo;
+        bool lanzarEvento;
+
+        public bool LanzarEvento
+        {
+            get
+            {
+                return this.lanzarEvento;
+            }
+            set
+            {
+                this.lanzarEvento = value;
+            }
+        }
 
         public InsumoService(string connectionStr)
         {
             this.maderaRepo = new RepositoryMaderaSQL(connectionStr,"Madera");
             this.telasRepo = new RepositoryTelaSQL(connectionStr,"Tela");
             this.accesorioRepo = new RepositoryInsumoAccesorioSQL(connectionStr,"InsumoAccesorio");
+            this.LanzarEvento = true;
         }
 
         public void CreateEntity(List<Insumo> listaInsumos)
@@ -31,6 +48,7 @@ namespace Entidades.Services
                     {
                         this.CreateEntity(insumo);
                     }
+                    EmitirEvento();
                 }
             }
             catch (Exception e)
@@ -55,6 +73,7 @@ namespace Entidades.Services
 
                         this.UpdateEntity(insumoBD);
                         insumoExistente = true;
+                        break;
                     }
                 }
                 if(!insumoExistente)
@@ -72,7 +91,8 @@ namespace Entidades.Services
                         accesorioRepo.Create((InsumoAccesorio)insumo);
                     }
                 }
-                
+                EmitirEvento();
+
             }
             catch(Exception e)
             {
@@ -121,6 +141,7 @@ namespace Entidades.Services
                 {
                     accesorioRepo.Remove((InsumoAccesorio)insumo);
                 }
+                EmitirEvento();
             }
             catch (Exception e)
             {
@@ -205,6 +226,7 @@ namespace Entidades.Services
                 {
                     accesorioRepo.Update((InsumoAccesorio)insumo);
                 }
+                EmitirEvento();
             }
             catch (Exception e)
             {
@@ -275,11 +297,27 @@ namespace Entidades.Services
                 ((RepositoryInsumoAccesorioSQL)accesorioRepo).DeleteAll();
                 ((RepositoryMaderaSQL)maderaRepo).DeleteAll();
                 ((RepositoryTelaSQL)telasRepo).DeleteAll();
+                EmitirEvento();
             } catch (Exception e)
             {
                 throw new SQLEntityException("Error al eliminar el listado completo de Insumos");
             }
 
+        }
+
+        public void EmitirEvento()
+        {
+            if (LanzarEvento)
+            {
+                try
+                {
+                    this.avisoInsumo.Invoke();
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
         }
 
 

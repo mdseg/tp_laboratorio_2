@@ -62,7 +62,7 @@ namespace TestsUnitarios
 
 
 
-            foreach(Insumo i in fabrica.StockInsumos)
+            foreach(Insumo i in fabrica.ServicioInsumo.GetAll())
             {
                 if(i == maderaUno)
                 {

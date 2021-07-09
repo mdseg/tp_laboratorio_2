@@ -41,7 +41,7 @@ namespace Test
             Console.WriteLine("-----------------------------------------------------------------------");
 
 
-            foreach (Insumo i in fabrica.StockInsumos)
+            foreach (Insumo i in fabrica.ServicioInsumo.GetAll())
             {
                 Console.WriteLine(i.Mostrar());
             }
@@ -88,7 +88,7 @@ namespace Test
             Console.WriteLine("-----------------------------------------------------------------------");
 
             Console.WriteLine("--Se itera de nuevo el stock de insumos----------------------------");
-             foreach (Insumo i in fabrica.StockInsumos)
+             foreach (Insumo i in fabrica.ServicioInsumo.GetAll())
             {
                 Console.WriteLine(i.Mostrar());
             }
@@ -116,7 +116,7 @@ namespace Test
             fabrica.AgregarProductoLineaProduccion(productoTorre, out faltantes);
             fabrica.AgregarProductoLineaProduccion(productoEstante, out faltantes);
 
-            foreach(Producto p in fabrica.LineaProduccion)
+            foreach(Producto p in fabrica.ServicioProducto.GetAllProductosLineaProduccion())
             {
                 Console.WriteLine(p.Mostrar());
             }
@@ -141,7 +141,7 @@ namespace Test
 
             fabrica.EjecutarProcesoLineaProduccion(EProceso.Lijar);
 
-            foreach(Producto p in fabrica.LineaProduccion)
+            foreach(Producto p in fabrica.ServicioProducto.GetAllProductosLineaProduccion())
             {
                 Console.WriteLine(p.Mostrar());
             }
@@ -152,7 +152,7 @@ namespace Test
 
             fabrica.EjecutarProcesoLineaProduccion(EProceso.Barnizar);
 
-            foreach (Producto p in fabrica.LineaProduccion)
+            foreach (Producto p in fabrica.ServicioProducto.GetAllProductosLineaProduccion())
             {
                 Console.WriteLine(p.Mostrar());
             }
@@ -163,7 +163,7 @@ namespace Test
 
             fabrica.EjecutarProcesoLineaProduccion(EProceso.Alfombrar);
 
-            foreach (Producto p in fabrica.LineaProduccion)
+            foreach (Producto p in fabrica.ServicioProducto.GetAllProductosLineaProduccion())
             {
                 Console.WriteLine(p.Mostrar());
             }
@@ -174,7 +174,7 @@ namespace Test
             Console.WriteLine("\n----------------Agregar Yute-----------------------------------------");
             fabrica.EjecutarProcesoLineaProduccion(EProceso.AgregarYute);
 
-            foreach (Producto p in fabrica.LineaProduccion)
+            foreach (Producto p in fabrica.ServicioProducto.GetAllProductosLineaProduccion())
             {
                 Console.WriteLine(p.Mostrar());
             }
@@ -185,7 +185,7 @@ namespace Test
             Console.WriteLine("\n----------------Ensamblar--------------------------------------------");
             fabrica.EjecutarProcesoLineaProduccion(EProceso.Ensamblar);
 
-            foreach (Producto p in fabrica.LineaProduccion)
+            foreach (Producto p in fabrica.ServicioProducto.GetAllProductosLineaProduccion())
             {
                 Console.WriteLine(p.Mostrar());
             }
@@ -208,7 +208,7 @@ namespace Test
             Console.WriteLine("-----------------------------------------------------------------------");
 
 
-            foreach (Producto p in fabrica.StockProductosTerminados)
+            foreach (Producto p in fabrica.ServicioProducto.GetAllProductosByEstado(EEstado.Completo))
             {
                 Console.WriteLine(p.Mostrar());
             }
