@@ -23,6 +23,7 @@ namespace VistaProyecto
         {
             this.fabrica = fabrica;
             InitializeComponent();
+            fabrica.ServicioProducto.avisoProducto += ActualizarVistaLineaProduccion;
         }
         /// <summary>
         /// Carga el formulario
@@ -105,6 +106,7 @@ namespace VistaProyecto
         {
             dgProductosTerminados.Visible = visibilidad;
             lblProductosTerminadosVacio.Visible = !visibilidad;
+            btnDespacharProductos.Visible = visibilidad;
         }
 
         private void btnDespacharProductos_Click(object sender, EventArgs e)

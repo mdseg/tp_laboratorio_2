@@ -8,12 +8,25 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Entidades.Reportes
 {
+    public delegate void InformeRealizado(int estado);
+
     public class FabricaReporte
     {
+        public event InformeRealizado actualizacionInforme;
+        private Fabrica fabrica;
+        private string path;
+
+        public FabricaReporte(Fabrica fabrica, string path)
+        {
+            this.fabrica = fabrica;
+            this.path = path;
+        }
+
         /// <summary>
         /// Método encargado de crear en un archivo PDF válido en el directorio proporcionado y extraer la información que obtiene cada atributo
         /// de la clase fábrica.
@@ -21,7 +34,7 @@ namespace Entidades.Reportes
         /// </summary>
         /// <param name="path">ruta que incluye el nombre del archivo pdf a crear</param>
         /// <param name="fabrica"></param>
-        public void CrearReporte(string path, Fabrica fabrica)
+        public void CrearReporte()
         {
             try
             {
@@ -342,7 +355,20 @@ namespace Entidades.Reportes
             return tblInsumo;
         }
 
-      
+        public void GenerarReporte()
+        {
+            this.actualizacionInforme.Invoke(33);
+            Thread.Sleep(3000);
+            this.CrearReporte();
+            this.actualizacionInforme.Invoke(66);
+            Thread.Sleep(3000);
+            this.actualizacionInforme.Invoke(100);
+            Process.Start(path);
+            this.actualizacionInforme.Invoke(120);
+
+        }
+
+
     }
 
     public enum ETipoInforme

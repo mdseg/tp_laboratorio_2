@@ -44,6 +44,8 @@ namespace VistaProyecto
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblTitleChildForm = new System.Windows.Forms.Label();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.pBReporte = new System.Windows.Forms.ProgressBar();
+            this.lblReporteEnCurso = new System.Windows.Forms.Label();
             this.panelLateralIzquierdo.SuspendLayout();
             this.panelTopIzq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
@@ -259,6 +261,8 @@ namespace VistaProyecto
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.DarkCyan;
+            this.panelTop.Controls.Add(this.lblReporteEnCurso);
+            this.panelTop.Controls.Add(this.pBReporte);
             this.panelTop.Controls.Add(this.lblTitleChildForm);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(180, 0);
@@ -287,6 +291,26 @@ namespace VistaProyecto
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(1104, 690);
             this.panelDesktop.TabIndex = 4;
+            // 
+            // pBReporte
+            // 
+            this.pBReporte.Location = new System.Drawing.Point(765, 31);
+            this.pBReporte.Name = "pBReporte";
+            this.pBReporte.Size = new System.Drawing.Size(183, 23);
+            this.pBReporte.TabIndex = 1;
+            this.pBReporte.Visible = false;
+            // 
+            // lblReporteEnCurso
+            // 
+            this.lblReporteEnCurso.AutoSize = true;
+            this.lblReporteEnCurso.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteEnCurso.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblReporteEnCurso.Location = new System.Drawing.Point(601, 31);
+            this.lblReporteEnCurso.Name = "lblReporteEnCurso";
+            this.lblReporteEnCurso.Size = new System.Drawing.Size(140, 18);
+            this.lblReporteEnCurso.TabIndex = 2;
+            this.lblReporteEnCurso.Text = "Preparando reporte:";
+            this.lblReporteEnCurso.Visible = false;
             // 
             // FormPrincipal
             // 
@@ -326,6 +350,8 @@ namespace VistaProyecto
         private FontAwesome.Sharp.IconButton iBCargar;
         private FontAwesome.Sharp.IconButton iBGenerarReporte;
         private FontAwesome.Sharp.IconButton iBLogger;
+        private System.Windows.Forms.ProgressBar pBReporte;
+        private System.Windows.Forms.Label lblReporteEnCurso;
     }
 }
 

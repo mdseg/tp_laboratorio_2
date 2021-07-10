@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+
     [Serializable]
     public class Fabrica
     {
         private static Fabrica instance;
 
-        //private List<Insumo> stockInsumos;
-        //private List<Producto> lineaProduccion;
-        //private List<Producto> stockProductosTerminados;
-
+        
         private ProductoService productoService;
         private InsumoService insumoService;
 

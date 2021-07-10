@@ -13,21 +13,28 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VistaProyecto
 {
+
+
     public partial class FormPrincipal : Form
     {
         private static Fabrica fabricaSingleton;
         private FabricaXmlService serviceXmlFabrica;
         private Logger logger;
+        Thread hilo;
+        FabricaReporte fs;
+
 
         private Form currentChildForm;
 
         public FormPrincipal()
         {
+
             InitializeComponent();
 
         }
@@ -42,6 +49,8 @@ namespace VistaProyecto
             fabricaSingleton = Fabrica.Instance;
             logger = new Logger(AppDomain.CurrentDomain.BaseDirectory + "Logging.txt");
             serviceXmlFabrica = new FabricaXmlService(AppDomain.CurrentDomain.BaseDirectory);
+            fs = new FabricaReporte(fabricaSingleton, $"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf");
+            fs.actualizacionInforme += ActualizarProgressBar;
             OpenChildForm(new FormIntro());
 
 
@@ -187,9 +196,12 @@ namespace VistaProyecto
         {
             try
             {
-                FabricaReporte fs = new FabricaReporte();
-                fs.CrearReporte($"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf", fabricaSingleton);
-                Process.Start($"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf");
+                lblReporteEnCurso.Visible = true;
+                pBReporte.Visible = true;
+                hilo = new Thread(fs.GenerarReporte);
+                hilo.Start();
+
+
             }
             catch (SavePdfException ex)
             {
@@ -206,6 +218,34 @@ namespace VistaProyecto
         private void iBLogger_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormBitacora(logger));
+        }
+
+
+     
+
+        private void ActualizarProgressBar(int valor)
+        {
+            if (lblReporteEnCurso.InvokeRequired)
+            {
+                InformeRealizado delegado = new InformeRealizado(ActualizarProgressBar);
+                object[] objs = new object[] { valor };
+                this.Invoke(delegado, objs);
+            }
+            else
+            {
+                if(valor > 100)
+                {
+                    this.pBReporte.Value = 0;
+                    this.pBReporte.Visible = false;
+                    this.lblReporteEnCurso.Visible = false;
+                }
+                else
+                {
+                    this.pBReporte.Value = valor;
+                }
+
+            }
+
         }
     }
 }

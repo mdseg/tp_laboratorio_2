@@ -31,7 +31,6 @@ namespace VistaProyecto
             controlPaneles = new List<Proceso>();
             this.fabrica.ServicioProducto.avisoProducto += ActualizarVistaLineaProduccion;
 
-
             InitializeComponent();
         }
         /// <summary>
@@ -52,7 +51,10 @@ namespace VistaProyecto
             CargarControlPaneles();
             ActualizarVistaLineaProduccion();
         }
-
+        private void MetodoPrueba(int ingreso, EProceso proceso)
+        {
+            MessageBox.Show($"se han modificado {ingreso} productos");
+        }
 
         /// <summary>
         /// Activa y desactiva controles para el ingreso de un Producto del tipo Torre
