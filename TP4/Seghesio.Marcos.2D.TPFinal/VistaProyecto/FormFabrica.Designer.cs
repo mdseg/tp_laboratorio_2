@@ -59,6 +59,8 @@ namespace VistaProyecto
             this.lblLijarMaderas = new System.Windows.Forms.Label();
             this.lblLineaProduccion = new System.Windows.Forms.Label();
             this.tabPageAgregarProducto = new System.Windows.Forms.TabPage();
+            this.lblSolicitar = new System.Windows.Forms.Label();
+            this.nudInsumos = new System.Windows.Forms.NumericUpDown();
             this.btnSolicitarFaltantes = new System.Windows.Forms.Button();
             this.lblFaltantes = new System.Windows.Forms.Label();
             this.dgFaltantes = new System.Windows.Forms.DataGridView();
@@ -87,6 +89,7 @@ namespace VistaProyecto
             this.panelTop = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
             this.iBLineaProduccion = new FontAwesome.Sharp.IconButton();
+            this.lblSolicitar2 = new System.Windows.Forms.Label();
             this.tabControlFabrica.SuspendLayout();
             this.tabPageLineaProduccion.SuspendLayout();
             this.panelDesktop.SuspendLayout();
@@ -101,6 +104,7 @@ namespace VistaProyecto
             this.panelContainerLijar.SuspendLayout();
             this.panelContainerTopLijar.SuspendLayout();
             this.tabPageAgregarProducto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudInsumos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgFaltantes)).BeginInit();
             this.gbProducto.SuspendLayout();
             this.gbTorre.SuspendLayout();
@@ -497,6 +501,9 @@ namespace VistaProyecto
             // 
             // tabPageAgregarProducto
             // 
+            this.tabPageAgregarProducto.Controls.Add(this.lblSolicitar2);
+            this.tabPageAgregarProducto.Controls.Add(this.lblSolicitar);
+            this.tabPageAgregarProducto.Controls.Add(this.nudInsumos);
             this.tabPageAgregarProducto.Controls.Add(this.btnSolicitarFaltantes);
             this.tabPageAgregarProducto.Controls.Add(this.lblFaltantes);
             this.tabPageAgregarProducto.Controls.Add(this.dgFaltantes);
@@ -511,6 +518,37 @@ namespace VistaProyecto
             this.tabPageAgregarProducto.TabIndex = 1;
             this.tabPageAgregarProducto.Text = "tabPage2";
             this.tabPageAgregarProducto.UseVisualStyleBackColor = true;
+            // 
+            // lblSolicitar
+            // 
+            this.lblSolicitar.AutoSize = true;
+            this.lblSolicitar.Location = new System.Drawing.Point(291, 553);
+            this.lblSolicitar.Name = "lblSolicitar";
+            this.lblSolicitar.Size = new System.Drawing.Size(44, 13);
+            this.lblSolicitar.TabIndex = 18;
+            this.lblSolicitar.Text = "Solicitar";
+            // 
+            // nudInsumos
+            // 
+            this.nudInsumos.Location = new System.Drawing.Point(342, 551);
+            this.nudInsumos.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudInsumos.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudInsumos.Name = "nudInsumos";
+            this.nudInsumos.Size = new System.Drawing.Size(110, 20);
+            this.nudInsumos.TabIndex = 17;
+            this.nudInsumos.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // btnSolicitarFaltantes
             // 
@@ -862,6 +900,15 @@ namespace VistaProyecto
             this.iBLineaProduccion.UseVisualStyleBackColor = false;
             this.iBLineaProduccion.Click += new System.EventHandler(this.IBLineaProduccion_Click);
             // 
+            // lblSolicitar2
+            // 
+            this.lblSolicitar2.AutoSize = true;
+            this.lblSolicitar2.Location = new System.Drawing.Point(464, 553);
+            this.lblSolicitar2.Name = "lblSolicitar2";
+            this.lblSolicitar2.Size = new System.Drawing.Size(145, 13);
+            this.lblSolicitar2.TabIndex = 19;
+            this.lblSolicitar2.Text = "veces los productos faltantes";
+            // 
             // FormFabrica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -895,6 +942,7 @@ namespace VistaProyecto
             this.panelContainerTopLijar.PerformLayout();
             this.tabPageAgregarProducto.ResumeLayout(false);
             this.tabPageAgregarProducto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudInsumos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgFaltantes)).EndInit();
             this.gbProducto.ResumeLayout(false);
             this.gbProducto.PerformLayout();
@@ -969,5 +1017,8 @@ namespace VistaProyecto
         private System.Windows.Forms.Panel panelContainerTopLijar;
         private System.Windows.Forms.Label lblLijarMaderas;
         private System.Windows.Forms.Label lblLineaProduccion;
+        private System.Windows.Forms.NumericUpDown nudInsumos;
+        private System.Windows.Forms.Label lblSolicitar;
+        private System.Windows.Forms.Label lblSolicitar2;
     }
 }

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entidades.Repositories
 {
+    /// <summary>
+    /// Interfaz genérica que indica los métodos mínimimos de interacción con la BD
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IRepository<T>
     {
         List<T> GetAll();
@@ -20,6 +24,5 @@ namespace Entidades.Repositories
 
         int GetMaxId();
 
-        int Count();
     }
 }

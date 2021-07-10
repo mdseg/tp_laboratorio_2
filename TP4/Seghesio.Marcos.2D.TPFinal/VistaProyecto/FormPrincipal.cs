@@ -1,6 +1,6 @@
 ﻿using Entidades;
+using Entidades.Bitacora;
 using Entidades.Exceptions;
-using Entidades.Logger;
 using Entidades.Reportes;
 using Files;
 using Files.Xml;
@@ -49,8 +49,9 @@ namespace VistaProyecto
             fabricaSingleton = Fabrica.Instance;
             logger = new Logger(AppDomain.CurrentDomain.BaseDirectory + "Logging.txt");
             serviceXmlFabrica = new FabricaXmlService(AppDomain.CurrentDomain.BaseDirectory);
-            fs = new FabricaReporte(fabricaSingleton, $"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf");
-            fs.actualizacionInforme += ActualizarProgressBar;
+            fs = new FabricaReporte(fabricaSingleton, $"{AppDomain.CurrentDomain.BaseDirectory}reporte.pdf",logger);
+            fs.ActualizacionInforme += ActualizarProgressBar;
+            fs.EnviarErrorInforme += ManejadorErrorInforme;
             OpenChildForm(new FormIntro());
 
 
@@ -194,20 +195,11 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void iBGenerarReporte_Click(object sender, EventArgs e)
         {
-            try
-            {
                 lblReporteEnCurso.Visible = true;
                 pBReporte.Visible = true;
                 hilo = new Thread(fs.GenerarReporte);
                 hilo.Start();
 
-
-            }
-            catch (SavePdfException ex)
-            {
-                MessageBox.Show("Hubo errores al crear el Pdf del reporte. Verifique que no tenga un reporte abierto actualmente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.saveReport(ex);
-            }
 
         }
         /// <summary>
@@ -220,6 +212,20 @@ namespace VistaProyecto
             OpenChildForm(new FormBitacora(logger));
         }
 
+        public void ManejadorErrorInforme(SavePdfException ex)
+        {
+            if(this.InvokeRequired)
+            {
+                ErrorInforme delegado = new ErrorInforme(ManejadorErrorInforme);
+                object[] objs = new object[] { ex };
+                this.Invoke(delegado, objs);
+            }
+            else
+            {
+                MessageBox.Show("Hubo errores al crear el Pdf del reporte. Verifique que no tenga un reporte abierto actualmente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.saveReport(ex);
+            }
+        }
 
      
 

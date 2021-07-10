@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entidades.Logger
+namespace Entidades.Bitacora
 {   
     /// <summary>
     /// Clase utilizada para guardar en formato texto las distintas CustomException surgidas utilizando un objeto que implementa la interfaz IFile

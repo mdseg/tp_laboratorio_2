@@ -7,16 +7,26 @@ using System.Threading.Tasks;
 
 namespace Entidades.Repositories
 {
+     /// <summary>
+     /// Clase derivada que recibe la clase Madera como parámetro
+     /// </summary>
     public class RepositoryMaderaSQL : RepositoryBase<Madera>
     {
-
+        // <summary>
+        /// Unico contructor con parametros que configura la conexion y la tabla de referencia
+        /// </summary>
+        /// <param name="connectionStr"></param>
+        /// <param name="table"></param>
         public RepositoryMaderaSQL(string connectionString, string table)
         :base(connectionString,table)
         {
-            this.table = table;
-        }
 
-        public override int Count()
+        }
+        /// <summary>
+        /// Devuelve la cantidad de registros presente en la tabla
+        /// </summary>
+        /// <returns></returns>
+        public int Count()
         {
             int output = 0;
 
@@ -35,7 +45,7 @@ namespace Entidades.Repositories
 
                     SqlDataReader dataReader = command.ExecuteReader();
 
-                    if (dataReader.Read() == false)
+                   if (dataReader.Read() == false)
                     {
                         throw new Exception("Customer no encontrada");
                     }
@@ -48,7 +58,10 @@ namespace Entidades.Repositories
             }
             return output;
         }
-
+        /// <summary>
+        /// Insera en la BD un registro del tipo Madera
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Create(Madera entity)
         {
             int columnasAfectadas = 0;
@@ -78,7 +91,9 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Elimina todos los elementos de la tabla
+        /// </summary>
         public override void DeleteAll()
         {
             try
@@ -101,7 +116,10 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Obtiene todos los registros de la tabla
+        /// </summary>
+        /// <returns></returns>
         public override List<Madera> GetAll()
         {
             List<Madera> maderas = new List<Madera>();
@@ -140,7 +158,11 @@ namespace Entidades.Repositories
             }
             return maderas;
         }
-
+        /// <summary>
+        /// Obtiene un elemento del tipo Madera filtrando por Id
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         public override Madera GetById(long entityId)
         {
             Madera madera = null;
@@ -170,7 +192,10 @@ namespace Entidades.Repositories
             connection.Close();
             return madera;
         }
-
+        /// <summary>
+        /// Obtiene el maximo id presente en la tabla
+        /// </summary>
+        /// <returns></returns>
         public override int GetMaxId()
         {
             int id = 0;
@@ -199,7 +224,10 @@ namespace Entidades.Repositories
             return id;
     
         }
-
+        /// <summary>
+        /// Elimina un registro de la tabla
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Remove(Madera entity)
         {
             try
@@ -223,7 +251,10 @@ namespace Entidades.Repositories
             }
 
         }
-
+        /// <summary>
+        /// Actualiza un registro de la tabla
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Update(Madera entity)
         {
             int columnasAfectadas = 0;

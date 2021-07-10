@@ -7,15 +7,26 @@ using System.Threading.Tasks;
 
 namespace Entidades.Repositories
 {
+     /// <summary>
+     /// Clase derivada que recibe la clase InsumoAccesorio como parámetro
+     /// </summary>
     public class RepositoryInsumoAccesorioSQL : RepositoryBase<InsumoAccesorio>
     {
 
+        /// <summary>
+        /// Unico contructor con parametros que configura la conexion y la tabla de referencia
+        /// <param name="connectionStr"></param>
+        /// <param name="table"></param>
         public RepositoryInsumoAccesorioSQL(string connectionString,string table)
         :base(connectionString,table)
         {
 
         }
 
+        /// <summary>
+        /// Inserta en la BD un Producto del tipo InsumoAccesorio
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Create(InsumoAccesorio entity)
         {
             int columnasAfectadas = 0;
@@ -42,7 +53,10 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Obtiene el mayor id presente en la tabla
+        /// </summary>
+        /// <returns></returns>
         public override int GetMaxId()
         {
             int id = 0;
@@ -71,7 +85,10 @@ namespace Entidades.Repositories
             return id;
 
         }
-
+        /// <summary>
+        /// Obtiene todos los registros de la tabla Estante
+        /// </summary>
+        /// <returns></returns>
         public override List<InsumoAccesorio> GetAll()
         {
             List<InsumoAccesorio> insumoAccesorios = new List<InsumoAccesorio>();
@@ -109,7 +126,11 @@ namespace Entidades.Repositories
             }
             return insumoAccesorios;
         }
-
+        /// <summary>
+        /// Obtiene un elemento del tipo InsumoAcceosrio filtrando por id
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         public override InsumoAccesorio GetById(long entityId)
         {
             InsumoAccesorio insumoAccesorio = null;
@@ -138,7 +159,10 @@ namespace Entidades.Repositories
             connection.Close();
             return insumoAccesorio;
         }
-
+        /// <summary>
+        /// Elimina de la BD un registro
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Remove(InsumoAccesorio entity)
         {
             try
@@ -162,7 +186,10 @@ namespace Entidades.Repositories
             }
 
         }
-
+        /// <summary>
+        /// Actualiza un registro de la BD
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Update(InsumoAccesorio entity)
         {
             int columnasAfectadas = 0;
@@ -192,8 +219,11 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
-        public override int Count()
+        /// <summary>
+        /// Devuelve la cantidad de registros de la tabla
+        /// </summary>
+        /// <returns></returns>
+        public int Count()
         {
             int output = 0;
 
@@ -227,7 +257,9 @@ namespace Entidades.Repositories
             }
             return output;
         }
-
+        /// <summary>
+        /// Elimina todos los elementos de la tabla
+        /// </summary>
         public override void DeleteAll()
         {
             try
@@ -250,7 +282,11 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Suma todos los registros de un tipo específico recibido por parámetro
+        /// </summary>
+        /// <param name="tipoAccesorio"></param>
+        /// <returns></returns>
         public int SumTipoInsumoAccesorio(ETipoAccesorio tipoAccesorio)
         {
             int output = 0;
@@ -283,7 +319,11 @@ namespace Entidades.Repositories
             return output;
 
         }
-
+        /// <summary>
+        /// Recibe un registro de la tabla filtrando por tipoDeAccesosrio
+        /// </summary>
+        /// <param name="tipoAccesorioInput"></param>
+        /// <returns></returns>
         public InsumoAccesorio GetByTipoAccesorio(ETipoAccesorio tipoAccesorioInput)
         {
             InsumoAccesorio insumoAccesorio = null;

@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public delegate void ProcesoConcluido();
+    public delegate void ModificacionFabrica();
 
     [Serializable]
     public class Fabrica
     {
         private static Fabrica instance;
-        public static event ProcesoConcluido ProcesoFin;
+        public event ModificacionFabrica CambioRealizado;
 
         private ProductoService productoService;
         private InsumoService insumoService;
+        bool lanzarEventos;
 
         public const int CANTIDAD_TORNILLOS_TORRE = 16;
         public const int CANTIDAD_BARNIZ_TORRE = 3;
@@ -52,6 +53,17 @@ namespace Entidades
             }
         }
 
+        public bool LanzarEventos
+        {
+            get
+            {
+                return this.lanzarEventos;
+            }
+            set
+            {
+                this.lanzarEventos = value;
+            }
+        }
 
         /// <summary>
         /// Propiedad que devuelve una instancia de Fabrica, permitiendose solo en una ocasion instanciar la clase
@@ -74,6 +86,7 @@ namespace Entidades
         {
             this.insumoService = new InsumoService(@"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True");
             this.productoService = new ProductoService(@"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True");
+            this.LanzarEventos = true;
         }
         /// <summary>
         /// Método que recibe un producto, añade los Insumos adicionales necesarios para su fabriación, retorna true si puede fabricarse el producto y false si no es posible por falta
@@ -161,6 +174,7 @@ namespace Entidades
 
                             
             }
+            EmitirEvento();
         }
         /// <summary>
         /// Método que recibe un producto a fabricar y en el caso que el método VerificarStockInsumo de true va a separar los insumos necesarios del inventario
@@ -179,6 +193,7 @@ namespace Entidades
                 SepararInsumos(insumosCompletos);
                 this.ServicioProducto.CreateEntity(prospectoProducto);
                 output = true;
+                EmitirEvento();
             }
             else
             {
@@ -198,8 +213,8 @@ namespace Entidades
             if(!(insumo is null))
             {
                 insumoService.CreateEntity(insumo);
-                //this.stockInsumos +=insumo;
                 output = true;
+                EmitirEvento();
             }
             return output;
         }
@@ -218,6 +233,7 @@ namespace Entidades
                     output++;
                 }
             }
+            EmitirEvento();
             return output;
         }
         /// <summary>
@@ -272,7 +288,7 @@ namespace Entidades
                 }
                 if(output > 0)
                 {
-                    //Fabrica.ProcesoFin.Invoke();
+                    EmitirEvento();
                 }
             }
             else
@@ -291,6 +307,7 @@ namespace Entidades
         {
             this.productoService.DeleteAll();
             this.insumoService.DeleteAll();
+            EmitirEvento();
         }
         /// <summary>
         /// Itera la lista de linea de producción, separando los productos que esten en estado Completo
@@ -308,7 +325,7 @@ namespace Entidades
                     output++;
                 }
             }
-
+            EmitirEvento();
             return output;
         }
 
@@ -379,7 +396,21 @@ namespace Entidades
             return output;
         }
 
+        public void EmitirEvento()
+        {
+            if(this.lanzarEventos)
+            {
+                try
+                {
+                    this.CambioRealizado.Invoke();
+                }
+                catch (Exception e)
+                {
 
+                }
+            }
+
+        }
 
     }
     

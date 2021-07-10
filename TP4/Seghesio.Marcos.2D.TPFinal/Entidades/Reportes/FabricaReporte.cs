@@ -11,20 +11,26 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Entidades.Bitacora;
+
 namespace Entidades.Reportes
 {
     public delegate void InformeRealizado(int estado);
+    public delegate void ErrorInforme(SavePdfException ex);
 
     public class FabricaReporte
     {
-        public event InformeRealizado actualizacionInforme;
+        public event InformeRealizado ActualizacionInforme;
+        public event ErrorInforme EnviarErrorInforme;
         private Fabrica fabrica;
         private string path;
+        private Logger logger;
 
-        public FabricaReporte(Fabrica fabrica, string path)
+        public FabricaReporte(Fabrica fabrica, string path, Logger logger)
         {
             this.fabrica = fabrica;
             this.path = path;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -354,17 +360,30 @@ namespace Entidades.Reportes
             }
             return tblInsumo;
         }
-
+        /// <summary>
+        /// Metodo ejecutado en un hilo secundario que gestiona la generación del informe y se comunica paralelamente con el formulario
+        /// </summary>
         public void GenerarReporte()
         {
-            this.actualizacionInforme.Invoke(33);
+            SavePdfException ex;
+            this.ActualizacionInforme.Invoke(33);
             Thread.Sleep(3000);
-            this.CrearReporte();
-            this.actualizacionInforme.Invoke(66);
-            Thread.Sleep(3000);
-            this.actualizacionInforme.Invoke(100);
-            Process.Start(path);
-            this.actualizacionInforme.Invoke(120);
+            try
+            {
+                this.CrearReporte();
+                this.ActualizacionInforme.Invoke(66);
+                Thread.Sleep(3000);
+                this.ActualizacionInforme.Invoke(100);
+                Process.Start(path);
+                this.ActualizacionInforme.Invoke(120);
+            }
+            catch(Exception e)
+            {
+                ex = new SavePdfException(e.Message);
+                this.ActualizacionInforme.Invoke(120);
+                this.EnviarErrorInforme(ex);
+            }
+
 
         }
 

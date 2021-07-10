@@ -29,8 +29,7 @@ namespace VistaProyecto
         {
             this.fabrica = fabrica;
             controlPaneles = new List<Proceso>();
-            this.fabrica.ServicioProducto.avisoProducto += ActualizarVistaLineaProduccion;
-
+            this.fabrica.CambioRealizado += ActualizarVistaLineaProduccion;
 
             InitializeComponent();
         }
@@ -101,7 +100,7 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            
+
             insumosFaltantes = new List<Insumo>();
 
             CargarCamposProducto();
@@ -124,14 +123,14 @@ namespace VistaProyecto
                 foreach (Insumo i in insumosFaltantes)
                 {
                     string stringInsumo;
-                    if(i is Madera)
+                    if (i is Madera)
                     {
                         stringInsumo = "Madera";
                     }
-                    else if(i is Tela)
+                    else if (i is Tela)
                     {
                         stringInsumo = "Tela";
-                    }                   
+                    }
                     else
                     {
                         stringInsumo = "Insumo Accesorio";
@@ -192,6 +191,9 @@ namespace VistaProyecto
             lblFaltantes.Visible = visibilidad;
             dgFaltantes.Visible = visibilidad;
             btnSolicitarFaltantes.Visible = visibilidad;
+            lblSolicitar.Visible = visibilidad;
+            lblSolicitar2.Visible = visibilidad;
+            nudInsumos.Visible = visibilidad;
         }
 
         /// <summary>
@@ -202,27 +204,28 @@ namespace VistaProyecto
         private void btnSolicitarFaltantes_Click(object sender, EventArgs e)
         {
             List<Insumo> listaFaltantes = new List<Insumo>();
+            Producto producto = bufferProducto.ClonarNuevoProducto();
+
+            foreach (Insumo insumo in insumosFaltantes)
+            {
+                insumo.Cantidad *= (int)nudInsumos.Value;
+            }
 
 
 
 
-            fabrica.ServicioInsumo.LanzarEvento = false;
-            fabrica.ServicioProducto.LanzarEvento = false;
             fabrica.AgregarInsumosAStock(insumosFaltantes);
 
-            fabrica.ServicioInsumo.LanzarEvento = true;
-            fabrica.ServicioProducto.LanzarEvento = true;
+
 
             insumosFaltantes.Clear();
             CambiarVisibilidadControlesFaltantes(false);
             DialogResult result = MessageBox.Show("Pedido de insumos faltantes realizado correctamente. ¿Desea dar de alta el producto ahora que hay insumos suficientes?", "Solicitar faltantes", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
-                fabrica.ServicioInsumo.LanzarEvento = false;
-                fabrica.ServicioProducto.LanzarEvento = false;
-                fabrica.AgregarProductoLineaProduccion(bufferProducto,out listaFaltantes);
-                fabrica.ServicioInsumo.LanzarEvento = true;
-                fabrica.ServicioProducto.LanzarEvento = true;
+
+                fabrica.AgregarProductoLineaProduccion(producto, out listaFaltantes);
+
                 MessageBox.Show("Producto agregado a linea de Producción con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -249,7 +252,7 @@ namespace VistaProyecto
         {
             string mensaje = String.Empty;
             int productosModificados = fabrica.EjecutarProcesoLineaProduccion(proceso);
-            if(productosModificados > 0)
+            if (productosModificados > 0)
             {
                 switch (proceso)
                 {
@@ -286,7 +289,7 @@ namespace VistaProyecto
         {
             int productosDespachados = fabrica.MudarProductosAStockTerminado();
             string mensaje;
-            if(productosDespachados > 0)
+            if (productosDespachados > 0)
             {
                 mensaje = $"Se han despachado {productosDespachados} productos";
             }
@@ -341,7 +344,7 @@ namespace VistaProyecto
         private void ActualizarVistaLineaProduccion()
         {
             List<Producto> productos = new List<Producto>();
-            foreach( Proceso proceso in controlPaneles)
+            foreach (Proceso proceso in controlPaneles)
             {
                 proceso.ProductosAptos = fabrica.CalcularCantidadDeProductosAptosProceso(proceso.ProcesoAsociado, out productos);
                 proceso.LabelAsociado.Text = $"Productos disponibles: {proceso.ProductosAptos}";
@@ -352,11 +355,11 @@ namespace VistaProyecto
         private void CargarControlPaneles()
         {
             List<Producto> productos = new List<Producto>();
-            Proceso controlLijar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Lijar, out productos), EProceso.Lijar,iBLijarMaderas,btnMostarProductosLijar);
-            Proceso controlBarnizar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Barnizar, out productos), EProceso.Barnizar,IBBarnizar,btnMostrarProductosBarnizar);
-            Proceso controlAlfombrar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Alfombrar, out productos), EProceso.Alfombrar,IBAlfombrar,btnMostrarProductosAlfombrar);
-            Proceso controlAgregarAdicional = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.AgregarYute, out productos), EProceso.AgregarYute, IBAgregarAdicional,btnMostrarProductosAgregarAdicionales);
-            Proceso controlEnsamblar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Ensamblar, out productos), EProceso.Ensamblar,IBEnsamblar,btnMostrarProductosEnsamblar);
+            Proceso controlLijar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Lijar, out productos), EProceso.Lijar, iBLijarMaderas, btnMostarProductosLijar);
+            Proceso controlBarnizar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Barnizar, out productos), EProceso.Barnizar, IBBarnizar, btnMostrarProductosBarnizar);
+            Proceso controlAlfombrar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Alfombrar, out productos), EProceso.Alfombrar, IBAlfombrar, btnMostrarProductosAlfombrar);
+            Proceso controlAgregarAdicional = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.AgregarYute, out productos), EProceso.AgregarYute, IBAgregarAdicional, btnMostrarProductosAgregarAdicionales);
+            Proceso controlEnsamblar = new Proceso(fabrica.CalcularCantidadDeProductosAptosProceso(EProceso.Ensamblar, out productos), EProceso.Ensamblar, IBEnsamblar, btnMostrarProductosEnsamblar);
 
 
             controlPaneles.Add(controlLijar);
@@ -372,7 +375,7 @@ namespace VistaProyecto
 
         private void btnMostarProductosLijar_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormDetalles(this,fabrica,EProceso.Lijar));
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Lijar));
         }
 
         /// <summary>
@@ -385,7 +388,7 @@ namespace VistaProyecto
             {
                 formDetalles.Close();
             }
-            
+
             formDetalles = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -394,12 +397,12 @@ namespace VistaProyecto
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            
+
         }
 
         private void btnMostrarProductosBarnizar_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormDetalles(this,fabrica, EProceso.Barnizar));
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Barnizar));
         }
 
         private void btnMostrarProductosAlfombrar_Click(object sender, EventArgs e)
@@ -418,11 +421,6 @@ namespace VistaProyecto
             OpenChildForm(new FormDetalles(this, fabrica, EProceso.Ensamblar));
         }
 
-        private void btnMostrarProductosCompletos_Click(object sender, EventArgs e)
-        {
-            //OpenChildForm(new FormDetalles(this, fabrica, EProceso.Despachar));
-            OpenChildForm(new FormProductosTerminados(fabrica));
-        }
 
         private void Actualizar(object sender, EventArgs e)
         {
@@ -433,6 +431,7 @@ namespace VistaProyecto
         {
             ActualizarVistaLineaProduccion();
         }
-    }
 
+
+    }
 }

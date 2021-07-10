@@ -20,6 +20,7 @@ namespace TestsUnitarios
             List<Insumo> faltantes = new List<Insumo>();
             
             Fabrica fabrica = getFabricaTest(false);
+ 
 
             Producto productoValido = getTorreValido();
             //Act
@@ -270,6 +271,7 @@ namespace TestsUnitarios
         public Fabrica getFabricaTest(bool stockPegamentoCompleto)
         {
             Fabrica fabrica = Fabrica.Instance;
+            fabrica.LanzarEventos = false;
             fabrica.ResetearFabrica();
             Insumo adicionalTres;
             Insumo maderaUno = new Madera(ETipoMadera.Mdf, EForma.Tablon, 10);

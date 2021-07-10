@@ -15,6 +15,7 @@ namespace Entidades
     {
         protected int cantidad;
         protected DateTime fechaIngreso;
+        
 
         public int Cantidad
         {
@@ -40,6 +41,13 @@ namespace Entidades
                 this.fechaIngreso = value;
             }
         }
+
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
         /// <summary>
         /// Constructor sin parámetros
         /// </summary>

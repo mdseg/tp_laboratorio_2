@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 
 namespace Entidades.Repositories
 {
+    /// <summary>
+    /// Clase derivada que recibe la clase Estante como parámetro
+    /// </summary>
     public class RepositoryEstanteSQL : RepositoryBase<Estante>
     {
         private RepositoryBase<Madera> maderasRepo;
         private RepositoryBase<Tela> telasRepo;
 
+        /// <summary>
+        /// Unico contructor con parametros que configura la conexion y la tabla de referencia inicializando los repositorios necesarios
+        /// </summary>
+        /// <param name="connectionStr"></param>
+        /// <param name="table"></param>
         public RepositoryEstanteSQL(string connectionStr,string table)
         : base(connectionStr,table)
         {
@@ -19,11 +27,10 @@ namespace Entidades.Repositories
             this.telasRepo = new RepositoryTelaSQL(connectionStr, "TelaProducto");
         }
 
-        public override int Count()
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Inserta en la BD un Producto del tipo Estante
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Create(Estante entity)
         {
 
@@ -62,7 +69,9 @@ namespace Entidades.Repositories
             }
         }
 
-
+        /// <summary>
+        /// Elimina todos los registros de la tabla de Estante
+        /// </summary>
         public override void DeleteAll()
         {
             try
@@ -85,7 +94,10 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Obtiene todos los registros de la tabla Estante
+        /// </summary>
+        /// <returns></returns>
         public override List<Estante> GetAll()
         {
             List<Estante> estantes = new List<Estante>();
@@ -126,7 +138,11 @@ namespace Entidades.Repositories
             }
             return estantes;
         }
-
+        /// <summary>
+        /// Obtiene todos los registros de un Estado específico
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         public List<Estante> GetAllByEstado(EEstado estado)
         {
             List<Estante> estantes = new List<Estante>();
@@ -171,7 +187,10 @@ namespace Entidades.Repositories
             }
             return estantes;
         }
-
+        /// <summary>
+        /// Obtiene todos los registros que no esten en estado "Completo" o "Despachado"
+        /// </summary>
+        /// <returns></returns>
         public List<Estante> GetAllByEstadoNotInCompletoAndDespachado()
         {
             List<Estante> estantes = new List<Estante>();
@@ -213,7 +232,11 @@ namespace Entidades.Repositories
             }
             return estantes;
         }
-
+        /// <summary>
+        /// Obtiene un registro del tipo Estante filtrando por Id
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         public override Estante GetById(long entityId)
         {
             Estante estante = new Estante();
@@ -242,7 +265,10 @@ namespace Entidades.Repositories
             connection.Close();
             return estante;
         }
-
+        /// <summary>
+        /// Obtiene el mayor id presente en la tabla
+        /// </summary>
+        /// <returns></returns>
         public override int GetMaxId()
         {
             int id = 0;
@@ -271,7 +297,10 @@ namespace Entidades.Repositories
             return id;
 
         }
-
+        /// <summary>
+        /// elimina un registro de la tabla
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Remove(Estante entity)
         {
             try
@@ -297,7 +326,10 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Actualiza un registro de la BD recibiendo un objeto
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Update(Estante entity)
         {
             int columnasAfectadas = 0;

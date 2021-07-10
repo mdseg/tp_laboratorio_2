@@ -7,22 +7,24 @@ using System.Threading.Tasks;
 using static Entidades.Torre;
 
 namespace Entidades.Repositories
-{
+{    /// <summary>
+     /// Clase derivada que recibe la clase Torre como parámetro
+     /// </summary>
     public class RepositoryTorreSQL : RepositoryBase<Torre>
     {
         private RepositoryBase<Madera> maderasRepo;
         private RepositoryBase<Tela> telasRepo;
 
+        /// <summary>
+        /// Unico contructor con parametros que configura la conexion y la tabla de referencia inicializando los repositorios necesarios
+        /// </summary>
+        /// <param name="connectionStr"></param>
+        /// <param name="table"></param>
         public RepositoryTorreSQL(string connectionStr,string table)
         : base(connectionStr,table)
         {
             this.maderasRepo = new RepositoryMaderaSQL(connectionStr,"MaderaProducto");
             this.telasRepo = new RepositoryTelaSQL(connectionStr, "TelaProducto");
-        }
-
-        public override int Count()
-        {
-            throw new NotImplementedException();
         }
 
         public override void Create(Torre entity)
@@ -67,7 +69,10 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Obtiene todos los registros de la tabla Torre
+        /// </summary>
+        /// <returns></returns>
         public override List<Torre> GetAll()
         {
             List<Torre> torres = new List<Torre>();
@@ -112,7 +117,11 @@ namespace Entidades.Repositories
             }
             return torres;
         }
-
+        /// <summary>
+        /// Obtiene un registro del tipo Torre filtrando por Id
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         public override Torre GetById(long entityId)
         {
             Torre torre = new Torre();
@@ -145,8 +154,11 @@ namespace Entidades.Repositories
             return torre;
         }
 
-
-      public override int GetMaxId()
+        /// <summary>
+        /// Obtiene el mayor id presente en la tabla
+        /// </summary>
+        /// <returns></returns>
+        public override int GetMaxId()
         {
             int id = 0;
             try
@@ -174,8 +186,11 @@ namespace Entidades.Repositories
             return id;
 
         }
-    
 
+        /// <summary>
+        /// elimina un registro de la tabla
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Remove(Torre entity)
         {
             try
@@ -203,7 +218,10 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Actualiza un registro de la BD recibiendo un objeto
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Update(Torre entity)
         {
             int columnasAfectadas = 0;
@@ -243,7 +261,10 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Obtiene todos los registros que no esten en estado "Completo" o "Despachado"
+        /// </summary>
+        /// <returns></returns>
         public List<Torre> GetAllByEstadoNotInCompletoAndDespachado()
         {
             List<Torre> torres = new List<Torre>();
@@ -287,7 +308,9 @@ namespace Entidades.Repositories
             }
             return torres;
         }
-
+        /// <summary>
+        /// Elimina todos los registros de la tabla de Estante
+        /// </summary>
         public override void DeleteAll()
         {
             try
@@ -310,7 +333,11 @@ namespace Entidades.Repositories
 
             }
         }
-
+        /// <summary>
+        /// Obtiene todos los registros de un Estado específico
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         public List<Torre> GetAllByEstado(EEstado estado)
         {
             List<Torre> torres = new List<Torre>();

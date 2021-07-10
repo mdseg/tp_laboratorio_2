@@ -1,4 +1,4 @@
-﻿using Entidades.Logger;
+﻿using Entidades.Bitacora;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

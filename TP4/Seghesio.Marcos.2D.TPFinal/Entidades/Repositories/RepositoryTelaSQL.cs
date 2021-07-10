@@ -7,14 +7,24 @@ using System.Threading.Tasks;
 
 namespace Entidades.Repositories
 {
+     /// <summary>
+     /// Clase derivada que recibe la clase Torre como parámetro
+     /// </summary>
     public class RepositoryTelaSQL : RepositoryBase<Tela>
     {
+        // <summary>
+        /// Unico contructor con parametros que configura la conexion y la tabla de referencia
+        /// </summary>
+        /// <param name="connectionStr"></param>
+        /// <param name="table"></param>
         public RepositoryTelaSQL(string connectionString, string table)
         :base(connectionString,table)
         {
-            this.table = table;
         }
-
+        /// <summary>
+        /// Insera en la BD un registro del tipo Tela
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Create(Tela entity)
         {
             int columnasAfectadas = 0;
@@ -44,8 +54,11 @@ namespace Entidades.Repositories
         
         
         }
-
-        public override int Count()
+        /// <summary>
+        /// Devuelve la cantidad de registros presente en la tabla
+        /// </summary>
+        /// <returns></returns>
+        public int Count()
         {
             int output = 0;
 
@@ -76,7 +89,9 @@ namespace Entidades.Repositories
             }
             return output;
         }
-
+        /// <summary>
+        /// Elimina todos los elementos de la tabla
+        /// </summary>
         public override void DeleteAll()
         {
             try
@@ -99,7 +114,10 @@ namespace Entidades.Repositories
                 throw new Exception();
             }
         }
-
+        /// <summary>
+        /// Obtiene el maximo id presente en la tabla
+        /// </summary>
+        /// <returns></returns>
         public override int GetMaxId()
         {
             int id = 0;
@@ -128,7 +146,10 @@ namespace Entidades.Repositories
             return id;
 
         }
-
+        /// <summary>
+        /// Obtiene todos los registros de la tabla
+        /// </summary>
+        /// <returns></returns>
         public override List<Tela> GetAll()
         {
             List<Tela> telas = new List<Tela>();
@@ -167,7 +188,11 @@ namespace Entidades.Repositories
             }
             return telas;
         }
-
+        /// <summary>
+        /// Obtiene un elemento del tipo Tela filtrando por Id
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         public override Tela GetById(long entityId)
         {
             Tela tela = null;
@@ -197,7 +222,10 @@ namespace Entidades.Repositories
             connection.Close();
             return tela;
         }
-
+        /// <summary>
+        /// Elimina un registro de la tabla
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Remove(Tela entity)
         {
             try
@@ -222,7 +250,10 @@ namespace Entidades.Repositories
             }
 
         }
-
+        /// <summary>
+        /// Actualiza un registro de la tabla
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Update(Tela entity)
         {
             int columnasAfectadas = 0;

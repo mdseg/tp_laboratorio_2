@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entidades.Repositories
 {
+    /// <summary>
+    /// Clase abstracta genérica que implementa la interfaz IRepository y agrega los campos propios de la configuración de la conexión
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class RepositoryBase<T> : IRepository<T>
     {
         protected string connectionString;
@@ -28,9 +32,9 @@ namespace Entidades.Repositories
 
         public abstract void Remove(T entity);
 
-        
+      
 
-        public abstract int Count();
+
 
         public abstract int GetMaxId();
 

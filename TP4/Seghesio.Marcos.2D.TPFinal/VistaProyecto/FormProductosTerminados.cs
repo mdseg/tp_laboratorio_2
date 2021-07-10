@@ -23,7 +23,6 @@ namespace VistaProyecto
         {
             this.fabrica = fabrica;
             InitializeComponent();
-            fabrica.ServicioProducto.avisoProducto += ActualizarVistaLineaProduccion;
         }
         /// <summary>
         /// Carga el formulario

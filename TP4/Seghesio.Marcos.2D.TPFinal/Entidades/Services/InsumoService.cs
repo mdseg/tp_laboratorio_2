@@ -48,7 +48,7 @@ namespace Entidades.Services
                     {
                         this.CreateEntity(insumo);
                     }
-                    EmitirEvento();
+          
                 }
             }
             catch (Exception e)
@@ -91,7 +91,7 @@ namespace Entidades.Services
                         accesorioRepo.Create((InsumoAccesorio)insumo);
                     }
                 }
-                EmitirEvento();
+ 
 
             }
             catch(Exception e)
@@ -141,7 +141,7 @@ namespace Entidades.Services
                 {
                     accesorioRepo.Remove((InsumoAccesorio)insumo);
                 }
-                EmitirEvento();
+             
             }
             catch (Exception e)
             {
@@ -183,10 +183,10 @@ namespace Entidades.Services
                 switch (tipoInsumo)
                 {
                     case ETipoInsumo.Madera:
-                        output = maderaRepo.Count();
+                        output = ((RepositoryMaderaSQL)maderaRepo).Count();
                         break;
                     case ETipoInsumo.Tela:
-                        output = telasRepo.Count();
+                        output = ((RepositoryTelaSQL)telasRepo).Count();
                         break;
                     case ETipoInsumo.Barniz:
                         output = ((RepositoryInsumoAccesorioSQL)accesorioRepo).SumTipoInsumoAccesorio(ETipoAccesorio.Barniz);
@@ -226,7 +226,7 @@ namespace Entidades.Services
                 {
                     accesorioRepo.Update((InsumoAccesorio)insumo);
                 }
-                EmitirEvento();
+        
             }
             catch (Exception e)
             {
@@ -297,7 +297,7 @@ namespace Entidades.Services
                 ((RepositoryInsumoAccesorioSQL)accesorioRepo).DeleteAll();
                 ((RepositoryMaderaSQL)maderaRepo).DeleteAll();
                 ((RepositoryTelaSQL)telasRepo).DeleteAll();
-                EmitirEvento();
+     
             } catch (Exception e)
             {
                 throw new SQLEntityException("Error al eliminar el listado completo de Insumos");
@@ -305,20 +305,6 @@ namespace Entidades.Services
 
         }
 
-        public void EmitirEvento()
-        {
-            if (LanzarEvento)
-            {
-                try
-                {
-                    this.avisoInsumo.Invoke();
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        }
 
 
     }

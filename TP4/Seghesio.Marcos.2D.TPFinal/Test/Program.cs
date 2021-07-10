@@ -15,7 +15,20 @@ namespace Test
 
 
             Console.Title = "Seghesio, Marcos Daniel TP3 2D";
-            
+
+            Madera insumo1 = new Madera(ETipoMadera.Mdf, EForma.Tablon, 20);
+            Madera insumo3 = new Madera(ETipoMadera.Mdf, EForma.Tubo, 20);
+            Tela tela2 = new Tela(EColor.Rosa, ETipoTela.Alfombra, 15);
+            Insumo insumo2 = (Insumo)insumo1.Clone();
+
+            insumo2.Cantidad = 120;
+
+            Torre torrePrueba = new Torre(insumo1, tela2, Torre.EModeloTorre.FunnyCat, insumo3);
+            Producto torreDos = torrePrueba.ClonarNuevoProducto();
+            torreDos.MaderaPrincipal = new Madera(ETipoMadera.Pino, EForma.Tablon, 150);
+            torreDos.EstadoProducto = EEstado.Alfombrado;
+            Console.WriteLine(torrePrueba.Mostrar());
+            Console.WriteLine(torreDos.Mostrar());
 
             Console.WriteLine("-----------------------------------------------------------------------");
             Console.WriteLine("----------Fabrica de Productos para Gatos: demostración Consola--------");
