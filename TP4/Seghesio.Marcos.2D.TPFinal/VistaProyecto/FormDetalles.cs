@@ -11,11 +11,15 @@ using System.Windows.Forms;
 
 namespace VistaProyecto
 {
+
+
     public partial class FormDetalles : Form
     {
         EProceso proceso;
         FormFabrica formPadre;
         Fabrica fabrica;
+
+
         public FormDetalles(FormFabrica formPadre,Fabrica fabrica,EProceso proceso)
         {
             this.fabrica = fabrica;
@@ -127,14 +131,11 @@ namespace VistaProyecto
        
         }
 
-        public void EjecutarProcesoLineaProduccion()
-        {
-            EjecutarProceso(proceso);
-        }
+
 
         private void btnEjecutarProceso_Click(object sender, EventArgs e)
         {
-            EjecutarProcesoLineaProduccion();
+            EjecutarProceso(proceso);
         }
 
         /// <summary>
@@ -169,13 +170,14 @@ namespace VistaProyecto
                         mensaje = $"Se han despachado {productosModificados} productos";
                         break;
                 }
+
             }
             else
             {
                 mensaje = "No se ha modificado ningun producto";
             }
             MessageBox.Show(mensaje, "Realizar operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //formPadre.ActualizarVistaLineaProduccion();
+            
             this.Close();
             
         }
@@ -185,6 +187,10 @@ namespace VistaProyecto
             //formPadre.ActualizarVistaLineaProduccion();
             this.Close();
 
+        }
+
+        private void FormDetalles_Leave(object sender, EventArgs e)
+        {
         }
     }
 }

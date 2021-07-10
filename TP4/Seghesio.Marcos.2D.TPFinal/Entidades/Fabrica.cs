@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    public delegate void ProcesoConcluido();
 
     [Serializable]
     public class Fabrica
     {
         private static Fabrica instance;
+        public static event ProcesoConcluido ProcesoFin;
 
-        
         private ProductoService productoService;
         private InsumoService insumoService;
 
@@ -268,6 +269,10 @@ namespace Entidades
                     {
                         output++;
                     }
+                }
+                if(output > 0)
+                {
+                    //Fabrica.ProcesoFin.Invoke();
                 }
             }
             else

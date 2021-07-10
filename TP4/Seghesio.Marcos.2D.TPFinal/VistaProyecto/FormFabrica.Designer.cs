@@ -59,8 +59,6 @@ namespace VistaProyecto
             this.lblLijarMaderas = new System.Windows.Forms.Label();
             this.lblLineaProduccion = new System.Windows.Forms.Label();
             this.tabPageAgregarProducto = new System.Windows.Forms.TabPage();
-            this.nudCantidadInsumos = new System.Windows.Forms.NumericUpDown();
-            this.lblPedido = new System.Windows.Forms.Label();
             this.btnSolicitarFaltantes = new System.Windows.Forms.Button();
             this.lblFaltantes = new System.Windows.Forms.Label();
             this.dgFaltantes = new System.Windows.Forms.DataGridView();
@@ -103,7 +101,6 @@ namespace VistaProyecto
             this.panelContainerLijar.SuspendLayout();
             this.panelContainerTopLijar.SuspendLayout();
             this.tabPageAgregarProducto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadInsumos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgFaltantes)).BeginInit();
             this.gbProducto.SuspendLayout();
             this.gbTorre.SuspendLayout();
@@ -134,6 +131,7 @@ namespace VistaProyecto
             this.tabPageLineaProduccion.Size = new System.Drawing.Size(1153, 714);
             this.tabPageLineaProduccion.TabIndex = 0;
             this.tabPageLineaProduccion.Text = "Linea de Produccion";
+            this.tabPageLineaProduccion.Enter += new System.EventHandler(this.tabPageLineaProduccion_Enter);
             // 
             // panelDesktop
             // 
@@ -499,8 +497,6 @@ namespace VistaProyecto
             // 
             // tabPageAgregarProducto
             // 
-            this.tabPageAgregarProducto.Controls.Add(this.nudCantidadInsumos);
-            this.tabPageAgregarProducto.Controls.Add(this.lblPedido);
             this.tabPageAgregarProducto.Controls.Add(this.btnSolicitarFaltantes);
             this.tabPageAgregarProducto.Controls.Add(this.lblFaltantes);
             this.tabPageAgregarProducto.Controls.Add(this.dgFaltantes);
@@ -515,39 +511,6 @@ namespace VistaProyecto
             this.tabPageAgregarProducto.TabIndex = 1;
             this.tabPageAgregarProducto.Text = "tabPage2";
             this.tabPageAgregarProducto.UseVisualStyleBackColor = true;
-            // 
-            // nudCantidadInsumos
-            // 
-            this.nudCantidadInsumos.Location = new System.Drawing.Point(370, 551);
-            this.nudCantidadInsumos.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudCantidadInsumos.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudCantidadInsumos.Name = "nudCantidadInsumos";
-            this.nudCantidadInsumos.Size = new System.Drawing.Size(49, 20);
-            this.nudCantidadInsumos.TabIndex = 19;
-            this.nudCantidadInsumos.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudCantidadInsumos.Visible = false;
-            // 
-            // lblPedido
-            // 
-            this.lblPedido.AutoSize = true;
-            this.lblPedido.Location = new System.Drawing.Point(326, 553);
-            this.lblPedido.Name = "lblPedido";
-            this.lblPedido.Size = new System.Drawing.Size(236, 13);
-            this.lblPedido.TabIndex = 16;
-            this.lblPedido.Text = "Solicitar                    veces los insumos faltantes.";
-            this.lblPedido.Visible = false;
             // 
             // btnSolicitarFaltantes
             // 
@@ -932,7 +895,6 @@ namespace VistaProyecto
             this.panelContainerTopLijar.PerformLayout();
             this.tabPageAgregarProducto.ResumeLayout(false);
             this.tabPageAgregarProducto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadInsumos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgFaltantes)).EndInit();
             this.gbProducto.ResumeLayout(false);
             this.gbProducto.PerformLayout();
@@ -978,10 +940,8 @@ namespace VistaProyecto
         private FontAwesome.Sharp.IconButton iBAgregarProducto;
         private FontAwesome.Sharp.IconButton iBLineaProduccion;
         private System.Windows.Forms.DataGridView dgFaltantes;
-        private System.Windows.Forms.Label lblPedido;
         private System.Windows.Forms.Button btnSolicitarFaltantes;
         private System.Windows.Forms.Label lblFaltantes;
-        private System.Windows.Forms.NumericUpDown nudCantidadInsumos;
         private System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.Panel panelContainerEnsamblar;
         private System.Windows.Forms.Button btnMostrarProductosEnsamblar;

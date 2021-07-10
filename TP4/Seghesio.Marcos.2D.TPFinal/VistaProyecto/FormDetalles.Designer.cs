@@ -89,6 +89,7 @@ namespace VistaProyecto
             this.Name = "FormDetalles";
             this.Text = "FormDetalles";
             this.Load += new System.EventHandler(this.FormDetalles_Load);
+            this.Leave += new System.EventHandler(this.FormDetalles_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.dgLineaProduccion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

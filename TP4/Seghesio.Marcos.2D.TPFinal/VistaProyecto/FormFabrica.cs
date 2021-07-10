@@ -31,6 +31,7 @@ namespace VistaProyecto
             controlPaneles = new List<Proceso>();
             this.fabrica.ServicioProducto.avisoProducto += ActualizarVistaLineaProduccion;
 
+
             InitializeComponent();
         }
         /// <summary>
@@ -190,8 +191,6 @@ namespace VistaProyecto
         {
             lblFaltantes.Visible = visibilidad;
             dgFaltantes.Visible = visibilidad;
-            nudCantidadInsumos.Visible = visibilidad;
-            lblPedido.Visible = visibilidad;
             btnSolicitarFaltantes.Visible = visibilidad;
         }
 
@@ -202,13 +201,9 @@ namespace VistaProyecto
         /// <param name="e"></param>
         private void btnSolicitarFaltantes_Click(object sender, EventArgs e)
         {
-            int multiplicadorInsumos = (int)nudCantidadInsumos.Value;
             List<Insumo> listaFaltantes = new List<Insumo>();
 
-            foreach(Insumo insumo in insumosFaltantes)
-            {
-                insumo.Cantidad *= multiplicadorInsumos;
-            }
+
 
 
             fabrica.ServicioInsumo.LanzarEvento = false;
@@ -223,7 +218,11 @@ namespace VistaProyecto
             DialogResult result = MessageBox.Show("Pedido de insumos faltantes realizado correctamente. ¿Desea dar de alta el producto ahora que hay insumos suficientes?", "Solicitar faltantes", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if(result == DialogResult.Yes)
             {
+                fabrica.ServicioInsumo.LanzarEvento = false;
+                fabrica.ServicioProducto.LanzarEvento = false;
                 fabrica.AgregarProductoLineaProduccion(bufferProducto,out listaFaltantes);
+                fabrica.ServicioInsumo.LanzarEvento = true;
+                fabrica.ServicioProducto.LanzarEvento = true;
                 MessageBox.Show("Producto agregado a linea de Producción con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -430,7 +429,10 @@ namespace VistaProyecto
             ActualizarVistaLineaProduccion();
         }
 
-
+        private void tabPageLineaProduccion_Enter(object sender, EventArgs e)
+        {
+            ActualizarVistaLineaProduccion();
+        }
     }
 
 }
