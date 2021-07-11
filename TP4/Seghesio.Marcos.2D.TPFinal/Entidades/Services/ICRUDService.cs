@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Entidades.Services
 {
+    /// <summary>
+    /// Interfaz genérica que establece los métodos minimos con los que cuenta el servicio encargado de mediar entre la fábrica y la conexion de base de datos
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface ICRUDService<T>
     {
-        bool LanzarEvento
-        {
-            get;
-            set;
-        }
 
-        void CrearEntity(List<T> lista);
+        void CreateEntity(List<T> lista);
 
-        void CrearEntity(T entity);
+        void CreateEntity(T entity);
 
         void DeleteEntity(T entity);
 

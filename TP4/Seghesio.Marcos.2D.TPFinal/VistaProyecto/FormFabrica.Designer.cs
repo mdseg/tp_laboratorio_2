@@ -59,6 +59,7 @@ namespace VistaProyecto
             this.lblLijarMaderas = new System.Windows.Forms.Label();
             this.lblLineaProduccion = new System.Windows.Forms.Label();
             this.tabPageAgregarProducto = new System.Windows.Forms.TabPage();
+            this.lblSolicitar2 = new System.Windows.Forms.Label();
             this.lblSolicitar = new System.Windows.Forms.Label();
             this.nudInsumos = new System.Windows.Forms.NumericUpDown();
             this.btnSolicitarFaltantes = new System.Windows.Forms.Button();
@@ -89,7 +90,6 @@ namespace VistaProyecto
             this.panelTop = new System.Windows.Forms.Panel();
             this.iBAgregarProducto = new FontAwesome.Sharp.IconButton();
             this.iBLineaProduccion = new FontAwesome.Sharp.IconButton();
-            this.lblSolicitar2 = new System.Windows.Forms.Label();
             this.tabControlFabrica.SuspendLayout();
             this.tabPageLineaProduccion.SuspendLayout();
             this.panelDesktop.SuspendLayout();
@@ -135,7 +135,6 @@ namespace VistaProyecto
             this.tabPageLineaProduccion.Size = new System.Drawing.Size(1153, 714);
             this.tabPageLineaProduccion.TabIndex = 0;
             this.tabPageLineaProduccion.Text = "Linea de Produccion";
-            this.tabPageLineaProduccion.Enter += new System.EventHandler(this.tabPageLineaProduccion_Enter);
             // 
             // panelDesktop
             // 
@@ -519,6 +518,15 @@ namespace VistaProyecto
             this.tabPageAgregarProducto.Text = "tabPage2";
             this.tabPageAgregarProducto.UseVisualStyleBackColor = true;
             // 
+            // lblSolicitar2
+            // 
+            this.lblSolicitar2.AutoSize = true;
+            this.lblSolicitar2.Location = new System.Drawing.Point(464, 553);
+            this.lblSolicitar2.Name = "lblSolicitar2";
+            this.lblSolicitar2.Size = new System.Drawing.Size(145, 13);
+            this.lblSolicitar2.TabIndex = 19;
+            this.lblSolicitar2.Text = "veces los productos faltantes";
+            // 
             // lblSolicitar
             // 
             this.lblSolicitar.AutoSize = true;
@@ -899,15 +907,6 @@ namespace VistaProyecto
             this.iBLineaProduccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iBLineaProduccion.UseVisualStyleBackColor = false;
             this.iBLineaProduccion.Click += new System.EventHandler(this.IBLineaProduccion_Click);
-            // 
-            // lblSolicitar2
-            // 
-            this.lblSolicitar2.AutoSize = true;
-            this.lblSolicitar2.Location = new System.Drawing.Point(464, 553);
-            this.lblSolicitar2.Name = "lblSolicitar2";
-            this.lblSolicitar2.Size = new System.Drawing.Size(145, 13);
-            this.lblSolicitar2.TabIndex = 19;
-            this.lblSolicitar2.Text = "veces los productos faltantes";
             // 
             // FormFabrica
             // 

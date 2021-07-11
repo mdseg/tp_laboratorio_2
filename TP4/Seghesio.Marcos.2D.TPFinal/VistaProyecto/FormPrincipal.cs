@@ -154,13 +154,8 @@ namespace VistaProyecto
                 {
                     MessageBox.Show("Hubo errores al abrir los archivos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.saveReport(ex);
-                }
-               
-
-       
+                }                
             }
-
-
         }
         /// <summary>
         /// Método que permite guardar los datos en un archivo Xml e informar de los eventuales errores al leer archivos que pudieran surgir
@@ -211,7 +206,10 @@ namespace VistaProyecto
         {
             OpenChildForm(new FormBitacora(logger));
         }
-
+        /// <summary>
+        /// Metodo manejador del evento del error en la creacion de pdf que muestra en pantalla el error a traves de un MessageBox y lo almacena en el archivo de log
+        /// </summary>
+        /// <param name="ex"></param>
         public void ManejadorErrorInforme(SavePdfException ex)
         {
             if(this.InvokeRequired)
@@ -228,7 +226,10 @@ namespace VistaProyecto
         }
 
      
-
+        /// <summary>
+        /// Metod encargado de actualizar la barra de progreso en al creacion
+        /// </summary>
+        /// <param name="valor"></param>
         private void ActualizarProgressBar(int valor)
         {
             if (lblReporteEnCurso.InvokeRequired)

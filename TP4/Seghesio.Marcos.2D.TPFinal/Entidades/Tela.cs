@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase tela
+    /// </summary>
     [Serializable]
     public class Tela : Insumo
     {

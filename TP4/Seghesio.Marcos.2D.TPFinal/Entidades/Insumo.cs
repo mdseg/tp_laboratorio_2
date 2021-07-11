@@ -197,6 +197,12 @@ namespace Entidades
             }
             return listaInsumos;
         }
+        /// <summary>
+        /// Método encargado de tomar dos listas de insumos y devolver una que incluya todos los insumos de ambas
+        /// </summary>
+        /// <param name="listaUno"></param>
+        /// <param name="listaDos"></param>
+        /// <returns></returns>
         public static List<Insumo> ConcatenarInsumos(List<Insumo> listaUno, List<Insumo> listaDos)
         {
             if (!(listaUno is null || listaUno is null))
@@ -208,7 +214,11 @@ namespace Entidades
             }
             return listaUno;
         }
-
+        /// <summary>
+        /// Convierte una lista de Madera referenciandola como lista de Insumo
+        /// </summary>
+        /// <param name="maderas"></param>
+        /// <returns></returns>
         public static List<Insumo> ToListInsumo(List<Madera> maderas)
         {
             List<Insumo> output = new List<Insumo>();
@@ -222,7 +232,11 @@ namespace Entidades
             return output;
         }
 
-
+        /// <summary>
+        /// Convierte una lista de Tela referenciandola como lista de Insumo
+        /// </summary>
+        /// <param name="maderas"></param>
+        /// <returns></returns>
         public static List<Insumo> ToListInsumo(List<Tela> telas)
         {
             List<Insumo> output = new List<Insumo>();
@@ -235,7 +249,11 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Convierte una lista de InsumoAccesorio referenciandola como lista de Insumo
+        /// </summary>
+        /// <param name="maderas"></param>
+        /// <returns></returns>
         public static List<Insumo> ToListInsumo(List<InsumoAccesorio> insumoAccesorios)
         {
             List<Insumo> output = new List<Insumo>();

@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase estática encargada de guardar los métodos de extensión
+    /// </summary>
     public static class MetodosExtension 
     {
+        /// <summary>
+        /// Metodo encargado de tomar un objeto del tipo Producto y devolver un objeto con referencias en memoria distintas, pero con los mismos valores en los atributos
+        /// </summary>
+        /// <param name="producto"></param>
+        /// <returns></returns>
         public static Producto ClonarNuevoProducto(this Producto producto)
         {
             Producto output = null;

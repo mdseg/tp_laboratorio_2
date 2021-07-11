@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase Producto
+    /// </summary>
     [Serializable]
     [XmlInclude(typeof(Torre))]
     [XmlInclude(typeof(Estante))]
@@ -137,7 +140,12 @@ namespace Entidades
             }
             return insumos;
         }
-
+        /// <summary>
+        /// Metodo encargado de tomar dos listas de productos y concatenar todos en una sola
+        /// </summary>
+        /// <param name="listaUno"></param>
+        /// <param name="listaDos"></param>
+        /// <returns></returns>
         public static List<Producto> ConcatenarProductos(List<Producto> listaUno, List<Producto> listaDos)
         {
             if (!(listaUno is null || listaUno is null))
@@ -150,6 +158,12 @@ namespace Entidades
             return listaUno;
         }
 
+        /// <summary>
+        /// Sobrecarga de el operador de suma
+        /// </summary>
+        /// <param name="listaProductos"></param>
+        /// <param name="producto"></param>
+        /// <returns></returns>
         public static List<Producto> operator +(List<Producto> listaProductos, Producto producto)
         {
             if (!(listaProductos is null || producto is null))
@@ -158,7 +172,11 @@ namespace Entidades
             }
             return listaProductos;
         }
-
+        /// <summary>
+        /// Convierte una lista de torres referenciandola como lista de productos
+        /// </summary>
+        /// <param name="torres"></param>
+        /// <returns></returns>
         public static List<Producto> ToListProducto(List<Torre> torres)
         {
             List<Producto> output = new List<Producto>();
@@ -171,7 +189,11 @@ namespace Entidades
             }
             return output;
         }
-
+        /// <summary>
+        /// Convierte una lista de estantes referenciandola como lista de productos
+        /// </summary>
+        /// <param name="estantes"></param>
+        /// <returns></returns>
         public static List<Producto> ToListProducto(List<Estante> estantes)
         {
             List<Producto> output = new List<Producto>();

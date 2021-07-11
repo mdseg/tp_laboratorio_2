@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Entity
+    /// <summary>
+    /// Clase abstracta que dota a las derivadas de un campo de id
+    /// </summary>
+    public abstract class Entity
     {
         private long id;
 

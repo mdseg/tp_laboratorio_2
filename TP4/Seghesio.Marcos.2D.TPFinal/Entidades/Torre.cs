@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {   
+    /// <summary>
+    /// Clase del tipo Torre
+    /// </summary>
     [Serializable]
     public class Torre : Producto
     {

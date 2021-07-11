@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase de InsumoAccesorio
+    /// </summary>
     [Serializable]
     public class InsumoAccesorio : Insumo
     {
@@ -22,18 +25,29 @@ namespace Entidades
                 this.tipoAccesorio = value;
             }
         }
-
+        /// <summary>
+        /// Constructor sin parámetros
+        /// </summary>
         public InsumoAccesorio()
         {
 
         }
-
+        /// <summary>
+        /// Consructor con parámetro opcional de fecha de ingreso
+        /// </summary>
+        /// <param name="tipoAccesorio"></param>
+        /// <param name="cantidad"></param>
+        /// <param name="fechaIngreso"></param>
         public InsumoAccesorio(ETipoAccesorio tipoAccesorio,int cantidad, DateTime fechaIngreso)
         :base(cantidad,fechaIngreso)
         {
             this.TipoAccesorio = tipoAccesorio;
         }
-
+        /// <summary>
+        /// Constructor con parámetros que asigna como fecha de ingreso la fecha actual
+        /// </summary>
+        /// <param name="tipoAccesorio"></param>
+        /// <param name="cantidad"></param>
         public InsumoAccesorio(ETipoAccesorio tipoAccesorio, int cantidad)
         :this(tipoAccesorio,cantidad, DateTime.Now)
         {

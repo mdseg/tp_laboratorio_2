@@ -12,17 +12,15 @@ using static Entidades.Torre;
 
 namespace VistaProyecto
 {
+    /// <summary>
+    /// Formulario encargado de gestionar los procesos productos y el agregado de nuevos productos
+    /// </summary>
     public partial class FormFabrica : Form
     {
         private List<Insumo> insumosFaltantes;
         private Fabrica fabrica;
         private Form formDetalles;
-
         private Producto bufferProducto;
-
-
-
-
         private List<Proceso> controlPaneles;
 
         public FormFabrica(Fabrica fabrica)
@@ -210,14 +208,7 @@ namespace VistaProyecto
             {
                 insumo.Cantidad *= (int)nudInsumos.Value;
             }
-
-
-
-
             fabrica.AgregarInsumosAStock(insumosFaltantes);
-
-
-
             insumosFaltantes.Clear();
             CambiarVisibilidadControlesFaltantes(false);
             DialogResult result = MessageBox.Show("Pedido de insumos faltantes realizado correctamente. ¿Desea dar de alta el producto ahora que hay insumos suficientes?", "Solicitar faltantes", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -325,6 +316,11 @@ namespace VistaProyecto
         {
             EjecutarProceso(EProceso.Ensamblar);
         }
+        /// <summary>
+        /// Despacha los productos eliminandolos de la linea de produccion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDespachar_Click(object sender, EventArgs e)
         {
             int productosDespachados = fabrica.MudarProductosAStockTerminado();
@@ -340,7 +336,9 @@ namespace VistaProyecto
             ActualizarVistaLineaProduccion();
             MessageBox.Show(mensaje, "Despachar productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+        /// <summary>
+        /// Metodo encargado de actualizar todos los controles vinculados a la linea de produccion
+        /// </summary>
         private void ActualizarVistaLineaProduccion()
         {
             List<Producto> productos = new List<Producto>();
@@ -351,7 +349,9 @@ namespace VistaProyecto
                 proceso.CambiarEstadoPaneles();
             }
         }
-
+        /// <summary>
+        /// Método encargado de darle un valor inicial a los objetos del tipo Proceso y los agrega en un listado
+        /// </summary>
         private void CargarControlPaneles()
         {
             List<Producto> productos = new List<Producto>();
@@ -373,11 +373,6 @@ namespace VistaProyecto
 
         }
 
-        private void btnMostarProductosLijar_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Lijar));
-        }
-
         /// <summary>
         /// Método encargado de gestionar los formularios hijos y anexarlos dentro del FormPrincipal
         /// </summary>
@@ -388,7 +383,6 @@ namespace VistaProyecto
             {
                 formDetalles.Close();
             }
-
             formDetalles = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -397,7 +391,6 @@ namespace VistaProyecto
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-
         }
 
         private void btnMostrarProductosBarnizar_Click(object sender, EventArgs e)
@@ -421,13 +414,12 @@ namespace VistaProyecto
             OpenChildForm(new FormDetalles(this, fabrica, EProceso.Ensamblar));
         }
 
-
-        private void Actualizar(object sender, EventArgs e)
+        private void btnMostarProductosLijar_Click(object sender, EventArgs e)
         {
-            ActualizarVistaLineaProduccion();
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Lijar));
         }
 
-        private void tabPageLineaProduccion_Enter(object sender, EventArgs e)
+        private void Actualizar(object sender, EventArgs e)
         {
             ActualizarVistaLineaProduccion();
         }

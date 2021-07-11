@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Entidades.Services
 {
 
-    public class ProductoService
+    public class ProductoService : ICRUDService<Producto>
     {
         private IRepository<Torre> torresRepo;
         private IRepository<Estante> estantesRepo;

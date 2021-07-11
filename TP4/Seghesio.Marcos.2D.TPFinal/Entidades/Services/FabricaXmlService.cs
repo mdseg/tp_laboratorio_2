@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Files.Xml
 {
+    /// <summary>
+    /// Clase que implementa la intefaz genérica IFile para serializar y desserializar en XML los datos correspondientes a insumos y productos
+    /// </summary>
     public class FabricaXmlService
     {
         private IFile<List<Insumo>> serializadorInsumos;
@@ -27,14 +30,20 @@ namespace Files.Xml
             }
         }
 
-
+        /// <summary>
+        /// Constructor que inicializa los campos y asigna el directorio donde se leeran y guardaran los archivos
+        /// </summary>
+        /// <param name="path"></param>
         public FabricaXmlService(string path)
         {
             this.serializadorInsumos = new Xml<List<Insumo>>();
             this.serializadorProductos = new Xml<List<Producto>>();
             this.path = path;
         }
-
+        /// <summary>
+        /// Metodo encargado de persistir en xml los datos de los insumos y productos en fábrica
+        /// </summary>
+        /// <param name="fabrica"></param>
         public void SaveXmlFabrica(Fabrica fabrica)
         {
             string pathInsumos = path + "listadoInsumosFabrica.xml";
@@ -53,7 +62,10 @@ namespace Files.Xml
 
 
         }
-
+        /// <summary>
+        /// Metodo encargado de leer en xml los datos de los insumos y productos en fábrica
+        /// </summary>
+        /// <returns></returns>
         public Fabrica ReadXmlFabrica()
         {
             Fabrica fabrica = Fabrica.Instance;
@@ -74,8 +86,6 @@ namespace Files.Xml
 
                 fabrica.ServicioInsumo.CreateEntity(insumosStock);
                 fabrica.ServicioProducto.CreateEntity(listadoProductos);
-
-
 
             }
             catch(Exception e)

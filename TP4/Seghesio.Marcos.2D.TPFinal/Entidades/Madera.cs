@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase de Madera
+    /// </summary>
     [Serializable]
     public class Madera : Insumo
     {

@@ -9,6 +9,11 @@ using FontAwesome.Sharp;
 
 namespace VistaProyecto
 {
+    /// <summary>
+    /// Clase diseñada para simplificar la habilitación y deshabilitación de la vista del formulario en la linea de produccion, todos los campos de
+    /// un proceso incluye un panel con boton de ver detalles y un IconButon utilizado en este caso como un label que muestra la cantidad de productos
+    /// aptos para un proceso
+    /// </summary>
     public class Proceso
     {
         private int productosAptos;
@@ -57,7 +62,13 @@ namespace VistaProyecto
             }
         }
 
-
+        /// <summary>
+        /// Unico constructor de esta clase
+        /// </summary>
+        /// <param name="productosAptos"></param>
+        /// <param name="procesoAsociado"></param>
+        /// <param name="labelAsociado"></param>
+        /// <param name="btnDetalles"></param>
         public Proceso(int productosAptos,EProceso procesoAsociado, IconButton labelAsociado, Button btnDetalles)
         {
             this.productosAptos = productosAptos;
@@ -65,7 +76,9 @@ namespace VistaProyecto
             this.labelAsociado = labelAsociado;
             this.btnDetalles = btnDetalles;
         }
-
+        /// <summary>
+        /// Metodo encargado de deshabilitar o habilitar los controles segun haya o no productos aptos
+        /// </summary>
         public void CambiarEstadoPaneles()
         {
             if(this.productosAptos > 0)

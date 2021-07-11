@@ -328,7 +328,12 @@ namespace Entidades
             EmitirEvento();
             return output;
         }
-
+        /// <summary>
+        /// Calcula el número de elementos disponibles para aplicarse cierto proceso productivo devolviendo un listado con estos productos aptos
+        /// </summary>
+        /// <param name="proceso"></param>
+        /// <param name="listadoProductos"></param>
+        /// <returns></returns>
         public int CalcularCantidadDeProductosAptosProceso(EProceso proceso, out List<Producto> listadoProductos)
         {
             int output = 0;
@@ -395,7 +400,10 @@ namespace Entidades
 
             return output;
         }
-
+        /// <summary>
+        /// Método encargado de emitir el evento de cambio realizado cuando sea necesario que la fábrica comunique cambios a la interfaz gráfica, este método no
+        /// es llamado cuando se ejecutan los test unitarios
+        /// </summary>
         public void EmitirEvento()
         {
             if(this.lanzarEventos)

@@ -41,6 +41,7 @@ namespace VistaProyecto
             dgProductosTerminados.Columns.Add("colorTela", "Color Tela");
             dgProductosTerminados.Columns.Add("detalles", "Detalles");
             ActualizarVistaLineaProduccion();
+            this.fabrica.CambioRealizado += ActualizarVistaLineaProduccion;
         }
         /// <summary>
         /// Actualiza los elementos del dgProductosTerminados y cambia la visibilidad de los controles segun haya productos cambiados o no
@@ -107,7 +108,11 @@ namespace VistaProyecto
             lblProductosTerminadosVacio.Visible = !visibilidad;
             btnDespacharProductos.Visible = visibilidad;
         }
-
+        /// <summary>
+        /// Llama al metodo encargado de despachar los productos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDespacharProductos_Click(object sender, EventArgs e)
         {
             try

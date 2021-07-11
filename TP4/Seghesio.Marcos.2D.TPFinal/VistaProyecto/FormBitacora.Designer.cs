@@ -61,7 +61,6 @@ namespace VistaProyecto
             this.lblBitacora.Size = new System.Drawing.Size(244, 31);
             this.lblBitacora.TabIndex = 31;
             this.lblBitacora.Text = "Bitacora de errores";
-            this.lblBitacora.Click += new System.EventHandler(this.label1_Click);
             // 
             // FormBitacora
             // 

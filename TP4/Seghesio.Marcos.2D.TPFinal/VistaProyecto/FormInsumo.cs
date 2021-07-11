@@ -161,12 +161,7 @@ namespace VistaProyecto
             int cantidadBarniz = fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Barniz);
             int cantidadTornillos = fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Tornillo);
             int cantidadYute = fabrica.ServicioInsumo.GetCountByTipoInsumo(ETipoInsumo.Yute);
-            /*
-            int cantidadPegamento = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Pegamento);
-            int cantidadBarniz = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Barniz);
-            int cantidadTornillos = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Tornillo);
-            int cantidadYute = Insumo.CountInsumoType(fabrica.StockInsumos, ETipoInsumo.Yute);
-            */
+
             lblPegamento.Text = $"Stock Pegamento: {cantidadPegamento}";
             lblBarniz.Text = $"Stock Barniz: {cantidadBarniz}";
             lblTornillos.Text = $"Stock Tornillos: {cantidadTornillos}";
