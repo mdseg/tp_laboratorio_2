@@ -1,14 +1,9 @@
 CREATE DATABASE TpFinalMarcosSeghesio;
+
 GO
 
-USE [TpFinalMarcosSeghesio]
-GO
+USE TpFinalMarcosSeghesio;
 
-/****** Object:  Table [dbo].[InsumoAccesorio]    Script Date: 10/7/2021 18:35:39 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[InsumoAccesorio](
@@ -21,18 +16,7 @@ CREATE TABLE [dbo].[InsumoAccesorio](
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
 
-
-
-
-
-
-/****** Object:  Table [dbo].[Madera]    Script Date: 10/7/2021 18:35:57 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Madera](
@@ -47,16 +31,7 @@ CREATE TABLE [dbo].[Madera](
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
 
-USE [TpFinalMarcosSeghesio]
-GO
-
-/****** Object:  Table [dbo].[Tela]    Script Date: 10/7/2021 18:36:40 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Tela](
@@ -70,16 +45,6 @@ CREATE TABLE [dbo].[Tela](
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-
-USE [TpFinalMarcosSeghesio]
-GO
-
-/****** Object:  Table [dbo].[MaderaProducto]    Script Date: 10/7/2021 18:36:19 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[MaderaProducto](
@@ -96,19 +61,6 @@ CREATE TABLE [dbo].[MaderaProducto](
 ) ON [PRIMARY]
 GO
 
-
-
-
-USE [TpFinalMarcosSeghesio]
-GO
-
-/****** Object:  Table [dbo].[TelaProducto]    Script Date: 10/7/2021 18:36:51 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
 CREATE TABLE [dbo].[TelaProducto](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[cantidad] [int] NOT NULL,
@@ -120,17 +72,6 @@ CREATE TABLE [dbo].[TelaProducto](
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-
-
-USE [TpFinalMarcosSeghesio]
-GO
-
-/****** Object:  Table [dbo].[Torre]    Script Date: 10/7/2021 18:37:03 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Torre](
@@ -170,16 +111,6 @@ GO
 ALTER TABLE [dbo].[Torre] CHECK CONSTRAINT [FK_Torre_TelaProducto]
 GO
 
-USE [TpFinalMarcosSeghesio]
-GO
-
-/****** Object:  Table [dbo].[Estante]    Script Date: 10/7/2021 18:33:25 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
 CREATE TABLE [dbo].[Estante](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[estadoProducto] [int] NOT NULL,
@@ -206,8 +137,3 @@ GO
 
 ALTER TABLE [dbo].[Estante] CHECK CONSTRAINT [FK_Estante_TelaProducto]
 GO
-
-USE [TpFinalMarcosSeghesio]
-GO
-
-

@@ -81,12 +81,12 @@ namespace Files.Xml
                 serializadorInsumos.Read(pathInsumos, out insumosStock);
                 serializadorProductos.Read(pathProductos, out listadoProductos);
 
-
+                fabrica.LanzarEventos = false;
                 fabrica.ResetearFabrica();
 
                 fabrica.ServicioInsumo.CreateEntity(insumosStock);
                 fabrica.ServicioProducto.CreateEntity(listadoProductos);
-
+                fabrica.LanzarEventos = true;
             }
             catch(Exception e)
             {

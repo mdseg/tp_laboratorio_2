@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace VistaProyecto
 {
-
+    public delegate void CierreProceso();
 
     public partial class FormDetalles : Form
     {
         EProceso proceso;
         FormFabrica formPadre;
         Fabrica fabrica;
-
+        public static event CierreProceso Cerrar;
 
         public FormDetalles(FormFabrica formPadre,Fabrica fabrica,EProceso proceso)
         {
@@ -177,14 +177,14 @@ namespace VistaProyecto
                 mensaje = "No se ha modificado ningun producto";
             }
             MessageBox.Show(mensaje, "Realizar operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+            Cerrar.Invoke();
             this.Close();
             
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            //formPadre.ActualizarVistaLineaProduccion();
+            Cerrar.Invoke();
             this.Close();
 
         }

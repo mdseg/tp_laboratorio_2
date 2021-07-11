@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace Entidades.Services
 {
-
+    /// <summary>
+    /// Clase mediadora entre la clase de Fabrica y todas las operaciones vinculadas al CRUD de Producto
+    /// </summary>
     public class ProductoService : ICRUDService<Producto>
     {
         private IRepository<Torre> torresRepo;
@@ -17,7 +19,9 @@ namespace Entidades.Services
         private IRepository<Tela> telasRepo;
 
 
-
+        /// <summary>
+        /// Constructor que incializa la conexion a base de datos de todos los repositorios
+        /// </summary>
         public ProductoService(string connectionStr)
         {
             this.torresRepo = new RepositoryTorreSQL(connectionStr,"Torre");
@@ -26,7 +30,10 @@ namespace Entidades.Services
             this.telasRepo = new RepositoryTelaSQL(connectionStr, "TelaProducto");
 
         }
-
+        /// <summary>
+        /// Da de alta en el repositorio un Producto
+        /// </summary>
+        /// <param name="lista"></param>
         public void CreateEntity(Producto producto)
         {
             try
@@ -46,7 +53,10 @@ namespace Entidades.Services
                 throw new SQLEntityException($"Error al persistir el objeto {producto.Mostrar()}");
             }
         }
-
+        /// <summary>
+        /// Da de alta en el repositorio un listado de Productos
+        /// </summary>
+        /// <param name="lista"></param>
         public void CreateEntity(List<Producto> listaProductos)
         {
             if (listaProductos != null && listaProductos.Count > 0)
@@ -58,7 +68,11 @@ namespace Entidades.Services
          
             }
         }
-
+        /// <summary>
+        /// Obtiene el valor mas alto del campo Id
+        /// </summary>
+        /// <param name="tipoInsumo"></param>
+        /// <returns></returns>
         public int GetMaxIdEntity(ETipoProductoConsulta tipoInsumo)
         {
             int output = 0;
@@ -79,7 +93,10 @@ namespace Entidades.Services
             }
             return output;
         }
-
+        /// <summary>
+        /// Elimina del repositorio un objeto del tipo Producto
+        /// </summary>
+        /// <param name="entity"></param>
         public void DeleteEntity(Producto producto)
         {
             try
@@ -99,7 +116,11 @@ namespace Entidades.Services
                 throw new SQLEntityException($"Error al persistir el objeto {producto.Mostrar()}");
             }
         }
-
+        /// <summary>
+        /// Obtiene dle repositorio un Producto filtrando por id
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Producto GetEntityById(Producto producto)
         {
             Producto output = null;
@@ -113,7 +134,10 @@ namespace Entidades.Services
             }
             return output;
         }
-
+        /// <summary>
+        /// Actualiza en el repositorio un Producto
+        /// </summary>
+        /// <param name="entity"></param>
         public void UpdateEntity(Producto producto)
         {
             try
@@ -133,7 +157,10 @@ namespace Entidades.Services
                 throw new SQLEntityException($"Error al actualizar el objeto {producto.Mostrar()}");
             }
         }
-
+        /// <summary>
+        /// Obtiene todos los productos del repositorio
+        /// </summary>
+        /// <returns></returns>
         public List<Producto> GetAll()
         {
             List<Producto> listadoProducto = new List<Producto>();
@@ -153,7 +180,11 @@ namespace Entidades.Services
 
             return listadoProducto;
         }
-
+        /// <summary>
+        /// Obtiene todos los productos filtrando por estado
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         public List<Producto> GetAllByEstado(EEstado estado)
         {
             List<Producto> listadoProducto = new List<Producto>();
@@ -174,28 +205,10 @@ namespace Entidades.Services
 
             return listadoProducto;
         }
-
-        public List<Producto> GetAllProductosByEstado(EEstado estado)
-        {
-            List<Producto> listadoProducto = new List<Producto>();
-            try
-            {
-
-                List<Producto> bufferTorres = Producto.ToListProducto(((RepositoryTorreSQL)torresRepo).GetAllByEstado(estado));
-                List<Producto> bufferEstantes = Producto.ToListProducto(((RepositoryEstanteSQL)estantesRepo).GetAllByEstado(estado));
-
-                Producto.ConcatenarProductos(listadoProducto, bufferTorres);
-                Producto.ConcatenarProductos(listadoProducto, bufferEstantes);
-
-            }
-            catch (Exception e)
-            {
-                throw new SQLEntityException("Error al recuperar el listado completo de Productos");
-            }
-
-            return listadoProducto;
-        }
-
+        /// <summary>
+        /// Obtiene todos los productos de la linea de produccion
+        /// </summary>
+        /// <returns></returns>
         public List<Producto> GetAllProductosLineaProduccion()
         {
             List<Producto> listadoProducto = new List<Producto>();
@@ -216,7 +229,9 @@ namespace Entidades.Services
 
             return listadoProducto;
         }
-
+        /// <summary>
+        /// Elimina todos los insumos del repositorio
+        /// </summary>
         public void DeleteAll()
         {
             try

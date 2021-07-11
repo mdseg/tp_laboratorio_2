@@ -79,11 +79,11 @@ namespace Entidades.Reportes
                 doc.Add(Chunk.NEWLINE);
                 doc.Add(Chunk.NEWLINE);
 
-                if (fabrica.ServicioProducto.GetAllProductosByEstado(EEstado.Completo).Count > 0)
+                if (fabrica.ServicioProducto.GetAllByEstado(EEstado.Completo).Count > 0)
                 {
                     doc.Add(new Paragraph("Informe stock de Productos terminados"));
                     doc.Add(Chunk.NEWLINE);
-                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.ServicioProducto.GetAllProductosByEstado(EEstado.Completo), standarFont, false);
+                    PdfPTable tblLineaProduccion = crearTablaProductos(fabrica.ServicioProducto.GetAllByEstado(EEstado.Completo), standarFont, false);
                     doc.Add(tblLineaProduccion);
                 }
                 else

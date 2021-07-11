@@ -16,19 +16,6 @@ namespace Test
 
             Console.Title = "Seghesio, Marcos Daniel TP3 2D";
 
-            Madera insumo1 = new Madera(ETipoMadera.Mdf, EForma.Tablon, 20);
-            Madera insumo3 = new Madera(ETipoMadera.Mdf, EForma.Tubo, 20);
-            Tela tela2 = new Tela(EColor.Rosa, ETipoTela.Alfombra, 15);
-            Insumo insumo2 = (Insumo)insumo1.Clone();
-
-            insumo2.Cantidad = 120;
-
-            Torre torrePrueba = new Torre(insumo1, tela2, Torre.EModeloTorre.FunnyCat, insumo3);
-            Producto torreDos = torrePrueba.ClonarNuevoProducto();
-            torreDos.MaderaPrincipal = new Madera(ETipoMadera.Pino, EForma.Tablon, 150);
-            torreDos.EstadoProducto = EEstado.Alfombrado;
-            Console.WriteLine(torrePrueba.Mostrar());
-            Console.WriteLine(torreDos.Mostrar());
 
             Console.WriteLine("-----------------------------------------------------------------------");
             Console.WriteLine("----------Fabrica de Productos para Gatos: demostración Consola--------");
@@ -36,13 +23,16 @@ namespace Test
 
 
             Console.WriteLine("------------PRESIONE UNA TECLA PARA CONTINUAR--------------------------");
-            Console.ReadKey();
+             Console.ReadKey();
 
-            
+
             // Declarar los objetos necesarios para leer archivos XML
-
+            Fabrica fabrica = Fabrica.Instance;
+            fabrica.LanzarEventos = false;
+            fabrica.ResetearFabrica();
             FabricaXmlService serviceXmlFabrica = new FabricaXmlService($"{AppDomain.CurrentDomain.BaseDirectory}Origen\\");
-            Fabrica fabrica = serviceXmlFabrica.ReadXmlFabrica();
+            fabrica = serviceXmlFabrica.ReadXmlFabrica();
+            fabrica.LanzarEventos = false;
 
             Console.WriteLine("\n-----------------------------------------------------------------------");
             Console.WriteLine("------------Atributos asignados a fabrica correctamente----------------");
@@ -198,7 +188,7 @@ namespace Test
             Console.WriteLine("\n----------------Ensamblar--------------------------------------------");
             fabrica.EjecutarProcesoLineaProduccion(EProceso.Ensamblar);
 
-            foreach (Producto p in fabrica.ServicioProducto.GetAllProductosLineaProduccion())
+            foreach (Producto p in fabrica.ServicioProducto.GetAllByEstado(EEstado.Completo))
             {
                 Console.WriteLine(p.Mostrar());
             }
@@ -217,11 +207,11 @@ namespace Test
 
             fabrica.MudarProductosAStockTerminado();
             Console.WriteLine("-----------------------------------------------------------------------");
-            Console.WriteLine("--------Iterar lista de productos terminados de la fabrica-------------");
+            Console.WriteLine("--------Iterar lista de productos despachados de la fabrica-------------");
             Console.WriteLine("-----------------------------------------------------------------------");
 
 
-            foreach (Producto p in fabrica.ServicioProducto.GetAllProductosByEstado(EEstado.Completo))
+            foreach (Producto p in fabrica.ServicioProducto.GetAllByEstado(EEstado.Despachado))
             {
                 Console.WriteLine(p.Mostrar());
             }

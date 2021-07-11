@@ -28,6 +28,7 @@ namespace VistaProyecto
             this.fabrica = fabrica;
             controlPaneles = new List<Proceso>();
             this.fabrica.CambioRealizado += ActualizarVistaLineaProduccion;
+            FormDetalles.Cerrar += ActualizarVistaLineaProduccion;
 
             InitializeComponent();
         }
@@ -292,26 +293,47 @@ namespace VistaProyecto
             MessageBox.Show(mensaje, "Despachar productos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLijar_Click(object sender, EventArgs e)
         {
             EjecutarProceso(EProceso.Lijar);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBarnizar_Click(object sender, EventArgs e)
         {
             EjecutarProceso(EProceso.Barnizar);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAlfombrar_Click(object sender, EventArgs e)
         {
             EjecutarProceso(EProceso.Alfombrar);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAgregarAdicional_Click(object sender, EventArgs e)
         {
             EjecutarProceso(EProceso.AgregarYute);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnProductosEnsamblar_Click(object sender, EventArgs e)
         {
             EjecutarProceso(EProceso.Ensamblar);
@@ -392,38 +414,105 @@ namespace VistaProyecto
             childForm.BringToFront();
             childForm.Show();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMostrarProductosBarnizar_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormDetalles(this, fabrica, EProceso.Barnizar));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMostrarProductosAlfombrar_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormDetalles(this, fabrica, EProceso.Alfombrar));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMostrarProductosAgregarAdicionales_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormDetalles(this, fabrica, EProceso.AgregarYute));
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMostrarProductosEnsamblar_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormDetalles(this, fabrica, EProceso.Ensamblar));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMostarProductosLijar_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FormDetalles(this, fabrica, EProceso.Lijar));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Actualizar(object sender, EventArgs e)
         {
             ActualizarVistaLineaProduccion();
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IBBarnizar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Barnizar));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void iBLijarMaderas_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Lijar));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IBAlfombrar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Alfombrar));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IBAgregarAdicional_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.AgregarYute));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IBEnsamblar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDetalles(this, fabrica, EProceso.Ensamblar));
+        }
     }
 }

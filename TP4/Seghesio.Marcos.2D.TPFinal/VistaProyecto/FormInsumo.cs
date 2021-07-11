@@ -21,7 +21,6 @@ namespace VistaProyecto
         {
             InitializeComponent();
             this.fabrica = fabrica;
-            this.fabrica.ServicioInsumo.avisoInsumo += ActualizarListaInsumos;
             this.fabrica.CambioRealizado += ActualizarListaInsumos;
 
         }

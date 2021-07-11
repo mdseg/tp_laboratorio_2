@@ -8,16 +8,21 @@ using System.Threading.Tasks;
 
 namespace Entidades.Services
 {
-    public delegate void InsumoModificado();
 
+    /// <summary>
+    /// Clase mediadora entre la clase de Fabrica y todas las operaciones vinculadas al CRUD de Insumo
+    /// </summary>
     public class InsumoService : ICRUDService<Insumo>
     {
         private IRepository<Madera> maderaRepo;
         private IRepository<Tela> telasRepo;
         private IRepository<InsumoAccesorio> accesorioRepo;
-        public event InsumoModificado avisoInsumo;
 
 
+        /// <summary>
+        /// Constructor que incializa la conexion a base de datos de todos los repositorios
+        /// </summary>
+        /// <param name="connectionStr"></param>
         public InsumoService(string connectionStr)
         {
             this.maderaRepo = new RepositoryMaderaSQL(connectionStr,"Madera");
@@ -25,7 +30,10 @@ namespace Entidades.Services
             this.accesorioRepo = new RepositoryInsumoAccesorioSQL(connectionStr,"InsumoAccesorio");
 
         }
-
+        /// <summary>
+        /// Da de alta en el repositorio un listado de Insumos
+        /// </summary>
+        /// <param name="lista"></param>
         public void CreateEntity(List<Insumo> lista)
         {
             try
@@ -44,7 +52,10 @@ namespace Entidades.Services
                 throw new SQLEntityException($"Error al persistir un listado de objetos");
             }
         }
-
+        /// <summary>
+        /// Da de alta en el repositorio un Insumo
+        /// </summary>
+        /// <param name="lista"></param>
         public void CreateEntity(Insumo entity)
         {
             bool insumoExistente = false;
@@ -87,7 +98,11 @@ namespace Entidades.Services
                 throw new SQLEntityException($"Error al persistir el objeto {entity.Mostrar()}");
             }
         }
-
+        /// <summary>
+        /// Obtiene el valor mas alto del campo Id
+        /// </summary>
+        /// <param name="tipoInsumo"></param>
+        /// <returns></returns>
         public int GetMaxIdEntity(ETipoInsumoConsulta tipoInsumo)
         {
             int output = 0;
@@ -112,7 +127,10 @@ namespace Entidades.Services
             }
             return output;
         }
-
+        /// <summary>
+        /// Elimina del repositorio un objeto del tipo Insumo
+        /// </summary>
+        /// <param name="entity"></param>
         public void DeleteEntity(Insumo entity)
         {
             try
@@ -136,7 +154,11 @@ namespace Entidades.Services
                 throw new SQLEntityException($"Error al persistir el objeto {entity.Mostrar()}");
             }
         }
-
+        /// <summary>
+        /// Obtiene dle repositorio un Insumo filtrando por id
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Insumo GetEntityById(Insumo entity)
         {
             Insumo output = null;
@@ -162,7 +184,11 @@ namespace Entidades.Services
             }
             return output;
         }
-
+        /// <summary>
+        /// Devuelve al cantidad de productos que poseen el mismo tipo
+        /// </summary>
+        /// <param name="tipoInsumo"></param>
+        /// <returns></returns>
         public int GetCountByTipoInsumo(ETipoInsumo tipoInsumo)
         {
             int output = 0;
@@ -197,7 +223,10 @@ namespace Entidades.Services
             }
             return output;
         }
-
+        /// <summary>
+        /// Actualiza en el repositorio un Insumo
+        /// </summary>
+        /// <param name="entity"></param>
         public void UpdateEntity(Insumo entity)
         {
             try
@@ -221,7 +250,10 @@ namespace Entidades.Services
                 throw new SQLEntityException($"Error al actualizar el objeto {entity.Mostrar()}");
             }
         }
-
+        /// <summary>
+        /// Obtiene todos los insumos del repositorio
+        /// </summary>
+        /// <returns></returns>
         public List<Insumo> GetAll()
         {
             List<Insumo> listadoInsumo = new List<Insumo>();
@@ -242,7 +274,11 @@ namespace Entidades.Services
 
             return listadoInsumo;
         }
-
+        /// <summary>
+        /// Obtiene todos los insumos del repositorio filtrando por el tipo de Insumo
+        /// </summary>
+        /// <param name="tipoInsumo"></param>
+        /// <returns></returns>
         public List<Insumo> GetAll(ETipoInsumo tipoInsumo)
         {
             List<Insumo> listadoInsumo = new List<Insumo>();
@@ -277,7 +313,9 @@ namespace Entidades.Services
 
             return listadoInsumo;
         }
-
+        /// <summary>
+        /// Elimina todos los productos del repositorio
+        /// </summary>
         public void DeleteAll()
         {
             try

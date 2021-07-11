@@ -84,8 +84,8 @@ namespace Entidades
         /// </summary>
         private Fabrica()
         {
-            this.insumoService = new InsumoService(@"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True");
-            this.productoService = new ProductoService(@"Data Source=.;Initial Catalog=TPFinal;Integrated Security=True");
+            this.insumoService = new InsumoService(@"Data Source=.;Initial Catalog=TPFinalMarcosSeghesio;Integrated Security=True");
+            this.productoService = new ProductoService(@"Data Source=.;Initial Catalog=TPFinalMarcosSeghesio;Integrated Security=True");
             this.LanzarEventos = true;
         }
         /// <summary>
@@ -286,10 +286,8 @@ namespace Entidades
                         output++;
                     }
                 }
-                if(output > 0)
-                {
+
                     EmitirEvento();
-                }
             }
             else
             {

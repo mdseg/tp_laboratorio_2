@@ -195,6 +195,7 @@ namespace VistaProyecto
             this.IBEnsamblar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.IBEnsamblar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.IBEnsamblar.UseVisualStyleBackColor = false;
+            this.IBEnsamblar.Click += new System.EventHandler(this.IBEnsamblar_Click);
             // 
             // panelContainerEnsamblarTop
             // 
@@ -263,6 +264,7 @@ namespace VistaProyecto
             this.IBAgregarAdicional.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.IBAgregarAdicional.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.IBAgregarAdicional.UseVisualStyleBackColor = false;
+            this.IBAgregarAdicional.Click += new System.EventHandler(this.IBAgregarAdicional_Click);
             // 
             // panelContainerAgregarAdicionalesTop
             // 
@@ -331,6 +333,7 @@ namespace VistaProyecto
             this.IBAlfombrar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.IBAlfombrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.IBAlfombrar.UseVisualStyleBackColor = false;
+            this.IBAlfombrar.Click += new System.EventHandler(this.IBAlfombrar_Click);
             // 
             // panelContainerTopAlfombrar
             // 
@@ -398,6 +401,7 @@ namespace VistaProyecto
             this.IBBarnizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.IBBarnizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.IBBarnizar.UseVisualStyleBackColor = false;
+            this.IBBarnizar.Click += new System.EventHandler(this.IBBarnizar_Click);
             // 
             // panelContainerTopBarnizar
             // 
@@ -466,6 +470,7 @@ namespace VistaProyecto
             this.iBLijarMaderas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iBLijarMaderas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iBLijarMaderas.UseVisualStyleBackColor = false;
+            this.iBLijarMaderas.Click += new System.EventHandler(this.iBLijarMaderas_Click);
             // 
             // panelContainerTopLijar
             // 
