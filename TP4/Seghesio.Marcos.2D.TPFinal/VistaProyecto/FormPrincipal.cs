@@ -119,6 +119,13 @@ namespace VistaProyecto
             {
                 e.Cancel = true;
             }
+            else
+            {
+                if (!(this.hilo is null) && this.hilo.IsAlive)
+                {
+                    this.hilo.Abort();
+                }
+            }
         }
         /// <summary>
         /// Salir de la aplicación
